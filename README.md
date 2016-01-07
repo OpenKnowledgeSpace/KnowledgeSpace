@@ -2,4 +2,4 @@ Requirement: PHP 5
 Framework: CodeIgniter-3.0.3
 
 The KS utilizes the CodeIgniter to the maintain the Model View Controller(MVC) structure. For example, the URL such as
-/SciCrunchKS/index.php/pages/view/pyramidal_cell will first access the controllers/Pages.php and then the view function in the class. The Pages class extends CI_Controller, which is the controller in the MVC struture. 
+/SciCrunchKS/index.php/pages/view/pyramidal_cell will first access the controllers/Pages.php and then the view function in the class. The Pages class extends CI_Controller, which is the controller in the MVC structure. 
