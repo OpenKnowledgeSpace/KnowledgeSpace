@@ -1,9 +1,9 @@
 
     <div class="panel panel-default">
         <div class="panel-heading" style="min-height: 80; max-height: 80"><h3><?php echo "$title";  ?></h3></div>
-    <!-- <div class="panel-body" style="min-height: 50%; max-height: 50%;overflow-y: scroll"> -->
-    <div class="panel-body" style="min-height: 300; max-height: 300;overflow-y: scroll">
-
+    <div class="panel-body" style="min-height: 50%; max-height: 50%;overflow-y: scroll">
+    <!-- <div class="panel-body" style="min-height: 300; max-height: 300;overflow-y: scroll">
+       -->
         
         <!-- Principal neuron of the cerebral cortex (not including hippocampus or olfactory cortex). The pyramidal cell of the neocortex is located in layers 2-3 and 5-6, has a pyramidal-shaped cell body which gives off a number of laterally-directed basal dendrites and usually a single apical dendrite which ascends to branch and terminate in layer 1; these dendrites are covered in dendritic spines. -->
 

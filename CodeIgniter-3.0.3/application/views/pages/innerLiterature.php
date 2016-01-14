@@ -1,11 +1,18 @@
 
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+-->
   <link rel="stylesheet" type="text/css" href="sckb.css"> 
-  
+ 
+<!-- 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-      <script src="http://code.highcharts.com/highcharts.js"></script>
+ -->   
+   <!--  <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
+   -->
+
+    <script src="/SciCrunchKS/application/views/js/highcharts.js"></script>
+    <script src="/SciCrunchKS/application/views/js/exporting.js"></script>
   <script type="text/javascript">
 $(function () {
     $('#container').highcharts({
@@ -158,8 +165,9 @@ $(function () {
     
     <div class="panel panel-default">
     <div class="panel-heading">Literature</div>
-    <div class="panel-body" style="min-height: 385; max-height: 385;overflow-y: scroll">
-        
+  <!--  <div class="panel-body" style="min-height: 385; max-height: 385;overflow-y: scroll">
+   -->        
+    <div class="panel-body" style="min-height: 70%; max-height: 70%;overflow-y: scroll">
         
         
     <div id="container" style="min-width: 40%; height: 400px; margin: 0 auto"></div> 

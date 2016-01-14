@@ -1,15 +1,18 @@
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="sckb.css"> 
+  <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	-->
+	<link rel="stylesheet" href="/SciCrunchKS/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="sckb.css"> 
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  
+  <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  	-->
   
     <!-------------------Data space panel------------------------>
     <div class="panel panel-default">
     <div class="panel-heading">Data space</div>
-    <div class="panel-body" style="min-height: 138; max-height: 138;overflow-y: scroll">  
-    
+  <!--  <div class="panel-body" style="min-height: 138; max-height: 138;overflow-y: scroll">  
+    -->
+	<div class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll">
         
   
   <!-- Trigger the modal with a button -->
@@ -230,7 +233,7 @@
                 echo "<div class=\"row\">";
                 echo "   <div class=\"col-md-3\">";
                 //echo "      <a href=\"https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal&t=indexable&nif=nif-0000-00054-3\" target=\"_blank\">NeuronDB:Transmitters (".$neuronDBCount.")</a>";
-                echo "      <a href=\"http://localhost/SciCrunchKS/index.php/Results/view/nif-0000-00054-1/".$pageName."/1\" target=\"_blank\">NeuronDB:Transmitters (".$neuronDBCount.")</a>";
+                echo "      <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00054-1/".$pageName."/1\" target=\"_blank\">NeuronDB:Transmitters (".$neuronDBCount.")</a>";
                 echo "   </div>";
                 echo "    <div class=\"col-md-9\">";
                 echo "        at <a href=\"http://senselab.med.yale.edu/\" target=\"_blank\">  SenseLab </a>provides data about neurotransmitter properties for submitted neurons. ";
@@ -379,8 +382,9 @@
 <!-----------------------Image gallery----------------------->
     <div class="panel panel-default">
     <div class="panel-heading">Image gallery</div>
-    <div class="panel-body" style="min-height: 138; max-height: 138;overflow-y: scroll"> 
-      
+    <!-- <div class="panel-body" style="min-height: 138; max-height: 138;overflow-y: scroll"> 
+      -->
+    <div class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll"> 
         <div class="row" style="vertical-align: middle" >
             
 
