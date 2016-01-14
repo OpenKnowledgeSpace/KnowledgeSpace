@@ -1,20 +1,32 @@
- <html lang="en">
+<html>
 <head>
   <title>Scicrunch Knowledge Base</title>
  <meta charset="UTF-8">
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   -->	
+      <link rel="stylesheet" href="/SciCrunchKS/css/bootstrap.min.css">
+   
+<!--  <link rel="stylesheet" href="/SciCrunchKS/application/views/css/bootstrap.min.css">
+-->
   <link rel="stylesheet" type="text/css" href="/SciCrunchKS/resources/sckb.css"> 
   
       <link rel="icon" type="image/png" href="./img/favicon-32x32.png" sizes="32x32" />
     <link rel="shortcut icon" type="image/png" href="./img/favicon-16x16.png"/>
-  
+ <!-- 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  
+ -->
+
+  <script src="/SciCrunchKS/application/views/js/jquery.min.js"></script>
+  <script src="/SciCrunchKS/application/views/js/bootstrap.min.js"></script>
+
+
 <script src="/SciCrunchKS/js/sortable/js/sortable.min.js"></script>
 <link rel="stylesheet" href="/SciCrunchKS/js/sortable/css/sortable-theme-bootstrap.css" />
+
+ 
     <!-- <script src="myGraph.js"></script> -->
     
         <title>Knowledge Space | App</title>
@@ -65,12 +77,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div class="row">
-                    <div class="col-md-3">
                         <img width="50" height="50" src="/SciCrunchKS/resources/img/ks6.png"/>
-                    </div>
-                    <div class="col-md-9">
-                        <a class="navbar-brand" href="/SciCrunchKS/resources/index.html">Knowledge Space</a>
-                    </div>
+                        <a style="color:gray;text-decoration: none;background-color: none;font-size:18px;" href="/index.html">Knowledge Space</a>
                 </div>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -78,18 +86,20 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <!-- <a href="http://knowledge-space.org/#about">About</a> -->
-                        <a href="./#about">About</a>
+                        <a href="/#about">About</a>
                     </li>
                     <li>
                         <!-- <a href="http://knowledge-space.org/#examples">Examples</a> -->
-                        <a href="./#examples">Examples</a>
+                        <a href="/#examples">Examples</a>
                     </li>
                     
                     <li>
                         <!-- <a href="http://knowledge-space.org/#examples">Examples</a> -->
-                        <a href="./KnowledgeSpace.jsp">Demo</a>
+                        <a href="/SciCrunchKS/index.php/pages/view/Neocortical_pyramidal_cell">Demos</a>
                     </li>
-                    
+		    <li>
+			<a href="/SciCrunchKS/documentation.php">Documentation</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
