@@ -1,6 +1,6 @@
 <?php
 
-
+require_once 'Config.php';
 
 function getJsonObj2($surl)
 {
@@ -54,6 +54,7 @@ function getJsonObj($surl)
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
         // Disable SSL verification
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,5); 
 
         // Will return the response, if false it print the response
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -76,7 +77,8 @@ function getJsonObj($surl)
 
 function getObjByCurie($curie)
 {
-    $surl = "http://matrix.neuinfo.org:9000/scigraph/vocabulary/id/".$curie;
+    $surl = "http://".Config::$sciGraphHost.":9000/scigraph/vocabulary/id/".$curie;
+    //$surl = "http://matrix.neuinfo.org:9000/scigraph/vocabulary/id/".$curie;
     //echo 'getObjByCurie-------'.$surl."\n";
     $obj = getJsonObj($surl);
     //var_dump($obj);
@@ -87,7 +89,8 @@ function getObjByCurie($curie)
 
 function getTreeObj($curie)
 {
-	$surl = "http://matrix.neuinfo.org:9000/scigraph/graph/neighbors/". $curie ."?depth=1&blankNodes=false&direction=BOTH&project=%2A";
+	//$surl = "http://matrix.neuinfo.org:9000/scigraph/graph/neighbors/". $curie ."?depth=1&blankNodes=false&direction=BOTH&project=%2A";
+        $surl = "http://".Config::$sciGraphHost.":9000/scigraph/graph/neighbors/". $curie ."?depth=1&blankNodes=false&direction=BOTH&project=%2A";
 
 	$obj = getJsonObj($surl);
 	return $obj;
@@ -177,13 +180,18 @@ function getChildrenIDs($obj, $mainID)
 
 function searchLiteratureByYear($searchTerm, $yearFilter)
 {
-    $surl = "http://nif-services.neuinfo.org/servicesv1/v1/literature/search?count=30000&q=" . $searchTerm . "&yearFilter=".$yearFilter;
+    //$surl = "http://nif-services.neuinfo.org/servicesv1/v1/literature/search?count=30000&q=" . $searchTerm . "&yearFilter=".$yearFilter;
+    $surl = "http://".Config::$nifServiceForData."/servicesv1/v1/literature/search?count=30000&q=" . $searchTerm . "&yearFilter=".$yearFilter;
+
+    
     return getJsonObj($surl);
 }
 
 function searchLiterature($searchTerm)
 {
-    $surl = "http://nif-services.neuinfo.org/servicesv1/v1/literature/search?count=30000&q=" . $searchTerm;
+    //$surl = "http://nif-services.neuinfo.org/servicesv1/v1/literature/search?count=30000&q=" . $searchTerm;
+    $surl = "http://".Config::$nifServiceForData."/servicesv1/v1/literature/search?count=30000&q=" . $searchTerm;
+
     return getJsonObj($surl);
     
 }
@@ -191,7 +199,9 @@ function searchLiterature($searchTerm)
 function searchWithinSource($searchTerm, $sourceID, $rcount)
 {
 
-	$surl = "http://nif-services.neuinfo.org/servicesv1/v1/federation/data/" . $sourceID . "?q=" . $searchTerm . "&count=" . $rcount;
+        $surl = "http://".Config::$nifServiceForData."/servicesv1/v1/federation/data/" . $sourceID . "?q=" . $searchTerm . "&count=" . $rcount;
+
+	//$surl = "http://nif-services.neuinfo.org/servicesv1/v1/federation/data/" . $sourceID . "?q=" . $searchTerm . "&count=" . $rcount;
 	//if($sourceID== "nif-0000-00054-3")		
        //echo $surl . "\n";
 
@@ -201,9 +211,9 @@ function searchWithinSource($searchTerm, $sourceID, $rcount)
 function searchWithinSource2($searchTerm, $sourceID, $rcount, $offset)
 {
 
-	$surl = "http://nif-services.neuinfo.org/servicesv1/v1/federation/data/" . $sourceID . "?q=" . $searchTerm . "&count=" . $rcount. "&offset=".$offset;
+	//$surl = "http://nif-services.neuinfo.org/servicesv1/v1/federation/data/" . $sourceID . "?q=" . $searchTerm . "&count=" . $rcount. "&offset=".$offset;
 	//echo $surl . "\n";
-
+        $surl = "http://".Config::$nifServiceForData."/servicesv1/v1/federation/data/" . $sourceID . "?q=" . $searchTerm . "&count=" . $rcount. "&offset=".$offset;
 	return getJsonObj($surl); 
 }
 
@@ -255,7 +265,7 @@ function processLiteratureObj2($litObj)
     if(is_null($litObj))  //If empty result is returned
         return $myMap;
     
-    
+   //var_dump($litObj); 
     $result = $litObj->response;
     
     
@@ -310,7 +320,8 @@ function get_http_response_code($url) {
 function getDescriptionByCurie($curie)
 {
     $postfix = str_replace(":","/", $curie);
-    $prefix = "https://raw.githubusercontent.com/tgbugs/ksdesc/master/";
+    //$prefix = "https://raw.githubusercontent.com/tgbugs/ksdesc/master/";
+    $prefix = "https://".Config::$gitHubRawHost."/tgbugs/ksdesc/master/";
     $surl = $prefix.$postfix.".md";
     $file_headers = @get_headers($surl);
     //echo "CODE:".$file_headers[0]."---------";
@@ -335,9 +346,11 @@ function getDescriptionByCurie($curie)
 function getTerm($name)
 {
     $name = str_replace(" ", "%20",$name); 
-    $surl = "http://matrix.neuinfo.org:9000/scigraph/vocabulary/term/".$name."?limit=20&searchSynonyms=false&searchAbbreviations=false&searchAcronyms=false
-";
+    //$surl = "http://matrix.neuinfo.org:9000/scigraph/vocabulary/term/".$name."?limit=20&searchSynonyms=false&searchAbbreviations=false&searchAcronyms=false
+//";
    // echo "<p>\n".$surl."<p>\n";
+    $surl = "http://".Config::$sciGraphHost.":9000/scigraph/vocabulary/term/".$name."?limit=20&searchSynonyms=false&searchAbbreviations=false&searchAcronyms=false";
+    
     $obj = getJsonObj($surl);
     return $obj;
 }
@@ -353,7 +366,7 @@ function getSourceDescObj($curie)
 
 function searchLiteratureByYearOnly($term)
 {
-    $surl = "http://starburst.crbs.ucsd.edu:8080/literature/collection1/select?q=".$term
+    $surl = "http://".Config::$literatureHost.":8080/literature/collection1/select?q=".$term
             ."&start=0&fl=year&rows=25000000&wt=json&indent=true";
     //echo $surl;
     $obj = getJsonObj($surl);
@@ -365,9 +378,12 @@ function searchLiteratureByYearOnly($term)
 function searchLiteratureByYearUsingSolr($terms, $start, $rows, $fl, $year)
 {
     
-    $surl="http://vivaldi.crbs.ucsd.edu:8080/literature/collection1/select?q=%7B!lucene%20q.op=OR%7D".
+    //$surl="http://vivaldi.crbs.ucsd.edu:8080/literature/collection1/select?q=%7B!lucene%20q.op=OR%7D".
+    //        $terms."&start=".$start."&fl=".$fl."&rows=".$rows."&wt=json&indent=true&fq=year:".$year;
+    $surl="http://".Config::$literatureHost.":8080/literature/collection1/select?q=%7B!lucene%20q.op=OR%7D".
             $terms."&start=".$start."&fl=".$fl."&rows=".$rows."&wt=json&indent=true&fq=year:".$year;
-    //echo $surl;
+    
+    //echo "<br/><br/>".$surl;
     
     $obj = getJsonObj2($surl);
     //$obj = file_get_contents($surl);

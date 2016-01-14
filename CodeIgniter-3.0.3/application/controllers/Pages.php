@@ -4,7 +4,7 @@
 
 class Pages extends CI_Controller 
 {
-        public $enableCaching = true;
+        public $enableCaching = false;
         
         
         private function handleDataSpace(&$data, $searchName)

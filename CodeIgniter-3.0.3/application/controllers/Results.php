@@ -7,7 +7,7 @@ class Results extends CI_Controller
                 require_once  'JsonClientUtil.php';  
                 
                 $data['test'] = NULL;
-                
+               
                 $term = str_replace("_", "%20", $term);
                 $newName =$term;
                 $searchName = $term;
@@ -40,7 +40,7 @@ class Results extends CI_Controller
                 {
                     $offset =($pageID-1)*20;
                 }
-                echo "---------------".$newName;
+                //echo "---------------".$newName;
                 $data['resultObj'] = searchWithinSource2($newName, $sourceID, 20,$offset);
                // $data['resultObj'] = searchWithinSource2($term, $sourceID, 20,$offset);
                /*if(endsWith($term, "%20cell"))
@@ -58,16 +58,25 @@ class Results extends CI_Controller
                 $data['sourceID'] = $sourceID;
                 $data['pageID'] = $pageID;
                 $data['term'] = $term;
-                $surl = "http://".
+
+		$protocol = "http";
+		if(isset($_SERVER['HTTPS']))
+		{
+			$protocol = "https";	
+		}
+                $surl = $protocol."://".
                         $_SERVER['SERVER_NAME']
                         ."/SciCrunchKS/resources/source_description/".$sourceID;
-                $responseCode =  @get_headers($surl);
+                //echo "\n".$surl;
+		$responseCode =  @get_headers($surl);
     //echo "CODE:".$file_headers[0]."---------";
                 if($responseCode[0] == 'HTTP/1.1 404 Not Found')
                     $data['description'] = "";
                 else
+		{
+			
                     $data['description'] = file_get_contents($surl);
-                
+                }
                 //var_dump($data['resultObj']);
                 
                 $this->load->view('templates/header', $data);
