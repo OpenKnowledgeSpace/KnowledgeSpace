@@ -19,8 +19,8 @@
         $parentLinkName = str_replace(" ", "_", $node->lbl);
         $parentLinkName = str_replace("(", "_",$parentLinkName);
         $parentLinkName = str_replace(")", "_",$parentLinkName);
-        $parentLink = "/SciCrunchKS/index.php/pages/view/".$parentLinkName;
-
+        //$parentLink = "/SciCrunchKS/index.php/pages/view/".$parentLinkName;
+        $parentLink = "/SciCrunchKS/index.php/pages/view/".$node->id;
 	echo "<ul><li><span><i class=\"icon-folder-open\"></i><a target=\"_self\" href=\"".$parentLink."\">" . $node->lbl    .    "</a></span> <a href=\"\"></a>";
 
 

@@ -109,8 +109,9 @@ class Pages extends CI_Controller
                 $leafLinkName = str_replace(" ", "_", $leaf->lbl);
                 $leafLinkName = str_replace("(", "_", $leafLinkName);
                 $leafLinkName = str_replace(")", "_", $leafLinkName);
-                $leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
-		$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
+                //$leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
+		$leafLink = "/SciCrunchKS/index.php/pages/view/".$leaf->id;
+                $leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
 
             }
             $data['leafHTML'] = $leafHTML;
@@ -162,6 +163,71 @@ class Pages extends CI_Controller
                 
             }
         }
+        
+        public function loadSourcesConfig()
+        {
+            // Open the file
+            $sourceIDs = "";array();
+            $sources= array();
+            $array = explode("\n", file_get_contents(getcwd()."/application/controllers/sources.txt"));
+            foreach ($array as $line) {
+                $items= explode( ',', $line );
+                array_push($sources,$items);
+                
+                if(strcmp($items[2], "true")==0)
+                {
+                    if(strcmp($sourceIDs, "")==0)
+                      $sourceIDs = $items[1];
+                    else
+                      $sourceIDs = $sourceIDs.",".$items[1];
+                }
+                     //array_push($sourceIDs,$items[1]);
+            }
+            //if(!array_key_exists('ks_selected_sources',$_COOKIE))
+            if(!isset($_COOKIE['ks_selected_sources']))
+            {
+                setcookie('ks_selected_sources', $sourceIDs, time()+3600);
+            }
+            //if(!array_key_exists('ks_selected_sources',$_COOKIE))
+            //{ 
+                    //$json = json_encode($sourceIDs);
+                    //setcookie('ks_selected_sources', $json, time()+3600);
+            //}
+
+            return $sources;
+        }
+        
+        public function loadCategoriesConfig()
+        {
+            // Open the file
+            
+            $sources= array();
+            $selected = array();
+            $array = explode("\n", file_get_contents(getcwd()."/application/controllers/categories.txt"));
+            foreach ($array as $line) {
+                $items= explode( ',', $line );
+                array_push($sources,$items);
+                
+                if(strcmp($items[1], "true") == 0)
+                    array_push($selected, $items[0]);
+
+            }
+            
+            //if(!array_key_exists('ks_selected_categories',$_COOKIE))
+            if(!isset($_COOKIE['ks_selected_categories']))
+            {
+                $line = implode(',',$selected);
+                //echo "-----line:".$line;
+                setcookie('ks_selected_categories', $line, time()+3600);
+                
+                
+            }
+
+            
+            return $sources;
+        }
+        
+        
 	public function view($page = 'home')
 	{
                //require  'Globals.php';
@@ -182,6 +248,34 @@ class Pages extends CI_Controller
                $pos = strpos($pageName,"%20");
                $isNifID = false;
                $originalPageName="";
+               
+               //Loading sources configurations
+               $sources = $this->loadSourcesConfig();
+               if($sources != null)
+               {
+                   $data['ks_sources'] = $sources;
+                   
+                   /*if(!array_key_exists('ks_sources',$_COOKIE))
+                   {
+                       
+                        $json = json_encode($sources);
+                       
+                       //setcookie('ks_sources', serialize($sources), time()+3600);
+                        setcookie('ks_sources', $json, time()+3600);
+                   }*/
+                   
+               }
+               
+               //Loading categories configurations
+               $categories = $this->loadCategoriesConfig();
+               if($categories != null)
+               {
+                   $data['categories'] = $categories;
+               }
+               
+               
+               
+               
                if( $pos == false)
                {
                     $termObj[0] = getObjByCurie($pageName);

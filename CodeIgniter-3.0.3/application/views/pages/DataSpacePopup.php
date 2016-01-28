@@ -6,7 +6,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   	-->
-  
+
     <!-------------------Data space panel------------------------>
     <div class="panel panel-default">
     <div class="panel-heading">Data space</div>
@@ -15,114 +15,208 @@
 	<div class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll">
         
   
-  <!-- Trigger the modal with a button -->
-    <div class="row">
-    <div class="col-md-4">
+<?php
+        //Retrieving cookies for selected categories
+        $ks_selected_json = "";
+        if(isset($_COOKIE['ks_selected_sources']))
+        {
+            $ks_selected_json = $_COOKIE['ks_selected_sources'];
+        }
+        $ks_selected_sources = explode(",", $ks_selected_json);
+                        
+?>
+   
+    
                
    <!-- <button style="height:30px;width:120px" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Physiology -->
        <?php 
 
+       echo " <div class=\"row\">";
+       $buttonCount = 0;
+       
+        $categories_string = "";
+        if(isset($_COOKIE['ks_selected_categories']))
+            $categories_string=$_COOKIE['ks_selected_categories'];
+                        
+        $ks_selected_categories = explode(",", $categories_string);       
+       
         $neuroElectroCount = 0;
-    
-        //echo $neuroElectroResult;
-        if(!is_null($neuroElectroResult) && $neuroElectroResult->result->resultCount > 0)
+        //var_dump($ks_selected_categories);
+        if(isset($ks_selected_categories)&& in_array("Physiology", $ks_selected_categories ) 
+           && isset($ks_selected_sources) && in_array("nlx_151885-1", $ks_selected_sources)    
+                )
         {
-           $neuroElectroCount = $neuroElectroResult->result->resultCount;
-	   echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">Physiology (".$neuroElectroResult->result->resultCount.")";
-           
+            $buttonCount++;
+            //echo $neuroElectroResult;
+            echo "<div class=\"col-md-4\">";
+            if(!is_null($neuroElectroResult) && $neuroElectroResult->result->resultCount > 0)
+            {
+               $neuroElectroCount = $neuroElectroResult->result->resultCount;
+               echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">Physiology (".$neuroElectroResult->result->resultCount.")";
+
+            }
+            else
+              echo "<button  style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\" disabled>Physiology (0)";
+        
+            echo "\n</button> </div>";
         }
-        else
-          echo "<button  style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\" disabled>Physiology (0)";
+?>
+   
 
-?></button>
-    </div>
-
-    <div class="col-md-4">
+    
     <!-- <button style="height:30px;width:120px" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">Expression -->
         <?php
 	
-       $genSatCount = 0;
-       if(!is_null($genSatResult) && $genSatResult->result->resultCount> 0)
-       {
-           $genSatCount = $genSatResult->result->resultCount;
-           echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\">Expression (".$genSatResult->result->resultCount.")";
-           
-       }
-       else 
-           echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\" disabled>Expression (0)";
-       
-?></button> 
-    </div>
+        if(isset($ks_selected_categories)&& in_array("Expression", $ks_selected_categories ) 
+                && isset($ks_selected_sources) && in_array("nif-0000-00130-1", $ks_selected_sources)
+                )
+        {
+            $buttonCount++;
+            echo "<div class=\"col-md-4\">";
+            $genSatCount = 0;
+            if(!is_null($genSatResult) && $genSatResult->result->resultCount> 0)
+            {
+                $genSatCount = $genSatResult->result->resultCount;
+                echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\">Expression (".$genSatResult->result->resultCount.")";
 
-    <div class="col-md-4">
+            }
+            else 
+                echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\" disabled>Expression (0)";
+            
+            echo "</button></div>";
+        }
+?>
+    
+
+    
     <!-- <button style="height:30px;width:120px" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal5">Models -->
         <?php
 	$modelCount = 0;
         $neuroMLCount = 0;
         $modelDBCount = 0;
         $brainModelCount =0;
-        if(!is_null($neuroMLResult))
+        if(!is_null($neuroMLResult) && isset($ks_selected_sources) && in_array("scr_013705-1",$ks_selected_sources))
         {
             $neuroMLCount = $neuroMLResult->result->resultCount;
             $modelCount = $neuroMLResult->result->resultCount;
         }
-        if(!is_null($modelDBResult))
+        if(!is_null($modelDBResult) && isset($ks_selected_sources) && in_array("nif-0000-00004-1",$ks_selected_sources))
         {
             $modelDBCount = $modelDBResult->result->resultCount;
             $modelCount = $modelCount+$modelDBResult->result->resultCount;
             
         }
-        if(!is_null($brainModelResult))
+        if(!is_null($brainModelResult) && isset($ks_selected_sources) && in_array("nlx_152590-1",$ks_selected_sources))
         {
             $brainModelCount = $brainModelResult->result->resultCount;
             $modelCount = $modelCount+$brainModelResult->result->resultCount;
             
         }
-        if($modelCount > 0)
-            echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\">Models (".$modelCount.")";
-        else
-            echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\" disabled>Models (".$modelCount.")";
+        
+        if(isset($ks_selected_categories)&& in_array("Models", $ks_selected_categories ) )
+        {
+            if(isset($ks_selected_sources)  )
+            {
+                if(in_array("scr_013705-1", $ks_selected_sources) ||
+                     in_array("nif-0000-00004-1", $ks_selected_sources) ||
+                        in_array("nlx_152590-1", $ks_selected_sources))
+                {
+            $buttonCount++;
+            echo "<div class=\"col-md-4\">";
+            if($modelCount > 0)
+                echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\">Models (".$modelCount.")";
+            else
+                echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\" disabled>Models (".$modelCount.")";
+        
+            echo "</button></div>";
+            
+                }
+            
+            }
+        }
+?> 
+    
+  
 
-?></button> 
-    </div>
-  </div>
+<?php
+    $newRow = false;
+    if($buttonCount ==3 && $newRow == false)
+    {
+        $newRow = true;
+        echo "</div><br/>";
+        echo "<div class=\"row\">";
+    }
+?>
+ 
 
-
- <br/>
-   <div class="row">
-    <div class="col-md-4">
     <!-- <button style="height:30px;width:120px" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal3">Anatomy -->
         <?php
 	
-        $neuronDBCount = 0;
-        if(!is_null($neuronDBResult) && $neuronDBResult->result->resultCount > 0)
+        if(isset($ks_selected_categories)&& in_array("Anatomy", $ks_selected_categories ) &&
+                isset($ks_selected_sources) && in_array("nif-0000-00054-1", $ks_selected_sources) 
+                )
         {
-           $neuronDBCount = $neuronDBResult->result->resultCount;
-           echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal3\">Anatomy (".$neuronDBResult->result->resultCount.")";
+            $buttonCount++;
+            echo "<div class=\"col-md-4\">";
+            $neuronDBCount = 0;
+            if(!is_null($neuronDBResult) && $neuronDBResult->result->resultCount > 0)
+            {
+                $neuronDBCount = $neuronDBResult->result->resultCount;
+                echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal3\">Anatomy (".$neuronDBResult->result->resultCount.")";
            
+            }
+            else 
+                echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal3\" disabled>Anatomy (0)";
+        
+            echo "</button></div>";
         }
-       else 
-           echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal3\" disabled>Anatomy (0)";
-      
-?></button>
-    </div>
+?>
     
-    <div class="col-md-4">
+    
+<?php
+    $newRow = false;
+    if($buttonCount ==3 && $newRow == false)
+    {
+        $newRow = true;
+        echo "</div><br/>";
+        echo "<div class=\"row\">";
+    }
+?>    
     <!-- <button style="height:30px;width:120px" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal4">Morphology -->
         <?php
 	$neuroMorphoCount = 0;
-        if(!is_null($neuroMorphoResult) && $neuroMorphoResult->result->resultCount > 0)
+        if(isset($ks_selected_categories)&& in_array("Morphology", $ks_selected_categories ) 
+                && isset($ks_selected_sources) && in_array("nif-0000-00006-1", $ks_selected_sources))
         {
-            $neuroMorphoCount = $neuroMorphoResult->result->resultCount;
-            echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\">Morphology (".$neuroMorphoResult->result->resultCount.")";
+            $buttonCount++;
+            echo "<div class=\"col-md-4\">";
+            if(!is_null($neuroMorphoResult) && $neuroMorphoResult->result->resultCount > 0)
+            {
+                $neuroMorphoCount = $neuroMorphoResult->result->resultCount;
+                echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\">Morphology (".$neuroMorphoResult->result->resultCount.")";
             
+            }
+            else 
+                echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\" disabled>Morphology (0)";
+        
+            echo "</button></div>";
         }
-        else 
-            echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\" disabled>Morphology (0)";
-?></button>
-    </div>
-  </div>
-
+?>
+<?php
+    $newRow = false;
+    if($buttonCount ==3 && $newRow == false)
+    {
+        $newRow = true;
+        echo "</div><br/>";
+        echo "<div class=\"row\">";
+    }
+?>
+<?php
+    if($buttonCount >= 3)
+    {
+        echo "</div>";
+    }
+?>
   </div>  
 </div>
 
@@ -174,6 +268,8 @@
     </div>
   </div>
 
+  
+
 
 
   <!-- Modal -->
@@ -192,15 +288,21 @@
                     <?php
                     if($genSatCount > 0)
                     {
-                        echo "<div class=\"row\" >\n";
-                        echo "   <div class=\"col-md-3\">\n";
-                        //echo "       <a href=\"https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal&t=indexable&nif=nif-0000-00130-1&b=0&r=20\" target=\"_blank\">GENSAT:GeneExpression (".$genSatCount.")</a>\n";
-                        echo "       <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00130-1/".$pageName."/1\" target=\"_blank\">GENSAT:GeneExpression (".$genSatCount.")</a>\n";
-                        echo "   </div>\n";
-                        echo "   <div class=\"col-md-9\">\n";
-                        echo "        contains gene expression data and maps of the mouse brain and spinal cord. ";
-                        echo "   </div>";
-                        echo "</div>";
+                        if(in_array("nif-0000-00130-1", $ks_selected_sources))
+                        {
+                            echo "<div class=\"row\" >\n";
+                        
+
+                            echo "   <div class=\"col-md-3\">\n";
+                            //echo "       <a href=\"https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal&t=indexable&nif=nif-0000-00130-1&b=0&r=20\" target=\"_blank\">GENSAT:GeneExpression (".$genSatCount.")</a>\n";
+                            echo "       <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00130-1/".$pageName."/1\" target=\"_blank\">GENSAT:GeneExpression (".$genSatCount.")</a>\n";
+                            echo "   </div>\n";
+                            echo "   <div class=\"col-md-9\">\n";
+                            echo "        contains gene expression data and maps of the mouse brain and spinal cord. ";
+                            echo "   </div>";
+                            echo "</div>";
+                            
+                        }
                     }
                     ?>
 		</div>    
@@ -230,16 +332,20 @@
             
             if($neuronDBCount > 0)
             {
-                echo "<div class=\"row\">";
-                echo "   <div class=\"col-md-3\">";
-                //echo "      <a href=\"https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal&t=indexable&nif=nif-0000-00054-3\" target=\"_blank\">NeuronDB:Transmitters (".$neuronDBCount.")</a>";
-                echo "      <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00054-1/".$pageName."/1\" target=\"_blank\">NeuronDB:Transmitters (".$neuronDBCount.")</a>";
-                echo "   </div>";
-                echo "    <div class=\"col-md-9\">";
-                echo "        at <a href=\"http://senselab.med.yale.edu/\" target=\"_blank\">  SenseLab </a>provides data about neurotransmitter properties for submitted neurons. ";
-                echo "    </div>";
-                echo "</div>";
-            }  
+                if(isset($ks_selected_sources) && in_array("nif-0000-00054-1", $ks_selected_sources))
+                {
+                    echo "<div class=\"row\">";
+                    echo "   <div class=\"col-md-3\">";
+                    //echo "      <a href=\"https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal&t=indexable&nif=nif-0000-00054-3\" target=\"_blank\">NeuronDB:Transmitters (".$neuronDBCount.")</a>";
+                    echo "      <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00054-1/".$pageName."/1\" target=\"_blank\">NeuronDB:Currents (".$neuronDBCount.")</a>";
+                    echo "   </div>";
+                    echo "    <div class=\"col-md-9\">";
+                    echo "        at <a href=\"http://senselab.med.yale.edu/\" target=\"_blank\">  SenseLab </a>provides data about neurotransmitter properties for submitted neurons. ";
+                    echo "    </div>";
+                    echo "</div>";
+                }  
+            
+            }
             ?>
         </div>
         <div class="modal-footer">
@@ -308,11 +414,21 @@
           <h4 class="modal-title">Models</h4>
         </div>
         <div class="modal-body">
-                   
+<?php
+        //Retrieving cookies for selected categories
+       /* $ks_selected_json = "";
+        if(isset($_COOKIE['ks_selected_sources']))
+        {
+            $ks_selected_json = $_COOKIE['ks_selected_sources'];
+        }
+        $ks_selected_sources = explode(",", $ks_selected_json); */
+                        
+?>                   
             
             <?php
             
-            if($neuroMLCount > 0)
+            
+            if($neuroMLCount > 0 && isset($ks_selected_sources) && in_array("scr_013705-1",$ks_selected_sources))
             {
                 echo "<div class=\"row\">";
                 echo "    <div class=\"col-md-4\">";
@@ -330,7 +446,7 @@
             
             <?php
             
-            if($modelDBCount > 0)
+            if($modelDBCount > 0 && isset($ks_selected_sources) && in_array("nif-0000-00004-1",$ks_selected_sources))
             {
             echo "<div class=\"row\"  style=\"background: #b8d1f3\">";
             echo "    <div class=\"col-md-4\">";
@@ -345,7 +461,7 @@
             ?>
             
             <?php
-            if($brainModelCount >0)
+            if($brainModelCount >0 && isset($ks_selected_sources) && in_array("nlx_152590-1",$ks_selected_sources))
             {
                 echo "<div class=\"row\">";
                 echo "    <div class=\"col-md-4\">";
@@ -431,12 +547,16 @@
 <?php
         if(!$hasFirstImage && sizeof($cilImages) > 1)
         {
-            
+            if($originalCILImages != NULL && count($originalCILImages)>0)
+            {
             echo "<div class=\"col-md-3\">";
-            echo $cilImages[count($originalCILImages)-1];	   
+            
+                echo $cilImages[count($originalCILImages)-1];	   
+           
             echo "</div>";
             $hasFirstImage = true;
             $imageCount++;
+             }
         }
 
 

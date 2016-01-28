@@ -62,8 +62,113 @@
 });
     </script>
 
+<script type="text/javascript">
+    function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
 
+function updateCategoryStatus(id)
+{
+    var json_str = getCookie('ks_selected_categories');
+    json_str=json_str.replace(new RegExp("%2C", 'g'), ",");
+    //alert("-----NEW JSON:"+json_str);
+    var array = json_str.split(',');
+    
+    var found = false;
+    var i = 0;
+    for(i=0;i<array.length;i++)
+    {
+        //alert("Array ITEM====="+array[i]);
+        var item = array[i];
+        if(item == id)
+        {
+            found = true;
+            break;
+        }
+    }
 
+    if (document.getElementById(id).checked) 
+    {
+            if(!found)
+            {
+                array.push(id);
+            }
+    } 
+    else 
+    {
+            if(found)
+            {
+                array.splice(i,1);
+            }
+            
+    }
+    var str = array.join(",");
+    setCookie('ks_selected_categories',str,365);
+    
+}
+
+function updateSourceStatus(id)
+{
+
+    
+    var json_str = getCookie('ks_selected_sources');
+    //alert(json_str);
+    //json_str=json_str.replace("%2C",",");
+    json_str=json_str.replace(new RegExp("%2C", 'g'), ",");
+    //alert("-----NEW JSON"+json_str);
+    var array = json_str.split(',');
+    
+    var found = false;
+    var i = 0;
+    for(i=0;i<array.length;i++)
+    {
+        //alert("Array ITEM====="+array[i]);
+        var item = array[i];
+        if(item == id)
+        {
+            found = true;
+            break;
+        }
+    }
+    //alert("test:"+found);
+    if (document.getElementById(id).checked) 
+    {
+            //alert(id+"--checked");
+            if(!found)
+            {
+                array.push(id);
+                //alert("pushed:"+id);
+            }
+    } 
+    else 
+    {
+            //alert(id+"--NOT checked");
+            if(found)
+            {
+                array.splice(i,1);
+                //alert("splice index:"+i);
+            }
+            
+    }
+    var str = array.join(",");
+    //alert("final string:"+str);
+    setCookie('ks_selected_sources',str,365);
+        
+}
+</script>
 
 <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -85,18 +190,28 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <!-- <a href="http://knowledge-space.org/#about">About</a> -->
                         <a href="/#about">About</a>
                     </li>
                     <li>
-                        <!-- <a href="http://knowledge-space.org/#examples">Examples</a> -->
                         <a href="/#examples">Examples</a>
                     </li>
                     
+                    <!--
                     <li>
-                        <!-- <a href="http://knowledge-space.org/#examples">Examples</a> -->
                         <a href="/SciCrunchKS/index.php/pages/view/Neocortical_pyramidal_cell">Demos</a>
-                    </li>
+                    </li>  -->
+                    <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Demos
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/SciCrunchKS/index.php/pages/view/Neocortical_pyramidal_cell">View demo</a></li>
+                      <li><a href="#" data-toggle="modal" data-target="#demoModal">Configurations</a></li>
+                      
+                    </ul>
+                  </li>
+                    
+                    
+                    
 		    <li>
 			<a href="/SciCrunchKS/documentation.php">Documentation</a>
                     </li>
@@ -108,3 +223,103 @@
     </nav>      
 
 
+  <!-- Modal -->
+  <div class="modal fade" id="demoModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button id="closeBtn" type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Configurations</h4>
+        </div>
+        <div class="modal-body">
+          
+            <div class="row">
+                <div class="col-md-6" >
+                    <table class="table" border="0">
+                        <thead>
+                        <tr>
+                          <th>Category</th>
+                        </tr>
+                      </thead>
+<?php
+
+                        $categories_string = "";
+                        if(isset($_COOKIE['ks_selected_categories']))
+                            $categories_string=$_COOKIE['ks_selected_categories'];
+                        //echo "category string-----".$categories_string;
+                        $ks_selected_categories = explode(",", $categories_string);
+                        //var_dump($ks_selected_categories);
+                        foreach ($categories as $category) 
+                        {
+                            //if(strcmp($category[1],"true")==0)
+                            if(in_array($category[0], $ks_selected_categories))
+                                echo "<tr><td><input type=\"checkbox\" id=\"" .$category[0]."\" onclick=\"updateCategoryStatus(this.id);\" checked>";
+                            else 
+                                echo "<tr><td><input type=\"checkbox\" id=\"" .$category[0]."\" onclick=\"updateCategoryStatus(this.id);\">";
+                                
+                            echo $category[0];
+                            echo "</input></tr></td>";
+                        }  
+
+?>
+                        
+                        
+                    </table>
+                    
+                </div>
+ 
+                <div class="col-md-6" >
+                    <table class="table" border="0">
+                        <thead>
+                        <tr>
+                          <th>Sources</th>
+                        </tr>
+                      </thead>
+                      
+<?php                   
+                        $ks_selected_json = "";
+                        if(isset($_COOKIE['ks_selected_categories']))
+                        {
+                            $ks_selected_json = $_COOKIE['ks_selected_sources'];
+                        }
+                        //echo "\n\njson----------".$ks_selected_json."------------";
+                        //echo "----------JSON----\n\n";
+                        $ks_selected_sources = explode(",", $ks_selected_json);
+                        ////json_decode($ks_selected_json);
+                        //var_dump($ks_selected_sources);
+                        //echo "----------END JSON----\n\n";
+                        
+                        foreach ($ks_sources as $source) 
+                        {
+                            //if(strcmp($source[2],"true")==0)
+                            if(in_array($source[1], $ks_selected_sources ))
+                                echo "<tr><td><input type=\"checkbox\" id=\"".$source[1]."\" onclick=\"updateSourceStatus(this.id);\" checked>";
+                            else 
+                                echo "<tr><td><input type=\"checkbox\" id=\"".$source[1]."\" onclick=\"updateSourceStatus(this.id);\">";
+                                
+                            echo $source[0];
+                            echo "</input></tr></td>";
+                        }   
+                       
+?>                       
+                        
+                    </table>
+                    
+                </div>
+                
+                
+                
+            </div>
+            
+            
+        </div>
+        <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-default"  onclick="javascript:window.location='http://google.com'">Save</button> -->
+            <button type="button" class="btn btn-default"  onclick="window.location.reload()">Save</button>
+            
+            
+            <!-- data-dismiss="modal" -->
+        </div>
+      </div>
+    </div>
+  </div>
