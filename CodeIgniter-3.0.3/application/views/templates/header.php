@@ -42,27 +42,7 @@
     <!-- Custom Fonts -->
     <link href="/SciCrunchKS/resources/Knowledge_Space_files/font-awesome.min.feda974a77ea.css" rel="stylesheet" type="text/css">
     <link href="/SciCrunchKS/resources/Knowledge_Space_files/css" rel="stylesheet" type="text/css">
-    
-</head>
-<body>
-  <script type="text/javascript">
-        $(function () {
-    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
-    $('.tree li.parent_li > span').on('click', function (e) {
-        var children = $(this).parent('li.parent_li').find(' > ul > li');
-        if (children.is(":visible")) {
-            children.hide('fast');
-            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
-        } else {
-            children.show('fast');
-            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
-        }
-        e.stopPropagation();
-    });
-});
-    </script>
-
-<script type="text/javascript">
+    <script type="text/javascript">
     function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -168,7 +148,51 @@ function updateSourceStatus(id)
     setCookie('ks_selected_sources',str,365);
         
 }
+
+
+function prepareCookies()
+{
+if(document.cookie.indexOf("ks_selected_sources") < 0)
+{
+    //alert("Cookie is NOT set");
+   setCookie('ks_selected_sources','nlx_151885-1,nif-0000-00006-1,nif-0000-00130-1,nif-0000-00054-1,nif-0000-37639-1,scr_013705-1,nif-0000-00004-1,nlx_152590-1',365);
+   //alert("Cookie now:"+getCookie('ks_selected_sources'));
+}
+//else
+    //alert("Cookie is set");
+
+if(document.cookie.indexOf("ks_selected_categories") < 0)
+    setCookie('ks_selected_categories','Physiology,Expression,Models,Anatomy,Morphology',365);
+
+}
+
+window.onpaint = prepareCookies();
+
+
 </script>
+
+</head>
+<body>
+  <script type="text/javascript">
+        $(function () {
+    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+    $('.tree li.parent_li > span').on('click', function (e) {
+        var children = $(this).parent('li.parent_li').find(' > ul > li');
+        if (children.is(":visible")) {
+            children.hide('fast');
+            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+        } else {
+            children.show('fast');
+            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+        }
+        e.stopPropagation();
+    });
+});
+    </script>
+
+
+
+
 
 <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -246,6 +270,13 @@ function updateSourceStatus(id)
                         $categories_string = "";
                         if(isset($_COOKIE['ks_selected_categories']))
                             $categories_string=$_COOKIE['ks_selected_categories'];
+                        else
+                        {
+                            if(isset($ks_selected_categories))
+                            {
+                                $categories_string=$ks_selected_categories;
+                            }
+                        }
                         //echo "category string-----".$categories_string;
                         $ks_selected_categories = explode(",", $categories_string);
                         //var_dump($ks_selected_categories);
@@ -278,9 +309,16 @@ function updateSourceStatus(id)
                       
 <?php                   
                         $ks_selected_json = "";
-                        if(isset($_COOKIE['ks_selected_categories']))
+                        if(isset($_COOKIE['ks_selected_sources']))
                         {
                             $ks_selected_json = $_COOKIE['ks_selected_sources'];
+                        }
+                        else
+                        {
+                            if(isset($ks_selected_sources))
+                            {
+                                $ks_selected_json = $ks_selected_sources;
+                            }
                         }
                         //echo "\n\njson----------".$ks_selected_json."------------";
                         //echo "----------JSON----\n\n";

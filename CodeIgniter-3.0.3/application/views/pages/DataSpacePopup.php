@@ -9,19 +9,104 @@
 
     <!-------------------Data space panel------------------------>
     <div class="panel panel-default">
-    <div class="panel-heading">Data space</div>
+  <!--  <div class="panel-heading">Data space <button class="btn btn-default pull-right">New</button></div> -->
   <!--  <div class="panel-body" style="min-height: 138; max-height: 138;overflow-y: scroll">  
-    -->
+    --><div class="panel-heading">
+         <h5 class="panel-title pull-left">Data space
+            </h5>
+
+        <a href="#" class="pull-right">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+        <div class="clearfix"></div>
+    </div>
 	<div class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll">
+<?php
+        /*
+        function loadSourcesConfig()
+        {
+            // Open the file
+            $sourceIDs = "";array();
+            $sources= array();
+            $array = explode("\n", file_get_contents(getcwd()."/application/controllers/sources.txt"));
+            echo "File path ---". getcwd()."/application/controllers/sources.txt";
+            
+            foreach ($array as $line) {
+                $items= explode( ',', $line );
+                array_push($sources,$items);
+                
+                if(strcmp(trim($items[2]), "true")==0)
+                {
+                    if(strcmp($sourceIDs, "")==0)
+                      $sourceIDs = $items[1];
+                    else
+                      $sourceIDs = $sourceIDs.",".$items[1];
+                }
+                     
+            }
+            
+            if(!isset($_COOKIE['ks_selected_sources']))
+            {
+                setcookie('ks_selected_sources', $sourceIDs, time()+3600);
+            }
+
+
+            return $sources;
+        }
         
+        function loadCategoriesConfig()
+        {
+            // Open the file
+            
+            $sources= array();
+            $selected = array();
+            $array = explode("\n", file_get_contents(getcwd()."/application/controllers/categories.txt"));
+            foreach ($array as $line) {
+                $items= explode( ',', $line );
+                array_push($sources,$items);
+                
+                if(strcmp(trim($items[1]), "true") == 0)
+                    array_push($selected, $items[0]);
+
+            }
+            
+            //if(!array_key_exists('ks_selected_categories',$_COOKIE))
+            if(!isset($_COOKIE['ks_selected_categories']))
+            {
+                $line = implode(',',$selected);
+                //echo "-----line:".$line;
+                setcookie('ks_selected_categories', $line, time()+3600);
+                
+                
+            }
+
+            
+            return $sources;
+        }
+        */
+
+?>
   
 <?php
         //Retrieving cookies for selected categories
         $ks_selected_json = "";
+        
+        
+        
         if(isset($_COOKIE['ks_selected_sources']))
         {
             $ks_selected_json = $_COOKIE['ks_selected_sources'];
         }
+        else
+        {
+            if(isset($ks_selected_sources))
+                $ks_selected_json = $ks_selected_sources;
+        }
+        //else 
+        //{
+            //loadSourcesConfig();
+            //$ks_selected_json = $_COOKIE['ks_selected_sources'];
+        //}
         $ks_selected_sources = explode(",", $ks_selected_json);
                         
 ?>
@@ -35,15 +120,24 @@
        $buttonCount = 0;
        
         $categories_string = "";
+        
         if(isset($_COOKIE['ks_selected_categories']))
-            $categories_string=$_COOKIE['ks_selected_categories'];
-                        
-        $ks_selected_categories = explode(",", $categories_string);       
-       
+        {
+            $categories_string=$_COOKIE['ks_selected_categories'];                        
+               
+        }
+        else {
+            if(isset($ks_selected_categories))
+            {
+                $categories_string=$ks_selected_categories;
+            }
+        }
+        $ks_selected_categories = explode(",", $categories_string);    
         $neuroElectroCount = 0;
         //var_dump($ks_selected_categories);
-        if(isset($ks_selected_categories)&& in_array("Physiology", $ks_selected_categories ) 
-           && isset($ks_selected_sources) && in_array("nlx_151885-1", $ks_selected_sources)    
+        if( 
+                (isset($ks_selected_categories)&& in_array("Physiology", $ks_selected_categories ) 
+           && isset($ks_selected_sources) && in_array("nlx_151885-1", $ks_selected_sources))    
                 )
         {
             $buttonCount++;
@@ -67,8 +161,9 @@
     <!-- <button style="height:30px;width:120px" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">Expression -->
         <?php
 	
-        if(isset($ks_selected_categories)&& in_array("Expression", $ks_selected_categories ) 
-                && isset($ks_selected_sources) && in_array("nif-0000-00130-1", $ks_selected_sources)
+        if(
+                (isset($ks_selected_categories)&& in_array("Expression", $ks_selected_categories ) 
+                && isset($ks_selected_sources) && in_array("nif-0000-00130-1", $ks_selected_sources))
                 )
         {
             $buttonCount++;
@@ -95,6 +190,9 @@
         $neuroMLCount = 0;
         $modelDBCount = 0;
         $brainModelCount =0;
+        
+        
+        
         if(!is_null($neuroMLResult) && isset($ks_selected_sources) && in_array("scr_013705-1",$ks_selected_sources))
         {
             $neuroMLCount = $neuroMLResult->result->resultCount;
@@ -113,12 +211,15 @@
             
         }
         
-        if(isset($ks_selected_categories)&& in_array("Models", $ks_selected_categories ) )
+        
+        if(
+                (isset($ks_selected_categories)&& in_array("Models", $ks_selected_categories )) )
         {
             if(isset($ks_selected_sources)  )
             {
-                if(in_array("scr_013705-1", $ks_selected_sources) ||
-                     in_array("nif-0000-00004-1", $ks_selected_sources) ||
+                if(
+                        in_array("scr_013705-1", $ks_selected_sources) ||
+                        in_array("nif-0000-00004-1", $ks_selected_sources) ||
                         in_array("nlx_152590-1", $ks_selected_sources))
                 {
             $buttonCount++;
@@ -152,6 +253,12 @@
     <!-- <button style="height:30px;width:120px" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal3">Anatomy -->
         <?php
 	
+       /* if(!in_array("nif-0000-00054-1", $ks_selected_sources))
+                echo "-----------nif-0000-00054-1 is not in the array";
+            else {
+                echo "-----------nif-0000-00054-1 is in the array";
+            } */
+        
         if(isset($ks_selected_categories)&& in_array("Anatomy", $ks_selected_categories ) &&
                 isset($ks_selected_sources) && in_array("nif-0000-00054-1", $ks_selected_sources) 
                 )
