@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
    -->	
-      <link rel="stylesheet" href="/SciCrunchKS/css/bootstrap.min.css">
-   
+    <!--  <link rel="stylesheet" href="/SciCrunchKS/css/bootstrap.min.css"> -->
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <!--  <link rel="stylesheet" href="/SciCrunchKS/application/views/css/bootstrap.min.css">
 -->
   <link rel="stylesheet" type="text/css" href="/SciCrunchKS/resources/sckb.css"> 
-  
+  <link rel="stylesheet" type="text/css" href="/SciCrunchKS/resources/panel.css"> 
       <link rel="icon" type="image/png" href="./img/favicon-32x32.png" sizes="32x32" />
     <link rel="shortcut icon" type="image/png" href="./img/favicon-16x16.png"/>
  <!-- 
@@ -22,6 +22,7 @@
   <script src="/SciCrunchKS/application/views/js/jquery.min.js"></script>
   <script src="/SciCrunchKS/application/views/js/bootstrap.min.js"></script>
 
+  <script src="/SciCrunchKS/application/views/js/fullscreen.js"></script>
 
 <script src="/SciCrunchKS/js/sortable/js/sortable.min.js"></script>
 <link rel="stylesheet" href="/SciCrunchKS/js/sortable/css/sortable-theme-bootstrap.css" />
@@ -42,6 +43,9 @@
     <!-- Custom Fonts -->
     <link href="/SciCrunchKS/resources/Knowledge_Space_files/font-awesome.min.feda974a77ea.css" rel="stylesheet" type="text/css">
     <link href="/SciCrunchKS/resources/Knowledge_Space_files/css" rel="stylesheet" type="text/css">
+    
+
+    
     <script type="text/javascript">
     function getCookie(cname) {
     var name = cname + "=";

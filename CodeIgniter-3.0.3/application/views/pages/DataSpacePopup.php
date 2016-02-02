@@ -9,83 +9,22 @@
 
     <!-------------------Data space panel------------------------>
     <div class="panel panel-default">
-  <!--  <div class="panel-heading">Data space <button class="btn btn-default pull-right">New</button></div> -->
-  <!--  <div class="panel-body" style="min-height: 138; max-height: 138;overflow-y: scroll">  
-    --><div class="panel-heading">
+        <div class="panel-heading">
+                    <h3 class="panel-title">Data space</h3>
+                    <ul class="list-inline panel-actions">
+                        <li><a href="#" id="panel-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a></li>
+                    </ul>
+        </div> 
+     <!-- <div class="panel-heading">
          <h5 class="panel-title pull-left">Data space
             </h5>
 
         <a href="#" class="pull-right">
-          <span class="glyphicon glyphicon-plus"></span>
+          <span class="glyphicon glyphicon-resize-full"></span>
         </a>
         <div class="clearfix"></div>
-    </div>
-	<div class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll">
-<?php
-        /*
-        function loadSourcesConfig()
-        {
-            // Open the file
-            $sourceIDs = "";array();
-            $sources= array();
-            $array = explode("\n", file_get_contents(getcwd()."/application/controllers/sources.txt"));
-            echo "File path ---". getcwd()."/application/controllers/sources.txt";
-            
-            foreach ($array as $line) {
-                $items= explode( ',', $line );
-                array_push($sources,$items);
-                
-                if(strcmp(trim($items[2]), "true")==0)
-                {
-                    if(strcmp($sourceIDs, "")==0)
-                      $sourceIDs = $items[1];
-                    else
-                      $sourceIDs = $sourceIDs.",".$items[1];
-                }
-                     
-            }
-            
-            if(!isset($_COOKIE['ks_selected_sources']))
-            {
-                setcookie('ks_selected_sources', $sourceIDs, time()+3600);
-            }
-
-
-            return $sources;
-        }
-        
-        function loadCategoriesConfig()
-        {
-            // Open the file
-            
-            $sources= array();
-            $selected = array();
-            $array = explode("\n", file_get_contents(getcwd()."/application/controllers/categories.txt"));
-            foreach ($array as $line) {
-                $items= explode( ',', $line );
-                array_push($sources,$items);
-                
-                if(strcmp(trim($items[1]), "true") == 0)
-                    array_push($selected, $items[0]);
-
-            }
-            
-            //if(!array_key_exists('ks_selected_categories',$_COOKIE))
-            if(!isset($_COOKIE['ks_selected_categories']))
-            {
-                $line = implode(',',$selected);
-                //echo "-----line:".$line;
-                setcookie('ks_selected_categories', $line, time()+3600);
-                
-                
-            }
-
-            
-            return $sources;
-        }
-        */
-
-?>
+    </div> -->
+	<div id="dataspace_panel" class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll">
   
 <?php
         //Retrieving cookies for selected categories
