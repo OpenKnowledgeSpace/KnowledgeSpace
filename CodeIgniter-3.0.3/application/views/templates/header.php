@@ -61,7 +61,7 @@ function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
+    document.cookie = cname + "=" + cvalue + ";path=/; " + expires;
 }
 
 function updateCategoryStatus(id)
@@ -256,7 +256,7 @@ window.onpaint = prepareCookies();
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <button id="closeBtn" type="button" class="close" data-dismiss="modal">&times;</button>
+          <button id="closeBtn" type="button" class="close" data-dismiss="modal" onclick="loadButtons()">&times;</button>
           <h4 class="modal-title">Configurations</h4>
         </div>
         <div class="modal-body">
