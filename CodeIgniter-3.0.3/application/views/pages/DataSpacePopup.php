@@ -86,11 +86,14 @@
             {
                $neuroElectroCount = $neuroElectroResult->result->resultCount;
                echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">Physiology (".$neuroElectroResult->result->resultCount.")";
-
+               echo "<script type=\"text/javascript\"> setCookie('Physiology_count','".$neuroElectroResult->result->resultCount."',365);</script>";
             }
             else
+            {
               echo "<button  style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\" disabled>Physiology (0)";
-        
+              echo "<script type=\"text/javascript\"> setCookie('Physiology_count','0',365);</script>";
+              
+            }
             echo "\n</button> </div>";
         }
 ?>
@@ -112,11 +115,13 @@
             {
                 $genSatCount = $genSatResult->result->resultCount;
                 echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\">Expression (".$genSatResult->result->resultCount.")";
-
+                echo "<script type=\"text/javascript\"> setCookie('Expression_count','".$genSatResult->result->resultCount."',365);</script>";
             }
-            else 
+            else
+            {
                 echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\" disabled>Expression (0)";
-            
+                echo "<script type=\"text/javascript\"> setCookie('Expression_count','0',365);</script>";
+            }
             echo "</button></div>";
         }
 ?>
@@ -164,10 +169,17 @@
             $buttonCount++;
             echo "<div class=\"col-md-4\">";
             if($modelCount > 0)
+            {
                 echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\">Models (".$modelCount.")";
+                echo "<script type=\"text/javascript\"> setCookie('Models_count','".$modelCount."',365);</script>";
+                
+            }
             else
+            {
                 echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\" disabled>Models (".$modelCount.")";
-        
+                echo "<script type=\"text/javascript\"> setCookie('Models_count','".$modelCount."',365);</script>";
+                
+            }
             echo "</button></div>";
             
                 }
@@ -209,11 +221,15 @@
             {
                 $neuronDBCount = $neuronDBResult->result->resultCount;
                 echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal3\">Anatomy (".$neuronDBResult->result->resultCount.")";
-           
+                echo "<script type=\"text/javascript\"> setCookie('Anatomy_count','".$neuronDBResult->result->resultCount."',365);</script>";
+
             }
             else 
+            {
                 echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal3\" disabled>Anatomy (0)";
-        
+                echo "<script type=\"text/javascript\"> setCookie('Anatomy_count','0',365);</script>";
+                
+            }
             echo "</button></div>";
         }
 ?>
@@ -240,11 +256,14 @@
             {
                 $neuroMorphoCount = $neuroMorphoResult->result->resultCount;
                 echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\">Morphology (".$neuroMorphoResult->result->resultCount.")";
-            
+                echo "<script type=\"text/javascript\"> setCookie('Morphology_count','".$neuroMorphoResult->result->resultCount."',365);</script>";
             }
-            else 
+            else
+            {
                 echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\" disabled>Morphology (0)";
-        
+                echo "<script type=\"text/javascript\"> setCookie('Morphology_count','0',365);</script>";
+                
+            }
             echo "</button></div>";
         }
 ?>

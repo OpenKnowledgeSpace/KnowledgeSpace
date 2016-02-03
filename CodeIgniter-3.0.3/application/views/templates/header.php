@@ -357,8 +357,8 @@ window.onpaint = prepareCookies();
         </div>
         <div class="modal-footer">
             <!-- <button type="button" class="btn btn-default"  onclick="javascript:window.location='http://google.com'">Save</button> -->
-            <button type="button" class="btn btn-default"  onclick="window.location.reload()">Save</button>
-            
+            <!-- <button type="button" class="btn btn-default"  onclick="window.location.reload()">Save</button> -->
+            <button  type="button" class="btn btn-default" data-dismiss="modal" onclick="loadButtons()">Done</button>
             
             <!-- data-dismiss="modal" -->
         </div>
