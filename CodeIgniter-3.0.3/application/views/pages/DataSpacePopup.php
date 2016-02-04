@@ -55,6 +55,19 @@
    <!-- <button style="height:30px;width:120px" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Physiology -->
        <?php 
 
+       if(!is_null($curie))
+       {
+           echo "<script type=\"text/javascript\"> setCookie('curie','".$curie."',365);</script>";
+
+       }
+       
+       if(!is_null($pageName))
+       {
+           echo "<script type=\"text/javascript\"> setCookie('pageName','".$pageName."',365);</script>";
+
+       }
+       
+       
        echo " <div class=\"row\">";
        $buttonCount = 0;
        

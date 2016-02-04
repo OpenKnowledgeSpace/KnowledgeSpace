@@ -15,7 +15,9 @@ $(document).ready(function () {
             
             //document.getElementById("dataspace_panel").innerHTML = "Full panel!";
             document.getElementById("dataspace_panel").setAttribute("style", "min-height: 100%; max-height: 100%");
-            var html = httpGet("http://localhost/SciCrunchKS/index.php/viewalldata/view");
+            var curie = getCookie('curie');
+            var pageName = getCookie('pageName');
+            var html = httpGet("http://localhost/SciCrunchKS/index.php/viewalldata/view/"+pageName);
         }
         else if ($this.children('i').hasClass('glyphicon-resize-small'))
         {

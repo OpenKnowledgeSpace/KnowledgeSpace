@@ -280,7 +280,7 @@ class Pages extends CI_Controller
                     #echo "\n-------Willy----!is_null(termObj):".!is_null($termObj)."\n";
                     if(!is_null($termObj) && !is_null($termObj[0]))
                     {
-                        
+                        $data['curie'] = $termObj[0]->curie;
                         if(count($termObj[0]->labels) > 0)
                         {
                             $data['pageName'] = $termObj[0]->labels[0];
@@ -304,6 +304,10 @@ class Pages extends CI_Controller
                {
                    $data['pageName'] = $pageName;                  
                    $termObj = getTerm($pageName);
+                   if(!is_null($termObj))
+                   {
+                       $data['curie'] = $termObj[0]->curie;
+                   }
                }
                 
 
@@ -358,7 +362,7 @@ class Pages extends CI_Controller
                 
 
                     $this->load->view('templates/header', $data);
-        	//$this->load->view('pages/'.$page, $data);
+                    //$this->load->view('pages/'.$page, $data);
                     $this->load->view('pages/term', $data);
                     $this->load->view('templates/footer', $data);
 
