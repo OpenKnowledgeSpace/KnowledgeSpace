@@ -1,0 +1,8 @@
+NeuroElectro:EPhysData,nlx_151885-1,true
+NeuroMorpho:ModelImage,nif-0000-00006-1,true
+GENSAT:GeneExpression,nif-0000-00130-1,true
+NeuronDB:Currents,nif-0000-00054-1,true
+CellImageLibrary:Images,nif-0000-37639-1,true
+NeuroML database:Models,scr_013705-1,true
+ModelDB:Models,nif-0000-00004-1,true
+Open Source Brain:models,nlx_152590-1,true
