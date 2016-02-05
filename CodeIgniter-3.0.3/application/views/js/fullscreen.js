@@ -17,7 +17,7 @@ $(document).ready(function () {
             document.getElementById("dataspace_panel").setAttribute("style", "min-height: 100%; max-height: 100%");
             var curie = getCookie('curie');
             var pageName = getCookie('pageName');
-            var html = httpGet("http://localhost/SciCrunchKS/index.php/viewalldata/view/"+pageName);
+            var html = httpGet("http://localhost/SciCrunchKS/index.php/viewalldata/view/"+pageName+"/0/0");
         }
         else if ($this.children('i').hasClass('glyphicon-resize-small'))
         {
@@ -122,3 +122,15 @@ function loadButtons()
     
 }
 
+function loadNewPage(sourceID,term,pageID)
+{
+    //alert("\nSourceID:"+sourceID);
+    //alert("\nTerm:"+term);
+    //var el = document.getElementById("dataspace_panel");
+    //alert("el:"+el);
+    //var html = "testing...";
+    //document.getElementById("dataspace_panel").innerHTML=html;
+     //alert("\npageID:"+pageID);
+     var html = httpGet("http://localhost/SciCrunchKS/index.php/viewalldata/view/"+term+"/"+sourceID+"/"+pageID);
+ 
+}
