@@ -80,7 +80,7 @@
                 else
                     echo "\n<div id=\"menu".$count."\" class=\"tab-pane fade\">";
                 
-                
+                //echo "\n<p>".$source."</p>";
                 echo "\n<p>".$description[$source]."</p>";
                 //echo "\n<p>SourceID:".$source."-------selectedSourceID:". $selectedSourceID."</p>";
                 echo "Displaying results ".$startItem." - ".$endItem." out of ".$result[$source]->result->resultCount." total results.";

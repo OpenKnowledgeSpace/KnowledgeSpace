@@ -1,4 +1,105 @@
-$(document).ready(function () {
+$(document).ready(function () 
+{
+    $("#literature-fullscreen").click(function (e) {
+        e.preventDefault();
+        
+        var $this = $(this);
+        
+        
+        
+    
+        if ($this.children('i').hasClass('glyphicon-resize-full'))
+        {
+            $this.children('i').removeClass('glyphicon-resize-full');
+            $this.children('i').addClass('glyphicon-resize-small');
+            
+            //document.getElementById("dataspace_panel").innerHTML = "Full panel!";
+            document.getElementById("literature-panel").setAttribute("style", "min-height: 100%; max-height: 100%");
+
+        }
+        else if ($this.children('i').hasClass('glyphicon-resize-small'))
+        {
+            $this.children('i').removeClass('glyphicon-resize-small');
+            $this.children('i').addClass('glyphicon-resize-full');
+            
+            //document.getElementById("dataspace_panel").innerHTML = "Minimized panel!";
+            document.getElementById("literature-panel").setAttribute("style", "min-height: 70%; max-height: 70%;overflow-y: scroll");
+            
+            
+        }
+        $(this).closest('.panel').toggleClass('panel-fullscreen');
+        
+        
+        
+    });
+    
+    $("#relation-fullscreen").click(function (e) {
+        e.preventDefault();
+        
+        var $this = $(this);
+        
+        
+        
+    
+        if ($this.children('i').hasClass('glyphicon-resize-full'))
+        {
+            $this.children('i').removeClass('glyphicon-resize-full');
+            $this.children('i').addClass('glyphicon-resize-small');
+            
+            //document.getElementById("dataspace_panel").innerHTML = "Full panel!";
+            document.getElementById("relation-panel").setAttribute("style", "min-height: 100%; max-height: 100%");
+
+        }
+        else if ($this.children('i').hasClass('glyphicon-resize-small'))
+        {
+            $this.children('i').removeClass('glyphicon-resize-small');
+            $this.children('i').addClass('glyphicon-resize-full');
+            
+            //document.getElementById("dataspace_panel").innerHTML = "Minimized panel!";
+            document.getElementById("relation-panel").setAttribute("style", "min-height: 35%; max-height: 35%;overflow-y: scroll");
+            
+            
+        }
+        $(this).closest('.panel').toggleClass('panel-fullscreen');
+        
+        
+        
+    });
+    
+    
+    $("#summary-fullscreen").click(function (e) {
+        e.preventDefault();
+        
+        var $this = $(this);
+        
+        
+        
+    
+        if ($this.children('i').hasClass('glyphicon-resize-full'))
+        {
+            $this.children('i').removeClass('glyphicon-resize-full');
+            $this.children('i').addClass('glyphicon-resize-small');
+            
+            //document.getElementById("dataspace_panel").innerHTML = "Full panel!";
+            document.getElementById("summary-panel").setAttribute("style", "min-height: 100%; max-height: 100%");
+
+        }
+        else if ($this.children('i').hasClass('glyphicon-resize-small'))
+        {
+            $this.children('i').removeClass('glyphicon-resize-small');
+            $this.children('i').addClass('glyphicon-resize-full');
+            
+            //document.getElementById("dataspace_panel").innerHTML = "Minimized panel!";
+            document.getElementById("summary-panel").setAttribute("style", "min-height: 50%; max-height: 50%;overflow-y: scroll");
+            
+            
+        }
+        $(this).closest('.panel').toggleClass('panel-fullscreen');
+        
+        
+        
+    });
+    
     //Toggle fullscreen
     $("#panel-fullscreen").click(function (e) {
         e.preventDefault();
@@ -70,6 +171,12 @@ function loadButtons()
     //alert("-----NEW JSON:"+json_str);
     var array = json_str.split(',');
     array.sort();
+ 
+    var ks_selected_sources = getCookie('ks_selected_sources');
+    ks_selected_sources = ks_selected_sources.replace(new RegExp("%2C", 'g'), ",");
+    var sourceArray = ks_selected_sources.split(',');
+    
+    
     var html ="<div class=\"row\">";
     var count = 0;
     
@@ -81,39 +188,74 @@ function loadButtons()
     
     if((array.indexOf("Physiology") > -1))
     {
+     if(sourceArray.indexOf("nlx_151885-1") > -1)
+     {
      count++;
-     html =  html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">Physiology ("+Physiology_count+")</button> </div>";   
+     if(Physiology_count != null && Physiology_count > 0)
+        html =  html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">Physiology ("+Physiology_count+")</button> </div>";   
+     else 
+        html =  html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\" disabled>Physiology ("+Physiology_count+")</button> </div>";   
+
+      }
     }    
         
     if((array.indexOf("Expression") > -1))
     {
-     count++;
-     html = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\">Expression ("+Expression_count+")</button></div>";    
+        if(sourceArray.indexOf("nif-0000-00130-1") > -1)
+        {
+            count++;
+            if(Expression_count != null && Expression_count > 0)
+                html = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\">Expression ("+Expression_count+")</button></div>";    
+            else 
+                html = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\" disabled>Expression ("+Expression_count+")</button></div>";    
+        }
     }
     if((array.indexOf("Models") > -1))     
     {
+        if(
+                sourceArray.indexOf("scr_013705-1") > -1 ||
+                sourceArray.indexOf("nif-0000-00004-1") > -1  ||
+                sourceArray.indexOf("nlx_152590-1") > -1 
+           )
+        {
         count++;
-        html  = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\">Models ("+Models_count+")</button></div> ";
+        if(Models_count != null && Models_count > 0)
+            html  = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\">Models ("+Models_count+")</button></div> ";
+        else 
+            html  = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\" disabled>Models ("+Models_count+")</button></div> ";
+        }
     }
     if((array.indexOf("Anatomy") > -1))     
     {
-       if(count == 3)
+       if(sourceArray.indexOf("nif-0000-00054-1") > -1)
        {
-           html = html+"\n</div><br/><div class=\"row\"> ";
-           
-       }
-       count++;
-       html  = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal3\">Anatomy ("+Anatomy_count+")</button></div>";
-       
+            if(count == 3)
+            {
+                html = html+"\n</div><br/><div class=\"row\"> ";
+
+            }
+            count++;
+            if(Anatomy_count != null && Anatomy_count > 0)
+             html  = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal3\">Anatomy ("+Anatomy_count+")</button></div>";
+            else 
+             html  = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal3\" disabled>Anatomy ("+Anatomy_count+")</button></div>";
+        }
     }
     if((array.indexOf("Morphology") > -1))     
     {
-       if(count == 3)
+       if(sourceArray.indexOf("nif-0000-00006-1") > -1)
        {
-           html = html+"</div><br/><div class=\"row\"> ";
-       }
-       count++;
-       html  = html+"<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\">Morphology ("+Morphology_count+")</button></div> ";
+            if(count == 3)
+            {
+                html = html+"</div><br/><div class=\"row\"> ";
+            }
+            count++;
+            if(Morphology_count != null && Morphology_count > 0)
+             html  = html+"<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\">Morphology ("+Morphology_count+")</button></div> ";
+            else 
+             html  = html+"<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\" disabled>Morphology ("+Morphology_count+")</button></div> ";
+    
+        }
     }
  
     
@@ -131,6 +273,6 @@ function loadNewPage(sourceID,term,pageID)
     //var html = "testing...";
     //document.getElementById("dataspace_panel").innerHTML=html;
      //alert("\npageID:"+pageID);
-     var html = httpGet("http://localhost/SciCrunchKS/index.php/viewalldata/view/"+term+"/"+sourceID+"/"+pageID);
- 
+     //var html = httpGet("http://localhost/SciCrunchKS/index.php/viewalldata/view/"+term+"/"+sourceID+"/"+pageID);
+     var html = httpGet("/SciCrunchKS/index.php/viewalldata/view/"+term+"/"+sourceID+"/"+pageID);
 }

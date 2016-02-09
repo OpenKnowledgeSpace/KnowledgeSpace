@@ -203,7 +203,7 @@ function searchWithinSource($searchTerm, $sourceID, $rcount)
 
 	//$surl = "http://nif-services.neuinfo.org/servicesv1/v1/federation/data/" . $sourceID . "?q=" . $searchTerm . "&count=" . $rcount;
 	//if($sourceID== "nif-0000-00054-3")		
-       //echo $surl . "\n";
+       //echo "\n\n\n\n<br/>".$surl . "\n";
 
 	return getJsonObj($surl); 
 }

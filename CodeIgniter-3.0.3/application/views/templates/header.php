@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
    -->	
-    <!--  <link rel="stylesheet" href="/SciCrunchKS/css/bootstrap.min.css"> -->
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="/SciCrunchKS/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
 <!--  <link rel="stylesheet" href="/SciCrunchKS/application/views/css/bootstrap.min.css">
 -->
   <link rel="stylesheet" type="text/css" href="/SciCrunchKS/resources/sckb.css"> 
@@ -101,7 +101,7 @@ function updateCategoryStatus(id)
     }
     var str = array.join(",");
     setCookie('ks_selected_categories',str,365);
-    
+    loadButtons();
 }
 
 function updateSourceStatus(id)
@@ -150,7 +150,7 @@ function updateSourceStatus(id)
     var str = array.join(",");
     //alert("final string:"+str);
     setCookie('ks_selected_sources',str,365);
-        
+    loadButtons();
 }
 
 

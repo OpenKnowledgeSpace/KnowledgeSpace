@@ -2,6 +2,14 @@
 
 class ViewAllData extends CI_Controller 
 {
+    private function startsWith($haystack, $needle) {
+    // search backwards starting from haystack length characters from the end
+    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
+    }
+    private function endsWith($haystack, $needle) {
+    // search forward starting from end minus needle length characters
+    return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== FALSE);
+    }
     
         public function handleData(&$data,$searchTerm, $sourceID,$count, $offset)
         {
@@ -46,6 +54,32 @@ class ViewAllData extends CI_Controller
             return $sourceNameArray;
             
         }
+        
+        public function fixSearchName($term)
+        {
+                $newName =$term;
+                $searchName = $term;
+                if(strcasecmp($searchName,"cell")==0)
+                {
+                    $newName=$searchName;
+                }
+                else if(strcasecmp($searchName,"neuron")==0)
+                {
+                    $newName=$searchName;
+                }
+                else if($this->endsWith($searchName, "%20cell"))
+                {
+                    $tempName = substr($searchName, 0, strlen($searchName)-strlen("%20cell"));
+                    $newName = $tempName;
+                }
+                else if($this->endsWith($searchName, "%20neuron"))
+                {
+                    $tempName = substr($searchName, 0, strlen($searchName)-strlen("%20neuron"));
+                    $newName = $tempName;
+                }
+                
+                return $newName;
+        }
     
     	public function view($term, $sourceID, $pageID )
 	{
@@ -83,6 +117,7 @@ class ViewAllData extends CI_Controller
             $description = array();
             if($selectedSourcesArray != null)
             {
+                $newName = $this->fixSearchName($page);
                 foreach($selectedSourcesArray as $source)
                 {
                     if(strcmp($sourceID, $source)  == 0)
@@ -94,11 +129,13 @@ class ViewAllData extends CI_Controller
                         {
                             $offset =($pageID-1)*20;
                         }
-                        //echo "handleData-----Source:".$source."----offset:".$offset;
-                        $result[$source] =$this->handleData($data,$page,$source,20,$offset);
+                        
+                        
+                        //$result[$source] =$this->handleData($data,$page,$source,20,$offset);
+                        $result[$source] =$this->handleData($data,$newName,$source,20,$offset);
                     
                     }else
-                        $result[$source] =$this->handleData($data,$page,$source,20,0);
+                        $result[$source] =$this->handleData($data,$newName,$source,20,0);
                     
                     $description[$source] = $this->getDescription($source);       
                 }

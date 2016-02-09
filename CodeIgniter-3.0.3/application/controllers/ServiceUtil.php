@@ -3,7 +3,7 @@
 
 class ServiceUtil 
 {
-    
+
     public function getJsonObj($surl)
     {
         //echo $surl;
@@ -65,7 +65,8 @@ class ServiceUtil
     {
         require_once('Config.php');
         $surl = "http://".Config::$nifServiceForData."/servicesv1/v1/federation/data/" . $sourceID . "?q=" . $searchTerm . "&count=" . $rcount. "&offset=".$offset;
-	return $this->getJsonObj($surl); 
+	//echo "\n\n<br/>Source:".$surl;
+        return $this->getJsonObj($surl); 
     }
     
     

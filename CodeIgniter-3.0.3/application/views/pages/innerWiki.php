@@ -1,7 +1,11 @@
 
     <div class="panel panel-default">
-        <div class="panel-heading" style="min-height: 80; max-height: 80"><h3><?php echo "$title";  ?></h3></div>
-    <div class="panel-body" style="min-height: 50%; max-height: 50%;overflow-y: scroll">
+        <div class="panel-heading" style="min-height: 80; max-height: 80"><h3><?php echo "$title";  ?></h3>
+                    <ul class="list-inline panel-actions">
+                        <li><a href="#" id="summary-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a></li>
+                    </ul>
+        </div>
+    <div id="summary-panel"   class="panel-body" style="min-height: 50%; max-height: 50%;overflow-y: scroll">
     <!-- <div class="panel-body" style="min-height: 300; max-height: 300;overflow-y: scroll">
        -->
         

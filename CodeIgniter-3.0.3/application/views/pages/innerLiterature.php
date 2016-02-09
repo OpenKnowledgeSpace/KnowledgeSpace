@@ -164,10 +164,14 @@ $(function () {
  <!-------------------Data space panel------------------------>
     
     <div class="panel panel-default">
-    <div class="panel-heading">Literature</div>
+    <div class="panel-heading">Literature
+                <ul class="list-inline panel-actions">
+                        <li><a href="#" id="literature-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a></li>
+                </ul>
+    </div>
   <!--  <div class="panel-body" style="min-height: 385; max-height: 385;overflow-y: scroll">
    -->        
-    <div class="panel-body" style="min-height: 70%; max-height: 70%;overflow-y: scroll">
+    <div id="literature-panel" class="panel-body" style="min-height: 70%; max-height: 70%;overflow-y: scroll">
         
         
     <div id="container" style="min-width: 40%; height: 400px; margin: 0 auto"></div> 

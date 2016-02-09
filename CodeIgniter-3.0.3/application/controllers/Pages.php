@@ -18,7 +18,7 @@ class Pages extends CI_Controller
             
             //$newName = str_replace("%20cell", "", $searchName);
             //$newName = str_replace("%20neuron", "", $newName);
-            $newName ="";
+            $newName =$searchName;
             if(strcasecmp($searchName,"cell")==0)
             {
                 $newName=$searchName;
@@ -38,7 +38,7 @@ class Pages extends CI_Controller
                 $newName = $tempName;
             }
             
-            
+            //echo "<p>----------------NewName:".$newName;
             
             $data['neuroElectroResult'] = searchWithinSource($newName, $neuroElectro, 20);
             $data['neuroMorphoResult'] = searchWithinSource($newName, $neuroMorpho, 20);
