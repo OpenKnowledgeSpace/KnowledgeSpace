@@ -15,7 +15,8 @@ $(document).ready(function ()
             
             //document.getElementById("dataspace_panel").innerHTML = "Full panel!";
             document.getElementById("literature-panel").setAttribute("style", "min-height: 100%; max-height: 100%");
-
+            window.location.hash = '#literature';
+            setCookie('screen_state','literature',365);
         }
         else if ($this.children('i').hasClass('glyphicon-resize-small'))
         {
@@ -24,7 +25,8 @@ $(document).ready(function ()
             
             //document.getElementById("dataspace_panel").innerHTML = "Minimized panel!";
             document.getElementById("literature-panel").setAttribute("style", "min-height: 70%; max-height: 70%;overflow-y: scroll");
-            
+            history.pushState('', document.title, window.location.pathname);
+            setCookie('screen_state','',365);
             
         }
         $(this).closest('.panel').toggleClass('panel-fullscreen');
@@ -48,7 +50,8 @@ $(document).ready(function ()
             
             //document.getElementById("dataspace_panel").innerHTML = "Full panel!";
             document.getElementById("relation-panel").setAttribute("style", "min-height: 100%; max-height: 100%");
-
+            window.location.hash = '#relations';
+            setCookie('screen_state','relations',365);
         }
         else if ($this.children('i').hasClass('glyphicon-resize-small'))
         {
@@ -57,7 +60,8 @@ $(document).ready(function ()
             
             //document.getElementById("dataspace_panel").innerHTML = "Minimized panel!";
             document.getElementById("relation-panel").setAttribute("style", "min-height: 35%; max-height: 35%;overflow-y: scroll");
-            
+            history.pushState('', document.title, window.location.pathname);
+            setCookie('screen_state','',365);
             
         }
         $(this).closest('.panel').toggleClass('panel-fullscreen');
@@ -82,7 +86,8 @@ $(document).ready(function ()
             
             //document.getElementById("dataspace_panel").innerHTML = "Full panel!";
             document.getElementById("summary-panel").setAttribute("style", "min-height: 100%; max-height: 100%");
-
+            window.location.hash = '#definition';
+            setCookie('screen_state','definition',365);
         }
         else if ($this.children('i').hasClass('glyphicon-resize-small'))
         {
@@ -91,7 +96,8 @@ $(document).ready(function ()
             
             //document.getElementById("dataspace_panel").innerHTML = "Minimized panel!";
             document.getElementById("summary-panel").setAttribute("style", "min-height: 50%; max-height: 50%;overflow-y: scroll");
-            
+            history.pushState('', document.title, window.location.pathname);
+            setCookie('screen_state','',365);
             
         }
         $(this).closest('.panel').toggleClass('panel-fullscreen');
@@ -118,7 +124,9 @@ $(document).ready(function ()
             document.getElementById("dataspace_panel").setAttribute("style", "min-height: 100%; max-height: 100%");
             var curie = getCookie('curie');
             var pageName = getCookie('pageName');
-            var html = httpGet("http://localhost/SciCrunchKS/index.php/viewalldata/view/"+pageName+"/0/0");
+            var html = httpGet("/SciCrunchKS/index.php/ViewAllData/view/"+pageName+"/0/0");
+            window.location.hash = '#dataspace';
+            setCookie('screen_state','dataspace',365);
         }
         else if ($this.children('i').hasClass('glyphicon-resize-small'))
         {
@@ -129,6 +137,9 @@ $(document).ready(function ()
             document.getElementById("dataspace_panel").setAttribute("style", "min-height: 23%; max-height: 23%;overflow-y: scroll");
             
             loadButtons();
+            history.pushState('', document.title, window.location.pathname);
+            setCookie('screen_state','',365);
+            
         }
         $(this).closest('.panel').toggleClass('panel-fullscreen');
         
@@ -266,6 +277,7 @@ function loadButtons()
 
 function loadNewPage(sourceID,term,pageID)
 {
+    setCookie('loadNewPage','true',365);
     //alert("\nSourceID:"+sourceID);
     //alert("\nTerm:"+term);
     //var el = document.getElementById("dataspace_panel");
@@ -274,5 +286,71 @@ function loadNewPage(sourceID,term,pageID)
     //document.getElementById("dataspace_panel").innerHTML=html;
      //alert("\npageID:"+pageID);
      //var html = httpGet("http://localhost/SciCrunchKS/index.php/viewalldata/view/"+term+"/"+sourceID+"/"+pageID);
-     var html = httpGet("/SciCrunchKS/index.php/viewalldata/view/"+term+"/"+sourceID+"/"+pageID);
+     var html = httpGet("/SciCrunchKS/index.php/ViewAllData/view/"+term+"/"+sourceID+"/"+pageID);
+}
+
+function eventFire(el, etype){
+  if (el.fireEvent) {
+    el.fireEvent('on' + etype);
+  } else {
+    var evObj = document.createEvent('Events');
+    evObj.initEvent(etype, true, false);
+    el.dispatchEvent(evObj);
+  }
+}
+
+window.onhashchange = function() 
+{
+    var screenState = getCookie('screen_state');
+    var loadNewPage = getCookie('loadNewPage');
+    if(loadNewPage != null && loadNewPage == 'true')
+    {
+        setCookie('loadNewPage','false',365);
+        window.location.hash = '#dataspace';
+        return;
+    }
+    //if(window.location.hash == '')
+    if(screenState == 'dataspace' && window.location.hash == '')
+    {
+        setCookie('screen_state','',365);
+        //alert("hash---"+window.location.hash);
+        eventFire(document.getElementById('panel-fullscreen'), 'click');
+        history.pushState('', document.title, window.location.pathname);
+    }
+    else if(screenState == 'definition' && window.location.hash == '')
+    {
+        setCookie('screen_state','',365);
+        //alert("hash---"+window.location.hash);
+        eventFire(document.getElementById('summary-fullscreen'), 'click');
+        history.pushState('', document.title, window.location.pathname);
+    }
+    else if(screenState == 'relations' && window.location.hash == '')
+    {
+        setCookie('screen_state','',365);
+        //alert("hash---"+window.location.hash);
+        eventFire(document.getElementById('relation-fullscreen'), 'click');
+        history.pushState('', document.title, window.location.pathname);
+    }
+    else if(screenState == 'literature' && window.location.hash == '')
+    {
+        setCookie('screen_state','',365);
+        //alert("hash---"+window.location.hash);
+        eventFire(document.getElementById('literature-fullscreen'), 'click');
+        history.pushState('', document.title, window.location.pathname);
+    }
+    
+   
+   
+   
+    
+    //alert(window.location.hash);
+    //document.getElementById("panel-fullscreen").innerHTML="<i class=\"glyphicon glyphicon-resize-full\"></i>";
+ //blah blah blah
+    //alert(window.location.hash);
+    //alert();
+    //
+    //
+    //document.getElementById("panel-fullscreen").children('i').removeClass('glyphicon-resize-small');
+    //document.getElementById("panel-fullscreen").addClass('glyphicon-resize-full');
+    //document.getElementById("dataspace_panel").setAttribute("style", "min-height: 23%; max-height: 23%;overflow-y: scroll");
 }

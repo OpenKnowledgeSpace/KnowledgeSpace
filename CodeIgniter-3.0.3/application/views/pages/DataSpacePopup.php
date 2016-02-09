@@ -12,7 +12,7 @@
         <div class="panel-heading">
                     <h3 class="panel-title">Data space</h3>
                     <ul class="list-inline panel-actions">
-                        <li><a href="#" id="panel-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a></li>
+                        <li><a href="#" id="panel-fullscreen" role="button" title="Toggle fullscreen"><i id="dataspace_i" class="glyphicon glyphicon-resize-full"></i></a></li>
                     </ul>
         </div> 
      <!-- <div class="panel-heading">
