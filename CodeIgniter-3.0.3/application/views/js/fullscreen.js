@@ -214,14 +214,14 @@ $(document).ready(function ()
 
 function openModal() {
     
-    
+        document.body.style.cursor='wait';
         document.getElementById('loadingModal').style.display = 'block';
         document.getElementById('loadingFade').style.display = 'block';
 }
 
 function closeModal() 
 {
-    
+    document.body.style.cursor='default';
     document.getElementById('loadingModal').style.display = 'none';
     document.getElementById('loadingFade').style.display = 'none';
 }
@@ -248,6 +248,8 @@ function httpGet(theUrl)
             //return xmlhttp.responseText;
             //spinner.stop();
             closeModal();
+            //setTimeout(closeModal,5000);
+
             document.getElementById("dataspace_panel0").innerHTML=xmlhttp.responseText;
             
             var ks_selected_sources = getCookie('ks_selected_sources');
@@ -267,7 +269,7 @@ function httpGet(theUrl)
 
         }
     }
-    xmlhttp.open("GET", theUrl, false );
+    xmlhttp.open("GET", theUrl, true );
     xmlhttp.send();    
 }
 

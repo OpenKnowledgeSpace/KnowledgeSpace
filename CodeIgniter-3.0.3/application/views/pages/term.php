@@ -1,5 +1,5 @@
 <div id="loadingFade"></div>
-<div id="loadingModal">
+<div id="loadingModal" style="min-height: 18%; max-height: 18%;width: 15%;">
             <img id="loader" src="http://www.itgeared.com/demo/images/loading.gif" />
 </div>
 <div class="row">
