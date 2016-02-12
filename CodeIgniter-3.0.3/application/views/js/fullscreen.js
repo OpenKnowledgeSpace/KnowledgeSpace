@@ -1,5 +1,46 @@
+var opts = {
+  lines: 13 // The number of lines to draw
+, length: 28 // The length of each line
+, width: 14 // The line thickness
+, radius: 42 // The radius of the inner circle
+, scale: 1 // Scales overall size of the spinner
+, corners: 1 // Corner roundness (0..1)
+, color: '#000' // #rgb or #rrggbb or array of colors
+, opacity: 0.25 // Opacity of the lines
+, rotate: 0 // The rotation offset
+, direction: 1 // 1: clockwise, -1: counterclockwise
+, speed: 1 // Rounds per second
+, trail: 60 // Afterglow percentage
+, fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+, zIndex: 2e9 // The z-index (defaults to 2000000000)
+, className: 'spinner' // The CSS class to assign to the spinner
+, top: '50%' // Top position relative to parent
+, left: '50%' // Left position relative to parent
+, shadow: false // Whether to render a shadow
+, hwaccel: false // Whether to use hardware acceleration
+, position: 'absolute' // Element positioning
+};
+
+
 $(document).ready(function () 
 {
+    
+            //Toggle fullscreen
+    $("#panel-fullscreen0").click(function (e) {
+        e.preventDefault();
+        
+        var $this = $(this);
+
+            
+            document.getElementById("summaryOutter0").className="collapse";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            
+            loadButtons();
+            history.pushState('', document.title, window.location.pathname);
+            setCookie('screen_state','',365);
+        
+    });
+    
     $("#literature-fullscreen").click(function (e) {
         e.preventDefault();
         
@@ -77,14 +118,12 @@ $(document).ready(function ()
         var $this = $(this);
         
         
-        
+        //alert("summary");
     
         if ($this.children('i').hasClass('glyphicon-resize-full'))
         {
             $this.children('i').removeClass('glyphicon-resize-full');
             $this.children('i').addClass('glyphicon-resize-small');
-            
-            //document.getElementById("dataspace_panel").innerHTML = "Full panel!";
             document.getElementById("summary-panel").setAttribute("style", "min-height: 100%; max-height: 100%");
             window.location.hash = '#definition';
             setCookie('screen_state','definition',365);
@@ -93,8 +132,6 @@ $(document).ready(function ()
         {
             $this.children('i').removeClass('glyphicon-resize-small');
             $this.children('i').addClass('glyphicon-resize-full');
-            
-            //document.getElementById("dataspace_panel").innerHTML = "Minimized panel!";
             document.getElementById("summary-panel").setAttribute("style", "min-height: 50%; max-height: 50%;overflow-y: scroll");
             history.pushState('', document.title, window.location.pathname);
             setCookie('screen_state','',365);
@@ -105,6 +142,9 @@ $(document).ready(function ()
         
         
     });
+    
+    
+
     
     //Toggle fullscreen
     $("#panel-fullscreen").click(function (e) {
@@ -117,39 +157,81 @@ $(document).ready(function ()
     
         if ($this.children('i').hasClass('glyphicon-resize-full'))
         {
-            $this.children('i').removeClass('glyphicon-resize-full');
-            $this.children('i').addClass('glyphicon-resize-small');
+            //$this.children('i').removeClass('glyphicon-resize-full');
+            //$this.children('i').addClass('glyphicon-resize-small');
             
-            //document.getElementById("dataspace_panel").innerHTML = "Full panel!";
-            document.getElementById("dataspace_panel").setAttribute("style", "min-height: 100%; max-height: 100%");
+
+             document.getElementById("summaryOutter0").className = "col-md-12";
+             document.getElementById("dataspaceOutter").className = "collapse";
+
+             //document.getElementById("dataspace_panel0").innerHTML = document.getElementById("dataspace_panel").innerHTML;
+             //var summaryOutter = document.getElementById("summaryOutter").innerHTML;
+             //var dataspaceOutter = document.getElementById("dataspaceOutter").innerHTML;
+             //document.getElementById("summaryOutter").innerHTML = dataspaceOutter;
+             //document.getElementById("dataspaceOutter").innerHTML = summaryOutter;
+
+            //document.getElementById("dataspace_panel0").setAttribute("style", "min-height: 400%; max-height: 400%;overflow-y: scroll");
+            document.getElementById("panel_title").innerHTML="Data space";
             var curie = getCookie('curie');
             var pageName = getCookie('pageName');
+            
+            
+            
             var html = httpGet("/SciCrunchKS/index.php/ViewAllData/view/"+pageName+"/0/0");
             window.location.hash = '#dataspace';
             setCookie('screen_state','dataspace',365);
         }
-        else if ($this.children('i').hasClass('glyphicon-resize-small'))
+        /* else if ($this.children('i').hasClass('glyphicon-resize-small'))
         {
-            $this.children('i').removeClass('glyphicon-resize-small');
-            $this.children('i').addClass('glyphicon-resize-full');
             
-            //document.getElementById("dataspace_panel").innerHTML = "Minimized panel!";
+            alert("--------Minimize--------");
+            //$this.children('i').removeClass('glyphicon-resize-small');
+            //$this.children('i').addClass('glyphicon-resize-full');
+            
+
+            document.getElementById("summaryOutter0").className = "collapse";
+            document.getElementById("dataspaceOutter").className = "col-md-12";
+            document.getElementById("summaryOutter0").innerHTML = ""; 
+            
+            //var summaryOutter = document.getElementById("summaryOutter").innerHTML;
+            // var dataspaceOutter = document.getElementById("dataspaceOutter").innerHTML;
+            // document.getElementById("summaryOutter").innerHTML = summaryOutter;
+            // document.getElementById("dataspaceOutter").innerHTML = dataspaceOutter;
+             
             document.getElementById("dataspace_panel").setAttribute("style", "min-height: 23%; max-height: 23%;overflow-y: scroll");
             
             loadButtons();
             history.pushState('', document.title, window.location.pathname);
             setCookie('screen_state','',365);
             
-        }
-        $(this).closest('.panel').toggleClass('panel-fullscreen');
+        }*/
+        //$(this).closest('.panel').toggleClass('panel-fullscreen');
         
         
         
     });
 });
 
+function openModal() {
+    
+    
+        document.getElementById('loadingModal').style.display = 'block';
+        document.getElementById('loadingFade').style.display = 'block';
+}
+
+function closeModal() 
+{
+    
+    document.getElementById('loadingModal').style.display = 'none';
+    document.getElementById('loadingFade').style.display = 'none';
+}
 function httpGet(theUrl)
 {
+     openModal();
+            /*var target = document.getElementById('spinner');
+            var spinner = new Spinner(opts).spin(target);
+            spinner.spin(); 
+            alert(spinner);*/
     if (window.XMLHttpRequest)
     {// code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp=new XMLHttpRequest();
@@ -164,8 +246,25 @@ function httpGet(theUrl)
         {
             //alert(xmlhttp.responseText);
             //return xmlhttp.responseText;
+            //spinner.stop();
+            closeModal();
+            document.getElementById("dataspace_panel0").innerHTML=xmlhttp.responseText;
             
-            document.getElementById("dataspace_panel").innerHTML=xmlhttp.responseText;
+            var ks_selected_sources = getCookie('ks_selected_sources');
+            ks_selected_sources = ks_selected_sources.replace(new RegExp("%2C", 'g'), ",");
+            var sourceArray = ks_selected_sources.split(',');
+            /*for(var i=0;i<sourceArray.length;i++)
+            {
+            
+            var height = Math.max(document.getElementById("menu"+i).clientHeight,
+            document.getElementById("menu"+i).scrollHeight,
+            document.getElementById("menu"+i).offsetHeight);
+            alert("height #"+i+":----- "+height);
+            }
+            document.getElementById("dataspace_panel0").setAttribute("style", "min-height: "+height+"; max-height: "+height+";overflow-y: scroll"); */
+            var height = 5000;
+            document.getElementById("dataspace_panel0").setAttribute("style", "min-height: "+height+"; max-height: "+height+";overflow-y: scroll"); 
+
         }
     }
     xmlhttp.open("GET", theUrl, false );
@@ -314,7 +413,7 @@ window.onhashchange = function()
     {
         setCookie('screen_state','',365);
         //alert("hash---"+window.location.hash);
-        eventFire(document.getElementById('panel-fullscreen'), 'click');
+        eventFire(document.getElementById('panel-fullscreen0'), 'click');
         history.pushState('', document.title, window.location.pathname);
     }
     else if(screenState == 'definition' && window.location.hash == '')

@@ -202,6 +202,11 @@
                         echo "<tr>\n";
                         foreach($row as $key => $val)
                         {
+                            if(strcmp($key, "Image Description")==0 || strcmp($key, "Technical Details")==0 || strcmp($key, "Cellular Component")==0 || strcmp($key, "Biological Process")==0)
+                            {
+                                if(strlen($val) > 100)
+                                    $val = substr($val, 0, 100)."...";
+                            }
                             echo "<td>". $val. "</td>";
                             
                         }

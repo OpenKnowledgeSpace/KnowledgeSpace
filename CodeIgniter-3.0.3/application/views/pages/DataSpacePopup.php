@@ -1,31 +1,20 @@
-  <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  	-->
-	<link rel="stylesheet" href="/SciCrunchKS/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="sckb.css"> 
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  	-->
+
+    
+   
+
 
     <!-------------------Data space panel------------------------>
-    <div class="panel panel-default">
+
+   <!-- <div class="panel panel-default">
         <div class="panel-heading">
-                    <h3 class="panel-title">Data space</h3>
+                    <h3 id="panel_title" class="panel-title">Data space</h3>
                     <ul class="list-inline panel-actions">
                         <li><a href="#" id="panel-fullscreen" role="button" title="Toggle fullscreen"><i id="dataspace_i" class="glyphicon glyphicon-resize-full"></i></a></li>
                     </ul>
         </div> 
-     <!-- <div class="panel-heading">
-         <h5 class="panel-title pull-left">Data space
-            </h5>
 
-        <a href="#" class="pull-right">
-          <span class="glyphicon glyphicon-resize-full"></span>
-        </a>
-        <div class="clearfix"></div>
-    </div> -->
 	<div id="dataspace_panel" class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll">
-  
+    -->
 <?php
         //Retrieving cookies for selected categories
         $ks_selected_json = "";
@@ -557,13 +546,13 @@
                 echo "</div>";
             }
             ?>
-        </div>
+ <!--       </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
-  </div>    
+  </div>    -->
 
 
 
@@ -578,186 +567,11 @@
 
 
 
-<!-----------------------Image gallery----------------------->
-    <div class="panel panel-default">
-    <div class="panel-heading">Image gallery</div>
-    <!-- <div class="panel-body" style="min-height: 138; max-height: 138;overflow-y: scroll"> 
-      -->
-    <div class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll"> 
-        <div class="row" style="vertical-align: middle" >
-            
 
-<?php
-        $imageCount = 0;
-        $hasFirstImage = false;
-        if($title == "Neocortical pyramidal cell")
-        {
-            echo "<div class=\"col-md-3\">";
-            echo "   <a href=\"http://celltypes.brain-map.org/mouse/experiment/morphology/330080937\" target=\"_blank\">";
-            echo "       <img width=\"84\" height=\"100\" src=\"http://celltypes.brain-map.org/cgi-bin/imageservice?path=/external/mousecelltypes/prod210/specimen_324466858/min_xy_324466858.aff&mime=2\"/>";
-            echo "   </a>";
-            echo "</div>";
-            $hasFirstImage = true; 
-            $imageCount++;
-        }
         
-?>
-             
-            
-            
-<?php
-
-	    
-	     if(sizeof($cilImages) > 0)
-	     {
-                echo "<div class=\"col-md-3\">";
-		echo $cilImages[0];
-                echo "</div>";
-                $imageCount++;
-	     }
- 		
-
-
-?>
-
-
-           <!--     <a href="http://www.cellimagelibrary.org/images/40188" target="_blank">
-                    <img width="84" height="100" src="http://grackle.crbs.ucsd.edu:8001/ascb_il/render_thumbnail/40188/220/"/>
-                </a>  -->
-            
-            
-            
-<?php
-        if(!$hasFirstImage && sizeof($cilImages) > 1)
-        {
-            if($originalCILImages != NULL && count($originalCILImages)>0)
-            {
-            echo "<div class=\"col-md-3\">";
-            
-                echo $cilImages[count($originalCILImages)-1];	   
-           
-            echo "</div>";
-            $hasFirstImage = true;
-            $imageCount++;
-             }
-        }
-
-
-?>
-            
 
 
 
-            
-
-<?php
-
-		if(sizeof($neuroMorphoImages) > 0)
-		{
-                    for($i=0;$i<sizeof($neuroMorphoImages);$i++)
-                    {
-                        echo "<div class=\"col-md-3\">";
-			echo $neuroMorphoImages[$i];
-                        echo "</div> ";
-                        
-                        $imageCount++;
-                        if($imageCount >= 3)
-                            break;
-                    }
-		}
-
-?>		
-<!--
-                <a href="http://neuromorpho.org/neuroMorpho/neuron_info.jsp?neuron_name=Pyramid-IIIC-2-5M-1" target="_blank">
-                    <img width="84" height="100" src="http://neuromorpho.org/neuroMorpho/images/imageFiles/Vuksic/Pyramid-IIIC-2-5M-1.png"/>
-                </a>   
--->
-
-            
 
 
-
-            <div class="col-md-3" >
-<?php
-            if($imageCount > 0)
-            {    
-                echo "<a href=\"#\"  data-toggle=\"modal\" data-target=\"#myModal6\">";
-                echo "See All";       
-                echo "</a>";
-            }
-            else
-            {
-                echo "No Images.";
-            }
-                        
-                        
-?>
-                
-            </div>  
-        </div>
-
-    </div>
-   </div>
-
-        <!-- Modal -->
-  <div class="modal fade" id="myModal6" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Image gallery</h4>
-        </div>
-        <div class="modal-body" style="overflow-y: scroll">
-
-<?php
-
-//	$cilImages = array_merge($cilImages, $neuroMorphoImages);
-
-	if(sizeof($cilImages) > 0)
-	{
-		$i = 0;
-		while($i < sizeof($cilImages))		
-		{
-		    echo "<div class=\"row\">";
-		    echo "<div class=\"col-md-3\">". $cilImages[$i]  ."</div>";
-		    $i = $i+1;
-		
-		    if($i < sizeof($cilImages))
-		    	echo "<div class=\"col-md-3\">". $cilImages[$i]  ."</div>";
-
-	            $i = $i+1;
-		 	
-		    if($i < sizeof($cilImages))
-		    	echo "<div class=\"col-md-3\">". $cilImages[$i]  ."</div>";
-		    $i = $i+1;		    
-		    if($i < sizeof($cilImages))
-		    	echo "<div class=\"col-md-3\">". $cilImages[$i]  ."</div>";
-
-		    echo "</div>";
-
-		    if($i < sizeof($cilImages))
-		    {
-		    	echo "<div class=\"row\">";
-                    	echo "<div class=\"col-md-12\"><br/></div>";
-                    	echo "</div>";
-   		    }
-		}
-
-	}
-
-?>
-
-
-
-	</div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-
-      </div>
-    </div>
- </div>
-
-
-
-<script type="text/javascript">loadButtons();</script>
+          

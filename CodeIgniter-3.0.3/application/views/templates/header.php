@@ -12,6 +12,7 @@
 -->
   <link rel="stylesheet" type="text/css" href="/SciCrunchKS/resources/sckb.css"> 
   <link rel="stylesheet" type="text/css" href="/SciCrunchKS/resources/panel.css"> 
+ 
       <link rel="icon" type="image/png" href="./img/favicon-32x32.png" sizes="32x32" />
     <link rel="shortcut icon" type="image/png" href="./img/favicon-16x16.png"/>
  <!-- 
@@ -21,6 +22,12 @@
 
   <script src="/SciCrunchKS/application/views/js/jquery.min.js"></script>
   <script src="/SciCrunchKS/application/views/js/bootstrap.min.js"></script>
+  
+  <!------------------------------------------------------------->
+   <link rel="stylesheet" type="text/css" href="/SciCrunchKS/resources/waiting.css"> 
+ <!-- <script src="http://fgnass.github.io/spin.js/spin.js"></script>
+  <script src="http://fgnass.github.io/spin.js/spin.min.js"></script> -->
+  <!------------------------------------------------------------->
 
   <script src="/SciCrunchKS/application/views/js/fullscreen.js"></script>
 
