@@ -69,7 +69,77 @@ class ServiceUtil
         return $this->getJsonObj($surl); 
     }
     
+    public function searchLiteratureByYearUsingSolr($terms, $start, $rows, $fl, $year)
+    {
     
+        require_once('Config.php');
+        $surl="http://".Config::$literatureHost.":8080/literature/collection1/select?q=%7B!lucene%20q.op=OR%7D".
+            $terms."&start=".$start."&fl=".$fl."&rows=".$rows."&wt=json&indent=true&fq=year:".$year;
+    
+        //echo "<br/><br/>".$surl;
+    
+        $obj = $this->getJsonObj($surl);
+        //$obj = file_get_contents($surl);
+        //echo "----------Returned:".$obj;
+    
+    
+        return $obj;    
+    
+    }
+    
+    
+    public function expandTerm($term)
+    {
+        $surl = "http://nif-services.neuinfo.org/servicesv1/v1/query.json?q=".$term;
+        $obj = $this->getJsonObj($surl);
+        return $obj;     
+    }
+
+    
+    public function parseExpandedTerm($result,$term)
+    {
+        $exp ="\"".$term."\"";
+
+        if(count($result->clauses)>0)
+        {
+            foreach($result->clauses[0]->expansion as $expansion)
+            {
+                $expansion = str_replace(" ", "%20", $expansion);
+                $exp = $exp."\"".$expansion."\"";
+            }
+        }
+    
+        return $exp;
+    }
+    
+    public function processLiteratureObj($litObj)
+    {
+        $myMap = array();
+        if(is_null($litObj))  //If empty result is returned
+            return $myMap;
+
+       //var_dump($litObj); 
+        $result = $litObj->response;
+
+
+        foreach($result->docs as $doc)
+        {
+            if(!array_key_exists("".$doc->year, $myMap))
+            {
+                $myMap[''.$doc->year] = 1;
+            }
+            else 
+            {
+                $myMap[''.$doc->year] = $myMap[''.$doc->year]+1;
+            }
+        }
+
+        ksort($myMap);
+        //var_dump($myMap);
+
+        return $myMap;
+    
+    }
 }
 
 

@@ -1,4 +1,4 @@
-var opts = {
+/* var opts = {
   lines: 13 // The number of lines to draw
 , length: 28 // The length of each line
 , width: 14 // The line thickness
@@ -19,7 +19,7 @@ var opts = {
 , shadow: false // Whether to render a shadow
 , hwaccel: false // Whether to use hardware acceleration
 , position: 'absolute' // Element positioning
-};
+}; */
 
 
 $(document).ready(function () 
@@ -34,14 +34,35 @@ $(document).ready(function ()
             
             document.getElementById("summaryOutter0").className="collapse";
             document.getElementById("dataspaceOutter").className="col-md-6";
-            
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("literature-outter").className = "panel panel-default";
+            document.getElementById("dataspace_panel0").innerHTML ="";
             loadButtons();
             history.pushState('', document.title, window.location.pathname);
             setCookie('screen_state','',365);
         
     });
     
-    $("#literature-fullscreen").click(function (e) {
+    
+    $("#panel-fullscreen1").click(function (e) {
+        e.preventDefault();
+        
+        var $this = $(this);
+
+            
+            document.getElementById("summaryOutter0").className="collapse";
+            document.getElementById("summaryOutter1").className="collapse";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("literature-outter").className = "panel panel-default";
+            document.getElementById("dataspace_panel0").innerHTML ="";
+            loadButtons();
+            history.pushState('', document.title, window.location.pathname);
+            setCookie('screen_state','',365);
+        
+    });
+    
+    /*$("#literature-fullscreen").click(function (e) {
         e.preventDefault();
         
         var $this = $(this);
@@ -74,7 +95,41 @@ $(document).ready(function ()
         
         
         
+    });*/
+    $("#literature-fullscreen").click(function (e) {
+        e.preventDefault();
+        
+        var $this = $(this);
+        
+        document.getElementById("literature-outter").className = "collapse";
+        document.getElementById("summaryOutter0").className = "collapse";
+        document.getElementById("summaryOutter1").className = "col-md-12";
+        document.getElementById("dataspaceOutter").className = "col-md-6";
+        
+        var title = getCookie('title');
+        document.getElementById("panel_title").innerHTML= "<h3>Literature - "+title+"</h3>";
+        document.getElementById("dataspace_panel0").innerHTML = document.getElementById("literature-panel").innerHTML;
+                //" <div id=\"container2\" style=\"min-width: 40%; height: 400px; margin: 0 auto\"></div> ";
+         
+        //alert(document.getElementById("literature-panel").innerHTML);
+        
+        
+        document.getElementById("dataspace_panel0").setAttribute("style", "min-height:100%; max-height:100%;overflow-y: scroll"); 
+        
+        var curie = getCookie('curie');
+        var pageName = getCookie('pageName'); 
+        //var html = httpGet("/SciCrunchKS/index.php/Literature/view/"+pageName);
+                
+        window.location.hash = '#literature';
+        setCookie('screen_state','literature',365); 
+        $('html,body').scrollTop(0);
+        
     });
+    
+    
+    
+    
+    
     
     $("#relation-fullscreen").click(function (e) {
         e.preventDefault();
@@ -111,14 +166,11 @@ $(document).ready(function ()
         
     });
     
-    
+    /*
     $("#summary-fullscreen").click(function (e) {
         e.preventDefault();
         
         var $this = $(this);
-        
-        
-        //alert("summary");
     
         if ($this.children('i').hasClass('glyphicon-resize-full'))
         {
@@ -140,6 +192,30 @@ $(document).ready(function ()
         $(this).closest('.panel').toggleClass('panel-fullscreen');
         
         
+        
+    }); */
+    $("#summary-fullscreen").click(function (e) {
+        e.preventDefault();
+        
+        var $this = $(this);
+        
+        document.getElementById("summaryOutter").className = "collapse";
+        document.getElementById("summaryOutter0").className = "col-md-12";      
+        document.getElementById("dataspaceOutter").className = "col-md-6";
+        
+        var title = getCookie('title');
+        document.getElementById("panel_title").innerHTML= "<h3>"+title+"</h3>";
+        document.getElementById("dataspace_panel0").innerHTML = 
+                document.getElementById("summary-panel").innerHTML;
+        
+        document.getElementById("dataspace_panel0").setAttribute("style", "min-height:100%; max-height:100%;overflow-y: scroll"); 
+        
+        var curie = getCookie('curie');
+        var pageName = getCookie('pageName');
+            
+            
+        window.location.hash = '#summary';
+        setCookie('screen_state','summary',365);
         
     });
     
@@ -171,7 +247,8 @@ $(document).ready(function ()
              //document.getElementById("dataspaceOutter").innerHTML = summaryOutter;
 
             //document.getElementById("dataspace_panel0").setAttribute("style", "min-height: 400%; max-height: 400%;overflow-y: scroll");
-            document.getElementById("panel_title").innerHTML="Data space";
+             var title = getCookie('title');
+            document.getElementById("panel_title").innerHTML="Data space - "+title;
             var curie = getCookie('curie');
             var pageName = getCookie('pageName');
             

@@ -23,6 +23,9 @@
   <script src="/SciCrunchKS/application/views/js/jquery.min.js"></script>
   <script src="/SciCrunchKS/application/views/js/bootstrap.min.js"></script>
   
+  
+   <!--  <script src="/SciCrunchKS/application/views/js/highcharts.js"></script>
+    <script src="/SciCrunchKS/application/views/js/exporting.js"></script> -->
   <!------------------------------------------------------------->
    <link rel="stylesheet" type="text/css" href="/SciCrunchKS/resources/waiting.css"> 
  <!-- <script src="http://fgnass.github.io/spin.js/spin.js"></script>

@@ -1,5 +1,5 @@
 
-    <div class="panel panel-default">
+    <div id="summaryOutter" class="panel panel-default">
         <div class="panel-heading" style="min-height: 80; max-height: 80"><h3><?php echo "$title";  ?></h3>
                     <ul class="list-inline panel-actions">
                         <li><a href="#" id="summary-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a></li>
@@ -12,6 +12,12 @@
         <!-- Principal neuron of the cerebral cortex (not including hippocampus or olfactory cortex). The pyramidal cell of the neocortex is located in layers 2-3 and 5-6, has a pyramidal-shaped cell body which gives off a number of laterally-directed basal dendrites and usually a single apical dendrite which ascends to branch and terminate in layer 1; these dendrites are covered in dendritic spines. -->
 
         <?php
+        
+       if(!is_null($title))
+       {
+           echo "<script type=\"text/javascript\"> setCookie('title','".$title."',365);</script>";
+
+       }
 
         if(isset($description) &&  !is_null($description))
         {

@@ -6,7 +6,7 @@ function getJsonObj2($surl)
 {
     
     
-        //echo $surl;
+        
 	$endpoint = $surl;
 
         //  Initiate curl
@@ -43,7 +43,7 @@ function getJsonObj2($surl)
 
 function getJsonObj($surl)
 {
-        //echo $surl;
+        
 	$endpoint = $surl;
 
         //  Initiate curl
@@ -203,7 +203,7 @@ function searchWithinSource($searchTerm, $sourceID, $rcount)
 
 	//$surl = "http://nif-services.neuinfo.org/servicesv1/v1/federation/data/" . $sourceID . "?q=" . $searchTerm . "&count=" . $rcount;
 	//if($sourceID== "nif-0000-00054-3")		
-       //echo "\n\n\n\n<br/>".$surl . "\n";
+        //echo "\n<br/>".$surl . "\n";
 
 	return getJsonObj($surl); 
 }
@@ -212,9 +212,10 @@ function searchWithinSource2($searchTerm, $sourceID, $rcount, $offset)
 {
 
 	//$surl = "http://nif-services.neuinfo.org/servicesv1/v1/federation/data/" . $sourceID . "?q=" . $searchTerm . "&count=" . $rcount. "&offset=".$offset;
-	//echo $surl . "\n";
+	
         $surl = "http://".Config::$nifServiceForData."/servicesv1/v1/federation/data/" . $sourceID . "?q=" . $searchTerm . "&count=" . $rcount. "&offset=".$offset;
-	return getJsonObj($surl); 
+	//echo "\n<br/>".$surl . "\n";
+        return getJsonObj($surl); 
 }
 
 

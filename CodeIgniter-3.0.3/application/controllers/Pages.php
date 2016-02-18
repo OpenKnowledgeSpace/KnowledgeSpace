@@ -249,10 +249,16 @@ class Pages extends CI_Controller
         	}*/
                $pageName = NULL;
                $termObj = NULL;
-               $pageName = str_replace("_", "%20", $page);
-               $data["page"] = $page;
+
+               $pageName = $page;
+               $pos = strpos($pageName,":");
+               //echo "----pos:".$pos;
+               if($pos == false)
+               {
+                    $pageName = str_replace("_", "%20", $page);
+                    $data["page"] = $page;
+               }
                
-               $pos = strpos($pageName,"%20");
                $isNifID = false;
                $originalPageName="";
                
@@ -274,7 +280,7 @@ class Pages extends CI_Controller
                
                
                
-               if( $pos == false)
+               if( $pos != false)
                {
                     $termObj[0] = getObjByCurie($pageName);
                     #echo "\n-------Willy----!is_null(termObj):".!is_null($termObj)."\n";

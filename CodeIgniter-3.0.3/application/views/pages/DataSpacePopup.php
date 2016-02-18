@@ -2,19 +2,6 @@
     
    
 
-
-    <!-------------------Data space panel------------------------>
-
-   <!-- <div class="panel panel-default">
-        <div class="panel-heading">
-                    <h3 id="panel_title" class="panel-title">Data space</h3>
-                    <ul class="list-inline panel-actions">
-                        <li><a href="#" id="panel-fullscreen" role="button" title="Toggle fullscreen"><i id="dataspace_i" class="glyphicon glyphicon-resize-full"></i></a></li>
-                    </ul>
-        </div> 
-
-	<div id="dataspace_panel" class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll">
-    -->
 <?php
         //Retrieving cookies for selected categories
         $ks_selected_json = "";
@@ -30,18 +17,13 @@
             if(isset($ks_selected_sources))
                 $ks_selected_json = $ks_selected_sources;
         }
-        //else 
-        //{
-            //loadSourcesConfig();
-            //$ks_selected_json = $_COOKIE['ks_selected_sources'];
-        //}
+
         $ks_selected_sources = explode(",", $ks_selected_json);
                         
 ?>
    
     
-               
-   <!-- <button style="height:30px;width:120px" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Physiology -->
+           
        <?php 
 
        if(!is_null($curie))
@@ -57,7 +39,7 @@
        }
        
        
-       echo " <div class=\"row\">";
+       
        $buttonCount = 0;
        
         $categories_string = "";
@@ -83,27 +65,24 @@
         {
             $buttonCount++;
             //echo $neuroElectroResult;
-            echo "<div class=\"col-md-4\">";
+            
             if(!is_null($neuroElectroResult) && $neuroElectroResult->result->resultCount > 0)
             {
                $neuroElectroCount = $neuroElectroResult->result->resultCount;
-               //echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">Physiology (".$neuroElectroResult->result->resultCount.")";
+
                echo "<script type=\"text/javascript\"> setCookie('Physiology_count','".$neuroElectroResult->result->resultCount."',365);</script>";
             }
             else
             {
-              //echo "<button  style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\" disabled>Physiology (0)";
+
               echo "<script type=\"text/javascript\"> setCookie('Physiology_count','0',365);</script>";
               
             }
-            //echo "\n</button>";
-            echo "</div>";
+
         }
 ?>
    
 
-    
-    <!-- <button style="height:30px;width:120px" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">Expression -->
         <?php
 	
         if(
@@ -112,7 +91,7 @@
                 )
         {
             $buttonCount++;
-            echo "<div class=\"col-md-4\">";
+            
             $genSatCount = 0;
             if(!is_null($genSatResult) && $genSatResult->result->resultCount> 0)
             {
@@ -125,8 +104,7 @@
                 //echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\" disabled>Expression (0)";
                 echo "<script type=\"text/javascript\"> setCookie('Expression_count','0',365);</script>";
             }
-            //echo "</button>";
-            echo "</div>";
+
         }
 ?>
     
@@ -171,7 +149,7 @@
                         in_array("nlx_152590-1", $ks_selected_sources))
                 {
             $buttonCount++;
-            echo "<div class=\"col-md-4\">";
+           
             if($modelCount > 0)
             {
                 //echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\">Models (".$modelCount.")";
@@ -184,8 +162,7 @@
                 echo "<script type=\"text/javascript\"> setCookie('Models_count','".$modelCount."',365);</script>";
                 
             }
-            //echo "</button>";
-            echo "</div>";
+
             
                 }
             
@@ -200,27 +177,20 @@
     if($buttonCount ==3 && $newRow == false)
     {
         $newRow = true;
-        echo "</div><br/>";
-        echo "<div class=\"row\">";
+
     }
 ?>
- 
 
-    <!-- <button style="height:30px;width:120px" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal3">Anatomy -->
         <?php
 	
-       /* if(!in_array("nif-0000-00054-1", $ks_selected_sources))
-                echo "-----------nif-0000-00054-1 is not in the array";
-            else {
-                echo "-----------nif-0000-00054-1 is in the array";
-            } */
+
         
         if(isset($ks_selected_categories)&& in_array("Anatomy", $ks_selected_categories ) &&
                 isset($ks_selected_sources) && in_array("nif-0000-00054-1", $ks_selected_sources) 
                 )
         {
             $buttonCount++;
-            echo "<div class=\"col-md-4\">";
+            
             $neuronDBCount = 0;
             if(!is_null($neuronDBResult) && $neuronDBResult->result->resultCount > 0)
             {
@@ -235,8 +205,7 @@
                 echo "<script type=\"text/javascript\"> setCookie('Anatomy_count','0',365);</script>";
                 
             }
-            //echo "</button>";
-            echo "</div>";
+
         }
 ?>
     
@@ -246,8 +215,7 @@
     if($buttonCount ==3 && $newRow == false)
     {
         $newRow = true;
-        echo "</div><br/>";
-        echo "<div class=\"row\">";
+
     }
 ?>    
     <!-- <button style="height:30px;width:120px" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal4">Morphology -->
@@ -257,7 +225,7 @@
                 && isset($ks_selected_sources) && in_array("nif-0000-00006-1", $ks_selected_sources))
         {
             $buttonCount++;
-            echo "<div class=\"col-md-4\">";
+            
             if(!is_null($neuroMorphoResult) && $neuroMorphoResult->result->resultCount > 0)
             {
                 $neuroMorphoCount = $neuroMorphoResult->result->resultCount;
@@ -270,8 +238,7 @@
                 echo "<script type=\"text/javascript\"> setCookie('Morphology_count','0',365);</script>";
                 
             }
-            //echo "</button>";
-            echo "</div>";
+
         }
 ?>
 <?php
@@ -279,18 +246,16 @@
     if($buttonCount ==3 && $newRow == false)
     {
         $newRow = true;
-        echo "</div><br/>";
-        echo "<div class=\"row\">";
+
     }
 ?>
 <?php
     if($buttonCount >= 3)
     {
-        echo "</div>";
+       
     }
 ?>
-  </div>  
-</div>
+
 
     
   <!-- Modal -->
@@ -546,14 +511,13 @@
                 echo "</div>";
             }
             ?>
- <!--       </div>
+      </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
-  </div>    -->
-
+  </div>   
 
 
 
