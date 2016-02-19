@@ -52,6 +52,26 @@
         
     </div>
     
+    <div class="row">   
+            <div  id="summaryOutter2"    class="collapse" >
+                <div class="panel panel-default">
+                <div   class="panel-heading">
+                    <h3 id="panel_title2" class="panel-title">Literature</h3>
+                    <ul class="list-inline panel-actions">
+                        <li><a href="#" id="panel-fullscreen2" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-small"></i></a></li>
+                    </ul>
+                </div>
+ 
+                <div id="relation-panel" class="panel-body" style="min-height: 100%; max-height: 100%;overflow-y: scroll">
+
+                    <div id="treeWell" class="tree well">
+
+                    </div>
+                </div>
+                </div>
+            </div>
+    </div>
+    
     
 <div class="row">
 
@@ -94,13 +114,13 @@
 
 <div class="row">
 
-<div class="col-md-6">
+<div id="innerRelation"  class="col-md-6">
  <?php   
    include "innerLexicon.php";
  ?>       
         
 </div>
-<div class="col-md-6">
+<div  id="innerLiterature" class="col-md-6">
  <?php   
     include "innerLiterature.php";
  ?>       

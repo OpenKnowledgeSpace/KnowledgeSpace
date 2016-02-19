@@ -32,10 +32,20 @@ $(document).ready(function ()
         var $this = $(this);
 
             
-            document.getElementById("summaryOutter0").className="collapse";
+            /*document.getElementById("summaryOutter0").className="collapse";
             document.getElementById("dataspaceOutter").className="col-md-6";
             document.getElementById("summaryOutter").className = "col-md-6";
-            document.getElementById("literature-outter").className = "panel panel-default";
+            document.getElementById("literature-outter").className = "panel panel-default";*/
+            document.getElementById("summaryOutter0").className="collapse";
+            document.getElementById("summaryOutter1").className="collapse";
+            document.getElementById("summaryOutter2").className="collapse";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("innerLiterature").className = "col-md-6";
+            document.getElementById("innerRelation").className="col-md-6";
+        
+        
+        
             document.getElementById("dataspace_panel0").innerHTML ="";
             loadButtons();
             history.pushState('', document.title, window.location.pathname);
@@ -50,17 +60,49 @@ $(document).ready(function ()
         var $this = $(this);
 
             
-            document.getElementById("summaryOutter0").className="collapse";
+            /*document.getElementById("summaryOutter0").className="collapse";
             document.getElementById("summaryOutter1").className="collapse";
+            document.getElementById("summaryOutter2").className="collapse";
             document.getElementById("dataspaceOutter").className="col-md-6";
             document.getElementById("summaryOutter").className = "col-md-6";
-            document.getElementById("literature-outter").className = "panel panel-default";
+            document.getElementById("innerLiterature").className = "col-md-6";*/
+            
+            document.getElementById("summaryOutter0").className="collapse";
+            document.getElementById("summaryOutter1").className="collapse";
+            document.getElementById("summaryOutter2").className="collapse";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("innerLiterature").className = "col-md-6";
+            document.getElementById("innerRelation").className="col-md-6";
+
             document.getElementById("dataspace_panel0").innerHTML ="";
             loadButtons();
             history.pushState('', document.title, window.location.pathname);
             setCookie('screen_state','',365);
         
     });
+    
+    
+    $("#panel-fullscreen2").click(function (e) {
+        e.preventDefault();
+        
+        var $this = $(this);
+
+            document.getElementById("innerRelation").className="col-md-6";
+            document.getElementById("summaryOutter0").className="collapse";
+            document.getElementById("summaryOutter1").className="collapse";
+            document.getElementById("summaryOutter2").className="collapse";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("innerLiterature").className = "col-md-6";
+            //document.getElementById("literature-outter").className = "panel panel-default";
+            document.getElementById("dataspace_panel0").innerHTML ="";
+            loadButtons();
+            history.pushState('', document.title, window.location.pathname);
+            setCookie('screen_state','',365);
+        
+    });
+    
     
     /*$("#literature-fullscreen").click(function (e) {
         e.preventDefault();
@@ -101,10 +143,20 @@ $(document).ready(function ()
         
         var $this = $(this);
         
-        document.getElementById("literature-outter").className = "collapse";
+        
+            document.getElementById("summaryOutter0").className="collapse";
+            document.getElementById("summaryOutter1").className="col-md-12";
+            document.getElementById("summaryOutter2").className="collapse";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("innerLiterature").className = "collapse";
+            document.getElementById("innerRelation").className="col-md-6";
+        
+        //document.getElementById("literature-outter").className = "collapse";
+        /*document.getElementById("innerLiterature").className = "collapse";
         document.getElementById("summaryOutter0").className = "collapse";
         document.getElementById("summaryOutter1").className = "col-md-12";
-        document.getElementById("dataspaceOutter").className = "col-md-6";
+        document.getElementById("dataspaceOutter").className = "col-md-6";*/
         
         var title = getCookie('title');
         document.getElementById("panel_title").innerHTML= "<h3>Literature - "+title+"</h3>";
@@ -129,9 +181,49 @@ $(document).ready(function ()
     
     
     
-    
-    
     $("#relation-fullscreen").click(function (e) {
+        e.preventDefault();
+        
+        var $this = $(this);
+        
+        //
+        /*document.getElementById("summaryOutter0").className = "collapse";
+        document.getElementById("summaryOutter1").className = "collapse";
+        document.getElementById("summaryOutter2").className =  "col-md-12";
+        document.getElementById("innerRelation").className ="collapse";
+        document.getElementById("dataspaceOutter").className = "col-md-6";*/
+            document.getElementById("summaryOutter0").className="collapse";
+            document.getElementById("summaryOutter1").className="collapse";
+            document.getElementById("summaryOutter2").className="col-md-12";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("innerLiterature").className = "col-md-6";
+            document.getElementById("innerRelation").className="collapse";
+        
+        
+        
+        var title = getCookie('title');
+        document.getElementById("panel_title2").innerHTML= "<h3>Relations - "+title+"</h3>";
+        document.getElementById("treeWell").innerHTML = document.getElementById("treeWell2").innerHTML;
+
+
+         $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+            $('.tree li.parent_li > span').on('click', function (e) { 
+                var treeIds = e.target.id.split(',');
+        
+                loadTree("/SciCrunchKS/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1]);
+    
+            });
+
+
+        window.location.hash = '#relations';
+        setCookie('screen_state','relations',365); 
+        $('html,body').scrollTop(0);
+        
+        
+    });
+    
+    /* $("#relation-fullscreen").click(function (e) {
         e.preventDefault();
         
         var $this = $(this);
@@ -164,7 +256,7 @@ $(document).ready(function ()
         
         
         
-    });
+    }); */
     
     /*
     $("#summary-fullscreen").click(function (e) {
@@ -199,9 +291,19 @@ $(document).ready(function ()
         
         var $this = $(this);
         
-        document.getElementById("summaryOutter").className = "collapse";
+        /*document.getElementById("summaryOutter").className = "collapse";
         document.getElementById("summaryOutter0").className = "col-md-12";      
-        document.getElementById("dataspaceOutter").className = "col-md-6";
+        document.getElementById("dataspaceOutter").className = "col-md-6";*/
+            document.getElementById("summaryOutter0").className="col-md-12";
+            document.getElementById("summaryOutter1").className="collapse";
+            document.getElementById("summaryOutter2").className="collapse";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "collapse";
+            document.getElementById("innerLiterature").className = "col-md-6";
+            document.getElementById("innerRelation").className="col-md-6";
+        
+        
+        
         
         var title = getCookie('title');
         document.getElementById("panel_title").innerHTML= "<h3>"+title+"</h3>";
@@ -237,8 +339,18 @@ $(document).ready(function ()
             //$this.children('i').addClass('glyphicon-resize-small');
             
 
-             document.getElementById("summaryOutter0").className = "col-md-12";
-             document.getElementById("dataspaceOutter").className = "collapse";
+             //document.getElementById("summaryOutter0").className = "col-md-12";
+             //document.getElementById("dataspaceOutter").className = "collapse";
+             
+            document.getElementById("summaryOutter0").className="col-md-12";
+            document.getElementById("summaryOutter1").className="collapse";
+            document.getElementById("summaryOutter2").className="collapse";
+            document.getElementById("dataspaceOutter").className="collapse";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("innerLiterature").className = "col-md-6";
+            document.getElementById("innerRelation").className="col-md-6";
+             
+             
 
              //document.getElementById("dataspace_panel0").innerHTML = document.getElementById("dataspace_panel").innerHTML;
              //var summaryOutter = document.getElementById("summaryOutter").innerHTML;
@@ -499,21 +611,21 @@ window.onhashchange = function()
     {
         setCookie('screen_state','',365);
         //alert("hash---"+window.location.hash);
-        eventFire(document.getElementById('summary-fullscreen'), 'click');
+        eventFire(document.getElementById('summaryOutter0'), 'click');
         history.pushState('', document.title, window.location.pathname);
     }
     else if(screenState == 'relations' && window.location.hash == '')
     {
         setCookie('screen_state','',365);
         //alert("hash---"+window.location.hash);
-        eventFire(document.getElementById('relation-fullscreen'), 'click');
+        eventFire(document.getElementById('panel-fullscreen2'), 'click');
         history.pushState('', document.title, window.location.pathname);
     }
     else if(screenState == 'literature' && window.location.hash == '')
     {
         setCookie('screen_state','',365);
         //alert("hash---"+window.location.hash);
-        eventFire(document.getElementById('literature-fullscreen'), 'click');
+        eventFire(document.getElementById('panel-fullscreen1'), 'click');
         history.pushState('', document.title, window.location.pathname);
     }
     

@@ -17,7 +17,7 @@
       -->
     <div id="relation-panel" class="panel-body" style="min-height: 35%; max-height: 35%;overflow-y: scroll">
 
-        <div class="tree well">
+        <div id="treeWell2" class="tree well">
 <?php
 
         $parentLinkName = str_replace(" ", "_", $node->lbl);
@@ -25,11 +25,14 @@
         $parentLinkName = str_replace(")", "_",$parentLinkName);
         //$parentLink = "/SciCrunchKS/index.php/pages/view/".$parentLinkName;
         $parentLink = "/SciCrunchKS/index.php/pages/view/".$node->id;
-	echo "<ul><li><span><i class=\"icon-folder-open\"></i><a target=\"_self\" href=\"".$parentLink."\">" . $node->lbl    .    "</a></span> <a href=\"\"></a>";
+	//echo "<ul><li><span><i class=\"icon-folder-open\"></i><a target=\"_self\" href=\"".$parentLink."\">" . $node->lbl    .    "</a></span> <a href=\"\"></a>";
+        echo "<ul><li><span id=\"".$node->id.","."none"."\"><i class=\"icon-folder-open\"></i>" . $node->lbl    .    "</span><a target=\"_self\" href=\"".$parentLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>";
 
 
         
-	echo "<ul><li><span style=\"background-color: #FFFF00\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"\"></a>"; 
+	//echo "<ul><li><span style=\"background-color: #FFFF00\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"\"></a>"; 
+        $mainLink = "/SciCrunchKS/index.php/pages/view/".$mainNode->id;
+	echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.",".$node->id."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
 
 
 	echo $leafHTML;

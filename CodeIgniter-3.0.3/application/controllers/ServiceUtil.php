@@ -140,6 +140,79 @@ class ServiceUtil
         return $myMap;
     
     }
+    
+    public function getTreeObj($curie)
+    {
+        require_once('Config.php');
+	//$surl = "http://matrix.neuinfo.org:9000/scigraph/graph/neighbors/". $curie ."?depth=1&blankNodes=false&direction=BOTH&project=%2A";
+        $surl = "http://".Config::$sciGraphHost.":9000/scigraph/graph/neighbors/". $curie ."?depth=1&blankNodes=false&direction=BOTH&project=%2A";
+
+	$obj = $this->getJsonObj($surl);
+	return $obj;
+
+    }
+    
+    public function getParentID($obj, $mainID)
+    {
+	foreach($obj->edges as $edge)
+	{
+
+		//var_dump($edge);
+		if(strcmp("subClassOf", $edge->pred)==0)
+		{
+
+			if(strcmp($mainID,$edge->sub)==0)
+				// && startsWith($edge->obj,"NIFCELL"))
+			{
+				//echo $edge->sub."----------->". $edge->obj."\n";
+
+				return $edge->obj;
+			}
+		}		
+	}
+	return NULL;
+    }
+    
+    public function getNode($obj, $id)
+    {
+	foreach($obj->nodes as $node)
+	{
+
+		if(strcmp($id, $node->id) == 0)
+		{
+		    //$node->sub;
+		    return $node;
+		}
+
+
+	}
+
+	return NULL;
+    }
+    
+    public function getChildrenIDs($obj, $mainID)
+    {
+	$list = new SplDoublyLinkedList();
+
+	foreach($obj->edges as $edge)
+	{
+		if(strcmp("subClassOf",$edge->pred)==0)
+		{
+			if(strcmp($mainID,$edge->obj)==0)
+			{
+				$list->push($edge->sub);
+
+				//echo $edge->sub;
+			}
+
+		}
+
+
+	}
+
+	return $list;
+
+    }
 }
 
 

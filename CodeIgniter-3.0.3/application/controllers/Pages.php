@@ -111,8 +111,8 @@ class Pages extends CI_Controller
                 $leafLinkName = str_replace(")", "_", $leafLinkName);
                 //$leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
 		$leafLink = "/SciCrunchKS/index.php/pages/view/".$leaf->id;
-                $leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
-
+                //$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
+                $leafHTML = $leafHTML . "<ul><li><span id=\"".$leaf->id.",".$mainNode->id."\"><i class=\"icon-plus-sign\"></i>" . $leaf->lbl . "</span> <a href=\"".$leafLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a></li></ul>\n";
             }
             $data['leafHTML'] = $leafHTML;
         }
