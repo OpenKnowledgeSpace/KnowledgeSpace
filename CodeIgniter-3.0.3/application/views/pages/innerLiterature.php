@@ -7,12 +7,12 @@
 <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
    
-    <script src="http://code.highcharts.com/highcharts.js"></script>
+<!--    <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
-  
+  -->
 
-<!--    <script src="/SciCrunchKS/application/views/js/highcharts.js"></script>
-    <script src="/SciCrunchKS/application/views/js/exporting.js"></script>  -->
+    <script src="/SciCrunchKS/application/views/js/highcharts.js"></script>
+    <script src="/SciCrunchKS/application/views/js/exporting.js"></script>  
    
   <script type="text/javascript">
 $(function () {
