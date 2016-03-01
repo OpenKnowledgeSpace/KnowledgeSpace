@@ -6,7 +6,7 @@ class ServiceUtil
 
     public function getJsonObj($surl)
     {
-        //echo $surl;
+        //echo "<br/>".$surl;
 	$endpoint = $surl;
 
         //  Initiate curl
@@ -61,6 +61,28 @@ class ServiceUtil
 
             return $sources;
         }
+        
+    public function searchTerm($name)
+    {
+        require_once('Config.php');
+        $name = str_replace(" ", "%20",$name); 
+        $surl = "http://matrix.neuinfo.org:9000/scigraph/vocabulary/search/".$name."?limit=100&searchSynonyms=true&searchAbbreviations=false&searchAcronyms=false";
+    
+        $obj = $this->getJsonObj($surl); 
+        return $obj;
+        
+    }
+    public function getTerm($name)
+    {
+        require_once('Config.php');
+        $name = str_replace(" ", "%20",$name); 
+
+        $surl = "http://".Config::$sciGraphHost.":9000/scigraph/vocabulary/term/".$name."?limit=20&searchSynonyms=false&searchAbbreviations=false&searchAcronyms=false";
+    
+        $obj = $this->getJsonObj($surl); 
+        return $obj;
+    }    
+        
     public function searchWithinSource($searchTerm, $sourceID, $rcount, $offset)
     {
         require_once('Config.php');

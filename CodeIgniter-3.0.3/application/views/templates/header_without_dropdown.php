@@ -1,67 +1,71 @@
 <html>
 <head>
-  <title>Scicrunch Knowledge Base</title>
- <meta charset="UTF-8">
-<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-   -->	
-      <link rel="stylesheet" href="/SciCrunchKS/css/bootstrap.min.css">
-   
-<!--  <link rel="stylesheet" href="/SciCrunchKS/application/views/css/bootstrap.min.css">
--->
-  <link rel="stylesheet" type="text/css" href="/SciCrunchKS/resources/sckb.css"> 
-  
-      <link rel="icon" type="image/png" href="./img/favicon-32x32.png" sizes="32x32" />
-    <link rel="shortcut icon" type="image/png" href="./img/favicon-16x16.png"/>
- <!-- 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
- -->
+	<title>Knowledge Space - Home</title>
 
-  <script src="/SciCrunchKS/application/views/js/jquery.min.js"></script>
-  <script src="/SciCrunchKS/application/views/js/bootstrap.min.js"></script>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
+	<!-- Favicon -->
+	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
+        <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+	<!-- Web Fonts -->
+	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
-<script src="/SciCrunchKS/js/sortable/js/sortable.min.js"></script>
-<link rel="stylesheet" href="/SciCrunchKS/js/sortable/css/sortable-theme-bootstrap.css" />
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/css/style.css">
 
- 
-    <!-- <script src="myGraph.js"></script> -->
-    
-        <title>Knowledge Space | App</title>
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="/assets/css/headers/header-default.css">
+	<link rel="stylesheet" href="/assets/css/footers/footer-v1.css">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="/SciCrunchKS/resources/Knowledge_Space_files/bootstrap.min.78e7f91c0c4c.css" rel="stylesheet">
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="/assets/plugins/animate.css">
+	<link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
+	<link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/assets/plugins/parallax-slider/css/parallax-slider.css">
+	<link rel="stylesheet" href="/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
 
-    <!-- Custom CSS -->
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="/assets/css/theme-colors/default.css" id="style_color">
+	<link rel="stylesheet" href="/assets/css/theme-skins/dark.css">
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="/assets/css/custom.css">
+        <link href="/static/css/custom.d4ef5c8a635d.css" rel="stylesheet">
+          <link rel="stylesheet" type="text/css" href="/SciCrunchKS/resources/sckb.css">
+          <link rel="stylesheet" type="text/css" href="/SciCrunchKS/resources/waiting.css"> 
+          <link rel="stylesheet" href="/SciCrunchKS/js/sortable/css/sortable-theme-bootstrap.css" /> 
+   <!-- <link href="/SciCrunchKS/resources/Knowledge_Space_files/bootstrap.min.78e7f91c0c4c.css" rel="stylesheet"> -->
     <link href="/SciCrunchKS/resources/Knowledge_Space_files/landing-page.c750721445d1.css" rel="stylesheet">
     <link href="/SciCrunchKS/resources/Knowledge_Space_files/custom.d4ef5c8a635d.css" rel="stylesheet">
-    
+   
+          
+          	<!-- JS Global Compulsory -->
+	<script type="text/javascript" src="/assets/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
+	<script type="text/javascript" src="/assets/plugins/smoothScroll.js"></script>
+	<script type="text/javascript" src="/assets/plugins/parallax-slider/js/modernizr.js"></script>
+	<script type="text/javascript" src="/assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
+	<script type="text/javascript" src="/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+	<!-- JS Customization -->
+	<script type="text/javascript" src="/assets/js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+	<script type="text/javascript" src="/assets/js/plugins/owl-carousel.js"></script>
+	<script type="text/javascript" src="/assets/js/plugins/style-switcher.js"></script>
+	<script type="text/javascript" src="/assets/js/plugins/parallax-slider.js"></script>
+        <!-- Custom js -->
+        <script src="/SciCrunchKS/application/views/js/fullscreen.js"></script>
+        <script src="/SciCrunchKS/js/sortable/js/sortable.min.js"></script>
 
-    <!-- Custom Fonts -->
-    <link href="/SciCrunchKS/resources/Knowledge_Space_files/font-awesome.min.feda974a77ea.css" rel="stylesheet" type="text/css">
-    <link href="/SciCrunchKS/resources/Knowledge_Space_files/css" rel="stylesheet" type="text/css">
-    
 </head>
-<body>
-  <script type="text/javascript">
-        $(function () {
-    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
-    $('.tree li.parent_li > span').on('click', function (e) {
-        var children = $(this).parent('li.parent_li').find(' > ul > li');
-        if (children.is(":visible")) {
-            children.hide('fast');
-            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
-        } else {
-            children.show('fast');
-            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
-        }
-        e.stopPropagation();
-    });
-});
-    </script>
-
 <script type="text/javascript">
     function getCookie(cname) {
     var name = cname + "=";
@@ -77,14 +81,14 @@ function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
+    document.cookie = cname + "=" + cvalue + ";path=/; " + expires;
 }
 
 function updateCategoryStatus(id)
 {
     var json_str = getCookie('ks_selected_categories');
     json_str=json_str.replace(new RegExp("%2C", 'g'), ",");
-    alert("-----NEW JSON:"+json_str);
+    //alert("-----NEW JSON:"+json_str);
     var array = json_str.split(',');
     
     var found = false;
@@ -117,7 +121,7 @@ function updateCategoryStatus(id)
     }
     var str = array.join(",");
     setCookie('ks_selected_categories',str,365);
-    
+    loadButtons();
 }
 
 function updateSourceStatus(id)
@@ -166,158 +170,180 @@ function updateSourceStatus(id)
     var str = array.join(",");
     //alert("final string:"+str);
     setCookie('ks_selected_sources',str,365);
-        
+    loadButtons();
 }
+
+
+function prepareCookies()
+{
+if(document.cookie.indexOf("ks_selected_sources") < 0)
+{
+    //alert("Cookie is NOT set");
+   setCookie('ks_selected_sources','nlx_151885-1,nif-0000-00006-1,nif-0000-00130-1,nif-0000-00054-1,nif-0000-37639-1,scr_013705-1,nif-0000-00004-1,nlx_152590-1',365);
+   //alert("Cookie now:"+getCookie('ks_selected_sources'));
+}
+//else
+    //alert("Cookie is set");
+
+if(document.cookie.indexOf("ks_selected_categories") < 0)
+    setCookie('ks_selected_categories','Physiology,Expression,Models,Anatomy,Morphology',365);
+
+}
+
+window.onpaint = prepareCookies();
+
+
 </script>
 
-<!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="row">
-                        <img width="50" height="50" src="/SciCrunchKS/resources/img/ks6.png"/>
-                        <a style="color:gray;text-decoration: none;background-color: none;font-size:18px;" href="/index.html">Knowledge Space</a>
-                </div>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
+</head>
+<body>
+  <script type="text/javascript">
+      
+      
+      
+function loadTree(theUrl)
+{
+
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            //alert(document.getElementById("treeWell").innerHTML);
+
+            document.getElementById("treeWell").innerHTML=xmlhttp.responseText;
+            document.getElementById("treeWell2").innerHTML=xmlhttp.responseText;
+            
+            $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+            $('.tree li.parent_li > span').on('click', function (e) { 
+                //loadTree("/SciCrunchKS/index.php/Tree/view/"+e.target.id+"/false");
+                var treeIds = e.target.id.split(',');
+        //alert(treeIds[0]);
+        //alert(treeIds[1]);
+        
+       loadTree("/SciCrunchKS/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1]);
+    
+            });
+        
+        }
+    }
+    xmlhttp.open("GET", theUrl, true );
+    xmlhttp.send();    
+}
+      
+      
+      
+      
+      
+        $(function () {
+    //$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+    $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+
+    $('.tree li.parent_li > span').on('click', function (e) {
+        
+        
+        //alert(e.target.id);
+        var treeIds = e.target.id.split(',');
+        //alert(treeIds[0]);
+        //alert(treeIds[1]);
+        //loadTree("/SciCrunchKS/index.php/Tree/view/"+e.target.id+"/false");
+       loadTree("/SciCrunchKS/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1]);
+        
+        /* var children = $(this).parent('li.parent_li').find(' > ul > li');
+        if (children.is(":visible")) {
+            children.hide('fast');
+            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+        } else {
+            children.show('fast');
+            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+        }
+        e.stopPropagation(); */
+    });
+});
+    </script>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+	<div class="wrapper">
+		<!--=== Header ===-->
+		<div class="header">
+			<div class="container">
+				<!-- Logo -->
+				<a class="logo" href="/index.html">
+					<img src="/img/ks6.png" alt="Logo">
+                                        <span style="color:gray;text-decoration: none;background-color: none;font-size:18px;" href="/index.html">Knowledge Space</span>
+				</a>
+                                
+				<!-- End Logo -->
+
+
+				<!-- Toggle get grouped for better mobile display -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="fa fa-bars"></span>
+				</button>
+				<!-- End Toggle -->
+			</div><!--/end container-->
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+				<div class="container">
+					<ul class="nav navbar-nav">
+						
+                                                                <li>
                         <a href="/#about">About</a>
                     </li>
                     <li>
                         <a href="/#examples">Examples</a>
                     </li>
-                    
-                    
                     <li>
-                        <a href="/SciCrunchKS/index.php/pages/view/Neocortical_pyramidal_cell">Demos</a>
-                    </li> 
-                    <!-- <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Demos
-                    <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="/SciCrunchKS/index.php/pages/view/Neocortical_pyramidal_cell">View demo</a></li>
-                      <li><a href="#" data-toggle="modal" data-target="#myModal">Configurations</a></li>
-                      
-                    </ul>
-                    </li> -->
-                    
-                    
-                    
+			<a href="/SciCrunchKS/index.php/pages/view/Neocortical_pyramidal_cell">Demos</a>
+		    </li>
+	            
 		    <li>
 			<a href="/SciCrunchKS/documentation.php">Documentation</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>      
+		    </li>
+						
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button id="closeBtn" type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Configurations</h4>
-        </div>
-        <div class="modal-body">
-          
-            <div class="row">
-                <div class="col-md-6" >
-                    <table class="table" border="0">
-                        <thead>
-                        <tr>
-                          <th>Category</th>
-                        </tr>
-                      </thead>
-<?php
+						<!-- Search Block -->
+						<li>
+							<i class="search fa fa-search search-btn"></i>
+							<div class="search-open">
+                                                            <form action="/SciCrunchKS/index.php/Search" method="post">
+								<div class="input-group animated fadeInDown">
+									<input name="keywords" type="text" class="form-control" placeholder="Search">
+									<span class="input-group-btn">
+										<button class="btn-u" type="submit">Go</button>
+									</span>
+								</div>
+                                                            </form>
+							</div>
+						</li>
+						<!-- End Search Block -->
+					</ul>
+				</div><!--/end container-->
+			</div><!--/navbar-collapse-->
+		</div>
 
-                        $categories_string = $_COOKIE['ks_selected_categories'];
-                        //echo "category string-----".$categories_string;
-                        $ks_selected_categories = explode(",", $categories_string);
-                        //var_dump($ks_selected_categories);
-                        foreach ($categories as $category) 
-                        {
-                            //if(strcmp($category[1],"true")==0)
-                            if(in_array($category[0], $ks_selected_categories))
-                                echo "<tr><td><input type=\"checkbox\" id=\"" .$category[0]."\" onclick=\"updateCategoryStatus(this.id);\" checked>";
-                            else 
-                                echo "<tr><td><input type=\"checkbox\" id=\"" .$category[0]."\" onclick=\"updateCategoryStatus(this.id);\">";
-                                
-                            echo $category[0];
-                            echo "</input></tr></td>";
-                        }  
-
-?>
-                        
-                        
-                    </table>
-                    
-                </div>
+                
  
-                <div class="col-md-6" >
-                    <table class="table" border="0">
-                        <thead>
-                        <tr>
-                          <th>Sources</th>
-                        </tr>
-                      </thead>
-                      
-<?php                   
-                        $ks_selected_json = "";
-                        if(isset($_COOKIE['ks_selected_categories']))
-                        {
-                            $ks_selected_json = $_COOKIE['ks_selected_sources'];
-                        }
-                        //echo "\n\njson----------".$ks_selected_json."------------";
-                        //echo "----------JSON----\n\n";
-                        $ks_selected_sources = explode(",", $ks_selected_json);
-                        ////json_decode($ks_selected_json);
-                        //var_dump($ks_selected_sources);
-                        //echo "----------END JSON----\n\n";
-                        
-                        foreach ($ks_sources as $source) 
-                        {
-                            //if(strcmp($source[2],"true")==0)
-                            if(in_array($source[1], $ks_selected_sources ))
-                                echo "<tr><td><input type=\"checkbox\" id=\"".$source[1]."\" onclick=\"updateSourceStatus(this.id);\" checked>";
-                            else 
-                                echo "<tr><td><input type=\"checkbox\" id=\"".$source[1]."\" onclick=\"updateSourceStatus(this.id);\">";
-                                
-                            echo $source[0];
-                            echo "</input></tr></td>";
-                        }   
-                       
-?>                       
-                        
-                    </table>
-                    
-                </div>
-                
-                
-                
-            </div>
-            
-            
-        </div>
-        <div class="modal-footer">
-            <!-- <button type="button" class="btn btn-default"  onclick="javascript:window.location='http://google.com'">Save</button> -->
-            <button type="button" class="btn btn-default"  onclick="window.location.reload()">Save</button>
-            
-            
-            <!-- data-dismiss="modal" -->
-        </div>
-      </div>
-    </div>
-  </div>
+  
+  
+  
+  
+  
+  <script type="text/javascript">
+		jQuery(document).ready(function() {
+			App.init();
+			OwlCarousel.initOwlCarousel();
+			StyleSwitcher.initStyleSwitcher();
+			
+		});
+</script>

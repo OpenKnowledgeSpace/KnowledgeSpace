@@ -274,11 +274,16 @@ $(function () {
                 [2015, 30] -->
  <!-------------------Data space panel------------------------>
     
-    <div id="literature-outter" class="panel panel-default">
-    <div class="panel-heading">Literature
+   <!--  <div id="literature-outter" class="panel panel-default"> -->
+   <div id="literature-outter" class="panel panel-grey">
+    <div class="panel-heading">
+             <!--       Literature
                 <ul class="list-inline panel-actions">
                         <li><a href="#" id="literature-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a></li>
-                </ul>
+                </ul> -->
+             
+	<h3 class="panel-title"><a href="#" id="literature-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a>Literature</h3>
+								
     </div>
   <!--  <div class="panel-body" style="min-height: 385; max-height: 385;overflow-y: scroll">
    -->        
