@@ -37,7 +37,7 @@
 
         <div class="panel-heading">
              
-            <h3 class="panel-title"><a href="#" id="panel-fullscreen1" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-small"></i></a><span id="panel_title">Literature</span></h3>
+            <h3 class="panel-title"><a href="#" id="panel-fullscreen1" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-small"></i></a><span id="panel_title2">Literature</span></h3>
 								
         </div>
 
@@ -58,7 +58,7 @@
 
                 <div class="panel-heading">
              
-                <h3 class="panel-title"><a href="#" id="panel-fullscreen2" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-small"></i></a><span id="panel_title2">Relations</span></h3>
+                <h3 class="panel-title"><a href="#" id="panel-fullscreen2" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-small"></i></a><span id="panel_title3">Relations</span></h3>
 								
                 </div>
  

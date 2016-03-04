@@ -4,7 +4,7 @@
 
 class Pages extends CI_Controller 
 {
-        public $enableCaching = false;
+        public $enableCaching = true;
         
         
         private function handleDataSpace(&$data, $searchName)
@@ -60,17 +60,18 @@ class Pages extends CI_Controller
             /*$data['neuroMLResult'] = searchWithinSource($searchName, $neuroML, 20);
             $data['modelDBResult'] = searchWithinSource($searchName, $modelDB, 20);
             $data['brainModelResult'] = searchWithinSource($searchName, $brainModel, 20);*/	
-            
-            $data['neuroMLResult'] = searchWithinSource($newName, $neuroML, 20);
-            $data['modelDBResult'] = searchWithinSource($newName, $modelDB, 20);
-            $data['brainModelResult'] = searchWithinSource($newName, $brainModel, 20);
+     
+                $data['neuroMLResult'] = searchWithinSource($newName, $neuroML, 20);
+                $data['modelDBResult'] = searchWithinSource($newName, $modelDB, 20);
+                $data['brainModelResult'] = searchWithinSource($newName, $brainModel, 20);
 
-            $data['cilResult'] = searchWithinSource($searchName, $CIL, 20);
-            $data['cilImages'] = getImageArray($data['cilResult'], 20);
+                $data['cilResult'] = searchWithinSource($searchName, $CIL, 20);
+                $data['cilImages'] = getImageArray($data['cilResult'], 20);
 
-            $data['neuroMorphoImages'] = getImageArray($data['neuroMorphoResult'], 20);
-            $data['originalCILImages'] = $data['cilImages'];
-            $data['cilImages'] = array_merge($data['cilImages'], $data['neuroMorphoImages']);
+                $data['neuroMorphoImages'] = getImageArray($data['neuroMorphoResult'], 20);
+                $data['originalCILImages'] = $data['cilImages'];
+                $data['cilImages'] = array_merge($data['cilImages'], $data['neuroMorphoImages']);
+
            
         }
     

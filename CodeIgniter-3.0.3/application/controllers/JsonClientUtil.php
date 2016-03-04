@@ -221,6 +221,9 @@ function searchWithinSource2($searchTerm, $sourceID, $rcount, $offset)
 
 function getImageArray($obj, $count)
 {
+        if(is_null($obj))
+            return array();
+    
 	$size = $obj->result->resultCount;	
 
 	if($size > $count)
@@ -404,6 +407,9 @@ function expandTerm($term)
 
 function parseExpandedTerm($result,$term)
 {
+    if(is_null($result))
+        return "";
+    
     $exp ="\"".$term."\"";
 
     if(count($result->clauses)>0)

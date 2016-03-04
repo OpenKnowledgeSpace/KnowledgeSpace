@@ -159,7 +159,8 @@ $(document).ready(function ()
         document.getElementById("dataspaceOutter").className = "col-md-6";*/
         
         var title = getCookie('title');
-        document.getElementById("panel_title").innerHTML= "<h3>Literature - "+title+"</h3>";
+        //alert(title);
+        document.getElementById("panel_title2").innerHTML= "<h3>Literature - "+title+"</h3>";
         document.getElementById("dataspace_panel0").innerHTML = document.getElementById("literature-panel").innerHTML;
                 //" <div id=\"container2\" style=\"min-width: 40%; height: 400px; margin: 0 auto\"></div> ";
          
@@ -203,15 +204,16 @@ $(document).ready(function ()
         
         
         var title = getCookie('title');
-        document.getElementById("panel_title2").innerHTML= "<h3>Relations - "+title+"</h3>";
+        document.getElementById("panel_title3").innerHTML= "<h3>Relations - "+title+"</h3>";
         document.getElementById("treeWell").innerHTML = document.getElementById("treeWell2").innerHTML;
 
 
          $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
             $('.tree li.parent_li > span').on('click', function (e) { 
                 var treeIds = e.target.id.split(',');
-        
-                loadTree("/SciCrunchKS/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1]);
+                var treeURL="/SciCrunchKS/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1];
+                //alert(treeURL);
+                loadTree(treeURL);
     
             });
 
