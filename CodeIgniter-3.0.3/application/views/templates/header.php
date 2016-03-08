@@ -32,7 +32,7 @@
   <script src="http://fgnass.github.io/spin.js/spin.min.js"></script> -->
   <!------------------------------------------------------------->
 
-  <script src="/SciCrunchKS/application/views/js/fullscreen.js"></script>
+  <script src="/SciCrunchKS/application/views/js/fullscreen.js?version=1"></script>
 
 <script src="/SciCrunchKS/js/sortable/js/sortable.min.js"></script>
 <link rel="stylesheet" href="/SciCrunchKS/js/sortable/css/sortable-theme-bootstrap.css" />

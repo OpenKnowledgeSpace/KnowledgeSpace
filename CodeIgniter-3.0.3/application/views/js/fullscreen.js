@@ -285,7 +285,7 @@ $(document).ready(function ()
         
         
         //var title = getCookie('title');
-        var title = getCookie(window.location.href+'-title');
+        //var title = getCookie(window.location.href+'-title');
         
         
         document.getElementById("panel_title").innerHTML= "<h3>"+title+"</h3>";
