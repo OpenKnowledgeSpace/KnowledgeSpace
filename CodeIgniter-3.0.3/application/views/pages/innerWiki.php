@@ -17,12 +17,14 @@
         <!-- Principal neuron of the cerebral cortex (not including hippocampus or olfactory cortex). The pyramidal cell of the neocortex is located in layers 2-3 and 5-6, has a pyramidal-shaped cell body which gives off a number of laterally-directed basal dendrites and usually a single apical dendrite which ascends to branch and terminate in layer 1; these dendrites are covered in dendritic spines. -->
 
         <?php
-        
-       if(!is_null($title))
+         
+       /*if(!is_null($title))
        {
-           echo "<script type=\"text/javascript\"> setCookie('title','".$title."',365);</script>";
+          
+           //echo "<script type=\"text/javascript\">alert(window.location.href );</script>";
+           echo "<script type=\"text/javascript\"> setCookie(window.location.href+'-title','".$title."',365);</script>";
 
-       }
+       }*/
 
         if(isset($description) &&  !is_null($description))
         {

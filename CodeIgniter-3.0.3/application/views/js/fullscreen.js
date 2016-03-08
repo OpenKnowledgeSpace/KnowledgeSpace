@@ -1,26 +1,3 @@
-/* var opts = {
-  lines: 13 // The number of lines to draw
-, length: 28 // The length of each line
-, width: 14 // The line thickness
-, radius: 42 // The radius of the inner circle
-, scale: 1 // Scales overall size of the spinner
-, corners: 1 // Corner roundness (0..1)
-, color: '#000' // #rgb or #rrggbb or array of colors
-, opacity: 0.25 // Opacity of the lines
-, rotate: 0 // The rotation offset
-, direction: 1 // 1: clockwise, -1: counterclockwise
-, speed: 1 // Rounds per second
-, trail: 60 // Afterglow percentage
-, fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
-, zIndex: 2e9 // The z-index (defaults to 2000000000)
-, className: 'spinner' // The CSS class to assign to the spinner
-, top: '50%' // Top position relative to parent
-, left: '50%' // Left position relative to parent
-, shadow: false // Whether to render a shadow
-, hwaccel: false // Whether to use hardware acceleration
-, position: 'absolute' // Element positioning
-}; */
-
 
 $(document).ready(function () 
 {
@@ -158,7 +135,7 @@ $(document).ready(function ()
         document.getElementById("summaryOutter1").className = "col-md-12";
         document.getElementById("dataspaceOutter").className = "col-md-6";*/
         
-        var title = getCookie('title');
+       //var title = getCookie('title');
         //alert(title);
         document.getElementById("panel_title2").innerHTML= "<h3>Literature - "+title+"</h3>";
         document.getElementById("dataspace_panel0").innerHTML = document.getElementById("literature-panel").innerHTML;
@@ -169,8 +146,8 @@ $(document).ready(function ()
         
         document.getElementById("dataspace_panel0").setAttribute("style", "min-height:100%; max-height:100%;overflow-y: scroll"); 
         
-        var curie = getCookie('curie');
-        var pageName = getCookie('pageName'); 
+        //var curie = getCookie('curie');
+        //var pageName = getCookie('pageName'); 
         //var html = httpGet("/SciCrunchKS/index.php/Literature/view/"+pageName);
                 
         window.location.hash = '#literature';
@@ -203,7 +180,7 @@ $(document).ready(function ()
         
         
         
-        var title = getCookie('title');
+        //var title = getCookie('title');
         document.getElementById("panel_title3").innerHTML= "<h3>Relations - "+title+"</h3>";
         document.getElementById("treeWell").innerHTML = document.getElementById("treeWell2").innerHTML;
 
@@ -307,15 +284,18 @@ $(document).ready(function ()
         
         
         
-        var title = getCookie('title');
+        //var title = getCookie('title');
+        var title = getCookie(window.location.href+'-title');
+        
+        
         document.getElementById("panel_title").innerHTML= "<h3>"+title+"</h3>";
         document.getElementById("dataspace_panel0").innerHTML = 
                 document.getElementById("summary-panel").innerHTML;
         
         document.getElementById("dataspace_panel0").setAttribute("style", "min-height:100%; max-height:100%;overflow-y: scroll"); 
         
-        var curie = getCookie('curie');
-        var pageName = getCookie('pageName');
+        //var curie = getCookie('curie');
+        //var pageName = getCookie('pageName');
             
             
         window.location.hash = '#summary';
@@ -361,10 +341,10 @@ $(document).ready(function ()
              //document.getElementById("dataspaceOutter").innerHTML = summaryOutter;
 
             //document.getElementById("dataspace_panel0").setAttribute("style", "min-height: 400%; max-height: 400%;overflow-y: scroll");
-             var title = getCookie('title');
+            // var title = getCookie('title');
             document.getElementById("panel_title").innerHTML="Data space - "+title;
-            var curie = getCookie('curie');
-            var pageName = getCookie('pageName');
+            //var curie = getCookie('curie');
+            //var pageName = getCookie('pageName');
             
             
             

@@ -1,3 +1,13 @@
+<?php
+//echo "-------testing------";
+echo "\n<script type=\"text/javascript\">";
+echo "\n var title = '".$title."';";
+echo "\n var curie = '".$curie."';";
+echo "\n var pageName = '".$pageName."';";
+echo "\n</script>";
+    
+
+?>
 <div id="loadingFade"></div>
 <div id="loadingModal" style="min-height: 18%; max-height: 18%;width: 15%;">
             <img id="loader" src="http://www.itgeared.com/demo/images/loading.gif" />

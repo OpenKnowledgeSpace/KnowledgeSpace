@@ -26,7 +26,7 @@
            
        <?php 
 
-       if(!is_null($curie))
+       /*if(!is_null($curie))
        {
            echo "<script type=\"text/javascript\"> setCookie('curie','".$curie."',365);</script>";
 
@@ -36,7 +36,7 @@
        {
            echo "<script type=\"text/javascript\"> setCookie('pageName','".$pageName."',365);</script>";
 
-       }
+       }*/
        
        
        
