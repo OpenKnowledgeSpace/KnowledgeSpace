@@ -31,6 +31,11 @@
 	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/plugins/parallax-slider/css/parallax-slider.css">
 	<link rel="stylesheet" href="assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+        
+
+        
+        
+        
 
 	<!-- CSS Theme -->
 	<link rel="stylesheet" href="assets/css/theme-colors/default.css" id="style_color">
@@ -51,6 +56,7 @@
 				<!-- Logo -->
 				<a class="logo" href="index.html">
 					<img src="/img/ks6.png" alt="Logo">
+                                        <span style="color:gray;text-decoration: none;background-color: none;font-size:18px;" href="/index.html">Knowledge Space</span>
 				</a>
 				<!-- End Logo -->
 
@@ -87,7 +93,7 @@
                     </li>
 	            <li>
                         <!-- <a href="http://knowledge-space.org/#examples">Examples</a> -->
-                        <a href="./SciCrunchKS/index.php/pages/view/Neocortical_pyramidal_cell">Demos</a>
+                        <a href="/SciCrunchKS/index.php/pages/view/Neocortical_pyramidal_cell">Demos</a>
                     </li>
 		    <li>
 			<a href="./SciCrunchKS/documentation.php">Documentation</a>
@@ -99,12 +105,14 @@
 						<li>
 							<i class="search fa fa-search search-btn"></i>
 							<div class="search-open">
+                                                            <form action="/SciCrunchKS/index.php/Search" method="post">
 								<div class="input-group animated fadeInDown">
-									<input type="text" class="form-control" placeholder="Search">
+									<input name="keywords" type="text" class="form-control" placeholder="Search">
 									<span class="input-group-btn">
-										<button class="btn-u" type="button">Go</button>
+										<button class="btn-u" type="submit">Go</button>
 									</span>
 								</div>
+                                                            </form>
 							</div>
 						</li>
 						<!-- End Search Block -->
@@ -119,9 +127,32 @@
 		<div class="slider-inner">
 			<div id="da-slider" class="da-slider">
 				<div class="da-slide">
-                                    <h3><i></i></h3>
-                                    <h3><i></i></h3>
+                                    
+                                    <h4><i></i></h4>
                                     <h4><i>Knowledge Space</i></h4>
+                                    <!-- <h5><i>The integration of concepts and data</i></h5> -->
+                                    <!-- Search Block -->
+                                                <div class="row" >
+                                                <div class="col-md-2" ></div>
+                                                    
+                                                <div class="col-md-8" >
+						<li>
+							<i class="search fa fa-search search-btn"></i>
+							<div class="search-open">
+                                                            <form action="/SciCrunchKS/index.php/Search" method="post">
+								<div class="input-group animated fadeInDown">
+									<input name="keywords" type="text" class="form-control" placeholder="Search">
+									<span class="input-group-btn">
+										<button class="btn-u" type="submit">Go</button>
+									</span>
+								</div>
+                                                            </form>
+							</div>
+						</li>
+                                                </div>
+                                                <div class="col-md-2" ></div>
+                                                </div>
+						<!-- End Search Block -->
                                    
 				</div>
 				
@@ -155,7 +186,8 @@
 			<div class="container overflow-h">
 				<div class="row">
 					<div class="col-md-12 animated fadeInLeft">
-						<span>KnowledgeSpace (KS) is a community-based encyclopedia.</span>
+						 <span>KnowledgeSpace (KS) is a community-based encyclopedia.</span> 
+                                                <!-- <span>The integration of concepts and data.</span> -->
 						
 					</div>
 					
@@ -163,8 +195,56 @@
 			</div>
 		</div><!--/row-->
 		<!-- End Purchase Block -->
+<!--=== Container Part ===-->
+	<div class="container content-md">
+		<ul class="row block-grid-v2">
+			<li class="col-md-4 col-sm-6 md-margin-bottom-30">
+				<div class="easy-block-v1">
+					<img class="img-responsive" src="/img/hcn3-2.jpg" alt="">
+					<div class="easy-block-v1-badge rgba-purple">Ion Channels</div>
+				</div>
+				<div class="block-grid-v2-info rounded-bottom">
+					
+                                    <a href="/SciCrunchKS/index.php/pages/view/PR:000000705" onclick="document.body.style.cursor='wait'; return true;" >HCN1</a><br/>
+                                        <a href="/SciCrunchKS/index.php/pages/view/PR:000000706" onclick="document.body.style.cursor='wait'; return true;">HCN2</a><br/>
+                                        <a href="/SciCrunchKS/index.php/pages/view/PR:000000707" onclick="document.body.style.cursor='wait'; return true;">HCN3</a><br/>
+                                        <a href="/SciCrunchKS/index.php/pages/view/NIFMOL:sao1700719022" onclick="document.body.style.cursor='wait'; return true;">AChR</a><br/>
+                                        <a href="/SciCrunchKS/index.php/pages/view/NIFMOL:nifext_5242" onclick="document.body.style.cursor='wait'; return true;">GABA A</a><br/>
+                                        <a href="/SciCrunchKS/index.php/pages/view/NIFMOL:nlx_mol_20090505"onclick="document.body.style.cursor='wait'; return true;">MGluR2</a><br/>
+				</div>
+			</li>
+			<li class="col-md-4 col-sm-6 md-margin-bottom-30">
+				<div class="easy-block-v1">
+					<img class="img-responsive" src="/img/cell2.jpg" alt="">
+					<div class="easy-block-v1-badge rgba-blue">Cell Types</div>
+				</div>
+				<div class="block-grid-v2-info rounded-bottom">
+					<a href="/SciCrunchKS/index.php/pages/view/NIFCELL:sao862606388" onclick="document.body.style.cursor='wait'; return true;">Pyramidal neuron</a><br/>
+                                        <a href="/SciCrunchKS/index.php/pages/view/NIFCELL:sao408819766" onclick="document.body.style.cursor='wait'; return true;">Schwann cell</a><br/>
+                                        <a href="/SciCrunchKS/index.php/pages/view/NIFNEURMOR:nlx_cell_100601" onclick="document.body.style.cursor='wait'; return true;">Spiny neuron</a><br/>
+                                        <a href="/SciCrunchKS/index.php/pages/view/NIFCELL:nifext_55" onclick="document.body.style.cursor='wait'; return true;">Neocortex Martinotti cell</a><br/>
+                                        <a href="/SciCrunchKS/index.php/pages/view/NIFCELL:sao666951243" onclick="document.body.style.cursor='wait'; return true;">Cerebellum basket cell</a><br/>
+                                        <br/>
+				</div>
+			</li>
+			<li class="col-md-4 col-sm-12">
+				<div class="easy-block-v1">
+					<img  class="img-responsive" src="/img/brain2.jpg" alt="">
+					<div class="easy-block-v1-badge rgba-red">Brain Regions</div>
+				</div>
+				<div class="block-grid-v2-info rounded-bottom">
+					<a href="/SciCrunchKS/index.php/pages/view/UBERON:0001950" onclick="document.body.style.cursor='wait'; return true;">Neocortex</a><br/>
+                                        <a href="/SciCrunchKS/index.php/pages/view/UBERON:0002435" onclick="document.body.style.cursor='wait'; return true;">Striatum</a><br/>
+                                        <a href="/SciCrunchKS/index.php/pages/view/UBERON:0009835" onclick="document.body.style.cursor='wait'; return true;">Anterior cingulate cortex</a><br/>
+                                        <a href="/SciCrunchKS/index.php/pages/view/UBERON:0002037" onclick="document.body.style.cursor='wait'; return true;">Cerebellum</a><br/>
+                                        <a href="/SciCrunchKS/index.php/pages/view/UBERON:0001897" onclick="document.body.style.cursor='wait'; return true;">Thalamus</a><br/><br/>
+				</div>
+			</li>
+		</ul>
+	<!--</div><!--/container-->
+	<!--=== Container Part ===-->
 
-		<!--=== Content Part ===-->
+	
 		<!-- <div class="container content-sm">
 			
 			<div class="row margin-bottom-30">
@@ -200,7 +280,8 @@
 
 			
 
-			<!-- Info Blokcs -->
+			<!-- About -->
+                        
 			<div id="about" class="row margin-bottom-30">
 				<!-- Welcome Block -->
 				<div class="col-md-8 md-margin-bottom-40">
@@ -216,9 +297,7 @@
                                                 <p><em>KS</em> will be built on a semantic media platform with initial content coming from the
                         <a href="http://neurolex.org/wiki/Main_Page" target="_blank">Neuroscience Lexicon</a> (NeuroLex), and the <a href="http://brancusi1.usc.edu" target="_blank">Brain Architecture Management System</a> (BAMS).</p>
                         <p><em>KS</em> is envisioned to be a part of a system of 3 spaces, together with the  <a href="https://incf.org/activities/resources/data-space" target="_blank">INCF Data Space</a> and the HBP LabSpace, where neuroscientists can store, curate/annotate, and share their data.</p>
-                                        </blockquote>
                                         
-                                        <blockquote class="hero-unify">
 						<p>The current status of KS is in development, with a beta-version launch scheduled for Spring 2016. 
 If you would like to sign up on our mailing list, please email us your full name and affiliation.
                                                 </p> </blockquote>
@@ -259,10 +338,13 @@ If you would like to sign up on our mailing list, please email us your full name
 						</div> -->
 					</div>
 				</div><!--/col-md-4-->
-			</div>
-			<!-- End Info Blokcs -->
+			
+                        </div>
+                        
+			<!-- End About -->
 
-                        <!-- Info Blokcs -->
+                        <!-- Example -->
+                        
 			<div id="examples" class="row margin-bottom-30">
 				<!-- Welcome Block -->
 				<div class="col-md-12 md-margin-bottom-40">
@@ -271,22 +353,24 @@ If you would like to sign up on our mailing list, please email us your full name
 
 					<blockquote class="hero-unify">
 					<a href="/SciCrunchKS/application/views/templates/ssp-generic.php">Primary somatosensory area, Mammals</a>	
-                                        </blockquote>
-                                        <blockquote class="hero-unify">
+                                        <br/>
 					<a href="/SciCrunchKS/application/views/templates/ssp-rat.php">Primary somatosensory area, rat</a>	
-                                        </blockquote>
-                                        <blockquote class="hero-unify">
+                                         <br/>
 					<a href="/SciCrunchKS/application/views/templates/basket_cell_rat.php">Basket neuron instances</a> 	
-                                        </blockquote>
-                                         <blockquote class="hero-unify">
+                                         <br/>
 					<a href="/SciCrunchKS/application/views/templates/basket_neuron.php">Basket neuron, Cerebellar Cortex</a>	
                                         </blockquote>
 				</div><!--/col-md-8-->
 
 				
 			</div>
+                        
+                        
+                        
+                        <!---End example -->
 			
-			<!-- Owl Clients v1 -->
+			<!-- Partners -->
+                        
 			<div class="headline"><h2>Partners</h2></div>
 			<div class="owl-clients-v1">
 				<div class="item">
@@ -309,8 +393,10 @@ If you would like to sign up on our mailing list, please email us your full name
                     </a>
 				</div>
 			</div>
-			<!-- End Owl Clients v1 -->
-		</div><!--/container-->
+                        </div><!--/container-->
+			<!-- EndPartner -->
+		<!--/container-->
+                
 		<!-- End Content Part -->
 
 		<!--=== Footer Version 1 ===-->
@@ -437,7 +523,7 @@ If you would like to sign up on our mailing list, please email us your full name
 		<!--=== End Footer Version 1 ===-->
 	</div><!--/wrapper-->
 
-	
+   
 
 	<!-- JS Global Compulsory -->
 	<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
