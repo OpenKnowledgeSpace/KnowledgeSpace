@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Knowledge Space - Home</title>
+	<title>KnowledgeSpace - Documentation</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -277,7 +277,7 @@ function loadTree(theUrl)
 				<!-- Logo -->
 				<a class="logo" href="/index.html">
 					<img src="/img/ks6.png" alt="Logo">
-                                        <span style="color:gray;text-decoration: none;background-color: none;font-size:18px;" href="/index.html">Knowledge Space</span>
+                                        <span style="color:gray;text-decoration: none;background-color: none;font-size:18px;" href="/index.html">KnowledgeSpace</span>
 				</a>
                                 
 				<!-- End Logo -->
@@ -299,12 +299,12 @@ function loadTree(theUrl)
                                                                 <li>
                         <a href="/#about">About</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="/#examples">Examples</a>
                     </li>
                     <li>
 			<a href="/SciCrunchKS/index.php/pages/view/Neocortical_pyramidal_cell">Demos</a>
-		    </li>
+		    </li> -->
 	            
 		    <li>
 			<a href="/SciCrunchKS/documentation.php">Documentation</a>

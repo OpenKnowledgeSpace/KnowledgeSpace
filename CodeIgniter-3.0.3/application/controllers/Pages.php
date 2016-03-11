@@ -4,7 +4,7 @@
 
 class Pages extends CI_Controller 
 {
-        public $enableCaching = true;
+        public $enableCaching = false;
         
         
         private function handleDataSpace(&$data, $searchName)
@@ -44,7 +44,14 @@ class Pages extends CI_Controller
             $data['neuroMorphoResult'] = searchWithinSource($newName, $neuroMorpho, 20);
             $data['genSatResult'] = searchWithinSource($newName, $genSat, 20);
             $data['neuronDBResult'] = searchWithinSource($newName, $neuronDB, 20);
-
+            $data['humanBrainResult'] = searchWithinSource($newName, $humanBrainAtlas, 20);
+            $data['olfactoryMapResult'] = searchWithinSource($newName, $OlfactoryMap, 20);
+            $data['abaMorphoResult'] = searchWithinSource($newName, $abaMorpho, 20);
+            $data['abaCellResult'] = searchWithinSource($newName, $abaCell, 20);
+            $data['brainMapResult'] = searchWithinSource($newName, $brainMap, 20);
+            $data['connectivityResult'] = searchWithinSource($newName, $connectivity, 20);
+            
+            
             //$data['neuroElectroDesc'] = getSourceDescObj($neuroElectro);
             //$data['neuroMorphoDesc'] = getSourceDescObj($neuroMorpho);
             //$data['genSatDesc'] = getSourceDescObj($genSat);
@@ -316,6 +323,8 @@ class Pages extends CI_Controller
                        $data['curie'] = $termObj[0]->curie;
                    }
                }
+               $data['page_title'] = $pageName;
+               $data['enable_config'] = true;
                 
 
                 //////////////////////
