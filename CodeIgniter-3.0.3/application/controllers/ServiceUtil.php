@@ -195,6 +195,23 @@ class ServiceUtil
 	return NULL;
     }
     
+    public function getOtherParentID($obj, $mainID, $prop)
+    {
+	foreach($obj->edges as $edge)
+	{
+		if(strcmp($prop, $edge->pred)==0)
+		{
+			if(strcmp($mainID,$edge->sub)==0)
+			{
+				return $edge->obj;
+			}
+		}		
+	}
+	return NULL;
+    }
+    
+    
+    
     public function getNode($obj, $id)
     {
 	foreach($obj->nodes as $node)
@@ -235,6 +252,28 @@ class ServiceUtil
 	return $list;
 
     }
+    
+    
+    public function getOtherChildrenIDs($obj, $mainID, $prop)
+    {
+	$list = new SplDoublyLinkedList();
+        //echo "<br/>-----getOtherChildrenIDs:".$prop;
+	foreach($obj->edges as $edge)
+	{
+		if(strcmp($prop,$edge->pred)==0)
+		{
+			if(strcmp($mainID,$edge->obj)==0)
+			{
+				$list->push($edge->sub);
+
+			}
+
+		}
+	}
+	return $list;
+
+    }
+    
 }
 
 

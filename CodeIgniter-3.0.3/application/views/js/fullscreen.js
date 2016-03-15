@@ -75,6 +75,18 @@ $(document).ready(function ()
             //document.getElementById("literature-outter").className = "panel panel-default";
             document.getElementById("dataspace_panel0").innerHTML ="";
             loadButtons();
+            expandTree=false;
+            document.getElementById("relation-panel-1").innerHTML =document.getElementById("relation-panel").innerHTML;
+            document.getElementById("relation-panel").innerHTML ="";
+             $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+            $('.tree li.parent_li > span').on('click', function (e) { 
+                var treeIds = e.target.id.split(',');
+                var treeURL = "/SciCrunchKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
+                loadTree(treeURL);
+    
+            });
+            
+            
             history.pushState('', document.title, window.location.pathname);
             setCookie('screen_state','',365);
         
@@ -182,14 +194,22 @@ $(document).ready(function ()
         
         //var title = getCookie('title');
         document.getElementById("panel_title3").innerHTML= "<h3>Relations - "+title+"</h3>";
-        document.getElementById("treeWell").innerHTML = document.getElementById("treeWell2").innerHTML;
+        document.getElementById("relation-panel").innerHTML = document.getElementById("relation-panel-1").innerHTML;
+        document.getElementById("relation-panel-1").innerHTML="";
 
-
-         $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+        /* $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
             $('.tree li.parent_li > span').on('click', function (e) { 
                 var treeIds = e.target.id.split(',');
                 var treeURL="/SciCrunchKS/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1];
                 //alert(treeURL);
+                loadTree(treeURL);
+    
+            });*/
+        expandTree=true;
+        $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+            $('.tree li.parent_li > span').on('click', function (e) { 
+                var treeIds = e.target.id.split(',');
+                var treeURL = "/SciCrunchKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
                 loadTree(treeURL);
     
             });

@@ -74,9 +74,7 @@ echo "\n</script>";
  
                 <div id="relation-panel" class="panel-body" style="min-height: 100%; max-height: 100%;overflow-y: scroll">
 
-                    <div id="treeWell" class="tree well">
-
-                    </div>
+                    
                 </div>
                 </div>
             </div>
@@ -126,7 +124,7 @@ echo "\n</script>";
 
 <div id="innerRelation"  class="col-md-6">
  <?php   
-   include "innerLexicon.php";
+   include "innerLexicon_1.php";
  ?>       
         
 </div>

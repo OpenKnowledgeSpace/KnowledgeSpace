@@ -421,7 +421,7 @@
                     echo "<div class=\"row\" ".$rowColor.">";
                     echo "   <div class=\"col-md-3\">";
                     //echo "      <a href=\"https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal&t=indexable&nif=nif-0000-00054-3\" target=\"_blank\">NeuronDB:Transmitters (".$neuronDBCount.")</a>";
-                    echo "      <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00339-1/".$pageName."/1\" target=\"_blank\">NeuronDB:Currents (".$neuronDBCount.")</a>";
+                    echo "      <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00339-1/".$pageName."/1\" target=\"_blank\">GARA: OlfactoryMap (".$olfactoryMapCount.")</a>";
                     echo "   </div>";
                     echo "    <div class=\"col-md-9\">";
                     echo "        contains spatial distribution maps of rat olfactory bulb in response to odorant stimuli. ";

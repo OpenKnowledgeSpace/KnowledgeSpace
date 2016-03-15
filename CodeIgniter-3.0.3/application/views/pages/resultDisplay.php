@@ -109,7 +109,7 @@
          <div class="col-md-12">
              
  
-                <table class="sortable-theme-bootstrap" data-sortable>   
+                <table class="table sortable-theme-bootstrap" data-sortable>   
                 <thead>
                 <tr>
                 <?php
@@ -131,9 +131,12 @@
                 <?php
                     foreach($result->result as $row )
                     {
+                        //echo "<tr valign=\"top\">\n";
                         echo "<tr>\n";
                         foreach($row as $key => $val)
                         {
+                            if(strlen($val) > 400)
+                                $val = substr ($val, 0,400)."...";
                             echo "<td>". $val. "</td>";
                             
                         }
