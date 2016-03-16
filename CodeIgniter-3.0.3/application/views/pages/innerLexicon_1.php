@@ -21,8 +21,12 @@
         <div id="relation-panel-1" class="panel-body" style="min-height: 35%; max-height: 35%;overflow-y: scroll">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab1default" data-toggle="tab" onclick="updateTreeTabID(1);">SubClassOf</a></li>
+           <?php if(!is_null($node2) || !is_null($leafHTML2)){?>
             <li><a href="#tab2default" data-toggle="tab" onclick="updateTreeTabID(2);">has_proper_part</a></li>
+            <?php } ?>
+            <?php if(!is_null($node3) || !is_null($leafHTML3)){?>
             <li><a href="#tab3default" data-toggle="tab" onclick="updateTreeTabID(3);">has_part</a></li>
+            <?php } ?>
         </ul>
        
         

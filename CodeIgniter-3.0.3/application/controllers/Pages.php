@@ -4,7 +4,7 @@
 
 class Pages extends CI_Controller 
 {
-        public $enableCaching = true;
+        public $enableCaching = false;
         
         
         private function handleDataSpace(&$data, $searchName)
@@ -387,21 +387,22 @@ class Pages extends CI_Controller
                else
                {
                    $data['pageName'] = $pageName;     
-                   echo "-----pageName:".$pageName;
+                   //echo "-----pageName:".$pageName;
                    $termObj = getTerm($pageName);
-                   var_dump($termObj);
+                   //var_dump($termObj);
                    
                    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
                     $domainName = $_SERVER['HTTP_HOST'];
                    if(!is_null($termObj))
                    {
-                       echo "-------------termObj size: ".count($termObj);
+                       //echo "-------------termObj size: ".count($termObj);
                        if(count($termObj)==1 && isset($termObj[0]) && !is_null($termObj[0]->curie))
                        {
+                          
                            //redirect('http://google.com', 'location');
                             
                            redirect($protocol."://".$domainName."/".Config::$localContextName."/index.php/pages/view/".$termObj[0]->curie, 'refresh');
-                           //exit(0);
+                           
                            
                        }
                        
@@ -409,8 +410,20 @@ class Pages extends CI_Controller
                        {
                            
                            //http://localhost/NeuroKS/index.php/TermLanding/view/cerebellum%20purkinje%20cell
-                           redirect($protocol.":/".$domainName."/".Config::$localContextName."/index.php/Term/view/".$page, 'refresh');
-                           
+                           //redirect($protocol.":/".$domainName."/".Config::$localContextName."/index.php/Term/view/".$page, 'refresh');
+                           $data['termObj'] = $termObj;
+                           $temp_page_title = $pageName = str_replace(str_split('_,'), ' ', $page );
+                           $data['page_title'] = "Term:".$temp_page_title;
+                           $data['enable_config'] = false;
+                           //redirect('http://google.com', 'location');
+                            
+                           //redirect($protocol."://".$domainName."/".Config::$localContextName."/index.php/pages/view/".$termObj[0]->curie, 'refresh');
+                           //exit(0);
+                            $this->load->view('templates/header2', $data);
+                            $this->load->view('pages/DisplayTermLanding', $data);
+                            $this->load->view('templates/footer2', $data);
+                            return;
+                            //exit(0);
                        }
                        
                        $data['curie'] = $termObj[0]->curie;

@@ -23,9 +23,26 @@
             <!-----------------In relation panel---->
  <ul class="nav nav-tabs">
         <li <?php if($tabID==1) echo "class=\"active\""; ?>><a href="#tab1default" data-toggle="tab" onclick="updateTreeTabID(1);">SubClassOf</a></li>
+       <?php 
+            if(!is_null($node2) || !is_null($leafHTML2))
+            {
+                
+            ?>
         <li <?php if($tabID==2) echo "class=\"active\""; ?>><a href="#tab2default" data-toggle="tab" onclick="updateTreeTabID(2);">has_proper_part</a></li>
+        
+        <?php
+            }
+            ?>
+            <?php 
+            if(!is_null($node3) || !is_null($leafHTML3))
+            {
+                
+            ?>    
         <li <?php if($tabID==3) echo "class=\"active\""; ?>><a href="#tab3default" data-toggle="tab" onclick="updateTreeTabID(3);">has_part</a></li>
-        </ul>
+             <?php
+            }
+            ?>
+ </ul>
        
         
         <div class="tab-content">
