@@ -84,6 +84,7 @@ class Pages extends CI_Controller
     
         private function handleLexicon(&$data, $curie)
         {
+            require_once 'Config.php'; 
            //include 'Globals.php';
            //include 'JsonClientUtil.php';
             
@@ -118,7 +119,7 @@ class Pages extends CI_Controller
                 $leafLinkName = str_replace("(", "_", $leafLinkName);
                 $leafLinkName = str_replace(")", "_", $leafLinkName);
                 //$leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
-		$leafLink = "/SciCrunchKS/index.php/pages/view/".$leaf->id;
+		$leafLink = "/".Config::$localContextName."/index.php/pages/view/".$leaf->id;
                 //$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
                 $leafHTML = $leafHTML . "<ul><li><span id=\"".$leaf->id.",".$mainNode->id."\"><i class=\"icon-plus-sign\"></i>" . $leaf->lbl . "</span> <a href=\"".$leafLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a></li></ul>\n";
             }
@@ -148,7 +149,7 @@ class Pages extends CI_Controller
                 $leafLinkName = str_replace("(", "_", $leafLinkName);
                 $leafLinkName = str_replace(")", "_", $leafLinkName);
                 //$leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
-		$leafLink = "/SciCrunchKS/index.php/pages/view/".$leaf->id;
+		$leafLink = "/".Config::$localContextName."/index.php/pages/view/".$leaf->id;
                 //$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
                 $leafHTML = $leafHTML . "<ul><li><span id=\"".$leaf->id.",".$mainNode->id."\"><i class=\"icon-plus-sign\"></i>" . $leaf->lbl . "</span> <a href=\"".$leafLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a></li></ul>\n";
             }
@@ -180,7 +181,7 @@ class Pages extends CI_Controller
                 $leafLinkName = str_replace("(", "_", $leafLinkName);
                 $leafLinkName = str_replace(")", "_", $leafLinkName);
                 //$leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
-		$leafLink = "/SciCrunchKS/index.php/pages/view/".$leaf->id;
+		$leafLink = "/".Config::$localContextName."/index.php/pages/view/".$leaf->id;
                 //$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
                 $leafHTML = $leafHTML . "<ul><li><span id=\"".$leaf->id.",".$mainNode->id."\"><i class=\"icon-plus-sign\"></i>" . $leaf->lbl . "</span> <a href=\"".$leafLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a></li></ul>\n";
             }
@@ -310,7 +311,8 @@ class Pages extends CI_Controller
             //$enableCaching = false;
                //require_once 'CacheConfig.php';
                require_once  'JsonClientUtil.php';  
-                
+               require_once 'Config.php';
+                $this->load->helper('url');
                 //init();
         	/*if ( ! file_exists(APPPATH.'/views/pages/'.$page.'.php'))
         	{
@@ -326,6 +328,7 @@ class Pages extends CI_Controller
                if($pos == false)
                {
                     $pageName = str_replace("_", "%20", $page);
+                    $pageName = str_replace(",","%2c",$pageName);
                     $data["page"] = $page;
                }
                
@@ -361,8 +364,13 @@ class Pages extends CI_Controller
                         {
                             $data['pageName'] = $termObj[0]->labels[0];
                             $pageName = $data['pageName'];
+                            //echo "PageName here-----".$pageName;
                             $originalPageName=$pageName;
                             $pageName = str_replace(" ", "%20", $pageName);
+                            // echo "<br/>PageName here-----".$pageName;
+                            $pageName = str_replace(",", "%2c", $pageName);
+                            // echo "<br/>PageName here-----".$pageName;
+                             $data['pageName'] = $pageName;
                             $isNifID = true;
                         }
                         else
@@ -378,13 +386,40 @@ class Pages extends CI_Controller
                }
                else
                {
-                   $data['pageName'] = $pageName;                  
+                   $data['pageName'] = $pageName;     
+                   echo "-----pageName:".$pageName;
                    $termObj = getTerm($pageName);
+                   var_dump($termObj);
+                   
+                   $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+                    $domainName = $_SERVER['HTTP_HOST'];
                    if(!is_null($termObj))
                    {
+                       echo "-------------termObj size: ".count($termObj);
+                       if(count($termObj)==1 && isset($termObj[0]) && !is_null($termObj[0]->curie))
+                       {
+                           //redirect('http://google.com', 'location');
+                            
+                           redirect($protocol."://".$domainName."/".Config::$localContextName."/index.php/pages/view/".$termObj[0]->curie, 'refresh');
+                           //exit(0);
+                           
+                       }
+                       
+                       if(count($termObj)> 1)
+                       {
+                           
+                           //http://localhost/NeuroKS/index.php/TermLanding/view/cerebellum%20purkinje%20cell
+                           redirect($protocol.":/".$domainName."/".Config::$localContextName."/index.php/Term/view/".$page, 'refresh');
+                           
+                       }
+                       
                        $data['curie'] = $termObj[0]->curie;
                    }
                }
+               $pageName = str_replace(" ", "%20", $pageName);
+               $pageName = str_replace(",", "%2c", $pageName);
+               
+               $data['pageName'] = $pageName;
                $data['page_title'] = $pageName;
                $data['enable_config'] = true;
                 

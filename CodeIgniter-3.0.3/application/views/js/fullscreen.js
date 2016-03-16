@@ -81,7 +81,7 @@ $(document).ready(function ()
              $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
             $('.tree li.parent_li > span').on('click', function (e) { 
                 var treeIds = e.target.id.split(',');
-                var treeURL = "/SciCrunchKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
+                var treeURL = "/NeuroKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
                 loadTree(treeURL);
     
             });
@@ -160,7 +160,7 @@ $(document).ready(function ()
         
         //var curie = getCookie('curie');
         //var pageName = getCookie('pageName'); 
-        //var html = httpGet("/SciCrunchKS/index.php/Literature/view/"+pageName);
+        //var html = httpGet("/NeuroKS/index.php/Literature/view/"+pageName);
                 
         window.location.hash = '#literature';
         setCookie('screen_state','literature',365); 
@@ -200,7 +200,7 @@ $(document).ready(function ()
         /* $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
             $('.tree li.parent_li > span').on('click', function (e) { 
                 var treeIds = e.target.id.split(',');
-                var treeURL="/SciCrunchKS/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1];
+                var treeURL="/NeuroKS/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1];
                 //alert(treeURL);
                 loadTree(treeURL);
     
@@ -209,7 +209,7 @@ $(document).ready(function ()
         $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
             $('.tree li.parent_li > span').on('click', function (e) { 
                 var treeIds = e.target.id.split(',');
-                var treeURL = "/SciCrunchKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
+                var treeURL = "/NeuroKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
                 loadTree(treeURL);
     
             });
@@ -368,7 +368,7 @@ $(document).ready(function ()
             
             
             
-            var html = httpGet("/SciCrunchKS/index.php/ViewAllData/view/"+pageName+"/0/0");
+            var html = httpGet("/NeuroKS/index.php/ViewAllData/view/"+pageName+"/0/0");
             window.location.hash = '#dataspace';
             setCookie('screen_state','dataspace',365);
         }
@@ -577,8 +577,8 @@ function loadNewPage(sourceID,term,pageID)
     //var html = "testing...";
     //document.getElementById("dataspace_panel").innerHTML=html;
      //alert("\npageID:"+pageID);
-     //var html = httpGet("http://localhost/SciCrunchKS/index.php/viewalldata/view/"+term+"/"+sourceID+"/"+pageID);
-     var html = httpGet("/SciCrunchKS/index.php/ViewAllData/view/"+term+"/"+sourceID+"/"+pageID);
+     //var html = httpGet("http://localhost/NeuroKS/index.php/viewalldata/view/"+term+"/"+sourceID+"/"+pageID);
+     var html = httpGet("/NeuroKS/index.php/ViewAllData/view/"+term+"/"+sourceID+"/"+pageID);
 }
 
 function eventFire(el, etype){

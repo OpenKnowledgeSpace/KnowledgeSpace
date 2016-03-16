@@ -1,12 +1,4 @@
-<?php
-
-
-
-
-
-
-
-?>
+<?php  require_once 'ViewConfig.php'; ?>
 
     <br/>
     <br/>
@@ -29,7 +21,10 @@
               
                echo $description;
                echo "<p></p>";
-               echo "Displaying results ".$startItem." - ".$endItem." out of ".$resultObj->result->resultCount." total results.";
+               $tempName= str_replace("%20", " ", $term);
+               $tempName= str_replace("%2c", ",", $tempName);
+               echo "Search for \"".$tempName."\"";
+               echo "<br/>Displaying results ".$startItem." - ".$endItem." out of ".$resultObj->result->resultCount." total results.";
                ?>
             </div>
         </div>
@@ -52,7 +47,7 @@
             if(($pageID-1) > 0)
             {
                 
-                 echo "<li><a href=\"/SciCrunchKS/index.php/Results/view/"
+                 echo "<li><a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/"
                 .$sourceID."/".$term."/".($pageID-1).
                 "\">&laquo;</a></li>";
                 
@@ -80,9 +75,9 @@
             for($i=$startPage;$i<=$num;$i++)
             {
                 if($i == $pageID)
-                    echo "<li class=\"disabled\"><a href=\"#\">".$i."</a></li>";
+                    echo "<li class=\"page-item active disabled\"><a href=\"#\">".$i."</a></li>";
                 else
-                    echo "<li><a href=\"/SciCrunchKS/index.php/Results/view/"
+                    echo "<li class=\"page-item\"><a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/"
                     .$sourceID."/".$term."/".$i
                         ."\">".$i."</a></li>";
                 
@@ -91,7 +86,7 @@
             
             if(($pageID+1) <= $num)
             {
-                echo "<li><a href=\"/SciCrunchKS/index.php/Results/view/"
+                echo "<li><a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/"
                 .$sourceID."/".$term."/".($pageID+1).
                 "\">&raquo;</a></li>";
             
@@ -174,7 +169,7 @@
             if(($pageID-1) > 0)
             {
                 
-                 echo "<li><a href=\"/SciCrunchKS/index.php/Results/view/"
+                 echo "<li><a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/"
                 .$sourceID."/".$term."/".($pageID-1).
                 "\">&laquo;</a></li>";
                 
@@ -201,9 +196,9 @@
             for($i=$startPage;$i<=$num;$i++)
             {
                 if($i == $pageID)
-                    echo "<li class=\"disabled\"><a href=\"#\">".$i."</a></li>";
+                    echo "<li class=\"page-item active disabled\"><a href=\"#\">".$i."</a></li>";
                 else
-                    echo "<li><a href=\"/SciCrunchKS/index.php/Results/view/"
+                    echo "<li class=\"page-item\"><a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/"
                     .$sourceID."/".$term."/".$i
                         ."\">".$i."</a></li>";
                 
@@ -212,7 +207,7 @@
             
             if(($pageID+1) <= $num)
             {
-                echo "<li><a href=\"/SciCrunchKS/index.php/Results/view/"
+                echo "<li><a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/"
                 .$sourceID."/".$term."/".($pageID+1).
                 "\">&raquo;</a></li>";
             

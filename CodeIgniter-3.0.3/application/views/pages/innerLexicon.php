@@ -1,7 +1,7 @@
-
+<?php  require_once 'ViewConfig.php'; ?>
 <!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   -->
-  <link rel="stylesheet" type="text/css" href="sckb.css"> 
+ <!-- <link rel="stylesheet" type="text/css" href="sckb.css"> -->
   
  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
  <!--  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -29,14 +29,14 @@
         $parentLinkName = str_replace("(", "_",$parentLinkName);
         $parentLinkName = str_replace(")", "_",$parentLinkName);
         //$parentLink = "/SciCrunchKS/index.php/pages/view/".$parentLinkName;
-        $parentLink = "/SciCrunchKS/index.php/pages/view/".$node->id;
+        $parentLink = "/".ViewConfig::$localContextName."/index.php/pages/view/".$node->id;
 	//echo "<ul><li><span><i class=\"icon-folder-open\"></i><a target=\"_self\" href=\"".$parentLink."\">" . $node->lbl    .    "</a></span> <a href=\"\"></a>";
         echo "<ul><li><span id=\"".$node->id.","."none"."\"><i class=\"icon-folder-open\"></i>" . $node->lbl    .    "</span><a target=\"_self\" href=\"".$parentLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>";
 
 
         
 	//echo "<ul><li><span style=\"background-color: #FFFF00\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"\"></a>"; 
-        $mainLink = "/SciCrunchKS/index.php/pages/view/".$mainNode->id;
+        $mainLink = "/".ViewConfig::$localContextName."/index.php/pages/view/".$mainNode->id;
 	echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.",".$node->id."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
 
 
@@ -53,6 +53,7 @@
 
 
 	</div>
+    </div>
     </div>
     
 
@@ -82,10 +83,10 @@
 ?>    
 <div class="col-md-3">Concept URI</div>
 <div class="col-md-9"><?php  echo $curie;    ?></div>        
-</div>
+<!-- </div> -->
 
-<?php
-	echo "<div class=\"row\" style=\"";
+<div class="row" style="<?php
+	//echo "<div class=\"row\" style=\"";
         if($useBackground)
         {
             $useBackground = false;
@@ -93,9 +94,9 @@
         }
         else
             $useBackground = true;
-        echo "\">";
+        //echo "\">";
 
-?>
+?>">
         <div class="col-md-3">Label(s)</div>
         <div class="col-md-9"><?php
 	
@@ -104,8 +105,8 @@
 	?></div>
 	</div>
 
-<?php
-        echo "<div class=\"row\" style=\"";
+<div class="row" style="<?php
+        //echo "<div class=\"row\" style=\"";
         if($useBackground)
         {
             $useBackground = false;
@@ -115,7 +116,7 @@
             $useBackground = true;
         echo "\">";
 
-?>
+?>">
     
     
     <?php
@@ -149,5 +150,6 @@
 
 <!---End of panel--------->
     </div>
-    </div>
+     </div>
+    <!--</div>-->
 

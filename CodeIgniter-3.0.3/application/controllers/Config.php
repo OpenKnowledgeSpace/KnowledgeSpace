@@ -12,7 +12,9 @@
  * @author ncmir
  */
 class Config {
-    //put your code here
+    
+    public static $localContextName = "NeuroKS";
+    
     public static $literatureHost = "starburst.crbs.ucsd.edu";
     public static $sciGraphHost = "matrix.neuinfo.org";
     public static $gitHubRawHost = "raw.githubusercontent.com";

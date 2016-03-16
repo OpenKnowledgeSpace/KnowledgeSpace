@@ -1,4 +1,4 @@
-
+<?php  require_once 'ViewConfig.php'; ?>
 <div class="row">
 <div class="col-md-12" >
     <?php 
@@ -24,7 +24,7 @@
 
 <div class="row">
 <div class="col-md-12" >
-<form action="/SciCrunchKS/index.php/Search" method="post">
+<form action="/<?php echo(ViewConfig::$localContextName); ?>/index.php/Search" method="post">
     <br/>
 <div class="input-group animated fadeInDown">
 <input name="keywords" type="text" class="form-control" placeholder="Search" value="<?php
@@ -46,7 +46,7 @@
         $count = count($searchResult);
         if($count > 0)
         {
-            echo "<table class=\"sortable-theme-bootstrap\" data-sortable>";   
+            echo "<table class=\"table sortable-theme-bootstrap\" data-sortable>";   
             echo "<thead>";
             echo "<tr>";
             echo "<th>Curie</th>";
@@ -68,7 +68,7 @@
                         
                         echo "<tr>\n";
                         echo "<td class=\"col-md-2\">". 
-                                "<a href=\"/SciCrunchKS/index.php/pages/view/".$row->curie."\" target=\"_self\" >"
+                                "<a href=\"/".ViewConfig::$localContextName."/index.php/pages/view/".$row->curie."\" target=\"_self\" >"
                                 .$row->curie. "</a></td>";
                         
                         

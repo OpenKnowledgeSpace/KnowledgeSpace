@@ -1,6 +1,4 @@
-
-    
-   
+<?php  require_once 'ViewConfig.php'; ?>
 
 <?php
         //Retrieving cookies for selected categories
@@ -368,7 +366,7 @@
                 echo "<div class=\"row\" ".$rowColor.">\n";
                 echo "<div class=\"col-md-3\">\n";
                 //echo "<a href=\"https://neuinfo.org/mynif/search.php?list=cover&q=neocortex%20pyramidal%20neuron&t=indexable&nif=nlx_151885-1\" target=\"_blank\">NeuroElectro:EPhysData (".$neuroElectroCount.")</a>\n";
-                echo "<a href=\"/SciCrunchKS/index.php/Results/view/nlx_151885-1/".$pageName."/1\" target=\"_blank\">NeuroElectro:EPhysData (".$neuroElectroCount.")</a>\n";
+                echo "<a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/nlx_151885-1/".$pageName."/1\" target=\"_blank\">NeuroElectro:EPhysData (".$neuroElectroCount.")</a>\n";
                 echo "</div>\n";
                 echo "<div class=\"col-md-9\">\n";
                 echo "is a database of elecrophysiological properties text-mined from the biomedical literature as a function of neuron type.\n";
@@ -394,7 +392,7 @@
                     echo "<div class=\"row\" ".$rowColor.">";
                     echo "   <div class=\"col-md-3\">";
                     //echo "      <a href=\"https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal&t=indexable&nif=nif-0000-00054-3\" target=\"_blank\">NeuronDB:Transmitters (".$neuronDBCount.")</a>";
-                    echo "      <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00054-1/".$pageName."/1\" target=\"_blank\">NeuronDB:Currents (".$neuronDBCount.")</a>";
+                    echo "      <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/nif-0000-00054-1/".$pageName."/1\" target=\"_blank\">NeuronDB:Currents (".$neuronDBCount.")</a>";
                     echo "   </div>";
                     echo "    <div class=\"col-md-9\">";
                     echo "        at <a href=\"http://senselab.med.yale.edu/\" target=\"_blank\">  SenseLab </a>provides data about neurotransmitter properties for submitted neurons. ";
@@ -421,7 +419,7 @@
                     echo "<div class=\"row\" ".$rowColor.">";
                     echo "   <div class=\"col-md-3\">";
                     //echo "      <a href=\"https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal&t=indexable&nif=nif-0000-00054-3\" target=\"_blank\">NeuronDB:Transmitters (".$neuronDBCount.")</a>";
-                    echo "      <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00339-1/".$pageName."/1\" target=\"_blank\">GARA: OlfactoryMap (".$olfactoryMapCount.")</a>";
+                    echo "      <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/nif-0000-00339-1/".$pageName."/1\" target=\"_blank\">GARA: OlfactoryMap (".$olfactoryMapCount.")</a>";
                     echo "   </div>";
                     echo "    <div class=\"col-md-9\">";
                     echo "        contains spatial distribution maps of rat olfactory bulb in response to odorant stimuli. ";
@@ -449,7 +447,7 @@
                     echo "<div class=\"row\" ".$rowColor.">";
                     echo "   <div class=\"col-md-3\">";
                     //echo "      <a href=\"https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal&t=indexable&nif=nif-0000-00054-3\" target=\"_blank\">NeuronDB:Transmitters (".$neuronDBCount.")</a>";
-                    echo "      <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00508-4/".$pageName."/1\" target=\"_blank\">ABA Mouse Brain: CellType EphysData (".$abaCellCount.")</a>";
+                    echo "      <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/nif-0000-00508-4/".$pageName."/1\" target=\"_blank\">ABA Mouse Brain: CellType EphysData (".$abaCellCount.")</a>";
                     echo "   </div>";
                     echo "    <div class=\"col-md-9\">";
                     echo "        provides a database of neuronal cell types based on multimodal characterization of single cells to enable data-driven approaches to classification. For more details about the experiments, please refer to the technical white paper. ";
@@ -522,7 +520,7 @@
 
                             echo "   <div class=\"col-md-3\">\n";
                             //echo "       <a href=\"https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal&t=indexable&nif=nif-0000-00130-1&b=0&r=20\" target=\"_blank\">GENSAT:GeneExpression (".$genSatCount.")</a>\n";
-                            echo "       <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00130-1/".$pageName."/1\" target=\"_blank\">GENSAT:GeneExpression (".$genSatCount.")</a>\n";
+                            echo "       <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/nif-0000-00130-1/".$pageName."/1\" target=\"_blank\">GENSAT:GeneExpression (".$genSatCount.")</a>\n";
                             echo "   </div>\n";
                             echo "   <div class=\"col-md-9\">\n";
                             echo "        contains gene expression data and maps of the mouse brain and spinal cord. ";
@@ -577,7 +575,7 @@
                     echo "<div class=\"row\" ".$rowColor.">";
                     echo "   <div class=\"col-md-3\">";
                     //echo "      <a href=\"https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal&t=indexable&nif=nif-0000-00054-3\" target=\"_blank\">NeuronDB:Transmitters (".$neuronDBCount.")</a>";
-                    echo "      <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00088-1/".$pageName."/1\" target=\"_blank\">HumanBrainAtlas: Atlas (".$humanBrainCount.")</a>";
+                    echo "      <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/nif-0000-00088-1/".$pageName."/1\" target=\"_blank\">HumanBrainAtlas: Atlas (".$humanBrainCount.")</a>";
                     echo "   </div>";
                     echo "    <div class=\"col-md-9\">";
                     echo "        contains sections stained for cell bodies or nerve fibers, as well as corresponding MRI sections through a living human brain. ";
@@ -605,7 +603,7 @@
                     echo "<div class=\"row\" ".$rowColor." >";
                     echo "   <div class=\"col-md-3\">";
                     //echo "      <a href=\"https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal&t=indexable&nif=nif-0000-00054-3\" target=\"_blank\">NeuronDB:Transmitters (".$neuronDBCount.")</a>";
-                    echo "      <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00093-2/".$pageName."/1\" target=\"_blank\">BrainMaps: Atlas (".$brainMapCount.")</a>";
+                    echo "      <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/nif-0000-00093-2/".$pageName."/1\" target=\"_blank\">BrainMaps: Atlas (".$brainMapCount.")</a>";
                     echo "   </div>";
                     echo "    <div class=\"col-md-9\">";
                     echo "        is a high-resolution brain atlas of primate and non-primate brains. ";
@@ -633,7 +631,7 @@
                     echo "<div class=\"row\" ".$rowColor.">";
                     echo "   <div class=\"col-md-3\">";
                     //echo "      <a href=\"https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal&t=indexable&nif=nif-0000-00054-3\" target=\"_blank\">NeuronDB:Transmitters (".$neuronDBCount.")</a>";
-                    echo "      <a href=\"/SciCrunchKS/index.php/Results/view/nlx_154697-8/".$pageName."/1\" target=\"_blank\">Integrated: Connectivity (".$connectivityCount.")</a>";
+                    echo "      <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/nlx_154697-8/".$pageName."/1\" target=\"_blank\">Integrated: Connectivity (".$connectivityCount.")</a>";
                     echo "   </div>";
                     echo "    <div class=\"col-md-9\">";
                     echo "        is an aggregated dataset of connectivity statements from BAMS, CoCoMac, BrainMaps, Connectome Wiki, the Hippocampal-Parahippocampal Table of Temporal-Lobe.com and Avian Brain Circuitry Database. Connectome Wiki, CoCoMac, and Avian Brain Circuitry Database are no longer in service, so the links may not be functional. ";
@@ -684,7 +682,7 @@
             echo "<div class=\"row\" ".$rowColor.">";
             echo "   <div class=\"col-md-3\">";
             //echo "        <a href=\"https://neuinfo.org/mynif/search.php?q=pyramidal%20neocortex&t=indexable&list=cover&nif=nif-0000-00006-1\" target=\"_blank\">NeuroMorpho:ModelImage (".$neuroMorphoCount.")</a>";
-            echo "        <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00006-1/".$pageName."/1\" target=\"_blank\">NeuroMorpho:ModelImage (".$neuroMorphoCount.")</a>";
+            echo "        <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/nif-0000-00006-1/".$pageName."/1\" target=\"_blank\">NeuroMorpho:ModelImage (".$neuroMorphoCount.")</a>";
             echo "   </div>";
             echo "    <div class=\"col-md-9\">";
             echo "        contains a curated repository of digitally reconstructed neurons.";
@@ -712,7 +710,7 @@
             echo "<div class=\"row\" ".$rowColor.">";
             echo "   <div class=\"col-md-3\">";
             //echo "        <a href=\"https://neuinfo.org/mynif/search.php?q=pyramidal%20neocortex&t=indexable&list=cover&nif=nif-0000-00006-1\" target=\"_blank\">NeuroMorpho:ModelImage (".$neuroMorphoCount.")</a>";
-            echo "        <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-37639-1/".$pageName."/1\" target=\"_blank\">CellImageLibrary:Images (".$cilCount.")</a>";
+            echo "        <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/nif-0000-37639-1/".$pageName."/1\" target=\"_blank\">CellImageLibrary:Images (".$cilCount.")</a>";
             echo "   </div>";
             echo "    <div class=\"col-md-9\">";
             echo "         provides annotated images, videos and animations of cellular processes.";
@@ -740,7 +738,7 @@
             echo "<div class=\"row\" ".$rowColor.">";
             echo "   <div class=\"col-md-3\">";
             //echo "        <a href=\"https://neuinfo.org/mynif/search.php?q=pyramidal%20neocortex&t=indexable&list=cover&nif=nif-0000-00006-1\" target=\"_blank\">NeuroMorpho:ModelImage (".$neuroMorphoCount.")</a>";
-            echo "        <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00508-5/".$pageName."/1\" target=\"_blank\">ABA Mouse Brain: CellType MorphoData (".$abaMorphoCount.")</a>";
+            echo "        <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/nif-0000-00508-5/".$pageName."/1\" target=\"_blank\">ABA Mouse Brain: CellType MorphoData (".$abaMorphoCount.")</a>";
             echo "   </div>";
             echo "    <div class=\"col-md-9\">";
             echo "         provides a database of neuronal cell types based on multimodal characterization of single cells to enable data-driven approaches to classification. For more details about the experiments, please refer to the technical white paper.";
@@ -810,7 +808,7 @@
                 echo "<div class=\"row\" ".$rowColor.">";
                 echo "    <div class=\"col-md-4\">";
                 //echo "       <a href=\"https://neuinfo.org/mynif/search.php?list=cover&q=neocortical%20pyramidal%20cell&t=indexable&nif=scr_013705-1\" target=\"_blank\">NeuroML database:Models (".$neuroMLCount.")</a>";
-                echo "       <a href=\"/SciCrunchKS/index.php/Results/view/scr_013705-1/".$pageName."/1\" target=\"_blank\">NeuroML database:Models (".$neuroMLCount.")</a>";
+                echo "       <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/scr_013705-1/".$pageName."/1\" target=\"_blank\">NeuroML database:Models (".$neuroMLCount.")</a>";
                 echo "    </div>";
 
                 echo "    <div class=\"col-md-8\">";
@@ -839,7 +837,7 @@
             echo "<div class=\"row\"  ".$rowColor.">";
             echo "    <div class=\"col-md-4\">";
             //echo "      <a href=\"https://neuinfo.org/mynif/search.php?list=cover&q=neocortical%20pyramidal%20cell&t=indexable&nif=nif-0000-00004-1\" target=\"_blank\">ModelDB:Models (".$modelDBCount.")</a>";
-            echo "      <a href=\"/SciCrunchKS/index.php/Results/view/nif-0000-00004-1/".$pageName."/1\" target=\"_blank\">ModelDB:Models (".$modelDBCount.")</a>";            
+            echo "      <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/nif-0000-00004-1/".$pageName."/1\" target=\"_blank\">ModelDB:Models (".$modelDBCount.")</a>";            
             echo "    </div>";
             echo "    <div class=\"col-md-8\">";
             echo "      provides high quality computational neuroscience models. ModelDB is tightly coupled with <a href=\"http://senselab.med.yale.edu/neurondb/\" target=\"_blank\">NeuronDB</a>."; 
@@ -865,7 +863,7 @@
                 echo "<div class=\"row\" ".$rowColor.">";
                 echo "    <div class=\"col-md-4\">";
                 //echo "      <a href=\"https://neuinfo.org/mynif/search.php?q=Pyramidal%20cell&t=indexable&list=cover&nif=nlx_152590-1\" target=\"_blank\">Open Source Brain:models (10)</a>";
-                echo "      <a href=\"/SciCrunchKS/index.php/Results/view/nlx_152590-1/".$pageName."/1\" target=\"_blank\">Open Source Brain:models (".$brainModelCount.")</a>";
+                echo "      <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/nlx_152590-1/".$pageName."/1\" target=\"_blank\">Open Source Brain:models (".$brainModelCount.")</a>";
                 echo "    </div>";
                 echo "    <div class=\"col-md-8\">";
                 echo "      provides annotated computational models."; 

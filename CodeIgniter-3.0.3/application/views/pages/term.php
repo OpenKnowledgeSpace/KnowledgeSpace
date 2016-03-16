@@ -1,3 +1,4 @@
+<?php  require_once 'ViewConfig.php'; ?>
 <?php
 //echo "-------testing------";
 echo "\n<script type=\"text/javascript\">";
@@ -15,7 +16,7 @@ echo "\n</script>";
 <div class="row">
 <div class="col-md-12" >
     <br/><br/>
-    <br/><br/>
+   
 </div>
 </div> 
 
@@ -89,7 +90,7 @@ echo "\n</script>";
      ?>       
 
     </div>
-    <link rel="stylesheet" href="/SciCrunchKS/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/<?php //echo ViewConfig::$localContextName; ?>/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="sckb.css"> 
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <div id="dataspaceOutter" class="col-md-6" >
@@ -101,7 +102,7 @@ echo "\n</script>";
 								
         </div>
 
-	<div id="dataspace_panel" class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll">
+	<div id="dataspace_panel" class="panel-body" style="min-height: 19%; max-height: 19%;overflow-y: scroll">
 
     
           </div>

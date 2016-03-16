@@ -1,7 +1,7 @@
-
+<?php  require_once 'ViewConfig.php'; ?>
 <!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 -->
- <link rel="stylesheet" type="text/css" href="sckb.css"> 
+<!-- <link rel="stylesheet" type="text/css" href="sckb.css">  -->
  
 
 <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -11,8 +11,8 @@
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
   -->
 
-    <script src="/SciCrunchKS/application/views/js/highcharts.js"></script>
-    <script src="/SciCrunchKS/application/views/js/exporting.js"></script>  
+    <script src="/<?php  echo ViewConfig::$localContextName; ?>/application/views/js/highcharts.js"></script>
+    <script src="/<?php echo ViewConfig::$localContextName; ?>/application/views/js/exporting.js"></script>  
    
   <script type="text/javascript">
 $(function () {
@@ -75,7 +75,7 @@ $(function () {
                                  //window.open(url);
                                  //var url = "https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal%20neuron&t=literature&r=20&yf="+e.currentTarget.x;
                                  //var url = "/SciCrunchKS/index.php/publications/view/<?php //echo $title;  ?>/"+e.currentTarget.x+"/1";
-                                 var url = "/SciCrunchKS/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
+                                 var url = "/<?php echo ViewConfig::$localContextName; ?>/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
         
         
                                  window.open(url);
@@ -185,7 +185,7 @@ $(function () {
                                  //window.open(url);
                                  //var url = "https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal%20neuron&t=literature&r=20&yf="+e.currentTarget.x;
                                  //var url = "/SciCrunchKS/index.php/publications/view/<?php //echo $title;  ?>/"+e.currentTarget.x+"/1";
-                                 var url = "/SciCrunchKS/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
+                                 var url = "/<?php echo ViewConfig::$localContextName; ?>/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
         
         
                                  window.open(url);
@@ -287,10 +287,10 @@ $(function () {
     </div>
   <!--  <div class="panel-body" style="min-height: 385; max-height: 385;overflow-y: scroll">
    -->        
-    <div id="literature-panel" class="panel-body" style="min-height: 70%; max-height: 70%;overflow-y: scroll">
+    <div id="literature-panel" class="panel-body" style="min-height: 65%; max-height: 65%;overflow-y: scroll">
         
         
-    <div id="container" style="min-width: 40%; height: 400px; margin: 0 auto"></div> 
+    <div id="container" style="min-width: 40%; height: 370px; margin: 0 auto"></div> 
     <br/>
 
 

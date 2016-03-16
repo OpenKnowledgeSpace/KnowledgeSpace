@@ -42,7 +42,10 @@ class Publications extends CI_Controller
                 $data['year'] = $year;
                 $data['pageID'] = $pageID;
                 
-                $this->load->view('templates/header', $data);
+               $data['page_title'] = "Literature:".str_replace("%20", " ", $term);
+               $data['enable_config'] = true;
+                
+                $this->load->view('templates/header2', $data);
                 $this->load->view('pages/publicationDisplay2', $data);
         	$this->load->view('templates/footer', $data);
                 

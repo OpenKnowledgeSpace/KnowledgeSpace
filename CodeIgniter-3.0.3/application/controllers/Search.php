@@ -121,6 +121,7 @@
                      $data['searchResult'] = $searchResult;
                      $data['page_title'] = "Search";
                      $data['enable_config'] = false;
+                     $data['disableTopSearchBar']=true;
                     //var_dump($termResult);
                     
                     $this->load->view('templates/header2', $data);

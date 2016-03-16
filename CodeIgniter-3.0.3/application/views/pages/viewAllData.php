@@ -136,7 +136,7 @@
             for($i=$startPage;$i<=$num;$i++)
             {
                 if($i == $pageID)
-                    $nav = $nav. "\n<li class=\"disabled\"><a href=\"#\">".$i."</a></li>";
+                    $nav = $nav. "\n<li class=\"page-item active disabled\"><a href=\"#\">".$i."</a></li>";
                 else
                 {
                     /*$nav = $nav. "\n<li><a href=\"/SciCrunchKS/index.php/Results/view/"
@@ -145,7 +145,7 @@
                     /*$nav = $nav. "\n<li><a href=\"#\" onclick=\"loadNewPage('".$sourceID+"','".$term.
                         "','".($pageID-1)."');\">".$i."</a></li>";  */
                     
-                    $nav = $nav. "\n<li><a href=\"#\" onclick=\"loadNewPage('".$sourceID."','".$term."','".$i."');\">".$i."</a></li>";
+                    $nav = $nav. "\n<li class=\"page-item\"><a href=\"#\" onclick=\"loadNewPage('".$sourceID."','".$term."','".$i."');\">".$i."</a></li>";
                     
                 }   
             }
@@ -177,7 +177,7 @@
             echo "\n<div class=\"col-md-12\">";
              
  
-            echo "\n<table class=\"sortable-theme-bootstrap\" data-sortable>";   
+            echo "\n<table class=\"table sortable-theme-bootstrap\" data-sortable>";   
             echo "\n<thead>";
             echo "\n<tr>";
 

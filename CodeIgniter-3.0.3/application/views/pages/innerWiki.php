@@ -7,7 +7,13 @@
         </div> -->
         <div class="panel-heading">
              
-	<h3 class="panel-title"><a href="#" id="summary-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a><?php echo "$title";  ?></h3>
+	<h3 class="panel-title"><a href="#" id="summary-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a><?php 
+        $tempTitle = str_replace("%20", " ", $title);
+        $tempTitle = str_replace("%2c", ",", $tempTitle);
+        echo "$tempTitle";  
+        
+        
+        ?></h3>
 								
         </div>
     <div id="summary-panel"   class="panel-body" style="min-height: 50%; max-height: 50%;overflow-y: scroll">

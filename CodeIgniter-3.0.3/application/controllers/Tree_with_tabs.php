@@ -50,7 +50,7 @@ class Tree_with_tabs extends CI_Controller
                 $leafLinkName = str_replace("(", "_", $leafLinkName);
                 $leafLinkName = str_replace(")", "_", $leafLinkName);
                 //$leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
-		$leafLink = "/SciCrunchKS/index.php/pages/view/".$leaf->id;
+		$leafLink = "/".Config::$localContextName."/index.php/pages/view/".$leaf->id;
                 //$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
                 $leafHTML = $leafHTML . "<ul><li><span id=\"".$leaf->id.",".$mainNode->id."\"><i class=\"icon-plus-sign\"></i>" . $leaf->lbl . "</span> <a href=\"".$leafLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a></li></ul>\n";
             }
@@ -60,6 +60,7 @@ class Tree_with_tabs extends CI_Controller
             
             require_once('ServiceUtil.php');
             require_once('PropertyConfig.php');
+            require_once('Config.php');
             $util = new ServiceUtil;
             $list2 = $util->getOtherChildrenIDs($treeObj, $curie,PropertyConfig::$has_proper_part);
             
@@ -80,7 +81,7 @@ class Tree_with_tabs extends CI_Controller
                 $leafLinkName = str_replace("(", "_", $leafLinkName);
                 $leafLinkName = str_replace(")", "_", $leafLinkName);
                 //$leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
-		$leafLink = "/SciCrunchKS/index.php/pages/view/".$leaf->id;
+		$leafLink = "/".Config::$localContextName."/index.php/pages/view/".$leaf->id;
                 //$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
                 $leafHTML = $leafHTML . "<ul><li><span id=\"".$leaf->id.",".$mainNode->id."\"><i class=\"icon-plus-sign\"></i>" . $leaf->lbl . "</span> <a href=\"".$leafLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a></li></ul>\n";
             }
@@ -112,7 +113,7 @@ class Tree_with_tabs extends CI_Controller
                 $leafLinkName = str_replace("(", "_", $leafLinkName);
                 $leafLinkName = str_replace(")", "_", $leafLinkName);
                 //$leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
-		$leafLink = "/SciCrunchKS/index.php/pages/view/".$leaf->id;
+		$leafLink = "/".Config::$localContextName."/index.php/pages/view/".$leaf->id;
                 //$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
                 $leafHTML = $leafHTML . "<ul><li><span id=\"".$leaf->id.",".$mainNode->id."\"><i class=\"icon-plus-sign\"></i>" . $leaf->lbl . "</span> <a href=\"".$leafLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a></li></ul>\n";
             }

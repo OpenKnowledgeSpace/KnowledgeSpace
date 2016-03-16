@@ -9,7 +9,7 @@ class Literature extends CI_Controller
     {
         $this->handleLiterature($data,$searchName);
         $data['title'] = $searchName;
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/header2', $data);
         $this->load->view('pages/FullLiterature', $data);
         
     }
@@ -31,6 +31,9 @@ class Literature extends CI_Controller
         $count = count($litMap);
         $data['count'] = $count; 
         
+        
+        $data['page_title'] = "Literature:".  str_replace("%20", " ", $searchName);
+        $data['enable_config'] = true;
     }
     
 }
