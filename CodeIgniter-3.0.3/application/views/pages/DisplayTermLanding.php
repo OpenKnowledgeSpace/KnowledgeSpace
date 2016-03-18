@@ -18,10 +18,10 @@
         $count = count($termObj);
         if($count > 0)
         {
-            echo "<table class=\"table sortable-theme-bootstrap\" data-sortable>";   
+            echo "<table class=\"table table-striped sortable-theme-bootstrap\" data-sortable>";   
             echo "<thead>";
             echo "<tr>";
-            echo "<th>Curie</th>";
+            echo "<th>ID</th>";
             
             echo "<th>Labels</th>";
             echo "<th>Categories</th>";

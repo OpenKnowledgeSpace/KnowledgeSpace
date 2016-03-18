@@ -15,14 +15,52 @@
     $count = 0;
     foreach($ks_selected_sources as $source)
     {
-
-        if(strcmp($selectedSourceID, "0")==0 && $count ==  0)
-            echo "\n<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
-        else if(strcmp($source, $selectedSourceID)==0 )
-            echo "\n<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
-        else
-            echo "\n<li><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
+        if($result[$source]->result->resultCount == 0)
+            continue;
+        $isZero = false;
+        $active = false;
+        if($result[$source]->result->resultCount == 0)
+            $isZero = true;
+        
+        /*if(strcmp($selectedSourceID, "0")==0 && $active==false && $isZero==false)
+        {
             
+               echo "\n<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
+               $active = true;
+               
+        }
+        else if(strcmp($source, $selectedSourceID)==0 )
+        {
+            
+                echo "\n<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
+                $active = true;
+                
+        }
+        else if($isZero == true)
+        {
+             echo "\n<li class=\"disabled\"><a  data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
+        }
+        else
+        {
+            
+                echo "\n<li><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
+        } */
+        
+        if(strcmp($selectedSourceID, "0")==0 && $count ==  0)
+        {
+            
+               echo "\n<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
+        }
+        else if(strcmp($source, $selectedSourceID)==0 )
+        {
+            
+                echo "\n<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
+        }
+        else
+        {
+            
+                echo "\n<li><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
+        }  
         $count++;
     }
     
@@ -50,6 +88,12 @@
     $count = 0;
      foreach ($ks_selected_sources as $source) 
     {
+          if($result[$source]->result->resultCount == 0)
+                continue;
+          $isZero = false;
+         if($result[$source]->result->resultCount == 0)
+            $isZero = true;
+         
             $pageID = 1;
             if(strcmp($selectedSourceID,$source )==0)
             {
@@ -61,26 +105,17 @@
             $endItem = $startItem+19;
             if($endItem > $result[$source]->result->resultCount)
                 $endItem = $result[$source]->result->resultCount;
-            /*if($count == 0)
-            {
-                echo "\n<div id=\"menu".$count."\" class=\"tab-pane fade in active\">";
-                echo "\n<p>".$description[$source]."</p>";
-                echo "\n<p>".$source."</p>";
-                echo "Displaying results ".$startItem." - ".$endItem." out of ".$result[$source]->result->resultCount." total results.";
-
-                echo "\n</div>";
-                
-            }
-            else
-            {*/
+            
                 if(strcmp($selectedSourceID, "0")==0 && $count ==  0)
                     echo "\n<div id=\"menu".$count."\" class=\"tab-pane fade in active\">";
                 else if(strcmp($source, $selectedSourceID)==0 )
                     echo "\n<div id=\"menu".$count."\" class=\"tab-pane fade in active\">";
                 else
-                    echo "\n<div id=\"menu".$count."\" class=\"tab-pane fade\">";
+                    echo "\n<div id=\"menu".$count."\" class=\"tab-pane\">";
+                    
                 
-                //echo "\n<p>".$source."</p>";
+                
+                
                 echo "\n<p>".$description[$source]."</p>";
                 //echo "\n<p>SourceID:".$source."-------selectedSourceID:". $selectedSourceID."</p>";
                 echo "Displaying results ".$startItem." - ".$endItem." out of ".$result[$source]->result->resultCount." total results.";
@@ -177,8 +212,9 @@
             echo "\n<div class=\"col-md-12\">";
              
  
-            echo "\n<table class=\"table sortable-theme-bootstrap\" data-sortable>";   
+            echo "\n<table class=\"table table-striped sortable-theme-bootstrap\" data-sortable>";   
             echo "\n<thead>";
+            
             echo "\n<tr>";
 
                     $result2 = $resultObj->result;
@@ -195,8 +231,9 @@
                
 
                 echo "\n</tr>";
-                echo "\n</thead>";
                 
+                echo "\n</thead>";
+                echo "\n<tbody>";
                     foreach($result2->result as $row )
                     {
                         echo "<tr>\n";
@@ -217,8 +254,8 @@
                 
                 
                 
-                
-        echo "\n</thead>";
+          echo "\n</tbody>";      
+        //echo "\n</thead>";
         echo "\n</table>";
              
         echo "\n</div>";

@@ -94,10 +94,10 @@ class Tree_with_tabs extends CI_Controller
             
             
             
-            $list3 = $util->getOtherChildrenIDs($treeObj, $curie,PropertyConfig::$part_of);
+            $list3 = $util->getChildrenIDsIncoming($treeObj, $curie,PropertyConfig::$part_of);
             
             
-            $partOfParentID3 = $util->getOtherParentID($treeObj, $curie,PropertyConfig::$part_of);
+            $partOfParentID3 = $util->getParentIDIncoming($treeObj, $curie,PropertyConfig::$part_of);
             $partOfParenttNode3 = $util->getNode($treeObj,$partOfParentID3);
             $data['node3'] = $partOfParenttNode3;
             

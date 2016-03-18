@@ -19,6 +19,8 @@
         $abaCell = "nif-0000-00508-4";
         $brainMap = "nif-0000-00093-2";
         $connectivity = "nlx_154697-8";
+        
+        $humanBrainProject = "SCR_014306-1";
         //$enableCaching = false;
         
 

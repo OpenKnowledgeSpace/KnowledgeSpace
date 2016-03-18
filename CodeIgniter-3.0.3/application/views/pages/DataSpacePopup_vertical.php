@@ -304,6 +304,7 @@
                 //echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\">Morphology (".$neuroMorphoResult->result->resultCount.")";
                 //echo "<script type=\"text/javascript\"> setCookie('Morphology_count','".$neuroMorphoResult->result->resultCount."',365);</script>";
             }
+            
             if(!is_null($humanBrainProjectResult) && $humanBrainProjectResult->result->resultCount > 0)
             {
                 $humanBrainProjectCount = $humanBrainProjectResult->result->resultCount;
@@ -754,8 +755,8 @@
             }
                     
             ?>
-            <!---Human brain project -->
-                        <?php
+            
+            <?php
             
             if($humanBrainProjectCount > 0)
             {
@@ -775,13 +776,12 @@
             echo "        <a href=\"/".ViewConfig::$localContextName."/index.php/Results/view/SCR_014306-1/".$pageName."/1\" target=\"_blank\">Human Brain Project: Cell Morphology (".$humanBrainProjectCount.")</a>";
             echo "   </div>";
             echo "    <div class=\"col-md-9\">";
-            echo "         has <a class=\"external\" target=\"_blank\" href=\"http://microcircuits.epfl.ch/#/article/article_3_mph\">3D models</a> of rat neuronal morphologies. ";
+            echo "         The Human Brain Project is a European Commission Future and Emerging Technologies Flagship that aims to achieve a multi-level, integrated understanding of brain structure and function through the development and use of information and communication technologies (ICT). ";
             echo "    </div>";
             echo "</div>";
             }
-            
+                    
             ?>
-            <!--End Human brain project-->
             
             <!-- 
             <div class="row" style="background: #b8d1f3">

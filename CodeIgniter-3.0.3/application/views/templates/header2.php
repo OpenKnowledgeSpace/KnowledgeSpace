@@ -63,7 +63,8 @@
 	<script type="text/javascript" src="/assets/js/plugins/style-switcher.js"></script>
 	<script type="text/javascript" src="/assets/js/plugins/parallax-slider.js"></script>
         <!-- Custom js -->
-        <script src="/NeuroKS/application/views/js/fullscreen.js"></script>
+        <!-- <script src="/NeuroKS/application/views/js/fullscreen.js"></script> -->
+        <script src="/NeuroKS/application/views/js/fullscreen_layout.js"></script>
         <script src="/NeuroKS/js/sortable/js/sortable.min.js"></script>
 
 </head>
@@ -226,7 +227,7 @@ function updateSourceStatus(id)
 function prepareCookies()
 {
 //if(document.cookie.indexOf("ks_selected_sources") < 0)
-   setCookie('ks_selected_sources','nlx_151885-1,nif-0000-00006-1,nif-0000-00130-1,nif-0000-00054-1,nif-0000-37639-1,scr_013705-1,nif-0000-00004-1,nlx_152590-1,nif-0000-00088-1,nif-0000-00339-1,nif-0000-00508-5,nif-0000-00508-4,nlx_154697-8,nlx_154697-8',365);
+   setCookie('ks_selected_sources','nlx_151885-1,nif-0000-00006-1,nif-0000-00130-1,nif-0000-00054-1,nif-0000-37639-1,scr_013705-1,nif-0000-00004-1,nlx_152590-1,nif-0000-00088-1,nif-0000-00339-1,nif-0000-00508-5,nif-0000-00508-4,nlx_154697-8,SCR_014306-1',365);
    
 
 
@@ -365,15 +366,12 @@ function loadTree(theUrl)
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
 				<div class="container">
-					<ul class="nav navbar-nav">
-		
-                    <!-- Search Block -->
                     <?php
                         if(!isset($disableTopSearchBar))
                         {
                             
                     ?>
-                    <li>			
+                    <center>			
                     <form action="/NeuroKS/index.php/Search" method="post">
 		    <input name="keywords" type="text" size="50" placeholder="Search">
                         
@@ -381,18 +379,42 @@ function loadTree(theUrl)
                        
 									
 							
-                    </form>			
-		     </li> 
-                     <?php
+                    </form></center>	
+                    <?php
                         }
+                        ?>
+		      
+					<ul class="nav navbar-nav">
+		
+                    <!-- Search Block -->
+                    <?php
+                        //if(!isset($disableTopSearchBar))
+                        //{
+                            
+                    ?>
+                    <!-- <li><center>			
+                    <form action="/NeuroKS/index.php/Search" method="post">
+		    <input name="keywords" type="text" size="50" placeholder="Search">
+                        
+			<button class="btn-u btn-u-sm btn-u-blue" type="submit" >Go</button>
+                       
+									
+							
+                    </form></center>			
+		     </li>  -->
+                     <?php
+                       // }
                         ?>
                             
 			<!-- End Search Block -->
-                    <li>
+                    <!-- <li>
                         &nbsp;&nbsp;&nbsp;&nbsp;
+                    </li> -->
+                    <li>
+                        <a href="/NeuroKS/index.php/About">About</a>
                     </li>
                     <li>
-                        <a href="/#about">About</a>
+                        <a href="/NeuroKS/index.php/Contributors">Contributors</a>
                     </li>
                     <!-- <li>
                         <a href="/#examples">Examples</a>
@@ -408,7 +430,8 @@ function loadTree(theUrl)
                       </ul>
                     </li> -->
 		    <li>
-			<a href="/NeuroKS/documentation.php">Documentation</a>
+			<!-- <a href="/NeuroKS/documentation.php">Documentation</a> -->
+                        <a href="/NeuroKS/index.php/Documentation">Documentation</a>
 		    </li>
                     <?php if($enable_config){?>
                     <!-- <li>

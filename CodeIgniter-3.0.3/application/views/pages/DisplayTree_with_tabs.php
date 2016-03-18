@@ -38,7 +38,7 @@
             {
                 
             ?>    
-        <li <?php if($tabID==3) echo "class=\"active\""; ?>><a href="#tab3default" data-toggle="tab" onclick="updateTreeTabID(3);">has_part</a></li>
+        <li <?php if($tabID==3) echo "class=\"active\""; ?>><a href="#tab3default" data-toggle="tab" onclick="updateTreeTabID(3);">part_of</a></li>
              <?php
             }
             ?>

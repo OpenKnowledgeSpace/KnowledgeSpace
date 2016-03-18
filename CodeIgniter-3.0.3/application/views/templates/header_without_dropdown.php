@@ -36,12 +36,12 @@
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="/assets/css/custom.css">
         <link href="/static/css/custom.d4ef5c8a635d.css" rel="stylesheet">
-          <link rel="stylesheet" type="text/css" href="/SciCrunchKS/resources/sckb.css">
-          <link rel="stylesheet" type="text/css" href="/SciCrunchKS/resources/waiting.css"> 
-          <link rel="stylesheet" href="/SciCrunchKS/js/sortable/css/sortable-theme-bootstrap.css" /> 
-   <!-- <link href="/SciCrunchKS/resources/Knowledge_Space_files/bootstrap.min.78e7f91c0c4c.css" rel="stylesheet"> -->
-    <link href="/SciCrunchKS/resources/Knowledge_Space_files/landing-page.c750721445d1.css" rel="stylesheet">
-    <link href="/SciCrunchKS/resources/Knowledge_Space_files/custom.d4ef5c8a635d.css" rel="stylesheet">
+          <link rel="stylesheet" type="text/css" href="/NeuroKS/resources/sckb.css">
+          <link rel="stylesheet" type="text/css" href="/NeuroKS/resources/waiting.css"> 
+          <link rel="stylesheet" href="/NeuroKS/js/sortable/css/sortable-theme-bootstrap.css" /> 
+   <!-- <link href="/NeuroKS/resources/Knowledge_Space_files/bootstrap.min.78e7f91c0c4c.css" rel="stylesheet"> -->
+    <link href="/NeuroKS/resources/Knowledge_Space_files/landing-page.c750721445d1.css" rel="stylesheet">
+    <link href="/NeuroKS/resources/Knowledge_Space_files/custom.d4ef5c8a635d.css" rel="stylesheet">
    
           
           	<!-- JS Global Compulsory -->
@@ -62,8 +62,8 @@
 	<script type="text/javascript" src="/assets/js/plugins/style-switcher.js"></script>
 	<script type="text/javascript" src="/assets/js/plugins/parallax-slider.js"></script>
         <!-- Custom js -->
-        <script src="/SciCrunchKS/application/views/js/fullscreen.js"></script>
-        <script src="/SciCrunchKS/js/sortable/js/sortable.min.js"></script>
+        <script src="/NeuroKS/application/views/js/fullscreen.js"></script>
+        <script src="/NeuroKS/js/sortable/js/sortable.min.js"></script>
 
 </head>
 <script type="text/javascript">
@@ -223,12 +223,12 @@ function loadTree(theUrl)
             
             $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
             $('.tree li.parent_li > span').on('click', function (e) { 
-                //loadTree("/SciCrunchKS/index.php/Tree/view/"+e.target.id+"/false");
+                //loadTree("/NeuroKS/index.php/Tree/view/"+e.target.id+"/false");
                 var treeIds = e.target.id.split(',');
         //alert(treeIds[0]);
         //alert(treeIds[1]);
         
-       loadTree("/SciCrunchKS/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1]);
+       loadTree("/NeuroKS/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1]);
     
             });
         
@@ -253,8 +253,8 @@ function loadTree(theUrl)
         var treeIds = e.target.id.split(',');
         //alert(treeIds[0]);
         //alert(treeIds[1]);
-        //loadTree("/SciCrunchKS/index.php/Tree/view/"+e.target.id+"/false");
-       loadTree("/SciCrunchKS/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1]);
+        //loadTree("/NeuroKS/index.php/Tree/view/"+e.target.id+"/false");
+       loadTree("/NeuroKS/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1]);
         
         /* var children = $(this).parent('li.parent_li').find(' > ul > li');
         if (children.is(":visible")) {
@@ -295,28 +295,51 @@ function loadTree(theUrl)
 			<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
 				<div class="container">
 					<ul class="nav navbar-nav">
-						
-                                                                <li>
+                                            <!-- Search Block -->
+                    <?php
+                        if(!isset($disableTopSearchBar))
+                        {
+                            
+                    ?>
+                    <li>			
+                    <form action="/NeuroKS/index.php/Search" method="post">
+		    <input name="keywords" type="text" size="50" placeholder="Search">
+                        
+			<button class="btn-u btn-u-sm btn-u-blue" type="submit" >Go</button>
+                       
+									
+							
+                    </form>			
+		     </li> 
+                     <?php
+                        }
+                        ?>
+                            
+			<!-- End Search Block -->
+                    <li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                     <li>
                         <a href="/#about">About</a>
                     </li>
                     <!-- <li>
                         <a href="/#examples">Examples</a>
                     </li>
                     <li>
-			<a href="/SciCrunchKS/index.php/pages/view/Neocortical_pyramidal_cell">Demos</a>
+			<a href="/NeuroKS/index.php/pages/view/Neocortical_pyramidal_cell">Demos</a>
 		    </li> -->
 	            
 		    <li>
-			<a href="/SciCrunchKS/documentation.php">Documentation</a>
+			<a href="/NeuroKS/documentation.php">Documentation</a>
 		    </li>
 						
 
 
 						<!-- Search Block -->
-						<li>
+						<!-- <li>
 							<i class="search fa fa-search search-btn"></i>
 							<div class="search-open">
-                                                            <form action="/SciCrunchKS/index.php/Search" method="post">
+                                                            <form action="/NeuroKS/index.php/Search" method="post">
 								<div class="input-group animated fadeInDown">
 									<input name="keywords" type="text" class="form-control" placeholder="Search">
 									<span class="input-group-btn">
@@ -325,7 +348,7 @@ function loadTree(theUrl)
 								</div>
                                                             </form>
 							</div>
-						</li>
+						</li> -->
 						<!-- End Search Block -->
 					</ul>
 				</div><!--/end container-->

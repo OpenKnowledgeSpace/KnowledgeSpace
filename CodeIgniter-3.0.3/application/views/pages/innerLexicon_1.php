@@ -18,14 +18,14 @@
 	<h3 class="panel-title"><a href="#" id="relation-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a>Relations</h3>							
         </div>
 
-        <div id="relation-panel-1" class="panel-body" style="min-height: 35%; max-height: 35%;overflow-y: scroll">
+        <div id="relation-panel-1" class="panel-body" style="min-height: 50%; max-height: 50%;overflow-y: scroll">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab1default" data-toggle="tab" onclick="updateTreeTabID(1);">SubClassOf</a></li>
            <?php if(!is_null($node2) || !is_null($leafHTML2)){?>
             <li><a href="#tab2default" data-toggle="tab" onclick="updateTreeTabID(2);">has_proper_part</a></li>
             <?php } ?>
             <?php if(!is_null($node3) || !is_null($leafHTML3)){?>
-            <li><a href="#tab3default" data-toggle="tab" onclick="updateTreeTabID(3);">has_part</a></li>
+            <li><a href="#tab3default" data-toggle="tab" onclick="updateTreeTabID(3);">part_of</a></li>
             <?php } ?>
         </ul>
        
@@ -152,99 +152,8 @@
 
 
 
-    <!-- Lexicon table -->
-    <!-- <div class="panel panel-default"> -->
-     <div class="panel panel-grey">
-    <div class="panel-heading">Lexicon</div>
-<!--    <div class="panel-body" style="min-height: 120; max-height: 120;overflow-y: scroll">
-	-->
-	<div class="panel-body" style="min-height: 22%; max-height: 22%;overflow-y: scroll">
-
-<div class="row" style="<?php
-	$useBackground = false;
-	$background = "background: #b8d1f3";
-	//echo "<div class=\"row\" style=\"";
-	if($useBackground)
-	{
-	    $useBackground = false;
-	    echo $background;
-	}
-	else
-	    $useBackground = true;
-	//echo "\">";
-
-
-?>">    
-<div class="col-md-3">Concept URI</div>
-<div class="col-md-9"><?php  echo $curie;    ?></div>
-</div>
-<!-- /div> -->
-
-<div class="row" style="<?php
-	//echo "<div class=\"row\" style=\"";
-        if($useBackground)
-        {
-            $useBackground = false;
-            echo $background;
-        }
-        else
-            $useBackground = true;
-       //echo "\">";
-
-?>">
-        <div class="col-md-3">Label(s)</div>
-        <div class="col-md-9"><?php
-	
-	echo $mainNode->lbl;	
-
-	?></div>
-	</div>
-<div class="row" style="<?php
-        //echo "<div class=\"row\" style=\"";
-        if($useBackground)
-        {
-            $useBackground = false;
-            echo $background;
-        }
-        else
-            $useBackground = true;
-        //echo "\">";
-
-?>">
-    
-    
-    <?php
-
-
-	
-	$syn1 = 0;
-
-        if(isset($mainNode->meta->synonym))
-        {
-            echo "<div class=\"col-md-3\">Synonyms</div>\n";
-            echo "<div class=\"col-md-9\">\n";
-            foreach($mainNode->meta->synonym as $synonym)
-            {
-                    if($syn1 > 0)
-                       echo ", ";
-                    else
-                       $syn1 = $syn1+1;
-
-                    echo $synonym;
-            }
-            echo "</div>\n";
-           
-        }
-
-
-	?>
-  </div>
-
-
-</div>
+ 
 <!---End of panel--------->
-    </div>
-
 
     <!-- </div> -->
 

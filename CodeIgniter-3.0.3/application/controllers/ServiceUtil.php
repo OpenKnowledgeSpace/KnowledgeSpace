@@ -195,19 +195,48 @@ class ServiceUtil
 	return NULL;
     }
     
-    public function getOtherParentID($obj, $mainID, $prop)
+    public function getParentIDIncoming($obj, $mainID, $prop)
     {
 	foreach($obj->edges as $edge)
 	{
+
+		//var_dump($edge);
 		if(strcmp($prop, $edge->pred)==0)
 		{
+
 			if(strcmp($mainID,$edge->sub)==0)
+				// && startsWith($edge->obj,"NIFCELL"))
 			{
+				//echo $edge->sub."----------->". $edge->obj."\n";
+
 				return $edge->obj;
 			}
 		}		
 	}
 	return NULL;
+    }
+    
+    
+    public function getOtherParentID($obj, $mainID, $prop)
+    //public function getOtherChildrenIDs($obj, $mainID, $prop)
+    {
+        
+	foreach($obj->edges as $edge)
+	{
+		if(strcmp($prop, $edge->pred)==0)
+		{
+			/*if(strcmp($mainID,$edge->sub)==0)
+			{
+				return $edge->obj;
+			}*/
+                        if(strcmp($mainID,$edge->obj)==0)
+			{
+				return $edge->sub;
+			}
+		}		
+	}
+	return NULL; 
+        
     }
     
     
@@ -228,6 +257,8 @@ class ServiceUtil
 
 	return NULL;
     }
+    
+    
     
     public function getChildrenIDs($obj, $mainID)
     {
@@ -250,14 +281,17 @@ class ServiceUtil
 	}
 
 	return $list;
+        
+        
 
     }
     
     
-    public function getOtherChildrenIDs($obj, $mainID, $prop)
+    
+    public function getChildrenIDsIncoming($obj, $mainID, $prop)
     {
 	$list = new SplDoublyLinkedList();
-        //echo "<br/>-----getOtherChildrenIDs:".$prop;
+
 	foreach($obj->edges as $edge)
 	{
 		if(strcmp($prop,$edge->pred)==0)
@@ -266,14 +300,60 @@ class ServiceUtil
 			{
 				$list->push($edge->sub);
 
+				//echo $edge->sub;
+			}
+
+		}
+
+
+	}
+
+	return $list;
+        
+        
+
+    }
+
+    
+    
+    
+    public function getOtherChildrenIDs($obj, $mainID, $prop)
+    //public function getOtherParentID($obj, $mainID, $prop)
+    {
+	$list = new SplDoublyLinkedList();
+        //echo "<br/>-----getOtherChildrenIDs:".$prop;
+	foreach($obj->edges as $edge)
+	{
+		if(strcmp($prop,$edge->pred)==0)
+		{
+			/*if(strcmp($mainID,$edge->obj)==0)
+			{
+				$list->push($edge->sub);
+
+			}*/
+                        if(strcmp($mainID,$edge->sub)==0)
+			{
+				$list->push($edge->obj);
+
 			}
 
 		}
 	}
 	return $list;
-
+       
     }
     
+    function searchLatestLiterature($terms, $start, $rows, $fl, $year)
+    {
+    
+        //$surl = "http://".Config::$nifServiceForData."/servicesv1/v1/literature/search?count=30000&q=" . $searchTerm;
+        $surl="http://".Config::$literatureHost.":8080/literature/collection1/select?sort=year+desc,month+desc,day+desc&q=%7B!lucene%20q.op=OR%7D".
+            $terms."&start=".$start."&fl=".$fl."&rows=".$rows."&wt=json&indent=true&fq=year:".$year;
+        //echo $surl;
+        return getJsonObj($surl);
+    
+    }
+
 }
 
 

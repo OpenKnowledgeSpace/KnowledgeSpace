@@ -5,7 +5,7 @@ class Results extends CI_Controller
 	public function view($sourceID, $term,$pageID)
 	{
                 require_once  'JsonClientUtil.php';  
-                
+                require_once 'Config.php'; 
                 $data['test'] = NULL;
                
                 $term = str_replace("_", "%20", $term);
@@ -66,7 +66,7 @@ class Results extends CI_Controller
 		}
                 $surl = $protocol."://".
                         $_SERVER['SERVER_NAME']
-                        ."/SciCrunchKS/resources/source_description/".$sourceID;
+                        ."/".Config::$localContextName."/resources/source_description/".$sourceID;
                 //echo "\n".$surl;
 		$responseCode =  @get_headers($surl);
     //echo "CODE:".$file_headers[0]."---------";

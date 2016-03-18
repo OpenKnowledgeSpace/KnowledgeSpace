@@ -1,4 +1,8 @@
-<?php  require_once 'ViewConfig.php'; ?>
+
+  
+ <!--    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+-->
 
   <script type="text/javascript">
 $(function () {
@@ -111,77 +115,9 @@ $(function () {
 
  <br/><br/><br/>
  
-<!--        
+        
     <div id="container2" style="min-width: 80%; height: 400px; margin: 0 auto"></div> 
--->
-<div class="tab-v1">
-    <ul class="nav nav-tabs">
-	<li class="active"><a href="#full-most-recent" data-toggle="tab">Most recent</a></li>
-	<li><a href="#full-year-graph" data-toggle="tab">Year graph</a></li>
-							
-    </ul>
-    <div class="tab-content">
-	<div class="tab-pane fade in active" id="full-most-recent">
-            
-        <?php
-        if($latestResult->response->numFound == 0 )
-        {
-            echo "<div class=\"row\">";
-            echo "No publications found!";
-            echo "</div><br/>";
-        }
-        
-        
-        foreach($latestResult->response->docs as $row )
-        {
-            echo "<div class=\"row\">";
-            echo "  <div class=\"col-md-12\">";
-            
-            echo "<u><a  style=\"font-size:16\"  target=\"_blank\" href=\"http://www.ncbi.nlm.nih.gov/pubmed?term=". 
-                    $row->pmid."\">".$row->title."</a></u><br/>";
-            
-            echo "<span style=\"color:green\">";   
-            if(count($row->author) > 0)
-                echo $row->author[0]." - ";
-            echo $row->journal."<br/>";
-            echo "</span>";
-            
-            echo "<span style=\"color:green\">";   
-            echo $row->month."-".$row->day."-".$row->year."<br/>";
-            echo "</span>";
-            echo $row->abstract."<br/>";
-            echo "<span style=\"color:brown\">";   
-            echo "PMID:".$row->pmid;
-            echo "</span>";
-            echo "  </div>";
-            echo "</div><br/>";
 
-        }
-        if($latestResult->response->numFound > 0 )
-        {
-            echo "<div class=\"row\">";
-            echo "<center><a  style=\"font-size:16\"  target=\"_blank\" href=\"/".ViewConfig::$localContextName."/index.php/LatestPublications/view/".$title."/1\">See more</a></center>";
-            echo "</div><br/>";
-        }
-?>  
-        </div>
-        
-<?php
-    if($latestResult->response->numFound > 0 )
-    {
-?>
-        
-	<div class="tab-pane fade in" id="full-year-graph">
-								
-           <div id="container2" style="min-width: 75%; height: 400px; margin: 0 auto"></div> 
-            <br/>
-	</div>
-<?php } ?>
-							
-    </div>
-    </div>
-    <!-- End Tab v1 -->
-   
 
 
 

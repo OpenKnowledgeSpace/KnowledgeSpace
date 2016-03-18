@@ -50,7 +50,7 @@ class Pages extends CI_Controller
             $data['abaCellResult'] = searchWithinSource($newName, $abaCell, 20);
             $data['brainMapResult'] = searchWithinSource($newName, $brainMap, 20);
             $data['connectivityResult'] = searchWithinSource($newName, $connectivity, 20);
-            
+            $data['humanBrainProjectResult'] = searchWithinSource($newName, $humanBrainProject, 20);
             
             //$data['neuroElectroDesc'] = getSourceDescObj($neuroElectro);
             //$data['neuroMorphoDesc'] = getSourceDescObj($neuroMorpho);
@@ -162,10 +162,8 @@ class Pages extends CI_Controller
             
             
             
-            $list3 = $util->getOtherChildrenIDs($treeObj, $curie,PropertyConfig::$part_of);
-            
-            
-            $partOfParentID3 = $util->getOtherParentID($treeObj, $curie,PropertyConfig::$part_of);
+            $list3 = $util->getChildrenIDsIncoming($treeObj, $curie,PropertyConfig::$part_of);
+            $partOfParentID3 = $util->getParentIDIncoming($treeObj, $curie,PropertyConfig::$part_of);
             $partOfParenttNode3 = getNode($treeObj,$partOfParentID3);
             $data['node3'] = $partOfParenttNode3;
             
@@ -191,24 +189,21 @@ class Pages extends CI_Controller
         
         private function handleLiterature(&$data, $searchName)
         {
-           /*$litResult =  searchLiterature($searchName);
-           $data['litResult'] = $litResult;
-           
-           $litMap = processLiteratureObj($litResult);
-           $data['litMap'] = $litMap;
-           
-           $count = count($litMap);
-           $data['count'] = $count;*/
-            
-            //$litResult = searchLiteratureByYearOnly($searchName);
-            //$data['litResult'] = $litResult;
-            
-            $result = expandTerm($searchName);
+            require_once 'ServiceUtil.php';
+            $util = new ServiceUtil();
+            $result = expandTerm($searchName);          
             $terms = parseExpandedTerm($result,$searchName);
+            
+            
+            $latestResult = $util->searchLatestLiterature($terms,0,5,"*","*");
+            
             $litResult = searchLiteratureByYearUsingSolr($terms,0,25000000,"year","*");
             //$data['litResult'] = $litResult;
             
             $litMap = processLiteratureObj2($litResult);
+            
+            $data['latestResult'] = $latestResult;
+            $data['litSearchTerms'] = $terms;
             //var_dump($litMap);
             $data['litMap'] = $litMap;
            
@@ -217,11 +212,19 @@ class Pages extends CI_Controller
         }
         private function handleSummary(&$data, $termObj, $searchName)
         {
+            require_once 'Parsedown.php';
             $termCount = count($termObj);
             if($termCount > 0)
             {
                 $curie = $termObj[0]->curie;
-                $data['description']=getDescriptionByCurie($curie);
+                //$data['description']=getDescriptionByCurie($curie);
+                $description=getDescriptionByCurie($curie);
+                if(!is_null($description))
+                {
+                    $Parsedown = new Parsedown();
+                    $data['description'] =$Parsedown->text($description);
+                    
+                }
                 
                 $definitions = $termObj[0]->definitions;
                 //echo "definitions:".$definitions;
@@ -429,8 +432,12 @@ class Pages extends CI_Controller
                        $data['curie'] = $termObj[0]->curie;
                    }
                }
-               $pageName = str_replace(" ", "%20", $pageName);
-               $pageName = str_replace(",", "%2c", $pageName);
+               //$pageName = str_replace(" ", "%20", $pageName);
+               //$pageName = str_replace(",", "%2c", $pageName);
+               //$pageName = str_replace("/", "%20", $pageName);
+               $pageName = str_replace(str_split('_'), '%20',$pageName );
+               $pageName = str_replace(str_split(','), '%2c',$pageName );
+               $pageName = str_replace(str_split('/'), '%20',$pageName );
                
                $data['pageName'] = $pageName;
                $data['page_title'] = $pageName;
@@ -482,14 +489,16 @@ class Pages extends CI_Controller
             
                 #echo "\nWilly--------pageName:".$pageName."\n";
                 $this->handleDataSpace($data, $pageName);
-                $this->handleLexicon($data,$termObj[0]->curie);
+                if(isset($termObj[0]))
+                    $this->handleLexicon($data,$termObj[0]->curie);
                 $this->handleLiterature($data, $pageName);
 
                 
 
                     $this->load->view('templates/header2', $data);
                     //$this->load->view('pages/'.$page, $data);
-                    $this->load->view('pages/term', $data);
+                    //$this->load->view('pages/term', $data);
+                    $this->load->view('pages/layout', $data);
                     $this->load->view('templates/footer2', $data);
 
                 ///////////////////////////////////////////////

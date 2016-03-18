@@ -6,7 +6,7 @@ function getJsonObj2($surl)
 {
     
     
-        //echo "<br/>".$surl;
+       //echo "<br/>".$surl;
 	$endpoint = $surl;
 
         //  Initiate curl

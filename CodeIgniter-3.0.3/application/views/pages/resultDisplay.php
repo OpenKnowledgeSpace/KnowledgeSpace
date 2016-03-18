@@ -104,7 +104,8 @@
          <div class="col-md-12">
              
  
-                <table class="table sortable-theme-bootstrap" data-sortable>   
+                 <table class="table table-striped sortable-theme-bootstrap" data-sortable> 
+                <!-- <table class="table table-striped"> -->
                 <thead>
                 <tr>
                 <?php
@@ -123,6 +124,7 @@
 
                 </tr>
                 </thead>
+                <tbody>
                 <?php
                     foreach($result->result as $row )
                     {
@@ -141,9 +143,9 @@
                     }
                 
                 ?>
+                </tbody>
                 
-                
-                </thead>
+               <!-- </thead> -->
 
                 </table>
                 
