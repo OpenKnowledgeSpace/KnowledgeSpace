@@ -12,8 +12,4 @@ ABA Mouse Brain: CellType MorphoData,nif-0000-00508-5,true,[Morphology]
 ABA Mouse Brain: CellType EphysData,nif-0000-00508-4,true,[Physiology]
 BrainMaps: Atlas,nif-0000-00093-2,true,[Anatomy]
 Integrated: Connectivity,nlx_154697-8,true,[Anatomy]
-<<<<<<< HEAD
 Human Brain Project: Cell Morphology,SCR_014306-1,true,[Morphology]
-=======
-Human Brain Project: Cell Morphology,SCR_014306-1,true,[Morphology]
->>>>>>> 5715183a635c5c544dea7195365725d13c7d365e
