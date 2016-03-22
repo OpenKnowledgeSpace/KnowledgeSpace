@@ -329,6 +329,7 @@ $(document).ready(function ()
     
         if ($this.children('i').hasClass('glyphicon-resize-full'))
         {
+            $('html,body').scrollTop(0);
             //$this.children('i').removeClass('glyphicon-resize-full');
             //$this.children('i').addClass('glyphicon-resize-small');
             
@@ -472,15 +473,11 @@ function loadButtons()
     var sourceArray = ks_selected_sources.split(',');
     
     
-    //var html ="<div class=\"row\">";
+    
     var html = "";
     var count = 0;
     
-    var Physiology_count = getCookie('Physiology_count');
-    var Expression_count = getCookie('Expression_count');
-    var Models_count = getCookie('Models_count');
-    var Anatomy_count = getCookie('Anatomy_count');
-    var Morphology_count = getCookie('Morphology_count');
+    
     
     if((array.indexOf("Physiology") > -1))
     {
@@ -488,9 +485,9 @@ function loadButtons()
      {
      count++;
      if(Physiology_count != null && Physiology_count > 0)
-        html =  html+"\n<div class=\"row\"><center><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">Physiology ("+Physiology_count+")</button> </center></div><br/>";   
+        html =  html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Physiology_Modal\">Physiology ("+Physiology_count+")</button> </center></div><br/>";   
      else 
-        html =  html+"\n<div class=\"row\"><center><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\" disabled>Physiology ("+Physiology_count+")</button> </center></div><br/>";   
+        html =  html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Physiology_Modal\" disabled>Physiology ("+Physiology_count+")</button> </center></div><br/>";   
 
       }
     }    
@@ -501,9 +498,9 @@ function loadButtons()
         {
             count++;
             if(Expression_count != null && Expression_count > 0)
-                html = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\">Expression ("+Expression_count+")</button></center></div><br/>";    
+                html = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Expression_Modal\">Expression ("+Expression_count+")</button></center></div><br/>";    
             else 
-                html = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\" disabled>Expression ("+Expression_count+")</button></center></div><br/>";    
+                html = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Expression_Modal\" disabled>Expression ("+Expression_count+")</button></center></div><br/>";    
         }
     }
     if((array.indexOf("Models") > -1))     
@@ -516,9 +513,9 @@ function loadButtons()
         {
         count++;
         if(Models_count != null && Models_count > 0)
-            html  = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\">Models ("+Models_count+")</button></center></div><br/>";
+            html  = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Models_Modal\">Models ("+Models_count+")</button></center></div><br/>";
         else 
-            html  = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\" disabled>Models ("+Models_count+")</button></center></div><br/>";
+            html  = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Models_Modal\" disabled>Models ("+Models_count+")</button></center></div><br/>";
         }
     }
     if((array.indexOf("Anatomy") > -1))     
@@ -532,9 +529,9 @@ function loadButtons()
             }*/
             count++;
             if(Anatomy_count != null && Anatomy_count > 0)
-             html  = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal3\">Anatomy ("+Anatomy_count+")</center></div></div><br/>";
+             html  = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Anatomy_Modal\">Anatomy ("+Anatomy_count+")</center></div></div><br/>";
             else 
-             html  = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal3\" disabled>Anatomy ("+Anatomy_count+")</button></center></div><br/>";
+             html  = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Anatomy_Modal\" disabled>Anatomy ("+Anatomy_count+")</button></center></div><br/>";
         }
     }
     if((array.indexOf("Morphology") > -1))     
@@ -547,9 +544,9 @@ function loadButtons()
             }
             count++;
             if(Morphology_count != null && Morphology_count > 0)
-             html  = html+"<div class=\"row\"><center><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\">Morphology ("+Morphology_count+")</button></center></div>";
+             html  = html+"<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Morphology_Modal\">Morphology ("+Morphology_count+")</button></center></div>";
             else 
-             html  = html+"<div class=\"row\"><center><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\" disabled>Morphology ("+Morphology_count+")</button></center></div>";
+             html  = html+"<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Morphology_Modal\" disabled>Morphology ("+Morphology_count+")</button></center></div>";
     
         }
     }

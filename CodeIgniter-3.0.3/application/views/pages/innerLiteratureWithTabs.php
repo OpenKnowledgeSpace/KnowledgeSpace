@@ -1,15 +1,5 @@
 <?php  require_once 'ViewConfig.php'; ?>
-<!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
--->
-<!-- <link rel="stylesheet" type="text/css" href="sckb.css">  -->
- 
 
-<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
-   
-<!--    <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
-  -->
 
     <script src="/<?php  echo ViewConfig::$localContextName; ?>/application/views/js/highcharts.js"></script>
     <script src="/<?php echo ViewConfig::$localContextName; ?>/application/views/js/exporting.js"></script>  
@@ -70,11 +60,7 @@ $(function () {
                 point: {
                     events: {
                         click: function(e) {
-                                //alert(this.x);
-                                //var url = this.options.url;
-                                 //window.open(url);
-                                 //var url = "https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal%20neuron&t=literature&r=20&yf="+e.currentTarget.x;
-                                 //var url = "/SciCrunchKS/index.php/publications/view/<?php //echo $title;  ?>/"+e.currentTarget.x+"/1";
+
                                  var url = "/<?php echo ViewConfig::$localContextName; ?>/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
         
         
@@ -92,15 +78,10 @@ $(function () {
 
         series: [{
             name: "Publications",
-            // Define the data points. All series have a dummy year
-            // of 1970/71 in order to be compared on the same x axis. Note
-            // that in JavaScript, months start at 0 for January, 1 for February etc.
              data: [
                  
             <?php
    
-
-        //echo "-------count:".$count;
         $litIndex=0;
         foreach ($litMap as $key => $val) 
         {
@@ -282,7 +263,7 @@ $(function () {
             echo "<span style=\"color:green\">";   
             echo $row->month."-".$row->day."-".$row->year."<br/>";
             echo "</span>";
-            echo $row->abstract."<br/>";
+            //echo $row->abstract."<br/>";
             echo "<span style=\"color:brown\">";   
             echo "PMID:".$row->pmid;
             echo "</span>";
@@ -306,8 +287,13 @@ $(function () {
         
 	<div class="tab-pane fade in" id="profile-1">
 								
-           <div id="container" style="min-width: 40%; height: 340px; margin: 0 auto"></div> 
-            <br/>
+           <!-- <div id="container" style="min-width: 40%; height: 340px; margin: 0 auto"></div> -->
+           <div class="row">
+               <!-- <div class="col-md-12"> -->
+                    <div id="container" style="min-width: auto; height: 50%; margin: 0 auto"></div>
+           
+              <!--  </div> -->
+           </div>
 	</div>
 <?php } ?>
 							

@@ -4,20 +4,14 @@
 
 class Pages extends CI_Controller 
 {
-        public $enableCaching = false;
+        //public $enableCaching = false;
         
         
         private function handleDataSpace(&$data, $searchName)
         {
-            //require  'Globals.php';
-            require_once  'Globals.php';
-                      
             
-            //echo "------Gobal".$this->enableCaching;
-            
-            
-            //$newName = str_replace("%20cell", "", $searchName);
-            //$newName = str_replace("%20neuron", "", $newName);
+            //require_once  'Globals.php';
+
             $newName =$searchName;
             if(strcasecmp($searchName,"cell")==0)
             {
@@ -40,6 +34,57 @@ class Pages extends CI_Controller
             
             //echo "<p>----------------NewName:".$newName;
             
+            $source_search_result =array();
+            $sources = $data["config_array"]->sources;
+            $category_to_source = $data["category_to_source"];
+            $categories =  $data["config_array"]->categories;
+            $category_count_array = array();
+            foreach($sources as $source)
+            {
+                $source_search_result[$source->curie] = searchWithinSource($newName, $source->curie, 20);
+            }
+            
+            foreach($categories as $category)
+            {
+                $category_count_array[$category] =0;
+                $categorySources = $category_to_source[$category];
+                foreach($categorySources as $csource)
+                {
+                    $sourceResult = $source_search_result[$csource->curie];
+                    if(!is_null($sourceResult))
+                        $category_count_array[$category]=
+                            $category_count_array[$category]+$sourceResult->result->resultCount;
+                }
+            }
+            $data["source_search_result"] =$source_search_result;
+            //var_dump($category_count_array);
+            $data["category_count_array"] = $category_count_array;
+            
+            $data['cilImages']=array();
+            $data['originalCILImages']=array();
+            $data['neuroMorphoImages']=array();
+            foreach($sources as $source)
+            {
+               if($source->has_images)
+               {
+                $tempImages =  getImageArray($source_search_result[$source->curie], 20);
+               
+               if(strcmp($source->curie, "nif-0000-37639-1")==0)//Look for CIL images
+               {
+                       $data['originalCILImages'] =$tempImages;
+                       //echo "------originalCILImages source:".$source->curie;
+               }
+               else if(strcmp($source->curie, "nif-0000-00006-1")==0)//Look for NeuroMorppho
+               {
+                       $data['neuroMorphoImages'] =$tempImages;
+                       //echo "------neuroMorphoImages source:".$source->curie;
+               }
+               
+               $data['cilImages'] = array_merge($tempImages,$data['cilImages'] );
+               }
+            }
+            
+            /*
             $data['neuroElectroResult'] = searchWithinSource($newName, $neuroElectro, 20);
             $data['neuroMorphoResult'] = searchWithinSource($newName, $neuroMorpho, 20);
             $data['genSatResult'] = searchWithinSource($newName, $genSat, 20);
@@ -52,21 +97,6 @@ class Pages extends CI_Controller
             $data['connectivityResult'] = searchWithinSource($newName, $connectivity, 20);
             $data['humanBrainProjectResult'] = searchWithinSource($newName, $humanBrainProject, 20);
             
-            //$data['neuroElectroDesc'] = getSourceDescObj($neuroElectro);
-            //$data['neuroMorphoDesc'] = getSourceDescObj($neuroMorpho);
-            //$data['genSatDesc'] = getSourceDescObj($genSat);
-            //$data['neuronDBDesc'] = getSourceDescObj($neuronDB);
-            
-            
-            /*
-            $data['neuroMLResult'] = searchWithinSource("neocortex%20pyramidal%20cell", $neuroML, 20);
-            $data['modelDBResult'] = searchWithinSource("neocortex%20pyramidal%20cell", $modelDB, 20);
-            $data['brainModelResult'] = searchWithinSource("pyramidal%20cell", $brainModel, 20);	
-            */
-            
-            /*$data['neuroMLResult'] = searchWithinSource($searchName, $neuroML, 20);
-            $data['modelDBResult'] = searchWithinSource($searchName, $modelDB, 20);
-            $data['brainModelResult'] = searchWithinSource($searchName, $brainModel, 20);*/	
      
                 $data['neuroMLResult'] = searchWithinSource($newName, $neuroML, 20);
                 $data['modelDBResult'] = searchWithinSource($newName, $modelDB, 20);
@@ -77,7 +107,7 @@ class Pages extends CI_Controller
 
                 $data['neuroMorphoImages'] = getImageArray($data['neuroMorphoResult'], 20);
                 $data['originalCILImages'] = $data['cilImages'];
-                $data['cilImages'] = array_merge($data['cilImages'], $data['neuroMorphoImages']);
+                $data['cilImages'] = array_merge($data['cilImages'], $data['neuroMorphoImages']);*/
 
            
         }
@@ -238,6 +268,34 @@ class Pages extends CI_Controller
             }
         }
         
+        public function loadJsonConfig(&$data)
+        {
+            $configJson = file_get_contents(getcwd()."/application/config/config.json");
+            $array = json_decode($configJson);
+            //var_dump($array);
+            $category_to_source = array();
+            $sources = $array->sources;
+            $data["config_array"] = $array;
+            foreach($sources as $source)
+            {
+                $categories = $source->categories;
+               
+                foreach($categories as $category)
+                {
+                    //echo $category;
+                    if(!isset($category_to_source[$category]))
+                    {
+                        $category_to_source[$category] = array();
+                    }
+                    $cArray = &$category_to_source[$category];
+                    array_push($cArray, $source);
+                }
+            }
+            //var_dump($category_to_source);
+            $data["category_to_source"] = $category_to_source;
+            
+        }
+        
         public function loadSourcesConfig(&$data)
         {
             //echo "--------------loadSourcesConfig-----------";
@@ -316,6 +374,10 @@ class Pages extends CI_Controller
                require_once  'JsonClientUtil.php';  
                require_once 'Config.php';
                 $this->load->helper('url');
+                
+                
+                
+                $this->loadJsonConfig($data);
                 //init();
         	/*if ( ! file_exists(APPPATH.'/views/pages/'.$page.'.php'))
         	{
@@ -445,11 +507,16 @@ class Pages extends CI_Controller
                 
 
                 //////////////////////
-                $cachefile = '/webCache/'.basename($_SERVER['PHP_SELF']).'.cache'; // e.g. cache/index.php.cache
-                $cachetime = 3600*24; // time to cache in seconds
+                //$cachefile = '/webCache/'.basename($_SERVER['PHP_SELF']).'.cache'; // e.g. cache/index.php.cache
+               $cachefile = $data["config_array"]->cache_folder.basename($_SERVER['PHP_SELF']).'.cache'; // e.g. cache/index.php.cache
+ 
+               $cachetime = 3600*24; // time to cache in seconds
                 $c = "";
-                if($this->enableCaching)
+                //if($this->enableCaching)
+                //echo "--------".$data["config_array"]->enableCaching;
+                if($data["config_array"]->enable_caching)
                 {
+                    //echo "====cachiing----";
                     if(!file_exists($cachefile))
                     {
                        //Do nothing 
@@ -502,7 +569,8 @@ class Pages extends CI_Controller
                     $this->load->view('templates/footer2', $data);
 
                 ///////////////////////////////////////////////
-                if($this->enableCaching)
+                //if($this->enableCaching)
+                if($data["config_array"]->enable_caching)
                 {
                     $c = ob_get_contents();
                     file_put_contents($cachefile, $c);

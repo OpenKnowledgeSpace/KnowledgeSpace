@@ -7,8 +7,15 @@
                                         <table class="table ">
                                             <tbody>
                                                 <tr><td> 
-                                                        <a href="https://github.com/NeuroscienceKnowledgeSpace/KnowledgeSpace" target="_blank">KS GitHub repository</a>
+                                                        <a href="https://github.com/NeuroscienceKnowledgeSpace/KnowledgeSpace" target="_blank">KS GitHub Repository</a>
                                                     </td></tr>
+                                                <tr><td> 
+                                                        <a href="https://github.com/NeuroscienceKnowledgeSpace/ksdesc" target="_blank">KS Description GitHub Repository</a>
+                                                    </td></tr>
+                                                <tr><td> 
+                                                        <a href="https://github.com/SciCrunch/NIF-Ontology" target="_blank">NIF Ontology Repository</a>
+                                                    </td></tr>
+                                                
                                                 <tr><td> 
                                                         <a href="https://drive.google.com/folderview?id=0B00EreDwaaqZbWJ0c0tRSXZyNWs&usp=sharing" target="_blank">Meeting minutes</a>
                                                     </td></tr>

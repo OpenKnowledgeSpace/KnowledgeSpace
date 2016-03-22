@@ -109,7 +109,7 @@ $(function () {
 </script>
 
 
- <br/><br/><br/>
+
  
 <!--        
     <div id="container2" style="min-width: 80%; height: 400px; margin: 0 auto"></div> 
@@ -149,7 +149,7 @@ $(function () {
             echo "<span style=\"color:green\">";   
             echo $row->month."-".$row->day."-".$row->year."<br/>";
             echo "</span>";
-            echo $row->abstract."<br/>";
+            //echo $row->abstract."<br/>";
             echo "<span style=\"color:brown\">";   
             echo "PMID:".$row->pmid;
             echo "</span>";
@@ -172,8 +172,12 @@ $(function () {
 ?>
         
 	<div class="tab-pane fade in" id="full-year-graph">
-								
-           <div id="container2" style="min-width: 75%; height: 400px; margin: 0 auto"></div> 
+            <div class="row">
+                <div     class="col-md-12" >
+           <!-- <div id="container2" style="min-width: 75%; height: 400px; margin: 0 auto"></div> -->
+            <div id="container2" style="min-width: auto; height: 380px; margin: 0 auto"></div> 
+                </div>
+            </div>
             <br/>
 	</div>
 <?php } ?>

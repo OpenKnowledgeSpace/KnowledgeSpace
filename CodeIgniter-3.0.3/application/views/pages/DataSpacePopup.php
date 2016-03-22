@@ -1,7 +1,7 @@
 <?php  require_once 'ViewConfig.php'; ?>
 
 <?php
-        //Retrieving cookies for selected categories
+        
         $ks_selected_json = "";
         
         
@@ -24,18 +24,6 @@
            
        <?php 
 
-       /*if(!is_null($curie))
-       {
-           echo "<script type=\"text/javascript\"> setCookie('curie','".$curie."',365);</script>";
-
-       }
-       
-       if(!is_null($pageName))
-       {
-           echo "<script type=\"text/javascript\"> setCookie('pageName','".$pageName."',365);</script>";
-
-       }*/
-       
        
        
        $buttonCount = 0;
@@ -75,7 +63,7 @@
                $neuroElectroCount = $neuroElectroResult->result->resultCount;
                $physiologyCount = $neuroElectroCount ;
 
-            }//
+            }
             
             if(!is_null($neuronDBResult) && $neuronDBResult->result->resultCount > 0)
             {
@@ -93,15 +81,13 @@
                 $abaCellCount = $abaCellResult->result->resultCount;
                 $physiologyCount = $physiologyCount+$abaCellCount;
             }
-            echo "<script type=\"text/javascript\"> setCookie('Physiology_count','".$physiologyCount."',365);</script>";
- 
+            //echo "<script type=\"text/javascript\"> setCookie('Physiology_count','".$physiologyCount."',365);</script>";
             
-            //else
-            //{
-            //
-            //  echo "<script type=\"text/javascript\"> setCookie('Physiology_count','0',365);</script>";
-            //  
-            //}
+            echo "<script type=\"text/javascript\">\n";
+            echo "Physiology_count=".$physiologyCount.";\n";
+            echo "</script>\n";
+
+
 
         }
 ?>
@@ -121,13 +107,17 @@
             {
                 $genSatCount = $genSatResult->result->resultCount;
                 //echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\">Expression (".$genSatResult->result->resultCount.")";
-                echo "<script type=\"text/javascript\"> setCookie('Expression_count','".$genSatResult->result->resultCount."',365);</script>";
+                //echo "<script type=\"text/javascript\"> setCookie('Expression_count','".$genSatResult->result->resultCount."',365);</script>";
             }
-            else
-            {
+            echo "<script type=\"text/javascript\">\n";
+            echo "Expression_count=".$genSatCount.";\n";
+            echo "</script>\n";
+            
+            //else
+            //{
                 //echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\" disabled>Expression (0)";
-                echo "<script type=\"text/javascript\"> setCookie('Expression_count','0',365);</script>";
-            }
+            //    echo "<script type=\"text/javascript\"> setCookie('Expression_count','0',365);</script>";
+            //}
 
         }
 ?>
@@ -173,19 +163,21 @@
                         in_array("nlx_152590-1", $ks_selected_sources))
                 {
             $buttonCount++;
-           
-            if($modelCount > 0)
-            {
+            echo "<script type=\"text/javascript\">\n";
+            echo "Models_count=".$modelCount.";\n";
+            echo "</script>\n";
+            //if($modelCount > 0)
+            //{
                 //echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\">Models (".$modelCount.")";
-                echo "<script type=\"text/javascript\"> setCookie('Models_count','".$modelCount."',365);</script>";
+            //    echo "<script type=\"text/javascript\"> setCookie('Models_count','".$modelCount."',365);</script>";
                 
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 //echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\" disabled>Models (".$modelCount.")";
-                echo "<script type=\"text/javascript\"> setCookie('Models_count','".$modelCount."',365);</script>";
+            //    echo "<script type=\"text/javascript\"> setCookie('Models_count','".$modelCount."',365);</script>";
                 
-            }
+            //}
 
             
                 }
@@ -253,8 +245,10 @@
                 //echo "<script type=\"text/javascript\"> setCookie('Anatomy_count','0',365);</script>";
                 
             //}
-            echo "<script type=\"text/javascript\"> setCookie('Anatomy_count','".$anatomyCount."',365);</script>";
-
+             //echo "<script type=\"text/javascript\"> setCookie('Anatomy_count','".$anatomyCount."',365);</script>";
+            echo "<script type=\"text/javascript\">\n";
+            echo "Anatomy_count=".$anatomyCount.";\n";
+            echo "</script>\n";
 
 
         }
@@ -312,7 +306,12 @@
             }
             
             
-            echo "<script type=\"text/javascript\"> setCookie('Morphology_count','".$morphoCount."',365);</script>";
+            //echo "<script type=\"text/javascript\"> setCookie('Morphology_count','".$morphoCount."',365);</script>";
+            
+            echo "<script type=\"text/javascript\">\n";
+            echo "Morphology_count=".$morphoCount.";\n";
+            echo "</script>\n";
+            
             /*else
             {
                 //echo "<button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\" disabled>Morphology (0)";

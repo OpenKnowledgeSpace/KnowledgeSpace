@@ -1,4 +1,13 @@
 <?php  require_once 'ViewConfig.php'; ?>
+
+<script type="text/javascript">
+    var Physiology_count = 0;//getCookie('Physiology_count');
+    var Expression_count = 0;//getCookie('Expression_count');
+    var Models_count = 0;//getCookie('Models_count');
+    var Anatomy_count = 0;//getCookie('Anatomy_count');
+    var Morphology_count = 0;//getCookie('Morphology_count');
+</script>
+
 <?php
 //echo "-------testing------";
 echo "\n<script type=\"text/javascript\">";
@@ -140,7 +149,7 @@ echo "\n</script>";
     
                 </div>
                 <?php   
-                    include "DataSpacePopup.php";
+                    include "DataSpacePopup_1.php";
                 ?>   
   
                 </div>
@@ -150,7 +159,7 @@ echo "\n</script>";
             </div>
             <div id="innerRelation"  class="col-md-12">
             <?php   
-              include "innerLexicon_1.php";
+              include "innerRelations.php";
             ?>       
             </div>
             <script type="text/javascript">loadButtons();</script> 

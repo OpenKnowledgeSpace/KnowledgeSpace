@@ -1,9 +1,23 @@
 <?php
 
-
+ /**
+   * This class provides all utility functions to query the services.
+   * 
+   * 
+   * @package    NeuroKS
+   * @subpackage Controller
+   * @author     Willy Wong <wwong@ncmir.ucsd.edu>
+   */
 class ServiceUtil 
 {
 
+    /**
+       * 
+       * Get JSON object using an URL.
+       *
+       * @param string $surl  URL to query the service
+       * @return JSON object
+       */
     public function getJsonObj($surl)
     {
         //echo "<br/>".$surl;

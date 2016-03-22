@@ -41,13 +41,15 @@
 ?>
             
 <?php
+
+
         if(!$hasFirstImage && sizeof($cilImages) > 1)
         {
-            if($originalCILImages != NULL && count($originalCILImages)>0)
+            if( $originalCILImages != NULL && count($originalCILImages)>0)
             {
             echo "<div class=\"col-md-3\">";
-            
-                echo $cilImages[count($originalCILImages)-1];	   
+            //echo "--------here CIL";
+            echo $cilImages[count($originalCILImages)-1];	   
            
             echo "</div>";
             $hasFirstImage = true;
@@ -65,7 +67,7 @@
 
 <?php
 
-		if(sizeof($neuroMorphoImages) > 0)
+		if( $neuroMorphoImages != null && sizeof($neuroMorphoImages) > 0)
 		{
                     for($i=0;$i<sizeof($neuroMorphoImages);$i++)
                     {
@@ -81,6 +83,25 @@
 
 ?>		
 
+<?php
+
+		if($imageCount < 3 && sizeof($cilImages) > 0)
+		{
+                    for($i=0;$i<sizeof($cilImages);$i++)
+                    {
+                        echo "<div class=\"col-md-3\">";
+			echo $cilImages[$i];
+                        echo "</div> ";
+                        
+                        $imageCount++;
+                        if($imageCount >= 3)
+                            break;
+                    }
+		}
+
+?>            
+            
+            
 
             <div class="col-md-3" >
 <?php

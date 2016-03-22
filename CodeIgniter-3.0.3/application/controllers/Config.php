@@ -13,8 +13,7 @@
  */
 class Config {
     
-    public static $localContextName = "NeuroKS";
-    
+    public static $localContextName = "NeuroKS"; 
     public static $literatureHost = "starburst.crbs.ucsd.edu";
     public static $sciGraphHost = "matrix.neuinfo.org";
     public static $gitHubRawHost = "raw.githubusercontent.com";
