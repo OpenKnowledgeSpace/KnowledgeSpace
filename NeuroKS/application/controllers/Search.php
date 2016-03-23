@@ -4,13 +4,11 @@
 
         public function term($keywords)
         {
-            //echo "-----".$keywords;
             $this->doSearch($keywords);
         }
-        public function loadCategoriesConfig(&$data)
+        /*public function loadCategoriesConfig(&$data)
         {
-            // Open the file
-            //echo "--------------loadCategoriesConfig-----------";
+            
             $sources= array();
             $selected = array();
             $array = explode("\n", file_get_contents(getcwd()."/application/controllers/categories.txt"));
@@ -23,27 +21,21 @@
 
             }
             
-            //if(!array_key_exists('ks_selected_categories',$_COOKIE))
             if(!isset($_COOKIE['ks_selected_categories']))
             {
-                //echo "Setting cookies--------ks_selected_categories";
                 $line = implode(',',$selected);
-                //echo "-----line:".$line;
+                
                 $data["ks_selected_categories"] = $line;
-                //setcookie("ks_selected_categories", $line,time()+2592000);
-                //setcookie("ks_selected_categories",$line);
-                //echo "\nks_selected_categories:".$_COOKIE["ks_selected_categories"];
                 
             }
 
             
             return $sources;
-        }
-        public function loadSourcesConfig(&$data)
+        }*/
+        /*public function loadSourcesConfig(&$data)
         {
-            //echo "--------------loadSourcesConfig-----------";
-            // Open the file
-            $sourceIDs = "";array();
+
+            $sourceIDs = "";
             $sources= array();
             $array = explode("\n", file_get_contents(getcwd()."/application/controllers/sources.txt"));
             foreach ($array as $line) {
@@ -57,42 +49,40 @@
                     else
                       $sourceIDs = $sourceIDs.",".$items[1];
                 }
-                     //array_push($sourceIDs,$items[1]);
+                     
             }
-            //if(!array_key_exists('ks_selected_sources',$_COOKIE))
+            
             if(!isset($_COOKIE['ks_selected_sources']))
             {
-                //echo "Setting cookies--------ks_selected_sources";
-                //setcookie('ks_selected_sources', $sourceIDs, time()+3600);
                 $data["ks_selected_sources"] = $sourceIDs;
             }
-            //if(!array_key_exists('ks_selected_sources',$_COOKIE))
-            //{ 
-                    //$json = json_encode($sourceIDs);
-                    //setcookie('ks_selected_sources', $json, time()+3600);
-            //}
+            
 
             return $sources;
-        }
+        } */
         private function doSearch($keywords)
         {
              require_once('ServiceUtil.php');
+             require_once 'Config.php';
+                $myConfig = new Config();
+                $myConfig->loadJsonConfig($data);
+                
                 $util = new ServiceUtil;
                 $keywords = str_replace(" ", "%20", $keywords);
-                //Loading sources configurations
-               $sources = $this->loadSourcesConfig($data);
+               
+               /*$sources = $this->loadSourcesConfig($data);
                if($sources != null)
                {
                    $data['ks_sources'] = $sources;
                    
-               }
+               }*/
                
                //Loading categories configurations
-               $categories = $this->loadCategoriesConfig($data);
+               /*$categories = $this->loadCategoriesConfig($data);
                if($categories != null)
                {
                    $data['categories'] = $categories;
-               }
+               }*/
                 $termResult = $util->getTerm($keywords);
                 $searchResult = $util->searchTerm($keywords);
                 

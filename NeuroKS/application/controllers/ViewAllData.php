@@ -2,16 +2,16 @@
 
 class ViewAllData extends CI_Controller 
 {
-    private function startsWith($haystack, $needle) {
+    /*private function startsWith($haystack, $needle) {
     // search backwards starting from haystack length characters from the end
     return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
     }
     private function endsWith($haystack, $needle) {
     // search forward starting from end minus needle length characters
     return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== FALSE);
-    }
+    }*/
     
-        public function handleData(&$data,$searchTerm, $sourceID,$count, $offset)
+       /* public function handleData(&$data,$searchTerm, $sourceID,$count, $offset)
         {
             require_once('ServiceUtil.php');
             $util = new ServiceUtil;
@@ -19,7 +19,7 @@ class ViewAllData extends CI_Controller
             $json = $util->searchWithinSource($searchTerm,$sourceID,$count,$offset);
             
             return $json;
-        }
+        }*/
         
         public function getDescription($sourceID)
         {
@@ -57,6 +57,9 @@ class ViewAllData extends CI_Controller
         
         public function fixSearchName($term)
         {
+            require_once('ServiceUtil.php');
+            $util = new ServiceUtil;
+            
                 $newName =$term;
                 $searchName = $term;
                 if(strcasecmp($searchName,"cell")==0)
@@ -67,12 +70,12 @@ class ViewAllData extends CI_Controller
                 {
                     $newName=$searchName;
                 }
-                else if($this->endsWith($searchName, "%20cell"))
+                else if($util->endsWith($searchName, "%20cell"))
                 {
                     $tempName = substr($searchName, 0, strlen($searchName)-strlen("%20cell"));
                     $newName = $tempName;
                 }
-                else if($this->endsWith($searchName, "%20neuron"))
+                else if($util->endsWith($searchName, "%20neuron"))
                 {
                     $tempName = substr($searchName, 0, strlen($searchName)-strlen("%20neuron"));
                     $newName = $tempName;
@@ -85,34 +88,35 @@ class ViewAllData extends CI_Controller
 	{
             
             require_once('ServiceUtil.php');
-            
-            //echo "---------source ID:".$sourceID;
+            require_once 'Config.php';
+            $myConfig = new Config();
+            $myConfig->loadJsonConfig($data);
             
             
             $page = $term;
             $data["pageName"] = $page;
             
             $util = new ServiceUtil;
-            //$util->loadSourcesConfig($data);
-            //echo $data["ks_selected_sources"];   
-            $ks_selected_sources = $_COOKIE['ks_selected_sources'];
-            //echo $ks_selected_sources;
+            
+            /*$ks_selected_sources = $_COOKIE['ks_selected_sources'];
+            
             $selectedSourcesArray =null;
             if($ks_selected_sources!= null)
             {
                 $selectedSourcesArray = explode(",", $ks_selected_sources);
                 $data['ks_selected_sources'] = $selectedSourcesArray;
-                //var_dump($selectedSourcesArray);
+                
             }
             $ks_sources = $util->loadSourcesConfig($data);
             $sourceNameArray = $this->handleSourceNames($ks_sources);
-            $data['sourceNameArray'] = $sourceNameArray;
-            //var_dump($sources);
+            $data['sourceNameArray'] = $sourceNameArray;*/
+            
             //if($sources != null)
             //{
             //       $data['ks_sources'] = $sources;
             //       
             //}
+            $selectedSourcesArray=$data['ks_sources'];
             $result = array();
             $description = array();
             if($selectedSourcesArray != null)
@@ -132,11 +136,18 @@ class ViewAllData extends CI_Controller
                         
                         
                         //$result[$source] =$this->handleData($data,$page,$source,20,$offset);
-                        $result[$source] =$this->handleData($data,$newName,$source,20,$offset);
-                    
+                        //$result[$source] =$this->handleData($data,$newName,$source,20,$offset);
+                         $result[$source] =$util->searchWithinSource($newName,$source,20,$offset);
                     }else
-                        $result[$source] =$this->handleData($data,$newName,$source,20,0);
+                    {
+                        //$result[$source] =$this->handleData($data,$newName,$source,20,0);
+                        $result[$source] =$util->searchWithinSource($newName,$source,20,0);
                     
+                        //var_dump($source);
+                        //var_dump($data);
+                        //echo "-----".$newName;
+                        //echo "-----".$source;
+                    }
                     $description[$source] = $this->getDescription($source);       
                 }
             }

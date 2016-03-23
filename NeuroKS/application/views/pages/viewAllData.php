@@ -13,7 +13,8 @@
     //echo "-------result size:".count($result);
     //echo "--------description size:".count($description); 
     $count = 0;
-    foreach($ks_selected_sources as $source)
+    //foreach($ks_selected_sources as $source)
+    foreach($ks_sources as $source)
     {
         if($result[$source]->result->resultCount == 0)
             continue;
@@ -86,7 +87,8 @@
 
     $selectedIndex = 0;
     $count = 0;
-     foreach ($ks_selected_sources as $source) 
+     //foreach ($ks_selected_sources as $source) 
+    foreach($ks_sources as $source)
     {
           if($result[$source]->result->resultCount == 0)
                 continue;

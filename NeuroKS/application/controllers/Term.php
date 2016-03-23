@@ -7,6 +7,8 @@ class Term extends CI_Controller
     {
         require_once  'ServiceUtil.php';  
         require_once 'Config.php';
+        $myConfig = new Config();
+        $myConfig->loadJsonConfig($data);
         
         $pageName = $page;
         

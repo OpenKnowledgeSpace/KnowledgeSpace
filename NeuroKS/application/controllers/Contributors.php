@@ -8,7 +8,7 @@ class Contributors  extends CI_Controller
         $data['enable_config'] = true;
         $this->load->view('templates/header2', $data);
         $this->load->view('pages/displayContributors', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('templates/footer2', $data);
    }
 }
 

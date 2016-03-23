@@ -75,6 +75,49 @@
     var treeTabID=1;
     var expandTree = false;
     
+    function updateLitTab(lid)
+    {
+        //alert(lid);
+        if(lid == 1)
+        {
+            document.getElementById("lit3").className = "active";
+            document.getElementById("lit4").className = "";
+            
+            document.getElementById("litContent3").className = "tab-pane fade in active";
+            document.getElementById("litContent4").className = "tab-pane";
+        }
+        else if(lid == 2)
+        {
+            document.getElementById("lit4").className = "active";
+            document.getElementById("lit3").className = "";
+            
+            document.getElementById("litContent4").className = "tab-pane fade in active";
+            document.getElementById("litContent3").className = "tab-pane";
+        }
+        else if(lid == 3)
+        {
+            
+            document.getElementById("litTab1").className = "active";
+            document.getElementById("litTab2").className = "";
+            
+            
+            document.getElementById("litContent1").className = "tab-pane fade in active";
+            document.getElementById("litContent2").className = "tab-pane";
+            
+            //alert(document.getElementById("litTab1").className);
+            //alert(document.getElementById("litContent1").className);
+        }
+        else if(lid == 4)
+        {
+            document.getElementById("litTab2").className = "active";
+            document.getElementById("litTab1").className = "";
+            
+            document.getElementById("litContent2").className = "tab-pane fade in active";
+            document.getElementById("litContent1").className = "tab-pane";
+        }
+            
+        
+    }
     
     function updateTreeTabID(tid)
     {
@@ -290,6 +333,7 @@ function loadTree(theUrl)
         var treeURL = "/NeuroKS/index.php/Has_proper_part/view/"+treeIds[0]+"/false/"+treeIds[1]; 
         loadTree(treeURL);*/
         var treeURL = "/NeuroKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
+        //alert(treeURL);
         loadTree(treeURL);
             });
         
@@ -326,6 +370,7 @@ function loadTree(theUrl)
        
        
        var treeURL = "/NeuroKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
+        //alert(treeURL);
         loadTree(treeURL);
         
         /* var children = $(this).parent('li.parent_li').find(' > ul > li');

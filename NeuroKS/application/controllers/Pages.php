@@ -1,7 +1,14 @@
 <?php
 
 
-
+ /**
+   * This class is controller for displaying the term pages.
+   * 
+   * 
+   * @package    NeuroKS
+   * @subpackage Controller
+   * @author     Willy Wong <wwong@ncmir.ucsd.edu>
+   */
 class Pages extends CI_Controller 
 {
         //public $enableCaching = false;
@@ -11,6 +18,8 @@ class Pages extends CI_Controller
         {
             
             //require_once  'Globals.php';
+            require_once 'ServiceUtil.php';
+            $util = new ServiceUtil;
 
             $newName =$searchName;
             if(strcasecmp($searchName,"cell")==0)
@@ -21,12 +30,12 @@ class Pages extends CI_Controller
             {
                 $newName=$searchName;
             }
-            else if(endsWith($searchName, "%20cell"))
+            else if($util->endsWith($searchName, "%20cell"))
             {
                 $tempName = substr($searchName, 0, strlen($searchName)-strlen("%20cell"));
                 $newName = $tempName;
             }
-            else if(endsWith($searchName, "%20neuron"))
+            else if($util->endsWith($searchName, "%20neuron"))
             {
                 $tempName = substr($searchName, 0, strlen($searchName)-strlen("%20neuron"));
                 $newName = $tempName;
@@ -41,7 +50,7 @@ class Pages extends CI_Controller
             $category_count_array = array();
             foreach($sources as $source)
             {
-                $source_search_result[$source->curie] = searchWithinSource($newName, $source->curie, 20);
+                $source_search_result[$source->curie] = $util->searchWithinSource($newName, $source->curie, 20,0);
             }
             
             foreach($categories as $category)
@@ -67,7 +76,7 @@ class Pages extends CI_Controller
             {
                if($source->has_images)
                {
-                $tempImages =  getImageArray($source_search_result[$source->curie], 20);
+                $tempImages =  $util->getImageArray($source_search_result[$source->curie], 20);
                
                if(strcmp($source->curie, "nif-0000-37639-1")==0)//Look for CIL images
                {
@@ -117,23 +126,25 @@ class Pages extends CI_Controller
             require_once 'Config.php'; 
            //include 'Globals.php';
            //include 'JsonClientUtil.php';
+            require_once 'ServiceUtil.php';
+            $util = new ServiceUtil;
             
            //$curie = "NIFCELL:sao2128417084";
            $data['curie'] = $curie;
            
-           $treeObj = getTreeObj($curie);
+           $treeObj = $util->getTreeObj($curie);
            $data['treeObj'] = $treeObj;
 
-           $parentID = getParentID($treeObj, $curie);
+           $parentID = $util->getParentID($treeObj, $curie);
            $data['parentID'] = $parentID;
            
-           $node = getNode($treeObj,$parentID);
+           $node = $util->getNode($treeObj,$parentID);
            $data['node'] = $node;
            
-           $mainNode = getNode($treeObj,$curie);
+           $mainNode = $util->getNode($treeObj,$curie);
            $data['mainNode'] = $mainNode;
            
-           $list = getChildrenIDs($treeObj, $curie);
+           $list = $util->getChildrenIDs($treeObj, $curie);
            $data['list'] = $list;
            
            $leafHTML = "";
@@ -142,7 +153,7 @@ class Pages extends CI_Controller
             for ($list->rewind(); $list->valid(); $list->next()) {
 
     		$item = $list->current();
-		$leaf = getNode($treeObj, $item);
+		$leaf = $util->getNode($treeObj, $item);
                 
                 
                 $leafLinkName = str_replace(" ", "_", $leaf->lbl);
@@ -157,14 +168,15 @@ class Pages extends CI_Controller
             
             
             
-            require_once('ServiceUtil.php');
-            require_once('PropertyConfig.php');
-            $util = new ServiceUtil;
-            $list2 = $util->getOtherChildrenIDs($treeObj, $curie,PropertyConfig::$has_proper_part);
+            //require_once('ServiceUtil.php');
+            //require_once('PropertyConfig.php');
+            //$util = new ServiceUtil;
+            //$list2 = $util->getOtherChildrenIDs($treeObj, $curie,PropertyConfig::$has_proper_part);
+            $list2 = $util->getOtherChildrenIDs($treeObj, $curie,$data["config_array"]->has_proper_part_property);
             
-            
-            $partOfParentID = $util->getOtherParentID($treeObj, $curie,PropertyConfig::$has_proper_part);
-            $partOfParenttNode = getNode($treeObj,$partOfParentID);
+            //$partOfParentID = $util->getOtherParentID($treeObj, $curie,PropertyConfig::$has_proper_part);
+            $partOfParentID = $util->getOtherParentID($treeObj, $curie,$data["config_array"]->has_proper_part_property);
+            $partOfParenttNode = $util->getNode($treeObj,$partOfParentID);
             $data['node2'] = $partOfParenttNode;
             
             $leafHTML = null;
@@ -172,7 +184,7 @@ class Pages extends CI_Controller
             for ($list2->rewind(); $list2->valid(); $list2->next()) {
 
     		$item = $list2->current();
-		$leaf = getNode($treeObj, $item);
+		$leaf = $util->getNode($treeObj, $item);
                 
                 
                 $leafLinkName = str_replace(" ", "_", $leaf->lbl);
@@ -186,15 +198,13 @@ class Pages extends CI_Controller
             $data['leafHTML2'] = $leafHTML;
             
             
+            //$list3 = $util->getChildrenIDsIncoming($treeObj, $curie,PropertyConfig::$part_of);
+            //$partOfParentID3 = $util->getParentIDIncoming($treeObj, $curie,PropertyConfig::$part_of);
+            $list3 = $util->getChildrenIDsIncoming($treeObj, $curie,$data["config_array"]->part_of_property);
+            $partOfParentID3 = $util->getParentIDIncoming($treeObj, $curie,$data["config_array"]->part_of_property);
             
             
-            
-            
-            
-            
-            $list3 = $util->getChildrenIDsIncoming($treeObj, $curie,PropertyConfig::$part_of);
-            $partOfParentID3 = $util->getParentIDIncoming($treeObj, $curie,PropertyConfig::$part_of);
-            $partOfParenttNode3 = getNode($treeObj,$partOfParentID3);
+            $partOfParenttNode3 = $util->getNode($treeObj,$partOfParentID3);
             $data['node3'] = $partOfParenttNode3;
             
             $leafHTML = null;
@@ -202,7 +212,7 @@ class Pages extends CI_Controller
             for ($list3->rewind(); $list3->valid(); $list3->next()) {
 
     		$item = $list3->current();
-		$leaf = getNode($treeObj, $item);
+		$leaf = $util->getNode($treeObj, $item);
                 
                 
                 $leafLinkName = str_replace(" ", "_", $leaf->lbl);
@@ -220,17 +230,21 @@ class Pages extends CI_Controller
         private function handleLiterature(&$data, $searchName)
         {
             require_once 'ServiceUtil.php';
+            date_default_timezone_set("America/New_York");
+            //echo "Year----".date("Y");
+
+            
             $util = new ServiceUtil();
-            $result = expandTerm($searchName);          
-            $terms = parseExpandedTerm($result,$searchName);
+            $result = $util->expandTerm($searchName);          
+            $terms = $util->parseExpandedTerm($result,$searchName);
             
             
             $latestResult = $util->searchLatestLiterature($terms,0,5,"*","*");
             
-            $litResult = searchLiteratureByYearUsingSolr($terms,0,25000000,"year","*");
+            $litResult = $util->searchLiteratureByYearUsingSolr($terms,0,25000000,"year","*");
             //$data['litResult'] = $litResult;
             
-            $litMap = processLiteratureObj2($litResult);
+            $litMap = $util->processLiteratureObj2($litResult);
             
             $data['latestResult'] = $latestResult;
             $data['litSearchTerms'] = $terms;
@@ -243,12 +257,14 @@ class Pages extends CI_Controller
         private function handleSummary(&$data, $termObj, $searchName)
         {
             require_once 'Parsedown.php';
+            require_once 'ServiceUtil.php';
+            $util = new ServiceUtil();
             $termCount = count($termObj);
             if($termCount > 0)
             {
                 $curie = $termObj[0]->curie;
                 //$data['description']=getDescriptionByCurie($curie);
-                $description=getDescriptionByCurie($curie);
+                $description=$util->getDescriptionByCurie($curie);
                 if(!is_null($description))
                 {
                     $Parsedown = new Parsedown();
@@ -268,7 +284,7 @@ class Pages extends CI_Controller
             }
         }
         
-        public function loadJsonConfig(&$data)
+        /* public function loadJsonConfig(&$data)
         {
             $configJson = file_get_contents(getcwd()."/application/config/config.json");
             $array = json_decode($configJson);
@@ -294,9 +310,9 @@ class Pages extends CI_Controller
             //var_dump($category_to_source);
             $data["category_to_source"] = $category_to_source;
             
-        }
+        }*/
         
-        public function loadSourcesConfig(&$data)
+        /* public function loadSourcesConfig(&$data)
         {
             //echo "--------------loadSourcesConfig-----------";
             // Open the file
@@ -331,11 +347,10 @@ class Pages extends CI_Controller
 
             return $sources;
         }
-        
-        public function loadCategoriesConfig(&$data)
+        */
+        /* public function loadCategoriesConfig(&$data)
         {
-            // Open the file
-            //echo "--------------loadCategoriesConfig-----------";
+            
             $sources= array();
             $selected = array();
             $array = explode("\n", file_get_contents(getcwd()."/application/controllers/categories.txt"));
@@ -348,12 +363,12 @@ class Pages extends CI_Controller
 
             }
             
-            //if(!array_key_exists('ks_selected_categories',$_COOKIE))
+            
             if(!isset($_COOKIE['ks_selected_categories']))
             {
-                //echo "Setting cookies--------ks_selected_categories";
+                
                 $line = implode(',',$selected);
-                //echo "-----line:".$line;
+                
                 $data["ks_selected_categories"] = $line;
                 //setcookie("ks_selected_categories", $line,time()+2592000);
                 //setcookie("ks_selected_categories",$line);
@@ -363,7 +378,7 @@ class Pages extends CI_Controller
 
             
             return $sources;
-        }
+        } */
         
         
 	public function view($page = 'home')
@@ -371,13 +386,18 @@ class Pages extends CI_Controller
                //require  'Globals.php';
             //$enableCaching = false;
                //require_once 'CacheConfig.php';
-               require_once  'JsonClientUtil.php';  
-               require_once 'Config.php';
+               //require_once  'JsonClientUtil.php';  
+               //require_once 'Config.php';
+               
                 $this->load->helper('url');
                 
+                require_once 'ServiceUtil.php';
+                $util = new ServiceUtil();
                 
-                
-                $this->loadJsonConfig($data);
+                require_once 'Config.php';
+                $myConfig = new Config();
+                 $myConfig->loadJsonConfig($data);
+                //$this->loadJsonConfig($data);
                 //init();
         	/*if ( ! file_exists(APPPATH.'/views/pages/'.$page.'.php'))
         	{
@@ -401,26 +421,26 @@ class Pages extends CI_Controller
                $originalPageName="";
                
                //Loading sources configurations
-               $sources = $this->loadSourcesConfig($data);
+               /*$sources = $this->loadSourcesConfig($data);
                if($sources != null)
                {
                    $data['ks_sources'] = $sources;
                    
-               }
+               }*/
                
                //Loading categories configurations
-               $categories = $this->loadCategoriesConfig($data);
+               /*$categories = $this->loadCategoriesConfig($data);
                if($categories != null)
                {
                    $data['categories'] = $categories;
-               }
+               }*/
                
                
                
                
                if( $pos != false)
                {
-                    $termObj[0] = getObjByCurie($pageName);
+                    $termObj[0] = $util->getObjByCurie($pageName);
                     #echo "\n-------Willy----!is_null(termObj):".!is_null($termObj)."\n";
                     if(!is_null($termObj) && !is_null($termObj[0]))
                     {
@@ -453,7 +473,7 @@ class Pages extends CI_Controller
                {
                    $data['pageName'] = $pageName;     
                    //echo "-----pageName:".$pageName;
-                   $termObj = getTerm($pageName);
+                   $termObj = $util->getTerm($pageName);
                    //var_dump($termObj);
                    
                    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";

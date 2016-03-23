@@ -10,7 +10,12 @@ class Tree_with_tabs extends CI_Controller
             $data['tabID'] = $tabID;
             $this->handleLexicon($data, $curie,$tempParentID);
             if(strcmp($enableHeader, "true")==0)
-                $this->load->view('templates/header', $data);
+            {
+                require_once 'Config.php';
+                $myConfig = new Config();
+                 $myConfig->loadJsonConfig($data);
+                $this->load->view('templates/header2', $data);
+            }
             $this->load->view('pages/DisplayTree_with_tabs', $data);
         }
         
@@ -59,13 +64,19 @@ class Tree_with_tabs extends CI_Controller
             
             
             require_once('ServiceUtil.php');
-            require_once('PropertyConfig.php');
-            require_once('Config.php');
+            //require_once('PropertyConfig.php');
+            require_once 'Config.php';
+                $myConfig = new Config();
+                 $myConfig->loadJsonConfig($data);
             $util = new ServiceUtil;
-            $list2 = $util->getOtherChildrenIDs($treeObj, $curie,PropertyConfig::$has_proper_part);
+            //$list2 = $util->getOtherChildrenIDs($treeObj, $curie,PropertyConfig::$has_proper_part);
+            $list2 = $util->getOtherChildrenIDs($treeObj, $curie,
+                    $data["config_array"]->has_proper_part_property);
             
-            
-            $partOfParentID = $util->getOtherParentID($treeObj, $curie,PropertyConfig::$has_proper_part);
+            //$partOfParentID = $util->getOtherParentID($treeObj, $curie,PropertyConfig::$has_proper_part);
+            $partOfParentID = $util->getOtherParentID($treeObj, $curie,
+                    $data["config_array"]->has_proper_part_property);
+
             $partOfParenttNode = $util->getNode($treeObj,$partOfParentID);
             $data['node2'] = $partOfParenttNode;
             
@@ -94,10 +105,15 @@ class Tree_with_tabs extends CI_Controller
             
             
             
-            $list3 = $util->getChildrenIDsIncoming($treeObj, $curie,PropertyConfig::$part_of);
+            //$list3 = $util->getChildrenIDsIncoming($treeObj, $curie,PropertyConfig::$part_of);
+            $list3 = $util->getChildrenIDsIncoming($treeObj, $curie,
+                    $data["config_array"]->part_of_property);
             
+            //$partOfParentID3 = $util->getParentIDIncoming($treeObj, $curie,PropertyConfig::$part_of);
+            $partOfParentID3 = $util->getParentIDIncoming($treeObj, $curie,
+                    $data["config_array"]->part_of_property);
+
             
-            $partOfParentID3 = $util->getParentIDIncoming($treeObj, $curie,PropertyConfig::$part_of);
             $partOfParenttNode3 = $util->getNode($treeObj,$partOfParentID3);
             $data['node3'] = $partOfParenttNode3;
             

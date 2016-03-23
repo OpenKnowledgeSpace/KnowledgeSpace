@@ -9,14 +9,17 @@ $(document).ready(function ()
         var $this = $(this);
 
             
-            
+            /*document.getElementById("summaryOutter0").className="collapse";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("literature-outter").className = "panel panel-default";*/
             document.getElementById("summaryOutter0").className="collapse";
             document.getElementById("summaryOutter1").className="collapse";
             document.getElementById("summaryOutter2").className="collapse";
-            document.getElementById("dataspaceOutter").className="col-md-12";
-            document.getElementById("summaryOutter").className = "col-md-12";
-            document.getElementById("innerLiterature").className = "col-md-12";
-            document.getElementById("innerRelation").className="col-md-12";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("innerLiterature").className = "col-md-6";
+            document.getElementById("innerRelation").className="col-md-6";
         
         
         
@@ -37,17 +40,17 @@ $(document).ready(function ()
             /*document.getElementById("summaryOutter0").className="collapse";
             document.getElementById("summaryOutter1").className="collapse";
             document.getElementById("summaryOutter2").className="collapse";
-            document.getElementById("dataspaceOutter").className="col-md-12";
-            document.getElementById("summaryOutter").className = "col-md-12";
-            document.getElementById("innerLiterature").className = "col-md-12";*/
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("innerLiterature").className = "col-md-6";*/
             
             document.getElementById("summaryOutter0").className="collapse";
             document.getElementById("summaryOutter1").className="collapse";
             document.getElementById("summaryOutter2").className="collapse";
-            document.getElementById("dataspaceOutter").className="col-md-12";
-            document.getElementById("summaryOutter").className = "col-md-12";
-            document.getElementById("innerLiterature").className = "col-md-12";
-            document.getElementById("innerRelation").className="col-md-12";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("innerLiterature").className = "col-md-6";
+            document.getElementById("innerRelation").className="col-md-6";
 
             document.getElementById("dataspace_panel0").innerHTML ="";
             loadButtons();
@@ -62,13 +65,13 @@ $(document).ready(function ()
         
         var $this = $(this);
 
-            document.getElementById("innerRelation").className="col-md-12";
+            document.getElementById("innerRelation").className="col-md-6";
             document.getElementById("summaryOutter0").className="collapse";
             document.getElementById("summaryOutter1").className="collapse";
             document.getElementById("summaryOutter2").className="collapse";
-            document.getElementById("dataspaceOutter").className="col-md-12";
-            document.getElementById("summaryOutter").className = "col-md-12";
-            document.getElementById("innerLiterature").className = "col-md-12";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("innerLiterature").className = "col-md-6";
             //document.getElementById("literature-outter").className = "panel panel-default";
             document.getElementById("dataspace_panel0").innerHTML ="";
             loadButtons();
@@ -79,7 +82,6 @@ $(document).ready(function ()
             $('.tree li.parent_li > span').on('click', function (e) { 
                 var treeIds = e.target.id.split(',');
                 var treeURL = "/NeuroKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
-                //alert(treeURL);
                 loadTree(treeURL);
     
             });
@@ -134,21 +136,21 @@ $(document).ready(function ()
             document.getElementById("summaryOutter0").className="collapse";
             document.getElementById("summaryOutter1").className="col-md-12";
             document.getElementById("summaryOutter2").className="collapse";
-            document.getElementById("dataspaceOutter").className="col-md-12";
-            document.getElementById("summaryOutter").className = "col-md-12";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "col-md-6";
             document.getElementById("innerLiterature").className = "collapse";
-            document.getElementById("innerRelation").className="col-md-12";
+            document.getElementById("innerRelation").className="col-md-6";
         
         //document.getElementById("literature-outter").className = "collapse";
         /*document.getElementById("innerLiterature").className = "collapse";
         document.getElementById("summaryOutter0").className = "collapse";
         document.getElementById("summaryOutter1").className = "col-md-12";
-        document.getElementById("dataspaceOutter").className = "col-md-12";*/
+        document.getElementById("dataspaceOutter").className = "col-md-6";*/
         
        //var title = getCookie('title');
         //alert(title);
-        document.getElementById("panel_title2").innerHTML= "Literature";
-        //document.getElementById("dataspace_panel0").innerHTML = document.getElementById("literature-panel").innerHTML;
+        document.getElementById("panel_title2").innerHTML= "<h3>Literature - "+title+"</h3>";
+        document.getElementById("dataspace_panel0").innerHTML = document.getElementById("literature-panel").innerHTML;
                 //" <div id=\"container2\" style=\"min-width: 40%; height: 400px; margin: 0 auto\"></div> ";
          
         //alert(document.getElementById("literature-panel").innerHTML);
@@ -174,19 +176,24 @@ $(document).ready(function ()
         
         var $this = $(this);
         
-
+        //
+        /*document.getElementById("summaryOutter0").className = "collapse";
+        document.getElementById("summaryOutter1").className = "collapse";
+        document.getElementById("summaryOutter2").className =  "col-md-12";
+        document.getElementById("innerRelation").className ="collapse";
+        document.getElementById("dataspaceOutter").className = "col-md-6";*/
             document.getElementById("summaryOutter0").className="collapse";
             document.getElementById("summaryOutter1").className="collapse";
             document.getElementById("summaryOutter2").className="col-md-12";
-            document.getElementById("dataspaceOutter").className="col-md-12";
-            document.getElementById("summaryOutter").className = "col-md-12";
-            document.getElementById("innerLiterature").className = "col-md-12";
+            document.getElementById("dataspaceOutter").className="col-md-6";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("innerLiterature").className = "col-md-6";
             document.getElementById("innerRelation").className="collapse";
         
         
         
         //var title = getCookie('title');
-        document.getElementById("panel_title3").innerHTML= "Relations";
+        document.getElementById("panel_title3").innerHTML= "<h3>Relations - "+title+"</h3>";
         document.getElementById("relation-panel").innerHTML = document.getElementById("relation-panel-1").innerHTML;
         document.getElementById("relation-panel-1").innerHTML="";
 
@@ -203,7 +210,6 @@ $(document).ready(function ()
             $('.tree li.parent_li > span').on('click', function (e) { 
                 var treeIds = e.target.id.split(',');
                 var treeURL = "/NeuroKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
-                //alert(treeURL);
                 loadTree(treeURL);
     
             });
@@ -286,14 +292,14 @@ $(document).ready(function ()
         
         /*document.getElementById("summaryOutter").className = "collapse";
         document.getElementById("summaryOutter0").className = "col-md-12";      
-        document.getElementById("dataspaceOutter").className = "col-md-12";*/
+        document.getElementById("dataspaceOutter").className = "col-md-6";*/
             document.getElementById("summaryOutter0").className="col-md-12";
             document.getElementById("summaryOutter1").className="collapse";
             document.getElementById("summaryOutter2").className="collapse";
-            document.getElementById("dataspaceOutter").className="col-md-12";
+            document.getElementById("dataspaceOutter").className="col-md-6";
             document.getElementById("summaryOutter").className = "collapse";
-            document.getElementById("innerLiterature").className = "col-md-12";
-            document.getElementById("innerRelation").className="col-md-12";
+            document.getElementById("innerLiterature").className = "col-md-6";
+            document.getElementById("innerRelation").className="col-md-6";
         
         
         
@@ -302,7 +308,7 @@ $(document).ready(function ()
         //var title = getCookie(window.location.href+'-title');
         
         
-        document.getElementById("panel_title").innerHTML= " Summary";
+        document.getElementById("panel_title").innerHTML= "<h3>"+title+"</h3>";
         document.getElementById("dataspace_panel0").innerHTML = 
                 document.getElementById("summary-panel").innerHTML;
         
@@ -331,7 +337,6 @@ $(document).ready(function ()
     
         if ($this.children('i').hasClass('glyphicon-resize-full'))
         {
-            $('html,body').scrollTop(0);
             //$this.children('i').removeClass('glyphicon-resize-full');
             //$this.children('i').addClass('glyphicon-resize-small');
             
@@ -343,9 +348,9 @@ $(document).ready(function ()
             document.getElementById("summaryOutter1").className="collapse";
             document.getElementById("summaryOutter2").className="collapse";
             document.getElementById("dataspaceOutter").className="collapse";
-            document.getElementById("summaryOutter").className = "col-md-12";
-            document.getElementById("innerLiterature").className = "col-md-12";
-            document.getElementById("innerRelation").className="col-md-12";
+            document.getElementById("summaryOutter").className = "col-md-6";
+            document.getElementById("innerLiterature").className = "col-md-6";
+            document.getElementById("innerRelation").className="col-md-6";
              
              
 
@@ -357,7 +362,7 @@ $(document).ready(function ()
 
             //document.getElementById("dataspace_panel0").setAttribute("style", "min-height: 400%; max-height: 400%;overflow-y: scroll");
             // var title = getCookie('title');
-            document.getElementById("panel_title").innerHTML="Data space";
+            document.getElementById("panel_title").innerHTML="Data space - "+title;
             //var curie = getCookie('curie');
             //var pageName = getCookie('pageName');
             
@@ -475,11 +480,14 @@ function loadButtons()
     var sourceArray = ks_selected_sources.split(',');
     
     
-    
-    var html = "";
+    var html ="<div class=\"row\">";
     var count = 0;
     
-    
+    var Physiology_count = getCookie('Physiology_count');
+    var Expression_count = getCookie('Expression_count');
+    var Models_count = getCookie('Models_count');
+    var Anatomy_count = getCookie('Anatomy_count');
+    var Morphology_count = getCookie('Morphology_count');
     
     if((array.indexOf("Physiology") > -1))
     {
@@ -487,9 +495,9 @@ function loadButtons()
      {
      count++;
      if(Physiology_count != null && Physiology_count > 0)
-        html =  html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Physiology_Modal\">Physiology ("+Physiology_count+")</button> </center></div><br/>";   
+        html =  html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\">Physiology ("+Physiology_count+")</button> </div>";   
      else 
-        html =  html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Physiology_Modal\" disabled>Physiology ("+Physiology_count+")</button> </center></div><br/>";   
+        html =  html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\" disabled>Physiology ("+Physiology_count+")</button> </div>";   
 
       }
     }    
@@ -500,9 +508,9 @@ function loadButtons()
         {
             count++;
             if(Expression_count != null && Expression_count > 0)
-                html = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Expression_Modal\">Expression ("+Expression_count+")</button></center></div><br/>";    
+                html = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\">Expression ("+Expression_count+")</button></div>";    
             else 
-                html = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Expression_Modal\" disabled>Expression ("+Expression_count+")</button></center></div><br/>";    
+                html = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal2\" disabled>Expression ("+Expression_count+")</button></div>";    
         }
     }
     if((array.indexOf("Models") > -1))     
@@ -515,25 +523,25 @@ function loadButtons()
         {
         count++;
         if(Models_count != null && Models_count > 0)
-            html  = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Models_Modal\">Models ("+Models_count+")</button></center></div><br/>";
+            html  = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\">Models ("+Models_count+")</button></div> ";
         else 
-            html  = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Models_Modal\" disabled>Models ("+Models_count+")</button></center></div><br/>";
+            html  = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal5\" disabled>Models ("+Models_count+")</button></div> ";
         }
     }
     if((array.indexOf("Anatomy") > -1))     
     {
        if(sourceArray.indexOf("nif-0000-00054-1") > -1)
        {
-            /*if(count == 3)
+            if(count == 3)
             {
                 html = html+"\n</div><br/><div class=\"row\"> ";
 
-            }*/
+            }
             count++;
             if(Anatomy_count != null && Anatomy_count > 0)
-             html  = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Anatomy_Modal\">Anatomy ("+Anatomy_count+")</center></div></div><br/>";
+             html  = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal3\">Anatomy ("+Anatomy_count+")</button></div>";
             else 
-             html  = html+"\n<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Anatomy_Modal\" disabled>Anatomy ("+Anatomy_count+")</button></center></div><br/>";
+             html  = html+"\n<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal3\" disabled>Anatomy ("+Anatomy_count+")</button></div>";
         }
     }
     if((array.indexOf("Morphology") > -1))     
@@ -546,9 +554,9 @@ function loadButtons()
             }
             count++;
             if(Morphology_count != null && Morphology_count > 0)
-             html  = html+"<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Morphology_Modal\">Morphology ("+Morphology_count+")</button></center></div>";
+             html  = html+"<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\">Morphology ("+Morphology_count+")</button></div> ";
             else 
-             html  = html+"<div class=\"row\"><center><button style=\"height:30px;width:150px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#Morphology_Modal\" disabled>Morphology ("+Morphology_count+")</button></center></div>";
+             html  = html+"<div class=\"col-md-4\"><button style=\"height:30px;width:120px\" type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal4\" disabled>Morphology ("+Morphology_count+")</button></div> ";
     
         }
     }

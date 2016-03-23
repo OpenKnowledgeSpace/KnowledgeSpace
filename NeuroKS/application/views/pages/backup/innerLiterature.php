@@ -1,9 +1,19 @@
 <?php  require_once 'ViewConfig.php'; ?>
+<!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+-->
+<!-- <link rel="stylesheet" type="text/css" href="sckb.css">  -->
+ 
 
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+   
+<!--    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+  -->
 
     <script src="/<?php  echo ViewConfig::$localContextName; ?>/application/views/js/highcharts.js"></script>
     <script src="/<?php echo ViewConfig::$localContextName; ?>/application/views/js/exporting.js"></script>  
-
+   
   <script type="text/javascript">
 $(function () {
     $('#container').highcharts({
@@ -60,7 +70,11 @@ $(function () {
                 point: {
                     events: {
                         click: function(e) {
-
+                                //alert(this.x);
+                                //var url = this.options.url;
+                                 //window.open(url);
+                                 //var url = "https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal%20neuron&t=literature&r=20&yf="+e.currentTarget.x;
+                                 //var url = "/SciCrunchKS/index.php/publications/view/<?php //echo $title;  ?>/"+e.currentTarget.x+"/1";
                                  var url = "/<?php echo ViewConfig::$localContextName; ?>/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
         
         
@@ -78,11 +92,17 @@ $(function () {
 
         series: [{
             name: "Publications",
+            // Define the data points. All series have a dummy year
+            // of 1970/71 in order to be compared on the same x axis. Note
+            // that in JavaScript, months start at 0 for January, 1 for February etc.
              data: [
                  
             <?php
    
+           
+        //echo "-------count:".$count;
         $litIndex=0;
+        date_default_timezone_set("America/New_York");
         foreach ($litMap as $key => $val) 
         {
             if($key != date("Y"))
@@ -196,21 +216,17 @@ $(function () {
 
         //echo "-------count:".$count;
         $litIndex=0;
-        
         foreach ($litMap as $key => $val) 
         {
-            if($key != date("Y"))
+            echo "[".$key.",". $val."]";
+            
+            if($litIndex !=  $count-1)
             {
-                echo "[".$key.",". $val."]";
-
-                if($litIndex !=  $count-1)
-                {
-                    echo ", ";
-                }
-                echo "\n";
-
-                $litIndex=$litIndex+1;
+                echo ", ";
             }
+            echo "\n";
+            
+            $litIndex=$litIndex+1;
         }
     ?>     
             ]
@@ -219,8 +235,51 @@ $(function () {
 });
 
 </script>
-<!-- Tab v1 -->
- <div id="literature-outter" class="panel panel-grey">
+
+<!--
+                [1976, 2],
+                [1978, 1],
+                [1979, 1],
+                [1980, 2],
+                [1981, 6],
+                [1982, 2],
+                [1983, 4],
+                [1984, 2],
+                [1985, 2],
+                [1986, 2],
+                [1987, 5],
+                [1988, 8],
+                [1989, 6],
+                [1990, 6],
+                [1991, 6],
+                [1992, 8],
+                [1993, 16],
+                [1994, 13],
+                [1995, 12],
+                [1996, 10],
+                [1997, 17],
+                [1998, 21],
+                [1999, 19],
+                [2000, 22],
+                [2001, 18],
+                [2002, 18],
+                [2003, 23],
+                [2004, 21],
+                [2005, 23],
+                [2006, 22],
+                [2007, 24],
+                [2008, 21],
+                [2009, 32],
+                [2010, 26],
+                [2011, 29],
+                [2012, 32],
+                [2013, 28],
+                [2014, 35],
+                [2015, 30] -->
+ <!-------------------Data space panel------------------------>
+    
+   <!--  <div id="literature-outter" class="panel panel-default"> -->
+   <div id="literature-outter" class="panel panel-grey">
     <div class="panel-heading">
              <!--       Literature
                 <ul class="list-inline panel-actions">
@@ -235,77 +294,13 @@ $(function () {
     <div id="literature-panel" class="panel-body" style="min-height: 65%; max-height: 65%;overflow-y: scroll">
         
         
-<div class="tab-v1">
-    <ul class="nav nav-tabs">
-	<li id="litTab1" class="active"><a href="#litContent1" data-toggle="tab" onclick="updateLitTab(1);">Most recent</a></li>
-	<li id="litTab2"><a href="#litContent2" data-toggle="tab" onclick="updateLitTab(2);">Year graph</a></li>
-							
-    </ul>
-    <div class="tab-content">
-	<!-- <div id="litContent1" class="tab-pane fade in active" id="home-1"> -->
-        <div id="litContent1" class="tab-pane fade in active">    
-        <?php
-        if($latestResult->response->numFound == 0 )
-        {
-            echo "<div class=\"row\">";
-            echo "No publications found!";
-            echo "</div><br/>";
-        }
-        
-        
-        foreach($latestResult->response->docs as $row )
-        {
-            echo "<div class=\"row\">";
-            echo "  <div class=\"col-md-12\">";
-            
-            echo "<u><a  style=\"font-size:16\"  target=\"_blank\" href=\"http://www.ncbi.nlm.nih.gov/pubmed?term=". 
-                    $row->pmid."\">".$row->title."</a></u><br/>";
-            
-            echo "<span style=\"color:green\">";   
-            if(count($row->author) > 0)
-                echo $row->author[0]." - ";
-            echo $row->journal."<br/>";
-            echo "</span>";
-            
-            echo "<span style=\"color:green\">";   
-            echo $row->month."-".$row->day."-".$row->year."<br/>";
-            echo "</span>";
-            //echo $row->abstract."<br/>";
-            echo "<span style=\"color:brown\">";   
-            echo "PMID:".$row->pmid;
-            echo "</span>";
-            echo "  </div>";
-            echo "</div><br/>";
+    <div id="container" style="min-width: 40%; height: 370px; margin: 0 auto"></div> 
+    <br/>
 
-        }
-        if($latestResult->response->numFound > 0 )
-        {
-            echo "<div class=\"row\">";
-            echo "<center><a  style=\"font-size:16\"  target=\"_blank\" href=\"/".ViewConfig::$localContextName."/index.php/LatestPublications/view/".$title."/1\">See more</a></center>";
-            echo "</div><br/>";
-        }
-?>  
-        </div>
+
         
-<?php
-    if($latestResult->response->numFound > 0 )
-    {
-?>
-        
-	<!-- <div id="litContent2" class="tab-pane fade in" id="profile-1"> -->
-	<div id="litContent2" class="tab-pane fade in">							
-           <!-- <div id="container" style="min-width: 40%; height: 340px; margin: 0 auto"></div> -->
-           <div class="row">
-               <!-- <div class="col-md-12"> -->
-                    <div id="container" style="min-width: auto; height: 50%; margin: 0 auto"></div>
-           
-              <!--  </div> -->
-           </div>
-	</div>
-<?php } ?>
-							
     </div>
     </div>
-    <!-- End Tab v1 -->
-    </div>
- </div>
+
+
+

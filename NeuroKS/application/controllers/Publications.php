@@ -24,16 +24,21 @@ class Publications extends CI_Controller
         
         public function view($term, $year,$pageID)
 	{
-                require_once  'JsonClientUtil.php';  
+                #require_once  'JsonClientUtil.php';  
+                require_once  'ServiceUtil.php'; 
+                require_once 'Config.php';
+                $myConfig = new Config();
+                 $myConfig->loadJsonConfig($data);
+                $util = new ServiceUtil();
                 $data['test'] = NULL;
                 
                 $term = str_replace("_", "%20", $term);
                 //$term = str_replace("/", "%2F", $term);
                 
                 $startPoint=($pageID-1)*20;
-                $result = expandTerm($term);
-                $terms = parseExpandedTerm($result,$term);
-                $litResult = searchLiteratureByYearUsingSolr($terms,$startPoint,20,"*",$year);
+                $result = $util->expandTerm($term);
+                $terms = $util->parseExpandedTerm($result,$term);
+                $litResult = $util->searchLiteratureByYearUsingSolr($terms,$startPoint,20,"*",$year);
                 
                 
                 

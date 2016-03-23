@@ -5,7 +5,7 @@
    * 
    * 
    * @package    NeuroKS
-   * @subpackage Controller
+   * @subpackage Utility
    * @author     Willy Wong <wwong@ncmir.ucsd.edu>
    */
 class ServiceUtil 
@@ -76,6 +76,49 @@ class ServiceUtil
             return $sources;
         }
         
+    function getObjByCurie($curie)
+    {
+        $surl = "http://".Config::$sciGraphHost.":9000/scigraph/vocabulary/id/".$curie;
+        //$surl = "http://matrix.neuinfo.org:9000/scigraph/vocabulary/id/".$curie;
+        //echo 'getObjByCurie-------'.$surl."\n";
+        $obj = $this->getJsonObj($surl);
+        //var_dump($obj);
+        return $obj;
+    }    
+    public function startsWith($haystack, $needle) {
+    // search backwards starting from haystack length characters from the end
+        return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
+    }
+    public function endsWith($haystack, $needle) {
+    // search forward starting from end minus needle length characters
+        return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== FALSE);
+    }    
+        
+    function getDescriptionByCurie($curie)
+    {
+        $postfix = str_replace(":","/", $curie);
+        //$prefix = "https://raw.githubusercontent.com/tgbugs/ksdesc/master/";
+        $prefix = "https://".Config::$gitHubRawHost."/tgbugs/ksdesc/master/";
+        $surl = $prefix.$postfix.".md";
+        $file_headers = @get_headers($surl);
+        //echo "CODE:".$file_headers[0]."---------";
+        if($file_headers[0] == 'HTTP/1.1 404 Not Found')
+            return NULL;
+
+        $content = file_get_contents($surl);
+            //echo $content;
+            return $content;
+        //echo $surl;
+        /*if(get_http_response_code($url)!=404 || get_http_response_code($url)!=200 )
+        {
+            $content = file_get_contents($surl);
+            //echo $content;
+            return $content;
+        }
+        else
+            return NULL;*/
+    }
+
     public function searchTerm($name)
     {
         require_once('Config.php');
@@ -176,7 +219,34 @@ class ServiceUtil
         return $myMap;
     
     }
+    function processLiteratureObj2($litObj)
+    {
+        $myMap = array();
+        if(is_null($litObj))  //If empty result is returned
+            return $myMap;
+
+       //var_dump($litObj); 
+        $result = $litObj->response;
+
+
+        foreach($result->docs as $doc)
+        {
+            if(!array_key_exists("".$doc->year, $myMap))
+            {
+                $myMap[''.$doc->year] = 1;
+            }
+            else 
+            {
+                $myMap[''.$doc->year] = $myMap[''.$doc->year]+1;
+            }
+        }
+
+        ksort($myMap);
+        //var_dump($myMap);
+
+        return $myMap;
     
+    }
     public function getTreeObj($curie)
     {
         require_once('Config.php');
@@ -254,19 +324,21 @@ class ServiceUtil
     }
     
     
-    
+    /**
+       * 
+       * Get a node object from a tree object
+       *
+       * @param object $obj  tree object
+       * @param string $id  curie
+       */
     public function getNode($obj, $id)
     {
 	foreach($obj->nodes as $node)
 	{
-
 		if(strcmp($id, $node->id) == 0)
 		{
-		    //$node->sub;
 		    return $node;
 		}
-
-
 	}
 
 	return NULL;
@@ -357,15 +429,57 @@ class ServiceUtil
        
     }
     
-    function searchLatestLiterature($terms, $start, $rows, $fl, $year)
+    public function searchLatestLiterature($terms, $start, $rows, $fl, $year)
     {
-    
+        
         //$surl = "http://".Config::$nifServiceForData."/servicesv1/v1/literature/search?count=30000&q=" . $searchTerm;
         $surl="http://".Config::$literatureHost.":8080/literature/collection1/select?sort=year+desc,month+desc,day+desc&q=%7B!lucene%20q.op=OR%7D".
             $terms."&start=".$start."&fl=".$fl."&rows=".$rows."&wt=json&indent=true&fq=year:".$year;
         //echo $surl;
-        return getJsonObj($surl);
+        return $this->getJsonObj($surl);
     
+    }
+    public function getImageArray($obj, $count)
+    {
+        if(is_null($obj))
+            return array();
+    
+	$size = $obj->result->resultCount;	
+
+	if($size > $count)
+	   $size = $count;
+	$results = $obj->result->results;
+
+	$a = array();
+	$a = array_pad($a,$size,""); 
+
+	$index = 0;
+	foreach($results->row as $myrow)
+	{
+		foreach($myrow->data as $data)
+         	{
+			//echo "-----name:".$data->name."\n";
+			$name = $data->name;
+			if(strcmp($name, "Image")==0)
+			{
+				$val = $data->value;
+			        //echo $val."\n";
+                                $val = str_replace("grackle.crbs.ucsd.edu:8001", "am.celllibrary.org", $val);
+
+				$a[$index] = $val;
+
+				break;
+			}
+		
+
+		}
+
+		$index = $index+1;
+	}
+
+	//var_dump($a);
+	return $a;
+
     }
 
 }

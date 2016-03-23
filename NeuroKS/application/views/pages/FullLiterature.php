@@ -116,13 +116,13 @@ $(function () {
 -->
 <div class="tab-v1">
     <ul class="nav nav-tabs">
-	<li class="active"><a href="#full-most-recent" data-toggle="tab">Most recent</a></li>
-	<li><a href="#full-year-graph" data-toggle="tab">Year graph</a></li>
+	<li id="lit3" class="active"><a href="#litContent3" data-toggle="tab" onclick="updateLitTab(3);">Most recent</a></li>
+	<li id="lit4"><a href="#litContent4" data-toggle="tab" onclick="updateLitTab(4);">Year graph</a></li>
 							
     </ul>
     <div class="tab-content">
-	<div class="tab-pane fade in active" id="full-most-recent">
-            
+	<!-- <div id="litContent3" class="tab-pane fade in active" id="full-most-recent"> -->
+         <div id="litContent3" class="tab-pane fade in active" >   
         <?php
         if($latestResult->response->numFound == 0 )
         {
@@ -171,7 +171,8 @@ $(function () {
     {
 ?>
         
-	<div class="tab-pane fade in" id="full-year-graph">
+	<!-- <div id="litContent4" class="tab-pane fade in" id="full-year-graph"> -->
+        <div id="litContent4" class="tab-pane fade in">
             <div class="row">
                 <div     class="col-md-12" >
            <!-- <div id="container2" style="min-width: 75%; height: 400px; margin: 0 auto"></div> -->

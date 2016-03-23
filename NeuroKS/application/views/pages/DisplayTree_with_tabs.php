@@ -18,6 +18,12 @@
         <div id="relation-panel" class="panel-body" style="min-height: 35%; max-height: 35%;overflow-y: scroll">
 <?php
     }
+    
+    /* echo "-----tabID:".$tabID;
+    if($tabID==2)
+        echo "tabID=2";
+    else
+        echo "tabID!=2"; */
 ?>
             
             <!-----------------In relation panel---->

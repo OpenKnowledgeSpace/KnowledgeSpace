@@ -4,8 +4,13 @@ class Results extends CI_Controller
 {
 	public function view($sourceID, $term,$pageID)
 	{
-                require_once  'JsonClientUtil.php';  
-                require_once 'Config.php'; 
+                //require_once  'JsonClientUtil.php';  
+                //require_once 'Config.php'; 
+                require_once 'ServiceUtil.php';
+                require_once 'Config.php';
+                $util = new ServiceUtil();
+                $myConfig = new Config();
+                $myConfig->loadJsonConfig($data);
                 $data['test'] = NULL;
                
                 $term = str_replace("_", "%20", $term);
@@ -19,12 +24,12 @@ class Results extends CI_Controller
                 {
                     $newName=$searchName;
                 }
-                else if(endsWith($searchName, "%20cell"))
+                else if($util->endsWith($searchName, "%20cell"))
                 {
                     $tempName = substr($searchName, 0, strlen($searchName)-strlen("%20cell"));
                     $newName = $tempName;
                 }
-                else if(endsWith($searchName, "%20neuron"))
+                else if($util->endsWith($searchName, "%20neuron"))
                 {
                     $tempName = substr($searchName, 0, strlen($searchName)-strlen("%20neuron"));
                     $newName = $tempName;
@@ -41,7 +46,7 @@ class Results extends CI_Controller
                     $offset =($pageID-1)*20;
                 }
                 //echo "---------------".$newName;
-                $data['resultObj'] = searchWithinSource2($newName, $sourceID, 20,$offset);
+                $data['resultObj'] = $util->searchWithinSource($newName, $sourceID, 20,$offset);
                // $data['resultObj'] = searchWithinSource2($term, $sourceID, 20,$offset);
                /*if(endsWith($term, "%20cell"))
                {

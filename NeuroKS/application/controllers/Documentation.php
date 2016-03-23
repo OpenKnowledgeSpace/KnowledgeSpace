@@ -10,7 +10,7 @@ class Documentation  extends CI_Controller
         $data['enable_config'] = true;
         $this->load->view('templates/header2', $data);
         $this->load->view('pages/displayDocumentation', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('templates/footer2', $data);
    }
 }
 
