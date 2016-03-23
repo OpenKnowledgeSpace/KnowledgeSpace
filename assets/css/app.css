@@ -81,7 +81,7 @@ h1 i, h2 i, h3 i, h4 i, h5 i, h6 i {
 	margin: 0 0 -2px 0;
 	padding-bottom: 5px;
 	display: inline-block;
-	border-bottom: 2px solid #72c02c;
+	border-bottom: 2px solid #3498db;
 }
 
 .headline-md {
@@ -204,7 +204,7 @@ h1 i, h2 i, h3 i, h4 i, h5 i, h6 i {
 	content: " ";
 	margin-left: -35px;
 	position: absolute;
-	background: #72c02c;
+	background: #3498db;
 }
 
 .title-v1 p {
@@ -336,7 +336,7 @@ h3.title-v3-xs {
 	margin-left: -15px;
 	text-align: center;
 	position: absolute;
-	background: #72c02c;
+	background: #3498db;
 }
 
 .headline-center p {
@@ -440,7 +440,7 @@ h3.title-v3-xs {
 	content: " ";
 	bottom: -5px;
 	position: absolute;
-	background: #72c02c;
+	background: #3498db;
 }
 
 /*Headline v2
@@ -579,7 +579,7 @@ h3.heading-xs {
 	font-weight: 400;
 	padding: 6px 13px;
 	position: relative;
-	background: #72c02c;
+	background: #3498db;
 	white-space: nowrap;
 	display: inline-block;
 	text-decoration: none;
@@ -876,7 +876,7 @@ a.btn-u-xs {
 }
 
 .btn-u.btn-brd {
-	border-color: #72c02c;
+	border-color: #3498db;
 }
 .btn-u.btn-brd:hover {
 	color: #5fb611;
@@ -1085,7 +1085,7 @@ span.badge,
 span.label-u,
 span.badge-u,
 .list-group-item.active>.badge.badge-u {
-	background: #72c02c;
+	background: #3498db;
 }
 
 span.label-blue,
@@ -1380,15 +1380,15 @@ i.icon-4x.icon-line {
 }
 
 .link-icon:hover i {
-	color: #72c02c;
+	color: #3498db;
 	background: none;
-	border: solid 1px #72c02c;
+	border: solid 1px #3498db;
 }
 
 .link-bg-icon:hover i {
-	color: #72c02c;
-	background: #72c02c;
-	border-color: #72c02c;
+	color: #3498db;
+	background: #3498db;
+	border-color: #3498db;
 	color: #fff !important;
 }
 
@@ -1412,8 +1412,8 @@ i.icon-color-light-green {
 }
 
 i.icon-color-u {
-	color: #72c02c;
-	border: solid 1px #72c02c;
+	color: #3498db;
+	border: solid 1px #3498db;
 }
 i.icon-color-blue {
 	color: #3498db;
@@ -1494,7 +1494,7 @@ i.icon-bg-light-green {
 }
 
 i.icon-bg-u {
-	background: #72c02c;
+	background: #3498db;
 }
 i.icon-bg-blue {
 	background: #3498db;
@@ -1573,7 +1573,7 @@ i.icon-bg-light-grey {
 /*Text Dropcap*/
 .dropcap {
 	float: left;
-	color: #72c02c;
+	color: #3498db;
 	padding: 5px 0;
 	font-size: 45px;
 	font-weight: 200;
@@ -1590,7 +1590,7 @@ i.icon-bg-light-grey {
 	font-weight: 200;
 	line-height: 35px;
 	text-align: center;
-	background: #72c02c;
+	background: #3498db;
 	margin: 4px 10px 0 0;
 }
 
@@ -1603,7 +1603,7 @@ i.icon-bg-light-grey {
 }
 
 .text-highlights-green {
-	background: #72c02c;
+	background: #3498db;
 }
 .text-highlights-blue {
 	background: #3498db;
@@ -1645,7 +1645,7 @@ i.icon-bg-light-grey {
 	border-color: #95a5a6;
 }
 .text-border-green {
-	border-color: #72c02c;
+	border-color: #3498db;
 }
 .text-border-blue {
 	border-color: #3498db;
@@ -1718,7 +1718,7 @@ blockquote.hero.text-right:hover {
 
 blockquote:hover,
 blockquote.text-right:hover {
-	border-color: #72c02c;
+	border-color: #3498db;
 	transition: all 0.4s ease-in-out;
 }
 
@@ -1728,7 +1728,7 @@ blockquote.bq-dark:hover {
 }
 
 blockquote.bq-green {
-	border-color: #72c02c;
+	border-color: #3498db;
 }
 
 /*Blockquote Hero Styles*/
@@ -1759,7 +1759,7 @@ blockquote.hero.hero-dark:hover {
 }
 
 blockquote.hero.hero-default {
-	background: #72c02c;
+	background: #3498db;
 }
 
 blockquote.hero.hero-default:hover {
@@ -1797,7 +1797,7 @@ blockquote.hero.hero-default small {
 	font-size: 13px;
 	margin-right: 7px;
 	text-align: center;
-	background: #72c02c;
+	background: #3498db;
 	display: inline-block;
 	border-radius: 50% !important;
 }
@@ -1808,7 +1808,7 @@ blockquote.hero.hero-default small {
 }
 
 .lists-v2 i {
-	color: #72c02c;
+	color: #3498db;
 	font-size: 13px;
 	margin-right: 7px;
 	display: inline-block;
@@ -1846,11 +1846,11 @@ blockquote.hero.hero-default small {
 
 /*Panel Unify*/
 .panel-u {
-	border-color: #72c02c;
+	border-color: #3498db;
 }
 
 .panel-u > .panel-heading {
-	background: #72c02c;
+	background: #3498db;
 }
 
 /*Panel Blue*/
@@ -2019,7 +2019,7 @@ blockquote.hero.hero-default small {
 }
 
 .progress-bar-u {
-	background: #72c02c;
+	background: #3498db;
 }
 
 .progress-bar-blue {
@@ -2099,7 +2099,7 @@ blockquote.hero.hero-default small {
 /*Count Stars
 ------------------------------------*/
 .stars-existing {
-	color: #72c02c;
+	color: #3498db;
 	cursor: pointer;
 }
 
@@ -2351,7 +2351,7 @@ img.image-md {
 .color-dark { color: #555;}
 /*.color-dark1 { color: #444;}*/
 .color-darker { color: #444;}
-.color-green { color: #72c02c;}
+.color-green { color: #3498db;}
 .color-brown { color: #9c8061;}
 .color-light { color: #ffffff;}
 .color-orange { color: #e67e22;}
@@ -2388,7 +2388,7 @@ img.image-md {
 .bg-color-white {
 	color: #555;
 }
-.bg-color-primary { background-color: #72c02c !important;}
+.bg-color-primary { background-color: #3498db !important;}
 .bg-color-dark { background-color: #555 !important;}
 .bg-color-darker { background-color: #222 !important;}
 .bg-color-white { background-color: #fff !important;}
@@ -2398,7 +2398,7 @@ img.image-md {
 .bg-color-blue { background-color: #3498db !important;}
 .bg-color-grey { background-color: #95a5a6 !important;}
 .bg-color-light { background-color: #f7f7f7 !important;}
-.bg-color-green { background-color: #72c02c !important;}
+.bg-color-green { background-color: #3498db !important;}
 .bg-color-brown { background-color: #9c8061 !important;}
 .bg-color-orange { background-color: #e67e22 !important;}
 .bg-color-green1 { background-color: #2ecc71 !important;}
