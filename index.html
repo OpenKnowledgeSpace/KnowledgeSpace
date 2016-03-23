@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-	<title>Knowledge Space - Home</title>
+	<title>KnowledgeSpace - Home</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -22,7 +22,9 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 
 	<!-- CSS Header and Footer -->
-	<link rel="stylesheet" href="assets/css/headers/header-default.css">
+	 <link rel="stylesheet" href="assets/css/headers/header-default.css">
+        <!-- <link rel="stylesheet" href="assets/css/headers/header-v6.css"> -->
+	<!-- <link rel="stylesheet" href="assets/css/headers/header-v4.css"> -->
 	<link rel="stylesheet" href="assets/css/footers/footer-v1.css">
 
 	<!-- CSS Implementing Plugins -->
@@ -48,15 +50,21 @@
         <link href="/static/css/custom.d4ef5c8a635d.css" rel="stylesheet">
 </head>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<body data-spy="scroll" data-target=".navbar" data-offset="50"> 
+<!-- <body class="header-fixed"> -->
+
+
 	<div class="wrapper">
 		<!--=== Header ===-->
-		<div class="header">
+                <div class="header">
+		<!-- <div class="header-v6"> 
+                 <!-- <div class="header-v6 header-dark header-sticky"> -->
+                 <!-- <div class="header-v4"> -->
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="index.html">
 					<img src="/img/ks6.png" alt="Logo">
-                                        <span style="color:gray;text-decoration: none;background-color: none;font-size:18px;" href="/index.html">Knowledge Space</span>
+                                        <span style="color:gray;text-decoration: none;background-color: none;font-size:18px;">KnowledgeSpace</span>
 				</a>
 				<!-- End Logo -->
 
@@ -84,37 +92,44 @@
 			<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
 				<div class="container">
 					<ul class="nav navbar-nav">
+                                            
+                    
 						
-                                                                <li>
-                        <a href="/#about">About</a>
+                    <li>
+                        <!-- <a href="/#about">About</a> -->
+                        <a href="/NeuroKS/index.php/About">About</a>
                     </li>
                     <li>
+                        <a href="/NeuroKS/index.php/Contributors">Contributors</a>
+                    </li>
+                    <!-- <li>
                         <a href="/#examples">Examples</a>
                     </li>
 	            <li>
-                        <!-- <a href="http://knowledge-space.org/#examples">Examples</a> -->
-                        <a href="/SciCrunchKS/index.php/pages/view/Neocortical_pyramidal_cell">Demos</a>
-                    </li>
+                         
+                        <a href="/NeuroKS/index.php/pages/view/Neocortical_pyramidal_cell">Demos</a>
+                    </li> -->
 		    <li>
-			<a href="./SciCrunchKS/documentation.php">Documentation</a>
+			<!-- <a href="./NeuroKS/documentation.php">Documentation</a> -->
+                        <a href="/NeuroKS/index.php/Documentation">Documentation</a>
 		    </li>
 						
 
 
 						<!-- Search Block -->
-						<li>
-							<i class="search fa fa-search search-btn"></i>
+						<!-- <li>
+							 <i class="search fa fa-search search-btn"></i> 
 							<div class="search-open">
-                                                            <form action="/SciCrunchKS/index.php/Search" method="post">
+                                                            <form action="/NeuroKS/index.php/Search" method="post">
 								<div class="input-group animated fadeInDown">
 									<input name="keywords" type="text" class="form-control" placeholder="Search">
 									<span class="input-group-btn">
-										<button class="btn-u" type="submit">Go</button>
+										<button class="btn-u btn-u-blue" type="submit">Go</button>
 									</span>
 								</div>
                                                             </form>
 							</div>
-						</li>
+						</li> -->
 						<!-- End Search Block -->
 					</ul>
 				</div><!--/end container-->
@@ -129,26 +144,26 @@
 				<div class="da-slide">
                                     
                                     <h4><i></i></h4>
-                                    <h4><i>Knowledge Space</i></h4>
+                                    <h4><i>KnowledgeSpace</i></h4>
                                     <!-- <h5><i>The integration of concepts and data</i></h5> -->
                                     <!-- Search Block -->
                                                 <div class="row" >
                                                 <div class="col-md-2" ></div>
                                                     
                                                 <div class="col-md-8" >
-						<li>
-							<i class="search fa fa-search search-btn"></i>
-							<div class="search-open">
-                                                            <form action="/SciCrunchKS/index.php/Search" method="post">
+						<!--<li> -->
+							<!-- <i class="search fa fa-search search-btn"></i> -->
+							<!-- <div class="search-open"> -->
+                                                            <form action="/NeuroKS/index.php/Search" method="post">
 								<div class="input-group animated fadeInDown">
 									<input name="keywords" type="text" class="form-control" placeholder="Search">
 									<span class="input-group-btn">
-										<button class="btn-u" type="submit">Go</button>
+										<button class="btn-u btn-u-blue" type="submit">Go</button>
 									</span>
 								</div>
                                                             </form>
-							</div>
-						</li>
+							<!-- </div> -->
+						<!-- </li> -->
                                                 </div>
                                                 <div class="col-md-2" ></div>
                                                 </div>
@@ -156,10 +171,10 @@
                                    
 				</div>
 				
-				<div class="da-arrows">
+				<!-- <div class="da-arrows">
 					<span class="da-arrows-prev"></span>
 					<span class="da-arrows-next"></span>
-				</div>
+				</div> -->
 			</div>
 		</div>
              <!-- <div class="intro-header">
@@ -187,16 +202,18 @@
 				<div class="row">
 					<div class="col-md-12 animated fadeInLeft">
 						 <span>KnowledgeSpace (KS) is a community-based encyclopedia.</span> 
-                                                <!-- <span>The integration of concepts and data.</span> -->
-						
+                                               
 					</div>
 					
 				</div>
 			</div>
-		</div><!--/row-->
+		</div> 
+                <!--/row-->
 		<!-- End Purchase Block -->
 <!--=== Container Part ===-->
-	<div class="container content-md">
+	<!-- <div class="container content-md"> -->
+        <!-- <div class="wrapper"> -->
+        <div class="container">
 		<ul class="row block-grid-v2">
 			<li class="col-md-4 col-sm-6 md-margin-bottom-30">
 				<div class="easy-block-v1">
@@ -205,12 +222,12 @@
 				</div>
 				<div class="block-grid-v2-info rounded-bottom">
 					
-                                    <a href="/SciCrunchKS/index.php/pages/view/PR:000000705" onclick="document.body.style.cursor='wait'; return true;" >HCN1</a><br/>
-                                        <a href="/SciCrunchKS/index.php/pages/view/PR:000000706" onclick="document.body.style.cursor='wait'; return true;">HCN2</a><br/>
-                                        <a href="/SciCrunchKS/index.php/pages/view/PR:000000707" onclick="document.body.style.cursor='wait'; return true;">HCN3</a><br/>
-                                        <a href="/SciCrunchKS/index.php/pages/view/NIFMOL:sao1700719022" onclick="document.body.style.cursor='wait'; return true;">AChR</a><br/>
-                                        <a href="/SciCrunchKS/index.php/pages/view/NIFMOL:nifext_5242" onclick="document.body.style.cursor='wait'; return true;">GABA A</a><br/>
-                                        <a href="/SciCrunchKS/index.php/pages/view/NIFMOL:nlx_mol_20090505"onclick="document.body.style.cursor='wait'; return true;">MGluR2</a><br/>
+                                    <a href="/NeuroKS/index.php/pages/view/PR:000000705" onclick="document.body.style.cursor='wait'; return true;" >HCN1</a><br/>
+                                        <a href="/NeuroKS/index.php/pages/view/PR:000000706" onclick="document.body.style.cursor='wait'; return true;">HCN2</a><br/>
+                                        <a href="/NeuroKS/index.php/pages/view/PR:000000707" onclick="document.body.style.cursor='wait'; return true;">HCN3</a><br/>
+                                        <a href="/NeuroKS/index.php/pages/view/NIFMOL:sao1700719022" onclick="document.body.style.cursor='wait'; return true;">AChR</a><br/>
+                                        <a href="/NeuroKS/index.php/pages/view/NIFMOL:nifext_5242" onclick="document.body.style.cursor='wait'; return true;">GABA A</a><br/>
+                                        <a href="/NeuroKS/index.php/pages/view/NIFMOL:nlx_mol_20090505"onclick="document.body.style.cursor='wait'; return true;">MGluR2</a><br/>
 				</div>
 			</li>
 			<li class="col-md-4 col-sm-6 md-margin-bottom-30">
@@ -219,11 +236,11 @@
 					<div class="easy-block-v1-badge rgba-blue">Cell Types</div>
 				</div>
 				<div class="block-grid-v2-info rounded-bottom">
-					<a href="/SciCrunchKS/index.php/pages/view/NIFCELL:sao862606388" onclick="document.body.style.cursor='wait'; return true;">Pyramidal neuron</a><br/>
-                                        <a href="/SciCrunchKS/index.php/pages/view/NIFCELL:sao408819766" onclick="document.body.style.cursor='wait'; return true;">Schwann cell</a><br/>
-                                        <a href="/SciCrunchKS/index.php/pages/view/NIFNEURMOR:nlx_cell_100601" onclick="document.body.style.cursor='wait'; return true;">Spiny neuron</a><br/>
-                                        <a href="/SciCrunchKS/index.php/pages/view/NIFCELL:nifext_55" onclick="document.body.style.cursor='wait'; return true;">Neocortex Martinotti cell</a><br/>
-                                        <a href="/SciCrunchKS/index.php/pages/view/NIFCELL:sao666951243" onclick="document.body.style.cursor='wait'; return true;">Cerebellum basket cell</a><br/>
+					<a href="/NeuroKS/index.php/pages/view/NIFCELL:sao862606388" onclick="document.body.style.cursor='wait'; return true;">Pyramidal neuron</a><br/>
+                                        <a href="/NeuroKS/index.php/pages/view/NIFCELL:sao408819766" onclick="document.body.style.cursor='wait'; return true;">Schwann cell</a><br/>
+                                        <a href="/NeuroKS/index.php/pages/view/NIFNEURMOR:nlx_cell_100601" onclick="document.body.style.cursor='wait'; return true;">Spiny neuron</a><br/>
+                                        <a href="/NeuroKS/index.php/pages/view/NIFCELL:nifext_55" onclick="document.body.style.cursor='wait'; return true;">Neocortex Martinotti cell</a><br/>
+                                        <a href="/NeuroKS/index.php/pages/view/NIFCELL:sao666951243" onclick="document.body.style.cursor='wait'; return true;">Cerebellum basket cell</a><br/>
                                         <br/>
 				</div>
 			</li>
@@ -233,11 +250,11 @@
 					<div class="easy-block-v1-badge rgba-red">Brain Regions</div>
 				</div>
 				<div class="block-grid-v2-info rounded-bottom">
-					<a href="/SciCrunchKS/index.php/pages/view/UBERON:0001950" onclick="document.body.style.cursor='wait'; return true;">Neocortex</a><br/>
-                                        <a href="/SciCrunchKS/index.php/pages/view/UBERON:0002435" onclick="document.body.style.cursor='wait'; return true;">Striatum</a><br/>
-                                        <a href="/SciCrunchKS/index.php/pages/view/UBERON:0009835" onclick="document.body.style.cursor='wait'; return true;">Anterior cingulate cortex</a><br/>
-                                        <a href="/SciCrunchKS/index.php/pages/view/UBERON:0002037" onclick="document.body.style.cursor='wait'; return true;">Cerebellum</a><br/>
-                                        <a href="/SciCrunchKS/index.php/pages/view/UBERON:0001897" onclick="document.body.style.cursor='wait'; return true;">Thalamus</a><br/><br/>
+					<a href="/NeuroKS/index.php/pages/view/UBERON:0001950" onclick="document.body.style.cursor='wait'; return true;">Neocortex</a><br/>
+                                        <a href="/NeuroKS/index.php/pages/view/UBERON:0002435" onclick="document.body.style.cursor='wait'; return true;">Striatum</a><br/>
+                                        <a href="/NeuroKS/index.php/pages/view/UBERON:0009835" onclick="document.body.style.cursor='wait'; return true;">Anterior cingulate cortex</a><br/>
+                                        <a href="/NeuroKS/index.php/pages/view/UBERON:0002037" onclick="document.body.style.cursor='wait'; return true;">Cerebellum</a><br/>
+                                        <a href="/NeuroKS/index.php/pages/view/UBERON:0001897" onclick="document.body.style.cursor='wait'; return true;">Thalamus</a><br/><br/>
 				</div>
 			</li>
 		</ul>
@@ -281,9 +298,9 @@
 			
 
 			<!-- About -->
-                        
+                        <!--
 			<div id="about" class="row margin-bottom-30">
-				<!-- Welcome Block -->
+				
 				<div class="col-md-8 md-margin-bottom-40">
 					<div class="headline"><h2>About</h2></div>
 					
@@ -292,7 +309,7 @@
 						<p>KnowledgeSpace (KS) is a community-based encyclopedia for neuroscience, which will be supported by a structured lexicon, data, and models. KS will allow neuroscience community contributions and it will support data curation and annotation, and text mining.</p>
                                                 <p>KS is the result of recommendations from a community workshop held by the INCF Program on Ontologies of Neural Structures in 2012 and include the report attached below to community workshop.</p>
                                                 <p>
-                                                <a href="/SciCrunchKS/files/2012_PONS_ws_report.pdf" target="_blank">2012 INCF Workshop Report</a>
+                                                <a href="/NeuroKS/files/2012_PONS_ws_report.pdf" target="_blank">2012 INCF Workshop Report</a>
                                                 </p>
                                                 <p><em>KS</em> will be built on a semantic media platform with initial content coming from the
                         <a href="http://neurolex.org/wiki/Main_Page" target="_blank">Neuroscience Lexicon</a> (NeuroLex), and the <a href="http://brancusi1.usc.edu" target="_blank">Brain Architecture Management System</a> (BAMS).</p>
@@ -301,69 +318,49 @@
 						<p>The current status of KS is in development, with a beta-version launch scheduled for Spring 2016. 
 If you would like to sign up on our mailing list, please email us your full name and affiliation.
                                                 </p> </blockquote>
-				</div><!--/col-md-8-->
+				</div>
 
-				<!-- Latest Shots -->
+				
 				<div class="col-md-4">
 					<div class="headline"><h2>Architecture</h2></div>
 					<div id="myCarousel" class="carousel slide carousel-v1">
 						<div class="carousel-inner">
 							<div class="item active">
-								<img src="/static/img/KS-high-level.f9b8bf35540e.jpg" alt="">
-								<!-- <div class="carousel-caption">
-									<p>Facilisis odio, dapibus ac justo acilisis gestinas.</p>
-								</div> -->
+                                                            <a href="/static/img/ks-architecture.png" target="_blank"><img src="/static/img/ks-architecture.png" alt=""></a> 
+								
 							</div>
-							<!-- <div class="item">
-								<img src="assets/img/main/img2.jpg" alt="">
-								<div class="carousel-caption">
-									<p>Cras justo odio, dapibus ac facilisis into egestas.</p>
-								</div>
-							</div>
-							<div class="item">
-								<img src="assets/img/main/img24.jpg" alt="">
-								<div class="carousel-caption">
-									<p>Justo cras odio apibus ac afilisis lingestas de.</p>
-								</div>
-							</div> -->
+							
 						</div>
 
-						<!-- <div class="carousel-arrow">
-							<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-								<i class="fa fa-angle-left"></i>
-							</a>
-							<a class="right carousel-control" href="#myCarousel" data-slide="next">
-								<i class="fa fa-angle-right"></i>
-							</a>
-						</div> -->
+						
 					</div>
-				</div><!--/col-md-4-->
+				</div>
 			
                         </div>
-                        
+                        -->
 			<!-- End About -->
 
                         <!-- Example -->
-                        
+                        <!-- 
 			<div id="examples" class="row margin-bottom-30">
-				<!-- Welcome Block -->
+				
 				<div class="col-md-12 md-margin-bottom-40">
 					<div class="headline"><h2>Examples</h2></div>
 					
 
 					<blockquote class="hero-unify">
-					<a href="/SciCrunchKS/application/views/templates/ssp-generic.php">Primary somatosensory area, Mammals</a>	
+					<a href="/NeuroKS/application/views/templates/ssp-generic.php">Primary somatosensory area, Mammals</a>	
                                         <br/>
-					<a href="/SciCrunchKS/application/views/templates/ssp-rat.php">Primary somatosensory area, rat</a>	
+					<a href="/NeuroKS/application/views/templates/ssp-rat.php">Primary somatosensory area, rat</a>	
                                          <br/>
-					<a href="/SciCrunchKS/application/views/templates/basket_cell_rat.php">Basket neuron instances</a> 	
+					<a href="/NeuroKS/application/views/templates/basket_cell_rat.php">Basket neuron instances</a> 	
                                          <br/>
-					<a href="/SciCrunchKS/application/views/templates/basket_neuron.php">Basket neuron, Cerebellar Cortex</a>	
+					<a href="/NeuroKS/application/views/templates/basket_neuron.php">Basket neuron, Cerebellar Cortex</a>	
                                         </blockquote>
-				</div><!--/col-md-8-->
+				</div>
 
 				
-			</div>
+			</div>-->
                         
                         
                         
@@ -457,7 +454,7 @@ If you would like to sign up on our mailing list, please email us your full name
 								9500 Gilman Drive <br />
 								La Jolla, CA 92093 <br />
 								
-								Email: <a href="mailto:wwong@ncmir.ucsd.edu" class="">info@anybiz.com</a>
+								Email: <a href="mailto:wwong@ncmir.ucsd.edu" class="">wwong@ncmir.ucsd.edu</a>
 							</address>
 						</div><!--/col-md-3-->
 						<!-- End Address -->
@@ -477,7 +474,7 @@ If you would like to sign up on our mailing list, please email us your full name
 
 						<!-- Social Links -->
 						<div class="col-md-6">
-							<ul class="footer-socials list-inline">
+							<!-- <ul class="footer-socials list-inline">
 								<li>
 									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
 										<i class="fa fa-facebook"></i>
@@ -513,7 +510,7 @@ If you would like to sign up on our mailing list, please email us your full name
 										<i class="fa fa-dribbble"></i>
 									</a>
 								</li>
-							</ul>
+							</ul>-->
 						</div>
 						<!-- End Social Links -->
 					</div>
