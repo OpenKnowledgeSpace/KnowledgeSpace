@@ -2,9 +2,9 @@
 KnowledgeSpace (KS) is a community encyclopaedia that links brain research concepts with data, models and literature from around the world. It is an open project and welcomes participation and contributions from members of the global research community. 
 
 ##Requirements
-Requirement: PHP 5
-Framework: CodeIgniter-3.0.3
-Web server: Apache web server
+1. PHP version: PHP 5.4.40+
+2. Framework: CodeIgniter-3.0.3
+3. Web server: Apache web server
 
 ##Technical details
 The KS utilizes the CodeIgniter to the maintain the Model View Controller(MVC) structure. For example, the URL such as
