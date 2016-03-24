@@ -3,11 +3,10 @@ KnowledgeSpace (KS) is a community encyclopaedia that links brain research conce
 
 ##Requirements
 1. PHP version: PHP 5.4.40+
-2. Framework: CodeIgniter-3.0.3
-3. Web server: Apache web server
+2. Web server: Apache web server
 
 ##Technical details
-The KS utilizes the CodeIgniter to the maintain the Model View Controller(MVC) structure. For example, the URL such as
+The KS utilizes the CodeIgniter-3.0.3 to the maintain the Model View Controller(MVC) structure. For example, the URL such as
 /SciCrunchKS/index.php/pages/view/pyramidal_cell will first access the controllers/Pages.php and then the view function in the class. The Pages class extends CI_Controller, which is the controller in the MVC structure. 
 
 The PHP file at /controllers/ServiceUtil.php contains all utility functions for accessing the data through the REST API.
