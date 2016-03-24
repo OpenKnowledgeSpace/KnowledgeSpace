@@ -19,7 +19,7 @@ The PHP file at /controllers/ServiceUtil.php contains all utility functions for 
 
 ##Configuration
 1. Edit $apache_document_root/NeuroKS/application/config/config.json.
-* enable_caching - Enable caching webpages for faster runtime.
+..* enable_caching - Enable caching webpages for faster runtime.
 ..2. cache_folder - The folder for storing the cached data.
 ..3. sources - Add additional sources for the dataspace.
 2. Change the background image: Edit parallax-slider.css
