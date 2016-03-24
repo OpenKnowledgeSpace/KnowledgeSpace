@@ -18,7 +18,7 @@ The PHP file at /controllers/ServiceUtil.php contains all utility functions for 
 2. Copy or move KnowledgeSpace/* to your $apache_document_root (For example, /var/www/html)
 
 ##Configuration
-1. Edit $apache_document_root/NeuroKS/application/config/config.json
+1. Edit $apache_document_root/NeuroKS/application/config/config.json.
 ..*. enable_caching - Enable caching webpages for faster runtime.
 ..2. cache_folder - The folder for storing the cached data.
 ..3. sources - Add additional sources for the dataspace.
