@@ -1,9 +1,7 @@
-<?php  require_once 'ViewConfig.php'; ?>
 
-
-    <script src="/<?php  echo ViewConfig::$localContextName; ?>/application/views/js/highcharts.js"></script>
-    <script src="/<?php echo ViewConfig::$localContextName; ?>/application/views/js/exporting.js"></script>  
-
+    <script src="/<?php  echo $config_array->local_context_name; ?>/application/views/js/highcharts.js"></script>
+    <script src="/<?php echo $config_array->local_context_name; ?>/application/views/js/exporting.js"></script>  
+ 
   <script type="text/javascript">
 $(function () {
     $('#container').highcharts({
@@ -61,7 +59,7 @@ $(function () {
                     events: {
                         click: function(e) {
 
-                                 var url = "/<?php echo ViewConfig::$localContextName; ?>/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
+                                 var url = "/<?php echo $config_array->local_context_name; ?>/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
         
         
                                  window.open(url);
@@ -164,14 +162,9 @@ $(function () {
                 point: {
                     events: {
                         click: function(e) {
-                                //alert(this.x);
-                                //var url = this.options.url;
-                                 //window.open(url);
-                                 //var url = "https://neuinfo.org/mynif/search.php?q=neocortex%20pyramidal%20neuron&t=literature&r=20&yf="+e.currentTarget.x;
-                                 //var url = "/SciCrunchKS/index.php/publications/view/<?php //echo $title;  ?>/"+e.currentTarget.x+"/1";
-                                 var url = "/<?php echo ViewConfig::$localContextName; ?>/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
-        
-        
+
+                                 var url = "/<?php echo $config_array->local_context_name; ?>/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
+               
                                  window.open(url);
                             }
                         }
@@ -281,7 +274,9 @@ $(function () {
         if($latestResult->response->numFound > 0 )
         {
             echo "<div class=\"row\">";
-            echo "<center><a  style=\"font-size:16\"  target=\"_blank\" href=\"/".ViewConfig::$localContextName."/index.php/LatestPublications/view/".$title."/1\">See more</a></center>";
+
+            echo "<center><a  style=\"font-size:16\"  target=\"_blank\" href=\"/".$config_array->local_context_name."/index.php/LatestPublications/view/".$title."/1\">See more</a></center>";
+
             echo "</div><br/>";
         }
 ?>  

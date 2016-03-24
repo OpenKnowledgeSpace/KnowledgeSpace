@@ -1,4 +1,3 @@
-<?php  require_once 'ViewConfig.php'; ?>
 
 <script type="text/javascript">
     var Physiology_count = 0;//getCookie('Physiology_count');

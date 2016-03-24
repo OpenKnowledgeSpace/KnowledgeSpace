@@ -36,7 +36,7 @@ class LatestPublications extends CI_Controller
                 
                 $this->load->view('templates/header2', $data);
                 $this->load->view('pages/latestPublicationDisplay', $data);
-        	$this->load->view('templates/footer', $data);
+        	$this->load->view('templates/footer2', $data);
                 
         }
     

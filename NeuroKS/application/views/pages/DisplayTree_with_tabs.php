@@ -1,4 +1,4 @@
-<?php  require_once 'ViewConfig.php'; ?>
+
 <?php
     if(strcmp($enableHeader, "true")==0)
     {
@@ -61,9 +61,9 @@
         $parentLinkName = str_replace(" ", "_", $node->lbl);
         $parentLinkName = str_replace("(", "_",$parentLinkName);
         $parentLinkName = str_replace(")", "_",$parentLinkName);
-        //$parentLink = "/SciCrunchKS/index.php/pages/view/".$parentLinkName;
-        $parentLink = "/".ViewConfig::$localContextName."/index.php/pages/view/".$node->id;
-	//echo "<ul><li><span><i class=\"icon-folder-open\"></i><a target=\"_self\" href=\"".$parentLink."\">" . $node->lbl    .    "</a></span> <a href=\"\"></a>";
+        
+        $parentLink = "/".$config_array->local_context_name."/index.php/pages/view/".$node->id;
+        
         if (!is_null($node))
         {
             if (strpos($node->id, '/') == false)
@@ -73,7 +73,9 @@
 
         }
 
-        $mainLink = "/".ViewConfig::$localContextName."/index.php/pages/view/".$mainNode->id;
+        $mainLink = "/".$config_array->local_context_name."/index.php/pages/view/".$mainNode->id;
+
+        
         if (!is_null($node) && strpos($node->id, '/') == false)
             echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.",".$node->id."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
         else
@@ -108,16 +110,17 @@
             $parentLinkName = str_replace(" ", "_", $node2->lbl);
             $parentLinkName = str_replace("(", "_",$parentLinkName);
             $parentLinkName = str_replace(")", "_",$parentLinkName);
-            //$parentLink = "/SciCrunchKS/index.php/pages/view/".$parentLinkName;
-            $parentLink = "/".ViewConfig::$localContextName."/index.php/pages/view/".$node2->id;
-            //echo "<ul><li><span><i class=\"icon-folder-open\"></i><a target=\"_self\" href=\"".$parentLink."\">" . $node->lbl    .    "</a></span> <a href=\"\"></a>";
+            
+            $parentLink = "/".$config_array->local_context_name."/index.php/pages/view/".$node2->id;
+
             echo "<ul><li><span id=\"".$node2->id.","."none"."\"><i class=\"icon-folder-open\"></i>" . $node2->lbl    .    "</span><a target=\"_self\" href=\"".$parentLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>";
         }
 
         
-	//echo "<ul><li><span style=\"background-color: #FFFF00\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"\"></a>"; 
-        $mainLink = "/".ViewConfig::$localContextName."/index.php/pages/view/".$mainNode->id;
-	echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.",".$node->id."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
+	$mainLink = "/".$config_array->local_context_name."/index.php/pages/view/".$mainNode->id;
+	
+        
+        echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.",".$node->id."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
 
         if(!is_null($leafHTML2))
             echo $leafHTML2;
@@ -148,16 +151,18 @@
             $parentLinkName = str_replace(" ", "_", $node3->lbl);
             $parentLinkName = str_replace("(", "_",$parentLinkName);
             $parentLinkName = str_replace(")", "_",$parentLinkName);
-            //$parentLink = "/SciCrunchKS/index.php/pages/view/".$parentLinkName;
-            $parentLink = "/".ViewConfig::$localContextName."/index.php/pages/view/".$node3->id;
-            //echo "<ul><li><span><i class=\"icon-folder-open\"></i><a target=\"_self\" href=\"".$parentLink."\">" . $node->lbl    .    "</a></span> <a href=\"\"></a>";
+            
+            $parentLink = "/".$config_array->local_context_name."/index.php/pages/view/".$node3->id;
+            
+            
             echo "<ul><li><span id=\"".$node3->id.","."none"."\"><i class=\"icon-folder-open\"></i>" . $node3->lbl    .    "</span><a target=\"_self\" href=\"".$parentLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>";
 
         }
         
-	//echo "<ul><li><span style=\"background-color: #FFFF00\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"\"></a>"; 
-        $mainLink = "/".ViewConfig::$localContextName."/index.php/pages/view/".$mainNode->id;
-	echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.",".$node->id."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
+	$mainLink = "/".$config_array->local_context_name."/index.php/pages/view/".$mainNode->id;
+
+        
+        echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.",".$node->id."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
 
         if(!is_null($leafHTML3))
             echo $leafHTML3;

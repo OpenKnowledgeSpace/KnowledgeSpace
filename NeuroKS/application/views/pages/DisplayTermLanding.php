@@ -1,5 +1,3 @@
-<?php  require_once 'ViewConfig.php'; ?>
-
 
     <br/>
     <br/>
@@ -39,10 +37,10 @@
                             $unique[$row->curie] =$row->curie;*/
                         
                         echo "<tr>\n";
-                        echo "<td class=\"col-md-2\">". 
-                                "<a href=\"/".ViewConfig::$localContextName."/index.php/pages/view/".$row->curie."\" target=\"_self\" >"
-                                .$row->curie. "</a></td>";
                         
+                        echo "<td class=\"col-md-2\">". 
+                                "<a href=\"/".$config_array->local_context_name."/index.php/pages/view/".$row->curie."\" target=\"_self\" >"
+                                .$row->curie. "</a></td>"; 
                         
                         echo "<td class=\"col-md-3\">". implode($row->labels,","). "</td>";
                         echo "<td class=\"col-md-3\">". implode($row->categories,","). "</td>";

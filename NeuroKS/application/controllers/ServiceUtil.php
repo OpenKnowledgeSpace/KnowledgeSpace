@@ -144,7 +144,7 @@ class ServiceUtil
     {
         require_once('Config.php');
         $surl = "http://".Config::$nifServiceForData."/servicesv1/v1/federation/data/" . $sourceID . "?q=" . $searchTerm . "&count=" . $rcount. "&offset=".$offset;
-	//echo "\n\n<br/>Source:".$surl;
+	//echo "\n<br/>Source:".$surl;
         return $this->getJsonObj($surl); 
     }
     

@@ -1,4 +1,3 @@
-<?php  require_once 'ViewConfig.php'; ?>
 <link rel="stylesheet" type="text/css" href="https://neuinfo.org/mynif/css/main.css"> 
 <br/>
 
@@ -43,7 +42,7 @@
             if(($pageID-1) > 0)
             {
                 
-                 echo "<li><a href=\"/".ViewConfig::$localContextName."/index.php/latestPublications/view/"
+                echo "<li><a href=\"/".$config_array->local_context_name."/index.php/latestPublications/view/"
                 .$term."/".($pageID-1).
                 "\">&laquo;</a></li>";
                 
@@ -73,16 +72,20 @@
                 if($i == $pageID)
                     echo "<li class=\"page-item active disabled\"><a href=\"#\">".$i."</a></li>";
                 else
-                    echo "<li class=\"page-item\"><a href=\"/".ViewConfig::$localContextName."/index.php/latestPublications/view/"
+                {
+                     echo "<li class=\"page-item\"><a href=\"/".$config_array->local_context_name."/index.php/latestPublications/view/"
                     .$term."/".$i
                         ."\">".$i."</a></li>";
+                }
+                   
                 
             }
             
             
             if(($pageID+1) <= $num)
             {
-                echo "<li><a href=\"/".ViewConfig::$localContextName."/index.php/latestPublications/view/"
+                
+                echo "<li><a href=\"/".$config_array->local_context_name."/index.php/latestPublications/view/"
                 .$term."/".($pageID+1).
                 "\">&raquo;</a></li>";
             
@@ -141,7 +144,8 @@
             if(($pageID-1) > 0)
             {
                 
-                 echo "<li><a href=\"/".ViewConfig::$localContextName."/index.php/latestPublications/view/"
+                
+                echo "<li><a href=\"/".$config_array->local_context_name."/index.php/latestPublications/view/"
                 .$term."/".($pageID-1).
                 "\">&laquo;</a></li>";
                 
@@ -171,16 +175,21 @@
                 if($i == $pageID)
                     echo "<li class=\"page-item active disabled\"><a href=\"#\">".$i."</a></li>";
                 else
-                    echo "<li class=\"page-item\"><a href=\"/".ViewConfig::$localContextName."/index.php/latestPublications/view/"
+                {
+                    
+                    echo "<li class=\"page-item\"><a href=\"/".$config_array->local_context_name."/index.php/latestPublications/view/"
                     .$term."/".$i
                         ."\">".$i."</a></li>";
+                    
+                }
                 
             }
             
             
             if(($pageID+1) <= $num)
             {
-                echo "<li><a href=\"/".ViewConfig::$localContextName."/index.php/latestPublications/view/"
+                
+                echo "<li><a href=\"/".$config_array->local_context_name."/index.php/latestPublications/view/"
                 .$term."/".($pageID+1).
                 "\">&raquo;</a></li>";
             

@@ -1,4 +1,3 @@
-<?php  require_once 'ViewConfig.php'; ?>
 <div class="row">
 <div class="col-md-12" >
     <?php 
@@ -24,7 +23,7 @@
 
 <div class="row">
 <div class="col-md-12" >
-<form action="/<?php echo(ViewConfig::$localContextName); ?>/index.php/Search" method="post">
+    <form action="/<?php echo($config_array->local_context_name); ?>/index.php/Search" method="post"> 
     <br/>
 <div class="input-group animated fadeInDown">
 <input name="keywords" type="text" class="form-control" placeholder="Search" value="<?php
@@ -49,13 +48,13 @@
             echo "<table class=\"table table-striped sortable-theme-bootstrap\" data-sortable>";   
             echo "<thead>";
             echo "<tr>";
-            echo "<th>ID</th>";
+            echo "<th class=\"col-md-2\">ID</th>";
             
-            echo "<th>Labels</th>";
-            echo "<th>Categories</th>";
-            echo "<th>Definitions</th>";
+            echo "<th class=\"col-md-2\">Labels</th>";
+            echo "<th class=\"col-md-2\">Categories</th>";
+            echo "<th class=\"col-md-6\">Definitions</th>";
             echo "</tr>";
-            echo "</thead>";
+            echo "</thead><tbody>";
         }
     
                     //$unique = array();
@@ -67,20 +66,21 @@
                             $unique[$row->curie] =$row->curie;*/
                         
                         echo "<tr>\n";
+                        
                         echo "<td class=\"col-md-2\">". 
-                                "<a href=\"/".ViewConfig::$localContextName."/index.php/pages/view/".$row->curie."\" target=\"_self\" >"
+                                "<a href=\"/".$config_array->local_context_name."/index.php/pages/view/".$row->curie."\" target=\"_self\" >"
                                 .$row->curie. "</a></td>";
                         
                         
-                        echo "<td class=\"col-md-3\">". implode($row->labels,","). "</td>";
-                        echo "<td class=\"col-md-3\">". implode($row->categories,","). "</td>";
-                        echo "<td class=\"col-md-4\">". implode($row->definitions,","). "</td>";
+                        echo "<td class=\"col-md-2\">". implode($row->labels,","). "</td>";
+                        echo "<td class=\"col-md-2\">". implode($row->categories,","). "</td>";
+                        echo "<td class=\"col-md-6\">". implode($row->definitions,","). "</td>";
                         echo "</tr>\n";
                     }
                 
                
     
         
-        echo "</table>";
+        echo "</tbody></table>";
     }
 ?>

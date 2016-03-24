@@ -519,7 +519,7 @@ class Pages extends CI_Controller
                //$pageName = str_replace("/", "%20", $pageName);
                $pageName = str_replace(str_split('_'), '%20',$pageName );
                $pageName = str_replace(str_split(','), '%2c',$pageName );
-               $pageName = str_replace(str_split('/'), '%20',$pageName );
+               $pageName = str_replace(str_split('/'), '%2f',$pageName );
                
                $data['pageName'] = $pageName;
                $data['page_title'] = $pageName;

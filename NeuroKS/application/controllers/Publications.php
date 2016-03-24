@@ -52,7 +52,7 @@ class Publications extends CI_Controller
                 
                 $this->load->view('templates/header2', $data);
                 $this->load->view('pages/publicationDisplay2', $data);
-        	$this->load->view('templates/footer', $data);
+        	$this->load->view('templates/footer2', $data);
                 
         }
     

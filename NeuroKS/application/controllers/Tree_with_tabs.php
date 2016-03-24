@@ -6,14 +6,16 @@ class Tree_with_tabs extends CI_Controller
     
     	public function view($curie,$enableHeader,$tempParentID,$tabID)
 	{
+            require_once 'Config.php';
+            $myConfig = new Config();
+            $myConfig->loadJsonConfig($data);
+            
             $data['enableHeader'] = $enableHeader;
             $data['tabID'] = $tabID;
             $this->handleLexicon($data, $curie,$tempParentID);
             if(strcmp($enableHeader, "true")==0)
             {
-                require_once 'Config.php';
-                $myConfig = new Config();
-                 $myConfig->loadJsonConfig($data);
+                
                 $this->load->view('templates/header2', $data);
             }
             $this->load->view('pages/DisplayTree_with_tabs', $data);

@@ -2,24 +2,7 @@
 
 class ViewAllData extends CI_Controller 
 {
-    /*private function startsWith($haystack, $needle) {
-    // search backwards starting from haystack length characters from the end
-    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
-    }
-    private function endsWith($haystack, $needle) {
-    // search forward starting from end minus needle length characters
-    return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== FALSE);
-    }*/
     
-       /* public function handleData(&$data,$searchTerm, $sourceID,$count, $offset)
-        {
-            require_once('ServiceUtil.php');
-            $util = new ServiceUtil;
-            
-            $json = $util->searchWithinSource($searchTerm,$sourceID,$count,$offset);
-            
-            return $json;
-        }*/
         
         public function getDescription($sourceID)
         {
