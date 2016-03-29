@@ -74,6 +74,7 @@
     
     var treeTabID=1;
     var expandTree = false;
+    var dataspace_selected_tab = 0;
     
     function updateLitTab(lid)
     {

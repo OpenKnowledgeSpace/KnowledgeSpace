@@ -48,8 +48,10 @@ echo "\n</script>";
 								
         </div>
 
-	<div id="dataspace_panel0" class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll">
-            
+	 <div id="dataspace_panel0" class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll">
+        
+        <!--    <div id="dataspace_panel0" class="panel-body" style="min-height: auto; max-height:auto;overflow-y: scroll">
+        -->
         </div>
         </div> 
         </div>

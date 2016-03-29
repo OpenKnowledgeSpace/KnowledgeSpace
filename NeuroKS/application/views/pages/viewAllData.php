@@ -1,7 +1,7 @@
 
 <div class="container">
 <!--  <h2>Data</h2> -->
- <ul class="nav nav-tabs">
+ <ul class="nav nav-tabs" id="dataspace_tab">
 <!--     <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
     <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
     <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
@@ -23,44 +23,22 @@
         if($result[$source]->result->resultCount == 0)
             $isZero = true;
         
-        /*if(strcmp($selectedSourceID, "0")==0 && $active==false && $isZero==false)
-        {
-            
-               echo "\n<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
-               $active = true;
-               
-        }
-        else if(strcmp($source, $selectedSourceID)==0 )
-        {
-            
-                echo "\n<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
-                $active = true;
-                
-        }
-        else if($isZero == true)
-        {
-             echo "\n<li class=\"disabled\"><a  data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
-        }
-        else
-        {
-            
-                echo "\n<li><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
-        } */
+        
         
         if(strcmp($selectedSourceID, "0")==0 && $count ==  0)
         {
             
-               echo "\n<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
+               echo "\n<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu".$count."\" onclick=\"changeDataspaceMenuHeight(".$count.")\">".$sourceNameArray[$source]."</a></li>";
         }
         else if(strcmp($source, $selectedSourceID)==0 )
         {
             
-                echo "\n<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
+                echo "\n<li class=\"active\"><a data-toggle=\"tab\" href=\"#menu".$count."\" onclick=\"changeDataspaceMenuHeight(".$count.")\">".$sourceNameArray[$source]."</a></li>";
         }
         else
         {
             
-                echo "\n<li><a data-toggle=\"tab\" href=\"#menu".$count."\">".$sourceNameArray[$source]."</a></li>";
+                echo "\n<li><a data-toggle=\"tab\" href=\"#menu".$count."\" onclick=\"changeDataspaceMenuHeight(".$count.")\">".$sourceNameArray[$source]."</a></li>";
         }  
         $count++;
     }
@@ -75,14 +53,7 @@
   </ul>
 
   <div class="tab-content">
-   <!--  <div id="home" class="tab-pane fade in active">
-      <h3>HOME</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-    <div id="menu1" class="tab-pane fade">
-      <h3>Menu 1</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>  -->
+
 <?php
 
     $selectedIndex = 0;
@@ -284,3 +255,8 @@
 
   </div>
 </div>
+
+
+<!-- <script type="text/javascript">
+    dataspace_selected_tab =<?php //echo $selectedSourceID; ?>;    
+</script> -->

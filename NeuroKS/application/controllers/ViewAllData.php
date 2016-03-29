@@ -4,7 +4,7 @@ class ViewAllData extends CI_Controller
 {
     
         
-        public function getDescription($sourceID)
+        public function getDescription($sourceID,&$myConfig)
         {
                 $protocol = "http";
 		if(isset($_SERVER['HTTPS']))
@@ -13,7 +13,7 @@ class ViewAllData extends CI_Controller
 		}
                 $surl = $protocol."://".
                         $_SERVER['SERVER_NAME']
-                        ."/SciCrunchKS/resources/source_description/".$sourceID;
+                        ."/".Config::$localContextName."/resources/source_description/".$sourceID;
                 
 		$responseCode =  @get_headers($surl);
    
@@ -131,7 +131,7 @@ class ViewAllData extends CI_Controller
                         //echo "-----".$newName;
                         //echo "-----".$source;
                     }
-                    $description[$source] = $this->getDescription($source);       
+                    $description[$source] = $this->getDescription($source,$myConfig);       
                 }
             }
             $data['result'] = $result;

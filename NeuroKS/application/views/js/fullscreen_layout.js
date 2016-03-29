@@ -1,4 +1,12 @@
+function changeDataspaceMenuHeight(tab)
+{
+    //alert(tab);
+    dataspace_selected_tab = tab;
+    var d_height = $("#menu"+tab).height()+200;
+    document.getElementById("dataspace_panel0").setAttribute("style", "min-height: "+d_height+"; max-height: "+d_height+";overflow-y: scroll"); 
 
+    
+}
 $(document).ready(function () 
 {
     
@@ -366,6 +374,8 @@ $(document).ready(function ()
             var html = httpGet("/NeuroKS/index.php/ViewAllData/view/"+pageName+"/0/0");
             window.location.hash = '#dataspace';
             setCookie('screen_state','dataspace',365);
+            
+            dataspace_selected_tab = 0;
         }
         /* else if ($this.children('i').hasClass('glyphicon-resize-small'))
         {
@@ -441,18 +451,13 @@ function httpGet(theUrl)
             var ks_selected_sources = getCookie('ks_selected_sources');
             ks_selected_sources = ks_selected_sources.replace(new RegExp("%2C", 'g'), ",");
             var sourceArray = ks_selected_sources.split(',');
-            /*for(var i=0;i<sourceArray.length;i++)
-            {
-            
-            var height = Math.max(document.getElementById("menu"+i).clientHeight,
-            document.getElementById("menu"+i).scrollHeight,
-            document.getElementById("menu"+i).offsetHeight);
-            alert("height #"+i+":----- "+height);
-            }
-            document.getElementById("dataspace_panel0").setAttribute("style", "min-height: "+height+"; max-height: "+height+";overflow-y: scroll"); */
-            var height = 5000;
-            document.getElementById("dataspace_panel0").setAttribute("style", "min-height: "+height+"; max-height: "+height+";overflow-y: scroll"); 
 
+            //alert(dataspace_selected_tab);
+            //var height = 5000;
+            
+            //var height = 5000;
+            //document.getElementById("dataspace_panel0").setAttribute("style", "min-height: "+height+"; max-height: "+height+";overflow-y: scroll"); 
+            changeDataspaceMenuHeight(dataspace_selected_tab);
         }
     }
     xmlhttp.open("GET", theUrl, true );
