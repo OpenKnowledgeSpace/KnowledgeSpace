@@ -5,10 +5,10 @@
 					<div class="row">
 						<!-- About -->
 						<div class="col-md-9 md-margin-bottom-40">
-
+                                                                           
                           <div class="headline"><h2>Partners</h2></div>                          
 			<a href="http://bluebrain.epfl.ch" target="_blank">
-                        <img src="/Knowledge_Space_files/Blue_Brain_Project_Logo.jpg" width="100" height="70"></a>   
+                        <img src="/Knowledge_Space_files/BBPLogo-1.png" width="100" height="70"></a>   
                         <a href="https://www.humanbrainproject.eu/" target="_blank">
                         <img src="/Knowledge_Space_files/human-brain-project.8f47bd2d109f.jpg">
                     </a>
@@ -20,7 +20,8 @@
                         <a href="http://www.neuinfo.org/" target="_blank">
                         <img src="/Knowledge_Space_files/nif-logo.e83d9d4157b0.png">
                     </a>
-
+                          <br/><br/>
+                          <span id="loadTime"></span>  
 						</div>
                                                 
                                                
@@ -44,3 +45,14 @@
 </div><!--/wrapper-->
 
 </body>
+
+<script type="text/javascript">
+             /*$(document).ready(function() {
+                 console.log("Time until DOMready: ", Date.now()-timerStart);
+             });*/
+             $(window).load(function() {
+                 var d = new Date();
+                 var loadTime = (d.getTime()-timerStart)/1000;
+                 document.getElementById("loadTime").innerHTML = "<h6>Page load time: "+loadTime+" seconds</h6>";
+             });
+</script>

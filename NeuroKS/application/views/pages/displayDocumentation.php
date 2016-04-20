@@ -15,10 +15,15 @@
                                                 <tr><td> 
                                                         <a href="https://github.com/SciCrunch/NIF-Ontology" target="_blank">NIF Ontology Repository</a>
                                                     </td></tr>
+                                                <tr><td> 
+                                                        <a href=" https://www.trelliscience.com/#/group-home/504" target="_blank">KnowledgeSpace working group homepage</a>
+                                                    </td></tr>
                                                 
                                                 <tr><td> 
                                                         <a href="https://drive.google.com/folderview?id=0B00EreDwaaqZbWJ0c0tRSXZyNWs&usp=sharing" target="_blank">Meeting minutes</a>
                                                     </td></tr>
+                                                
+                                                    
                                                        <!-- <ul>
                                                     <li><a href="https://github.com/NeuroscienceKnowledgeSpace/KnowledgeSpace" target="_blank">KS GitHub repository</a></li>
                                                     <li><a href="https://drive.google.com/folderview?id=0B00EreDwaaqZbWJ0c0tRSXZyNWs&usp=sharing" target="_blank">Meeting minutes</a></li>

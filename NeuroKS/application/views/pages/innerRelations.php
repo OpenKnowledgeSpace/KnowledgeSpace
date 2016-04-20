@@ -1,9 +1,11 @@
-  <link rel="stylesheet" type="text/css" href="sckb.css"> 
+  <!-- <link rel="stylesheet" type="text/css" href="sckb.css"> -->
 
        <!--------------------Tree panel ----------------------------->
        <div class="panel panel-grey">
         <div class="panel-heading">   
-	<h3 class="panel-title"><a href="#" id="relation-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a>Relations</h3>							
+	<h3 class="panel-title">
+        <a href="#" id="relation-fullscreen" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Expand', 'Expand tree panel');">
+            <i class="glyphicon glyphicon-resize-full"></i></a>Relations</h3>							
         </div>
 
         <div id="relation-panel-1" class="panel-body" style="min-height: 50%; max-height: 50%;overflow-y: scroll">
@@ -32,7 +34,8 @@
         
 	$parentLink = "/".$config_array->local_context_name."/index.php/pages/view/".$node->id;
         
-        echo "<ul><li><span id=\"".$node->id.","."none"."\"><i class=\"icon-folder-open\"></i>" . $node->lbl    .    "</span><a target=\"_self\" href=\"".$parentLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>";
+        echo "<ul><li><span id=\"".$node->id.","."none"."\"><i class=\"icon-folder-open\"></i>" . $node->lbl    .    
+                "</span><a target=\"_self\" href=\"".$parentLink."\" ><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>";
 
 	$mainLink = "/".$config_array->local_context_name."/index.php/pages/view/".$mainNode->id;
 

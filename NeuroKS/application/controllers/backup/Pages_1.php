@@ -330,15 +330,6 @@ class Pages extends CI_Controller
             }
         }
         
-        private function countRuntime(&$data)
-        {
-            $time = round(microtime(true) * 1000);
-            
-            $start = $time;
-            
-            $data['startTime'] = $start;
-        }
-        
         /* public function loadJsonConfig(&$data)
         {
             $configJson = file_get_contents(getcwd()."/application/config/config.json");
@@ -443,7 +434,7 @@ class Pages extends CI_Controller
                //require_once 'CacheConfig.php';
                //require_once  'JsonClientUtil.php';  
                //require_once 'Config.php';
-                $this->countRuntime($data);
+               
                 $this->load->helper('url');
                 
                 require_once 'ServiceUtil.php';
@@ -582,55 +573,36 @@ class Pages extends CI_Controller
                 
 
                 //////////////////////
-               $cacheLitfile = $data["config_array"]->cache_folder.basename($_SERVER['PHP_SELF']).'-literature.cache'; 
-               $cacheFullLitfile = $data["config_array"]->cache_folder.basename($_SERVER['PHP_SELF']).'-Full-literature.cache'; 
-
+                //$cachefile = '/webCache/'.basename($_SERVER['PHP_SELF']).'.cache'; // e.g. cache/index.php.cache
+               $cachefile = $data["config_array"]->cache_folder.basename($_SERVER['PHP_SELF']).'.cache'; // e.g. cache/index.php.cache
+ 
                $cachetime = 3600*24; // time to cache in seconds
-               $data['cachetime'] = $cachetime;
-               
-               
-               ////////////Checking literature file/////////////////////////
-               $loadCache = false;
-               $data['cacheLitfile'] = $cacheLitfile;
-               if(!file_exists($cacheLitfile))
-               {
+                $c = "";
+                //if($this->enableCaching)
+                //echo "--------".$data["config_array"]->enableCaching;
+                if($data["config_array"]->enable_caching)
+                {
+                    //echo "====cachiing----";
+                    if(!file_exists($cachefile))
+                    {
                        //Do nothing 
-               }
-               else if(file_exists($cacheLitfile) && time()-$cachetime <= filemtime($cacheLitfile))
-               {
-                   $loadCache = true;
-               }
-               else
-               {
-                   unlink($cacheLitfile);
-               }
-               $data['loadCache'] = $loadCache;
-               ////////////////End checking literature file///////////////////////
-               
-               
-               $loadFullLitCache = false;
-               $data['cacheFullLitfile'] = $cacheFullLitfile;
-               if(!file_exists($cacheLitfile))
-               {//Do nothing
-               }
-               else if(file_exists($cacheFullLitfile) && time()-$cachetime <= filemtime($cacheFullLitfile))
-               {
-                   $loadFullLitCache = true;
-               }
-               else
-               {
-                   unlink($cacheFullLitfile);
-               }
-               $data['loadFullLitCache'] = $loadFullLitCache;
-               if(!$loadCache || !$loadFullLitCache)
-                   $loadCache = false;
-               
-               
-               
-               if(is_null($termObj))
-               {
+                    }
+                    else if(file_exists($cachefile) && time()-$cachetime <= filemtime($cachefile)){
+                      $c = @file_get_contents($cachefile);
+                      echo $c;
+                      exit;
+                    }else{
+                      unlink($cachefile);
+                    }
+
+                    ///////////////////////
+   
+                    if(is_null($termObj))
+                    {
                         show_404 (); 
                         return;
+                    }
+                    ob_start();
                 }
                 ///////////////////////////////////////////////////////
                 $this->handleSummary($data, $termObj, $pageName);
@@ -652,20 +624,23 @@ class Pages extends CI_Controller
                 $this->handleDataSpace($data, $pageName);
                 if(isset($termObj[0]))
                     $this->handleLexicon($data,$termObj[0]->curie);
-                
-                if(!$loadCache)
-                    $this->handleLiterature($data, $pageName);
+                $this->handleLiterature($data, $pageName);
 
                 
 
                     $this->load->view('templates/header2', $data);
                     //$this->load->view('pages/'.$page, $data);
                     //$this->load->view('pages/term', $data);
-                    $this->load->view('pages/layout2', $data);
+                    $this->load->view('pages/layout', $data);
                     $this->load->view('templates/footer2', $data);
 
                 ///////////////////////////////////////////////
-                
+                //if($this->enableCaching)
+                if($data["config_array"]->enable_caching)
+                {
+                    $c = ob_get_contents();
+                    file_put_contents($cachefile, $c);
+                }
 	}
 
 }

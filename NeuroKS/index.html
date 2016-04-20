@@ -47,6 +47,16 @@
     <link rel="stylesheet" href="/assets/css/custom.css">
 
     <script type="text/javascript" src="/assets/plugins/jquery-1.10.2.min.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-76646751-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </head>
 
 <body>
@@ -60,16 +70,7 @@
     <div class="wrapper" >
     
 
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-34153437-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 <style>
         .header-v1 .navbar-default .navbar-nav > li > a:hover, .header-v1 .navbar-default .navbar-nav > .active > a, .header-v1 .navbar-default .navbar-nav > li:hover > a {
         color: #fff;
@@ -239,9 +240,9 @@
             <div class="forgot-pw-container">
                 <form class="forgot-pw-form">
                     <div class="input-group">
-                        <input type="text" class="form-control forgot-email" name="query" placeholder="Account Email"/>
+                        <input  type="text" class="form-control forgot-email" name="query" placeholder="Account Email"/>
                                     <span class="input-group-btn">
-                                        <button class="btn-u" type="submit">Send</button>
+                                        <button class="btn-u" type="submit" >Send</button>
                                     </span>
                     </div>
                 </form>
@@ -380,12 +381,13 @@
                 <input type="hidden" class="search-community" value="scicrunch"/>
                 <input type="hidden" class="stripped-community" value=""/>
                 <div class="input-group">
-                                        <input type="text" class="form-control searchbar" style="height:34px" id="search-banner-input" name="l" placeholder="" value="">
+                    <input  type="text" class="form-control searchbar" style="height:34px" id="search-banner-input" name="l" placeholder="" value="">
+                    
                     <input type="hidden" id="autoValues" />
 
                     <div class="autocomplete_append auto" style="z-index:10"></div>
                     <span class="input-group-btn">
-                        <button class="btn-u search-icon" type="submit"><i class="fa fa-search"></i></button>
+                        <button class="btn-u search-icon" type="submit" ><i class="fa fa-search"></i></button>
                     </span>
                 </div>
 

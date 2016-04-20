@@ -66,6 +66,19 @@
         <!-- <script src="/NeuroKS/application/views/js/fullscreen.js"></script> -->
         <script src="/NeuroKS/application/views/js/fullscreen_layout.js"></script>
         <script src="/NeuroKS/js/sortable/js/sortable.min.js"></script>
+        
+        <!-- Adding hypothesis javascript -->
+        <script async defer src="https://hypothes.is/embed.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-76646751-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 
 </head>
 <script type="text/javascript">
@@ -289,6 +302,16 @@ window.onpaint = prepareCookies();
 
 </script>
 
+<!---Counting runtime--->
+<script type="text/javascript">
+<?php
+    if(isset($startTime))
+        echo "var timerStart = ".$startTime.";";
+    else
+        echo "var timerStart = Date.now();";
+?> 
+</script>
+
 </head>
 <body>
   <script type="text/javascript">
@@ -419,9 +442,9 @@ function loadTree(theUrl)
                     ?>
                     <center>			
                     <form action="/NeuroKS/index.php/Search" method="post">
-		    <input name="keywords" type="text" size="50" placeholder="Search">
+		    <input id="header_search" name="keywords" type="text" size="50" placeholder="Search">
                         
-			<button class="btn-u btn-u-sm btn-u-blue" type="submit" >Go</button>
+			<button class="btn-u btn-u-sm btn-u-blue" type="submit" onclick="return ksTrackEvent('Button', 'Search from the header', document.getElementById('header_search').value);">Go</button>
                        
 									
 							

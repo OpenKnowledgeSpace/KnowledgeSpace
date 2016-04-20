@@ -7,7 +7,7 @@
         </div> -->
         <div class="panel-heading">
              
-	<h3 class="panel-title"><a href="#" id="summary-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a>
+	<h3 class="panel-title"><a href="#" id="summary-fullscreen" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Expand', 'Expand summary panel');"><i class="glyphicon glyphicon-resize-full"></i></a>
         Summary</h3>
 								
         </div>

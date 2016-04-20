@@ -21,6 +21,7 @@
                echo "<p></p>";
                $tempName= str_replace("%20", " ", $term);
                $tempName= str_replace("%2c", ",", $tempName);
+               $tempName= str_replace("%2f", "/", $tempName);
                echo "Search for \"".$tempName."\"";
                echo "<br/>Displaying results ".$startItem." - ".$endItem." out of ".$resultObj->result->resultCount." total results.";
                ?>
