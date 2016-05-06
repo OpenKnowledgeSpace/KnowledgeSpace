@@ -102,10 +102,18 @@ $(document).ready(function ()
             document.getElementById("relation-panel").innerHTML ="";
              $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
             $('.tree li.parent_li > span').on('click', function (e) { 
+                
                 var treeIds = e.target.id.split(',');
-                var treeURL = "/NeuroKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
-                //alert(treeURL);
-                loadTree(treeURL);
+                if(treeIds.length == 2 && !treeIds[0].startsWith("http:"))
+                {
+                    var treeURL = "/NeuroKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
+                    //alert(treeURL);
+                    loadTree(treeURL);
+                }
+                else if(treeIds.length == 2)
+                {
+                    alert("Unable to load:"+treeIds[0]);
+                }
     
             });
             
@@ -226,10 +234,20 @@ $(document).ready(function ()
         expandTree=true;
         $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
             $('.tree li.parent_li > span').on('click', function (e) { 
+                //alert(e.target.id);
                 var treeIds = e.target.id.split(',');
-                var treeURL = "/NeuroKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
-                //alert(treeURL);
-                loadTree(treeURL);
+                //alert(treeIds.length);
+                if(treeIds.length == 2 && !treeIds[0].startsWith("http:"))
+                {
+                
+                    var treeURL = "/NeuroKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
+                    //alert(treeURL);
+                    loadTree(treeURL);
+                }
+                else if(treeIds.length == 2)
+                {
+                    alert("Unable to expand:"+treeIds[0]);
+                }
     
             });
 

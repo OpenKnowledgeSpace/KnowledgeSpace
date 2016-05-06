@@ -64,7 +64,7 @@
 	<script type="text/javascript" src="/assets/js/plugins/parallax-slider.js"></script>
         <!-- Custom js -->
         <!-- <script src="/NeuroKS/application/views/js/fullscreen.js"></script> -->
-        <script src="/NeuroKS/application/views/js/fullscreen_layout.js"></script>
+        <script src="/NeuroKS/application/views/js/fullscreen_layout.js?<?php echo time(); ?>"></script>
         <script src="/NeuroKS/js/sortable/js/sortable.min.js"></script>
         
         <!-- Adding hypothesis javascript -->

@@ -252,7 +252,7 @@ class ServiceUtil
         require_once('Config.php');
 	//$surl = "http://matrix.neuinfo.org:9000/scigraph/graph/neighbors/". $curie ."?depth=1&blankNodes=false&direction=BOTH&project=%2A";
         $surl = "http://".Config::$sciGraphHost.":9000/scigraph/graph/neighbors/". $curie ."?depth=1&blankNodes=false&direction=BOTH&project=%2A";
-
+        //echo $surl;
 	$obj = $this->getJsonObj($surl);
 	return $obj;
 
@@ -281,22 +281,25 @@ class ServiceUtil
     
     public function getParentIDIncoming($obj, $mainID, $prop)
     {
-	foreach($obj->edges as $edge)
-	{
+        if(!is_null($obj) && isset($obj->edges))
+        {
+            foreach($obj->edges as $edge)
+            {
 
-		//var_dump($edge);
-		if(strcmp($prop, $edge->pred)==0)
-		{
+                    //var_dump($edge);
+                    if(strcmp($prop, $edge->pred)==0)
+                    {
 
-			if(strcmp($mainID,$edge->sub)==0)
-				// && startsWith($edge->obj,"NIFCELL"))
-			{
-				//echo $edge->sub."----------->". $edge->obj."\n";
+                            if(strcmp($mainID,$edge->sub)==0)
+                                    // && startsWith($edge->obj,"NIFCELL"))
+                            {
+                                    //echo $edge->sub."----------->". $edge->obj."\n";
 
-				return $edge->obj;
-			}
-		}		
-	}
+                                    return $edge->obj;
+                            }
+                    }		
+            }
+        }
 	return NULL;
     }
     
@@ -304,21 +307,23 @@ class ServiceUtil
     public function getOtherParentID($obj, $mainID, $prop)
     //public function getOtherChildrenIDs($obj, $mainID, $prop)
     {
-        
-	foreach($obj->edges as $edge)
-	{
-		if(strcmp($prop, $edge->pred)==0)
-		{
-			/*if(strcmp($mainID,$edge->sub)==0)
-			{
-				return $edge->obj;
-			}*/
-                        if(strcmp($mainID,$edge->obj)==0)
-			{
-				return $edge->sub;
-			}
-		}		
-	}
+        if(!is_null($obj) && isset($obj->edges))
+        {
+            foreach($obj->edges as $edge)
+            {
+                    if(strcmp($prop, $edge->pred)==0)
+                    {
+                            /*if(strcmp($mainID,$edge->sub)==0)
+                            {
+                                    return $edge->obj;
+                            }*/
+                            if(strcmp($mainID,$edge->obj)==0)
+                            {
+                                    return $edge->sub;
+                            }
+                    }		
+            }
+        }
 	return NULL; 
         
     }
@@ -333,13 +338,16 @@ class ServiceUtil
        */
     public function getNode($obj, $id)
     {
-	foreach($obj->nodes as $node)
-	{
-		if(strcmp($id, $node->id) == 0)
-		{
-		    return $node;
-		}
-	}
+        if(!is_null($obj))
+        {
+            foreach($obj->nodes as $node)
+            {
+                    if(strcmp($id, $node->id) == 0)
+                    {
+                        return $node;
+                    }
+            }
+        }
 
 	return NULL;
     }
@@ -349,23 +357,20 @@ class ServiceUtil
     public function getChildrenIDs($obj, $mainID)
     {
 	$list = new SplDoublyLinkedList();
-
-	foreach($obj->edges as $edge)
-	{
-		if(strcmp("subClassOf",$edge->pred)==0)
-		{
-			if(strcmp($mainID,$edge->obj)==0)
-			{
-				$list->push($edge->sub);
-
-				//echo $edge->sub;
-			}
-
-		}
-
-
-	}
-
+        if(!is_null($obj))
+        {
+            foreach($obj->edges as $edge)
+            {
+                    if(strcmp("subClassOf",$edge->pred)==0)
+                    {
+                            if(strcmp($mainID,$edge->obj)==0)
+                            {
+                                    $list->push($edge->sub);
+                                    //echo $edge->sub;
+                            }
+                    }
+            }
+        }
 	return $list;
         
         
@@ -377,22 +382,20 @@ class ServiceUtil
     public function getChildrenIDsIncoming($obj, $mainID, $prop)
     {
 	$list = new SplDoublyLinkedList();
-
-	foreach($obj->edges as $edge)
-	{
-		if(strcmp($prop,$edge->pred)==0)
-		{
-			if(strcmp($mainID,$edge->obj)==0)
-			{
-				$list->push($edge->sub);
-
-				//echo $edge->sub;
-			}
-
-		}
-
-
-	}
+        if(!is_null($obj) && isset($obj->edges))
+        {
+            foreach($obj->edges as $edge)
+            {
+                    if(strcmp($prop,$edge->pred)==0)
+                    {
+                            if(strcmp($mainID,$edge->obj)==0)
+                            {
+                                    $list->push($edge->sub);
+                                    //echo $edge->sub;
+                            }
+                    }
+            }
+        }
 
 	return $list;
         
@@ -408,23 +411,24 @@ class ServiceUtil
     {
 	$list = new SplDoublyLinkedList();
         //echo "<br/>-----getOtherChildrenIDs:".$prop;
-	foreach($obj->edges as $edge)
-	{
-		if(strcmp($prop,$edge->pred)==0)
-		{
-			/*if(strcmp($mainID,$edge->obj)==0)
-			{
-				$list->push($edge->sub);
+        if(!is_null($obj))
+        {
+            foreach($obj->edges as $edge)
+            {
+                    if(strcmp($prop,$edge->pred)==0)
+                    {
+                            /*if(strcmp($mainID,$edge->obj)==0)
+                            {
+                                    $list->push($edge->sub);
 
-			}*/
-                        if(strcmp($mainID,$edge->sub)==0)
-			{
-				$list->push($edge->obj);
-
-			}
-
-		}
-	}
+                            }*/
+                            if(strcmp($mainID,$edge->sub)==0)
+                            {
+                                    $list->push($edge->obj);
+                            }
+                    }
+            }
+        }
 	return $list;
        
     }
