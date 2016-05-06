@@ -132,6 +132,14 @@
         "enabled":true,
         "has_images":false,
         "description":"has <a class=\"external\" target=\"_blank\" href=\"http://microcircuits.epfl.ch/#/article/article_3_mph\">3D models</a> of rat neuronal morphologies."
+    },
+    {
+       "source_name":"IonChannelGenealogy: Ion Channels",
+        "curie":"SCR_014194-1",
+        "categories":["Models"],
+        "enabled":true,
+        "has_images":false,
+        "description":"<a class=\"external\" target=\"_blank\" href=\"http://icg.neurotheory.ox.ac.uk/\">IonChannelGenealogy</a> provides a quantitative assay of publicly available ion channel models. Descriptions of the columns are available <a class=\"external\" target=\"_blank\" href=\"http://icg.neurotheory.ox.ac.uk/manual/#sec:selecting-a-model\">here</a>." 
     }
     
 ]
