@@ -45,7 +45,7 @@ echo "\n</script>";
         <div class="panel-heading">
              
             <h3 class="panel-title">
-            <a href="#" id="panel-fullscreen0" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Minimize', 'Minimize dataspace panel');">
+            <a class="pull-right" href="#" id="panel-fullscreen0" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Minimize', 'Minimize dataspace panel');">
             <i class="glyphicon glyphicon-resize-small"></i></a><span id="panel_title">Data space</span></h3>
 								
         </div>
@@ -70,7 +70,7 @@ echo "\n</script>";
         <div class="panel-heading">
              
             <h3 class="panel-title">
-            <a href="#" id="panel-fullscreen1" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Minimize', 'Minimize literature panel');">
+            <a class="pull-right" href="#" id="panel-fullscreen1" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Minimize', 'Minimize literature panel');">
             <i class="glyphicon glyphicon-resize-small"></i></a><span id="panel_title2">Literature</span></h3>
 								
         </div>
@@ -121,7 +121,7 @@ echo "\n</script>";
                 <div class="panel-heading">
              
                 <h3 class="panel-title">
-                <a href="#" id="panel-fullscreen2" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Minimize', 'Minimize relation panel');">
+                <a class="pull-right" href="#" id="panel-fullscreen2" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Minimize', 'Minimize relation panel');">
                 <i class="glyphicon glyphicon-resize-small"></i></a><span id="panel_title3">Relations</span></h3>
 								
                 </div>
@@ -201,8 +201,8 @@ echo "\n</script>";
                 <div class="panel-heading">
              
                 <h3 class="panel-title">
-                <a href="#" id="panel-fullscreen" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Expand', 'Expand Dataspace panel');">
-                    <i class="glyphicon glyphicon-resize-full"></i></a>Data space</h3>
+                <a class="pull-right" href="#" id="panel-fullscreen" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Expand', 'Expand Dataspace panel');">
+                    <i class="glyphicon glyphicon-zoom-in"></i></a>Data space</h3>
 								
                 </div>
 

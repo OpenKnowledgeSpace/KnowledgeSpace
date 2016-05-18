@@ -49,7 +49,14 @@
 	<script type="text/javascript" src="/assets/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/plugins/jquery/jquery-migrate.min.js"></script>
 	<script type="text/javascript" src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<!-- JS Implementing Plugins -->
+	
+        <!-- ICON --->
+        <link rel="stylesheet" href="/assets/plugins/line-icons-pro/styles.css">
+	<link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
+
+        
+        
+        <!-- JS Implementing Plugins -->
 	<script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
 	<script type="text/javascript" src="/assets/plugins/smoothScroll.js"></script>
 	<script type="text/javascript" src="/assets/plugins/parallax-slider/js/modernizr.js"></script>

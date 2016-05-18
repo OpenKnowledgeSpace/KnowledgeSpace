@@ -58,12 +58,18 @@
         <div id="treeWell2" class="tree well">
 <?php
 
-        $parentLinkName = str_replace(" ", "_", $node->lbl);
+        $parentLinkName = "";
+        if(isset($node->lbl))
+            $parentLinkName = str_replace(" ", "_", $node->lbl);
+        else
+            $parentLinkName = "unknown";
         $parentLinkName = str_replace("(", "_",$parentLinkName);
         $parentLinkName = str_replace(")", "_",$parentLinkName);
-        
-        $parentLink = "/".$config_array->local_context_name."/index.php/pages/view/".$node->id;
-        
+        $parentLink="";
+        if(isset($node->id))
+            $parentLink = "/".$config_array->local_context_name."/index.php/pages/view/".$node->id;
+        else
+            $parentLink = "#";
         if (!is_null($node))
         {
             if (strpos($node->id, '/') == false)

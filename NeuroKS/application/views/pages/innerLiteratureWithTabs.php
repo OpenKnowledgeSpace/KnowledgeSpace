@@ -221,8 +221,8 @@ $(function () {
                 </ul> -->
              
 	<h3 class="panel-title">
-        <a href="#" id="literature-fullscreen" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Expand', 'Expand literature panel');">
-        <i class="glyphicon glyphicon-resize-full"></i></a>Literature</h3>
+        <a class="pull-right" href="#" id="literature-fullscreen" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Expand', 'Expand literature panel');">
+        <i class="glyphicon glyphicon-zoom-in"></i></a>Literature</h3>
 								
     </div>
   <!--  <div class="panel-body" style="min-height: 385; max-height: 385;overflow-y: scroll">

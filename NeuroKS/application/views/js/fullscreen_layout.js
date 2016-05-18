@@ -372,7 +372,8 @@ $(document).ready(function ()
         
         
     
-        if ($this.children('i').hasClass('glyphicon-resize-full'))
+        if ($this.children('i').hasClass('glyphicon-resize-full') ||
+              $this.children('i').hasClass('glyphicon-zoom-in')  )
         {
             $('html,body').scrollTop(0);
             //$this.children('i').removeClass('glyphicon-resize-full');
