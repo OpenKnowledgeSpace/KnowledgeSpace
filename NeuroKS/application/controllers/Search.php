@@ -62,8 +62,13 @@
         } */
         private function doSearch($keywords)
         {
-             require_once('ServiceUtil.php');
-             require_once 'Config.php';
+            $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+            $domainName = $_SERVER['HTTP_HOST'];
+            
+            require_once('ServiceUtil.php');
+            require_once 'Config.php';
+            $this->load->helper('url');
+             
                 $myConfig = new Config();
                 $myConfig->loadJsonConfig($data);
                 
@@ -84,6 +89,24 @@
                    $data['categories'] = $categories;
                }*/
                 $termResult = $util->getTerm($keywords);
+                //var_dump($termResult);
+                $termSize = 0;
+                if(!is_null($termResult))
+                    $termSize = count($termResult);
+               
+                //echo "------Term size:".$termSize."<br/>\n";
+                if($termSize == 1)
+                {
+                    //echo "------Curie:".$termResult[0]->curie."<br/>\n";
+                    if(isset($termResult[0]->curie))
+                    {
+                        echo "<br/><center>Redirecting to ".$termResult[0]->curie." ...</center>";
+                        redirect($protocol."://".$domainName."/".Config::$localContextName."/index.php/pages/view/".$termResult[0]->curie, 'refresh');
+                
+                    }   
+                    return;
+                }
+                
                 $searchResult = $util->searchTerm($keywords);
                 
                     $data['keywords'] = $keywords;

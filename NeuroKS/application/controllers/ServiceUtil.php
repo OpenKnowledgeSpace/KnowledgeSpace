@@ -124,7 +124,7 @@ class ServiceUtil
         require_once('Config.php');
         $name = str_replace(" ", "%20",$name); 
         $surl = "http://matrix.neuinfo.org:9000/scigraph/vocabulary/search/".$name."?limit=100&searchSynonyms=true&searchAbbreviations=false&searchAcronyms=false";
-    
+        //echo $surl."<br/>\n";
         $obj = $this->getJsonObj($surl); 
         return $obj;
         
@@ -135,7 +135,7 @@ class ServiceUtil
         $name = str_replace(" ", "%20",$name); 
 
         $surl = "http://".Config::$sciGraphHost.":9000/scigraph/vocabulary/term/".$name."?limit=20&searchSynonyms=false&searchAbbreviations=false&searchAcronyms=false";
-    
+        //echo $surl."<br/>\n";
         $obj = $this->getJsonObj($surl); 
         return $obj;
     }    
