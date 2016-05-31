@@ -13,6 +13,11 @@
                                                 <p>
                                                 <a href="/NeuroKS/files/2012_PONS_ws_report.pdf" target="_blank">2012 INCF Workshop Report</a>
                                                 </p>
+                                                <br/>
+                                                <p>
+                                                    KnowledgeSpace has been developed with support from the Human Brain Project through the European Union Seventh Framework Program (FP7/2007-2013) under grant agreement no. 604102 (HBP).
+                                                </p>
+                                                <br/>
                                                 <p> KS builds on a vocabulary service, populated with an integrated set of neuroscience ontologies with initial content coming from the
                         <a href="http://neurolex.org/wiki/Main_Page" target="_blank">Neuroscience Lexicon</a> (NeuroLex), and the <a href="http://brancusi1.usc.edu" target="_blank">Brain Architecture Management System</a> (BAMS). It links to an expanding set of data sources through the Neuroscience Information Framework (NIF) federated search infrastructure.</p>
                        

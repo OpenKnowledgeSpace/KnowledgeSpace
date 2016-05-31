@@ -18,7 +18,7 @@
                     </a>
 
                         <a href="http://www.neuinfo.org/" target="_blank">
-                        <img src="/Knowledge_Space_files/nif-logo.e83d9d4157b0.png">
+                            <img width="120px" height="auto" src="/Knowledge_Space_files/nif-logo.png">
                     </a>
                           <br/><br/>
                           <span id="loadTime"></span>  

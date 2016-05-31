@@ -62,12 +62,17 @@
         } */
         private function doSearch($keywords)
         {
+            
             $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+            //$protocol = "http";
+            
             $domainName = $_SERVER['HTTP_HOST'];
             
             require_once('ServiceUtil.php');
             require_once 'Config.php';
             $this->load->helper('url');
+            
+            
              
                 $myConfig = new Config();
                 $myConfig->loadJsonConfig($data);
@@ -100,9 +105,10 @@
                     //echo "------Curie:".$termResult[0]->curie."<br/>\n";
                     if(isset($termResult[0]->curie))
                     {
-                        echo "<br/><center>Redirecting to ".$termResult[0]->curie." ...</center>";
-                        redirect($protocol."://".$domainName."/".Config::$localContextName."/index.php/pages/view/".$termResult[0]->curie, 'refresh');
-                
+                        //echo "<br/><center>Redirecting to ".$termResult[0]->curie." ...</center>";
+                        //redirect($protocol."://".$domainName."/".Config::$localContextName."/index.php/pages/view/".$termResult[0]->curie, 'refresh');
+                        redirect($protocol.$domainName."/".Config::$localContextName."/index.php/pages/view/".$termResult[0]->curie,'location',301);
+                         
                     }   
                     return;
                 }

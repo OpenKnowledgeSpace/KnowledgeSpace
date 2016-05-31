@@ -443,8 +443,11 @@ class Pages extends CI_Controller
                //require_once 'CacheConfig.php';
                //require_once  'JsonClientUtil.php';  
                //require_once 'Config.php';
+            $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+
                 $this->countRuntime($data);
                 $this->load->helper('url');
+                                
                 
                 require_once 'ServiceUtil.php';
                 $util = new ServiceUtil();
@@ -531,7 +534,7 @@ class Pages extends CI_Controller
                    $termObj = $util->getTerm($pageName);
                    //var_dump($termObj);
                    
-                   $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+                   
                     $domainName = $_SERVER['HTTP_HOST'];
                    if(!is_null($termObj))
                    {
@@ -541,7 +544,7 @@ class Pages extends CI_Controller
                           
                            //redirect('http://google.com', 'location');
                             
-                           redirect($protocol."://".$domainName."/".Config::$localContextName."/index.php/pages/view/".$termObj[0]->curie, 'refresh');
+                           redirect($protocol.$domainName."/".Config::$localContextName."/index.php/pages/view/".$termObj[0]->curie, 'location',301);
                            
                            
                        }

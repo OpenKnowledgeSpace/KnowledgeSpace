@@ -509,6 +509,9 @@ function loadTree(theUrl)
 			<!-- <a href="/NeuroKS/documentation.php">Documentation</a> -->
                         <a href="/NeuroKS/index.php/Documentation">Documentation</a>
 		    </li>
+                    <li>
+                        <img width="85px" height="auto"  src="/Knowledge_Space_files/human-brain-project.8f47bd2d109f.jpg">
+                    </li>
                     <?php if($enable_config){?>
                     <!-- <li>
                         <a href="#" data-toggle="modal" data-target="#demoModal" onclick="updateConfig()">Configurations</a>
