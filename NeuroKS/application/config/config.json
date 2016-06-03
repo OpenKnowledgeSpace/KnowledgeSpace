@@ -3,6 +3,20 @@
     "cache_folder": "/webCache/",
     "part_of_property": "http://purl.obolibrary.org/obo/BFO_0000050",
     "has_proper_part_property": "http://www.obofoundry.org/ro/ro.owl#has_proper_part",
+    "properties_included":[
+        {
+            "name":"part_of_property",
+            "value":"http://purl.obolibrary.org/obo/BFO_0000050"
+        },
+        {
+            "name":"has_proper_part_property",
+            "value": "http://www.obofoundry.org/ro/ro.owl#has_proper_part"
+        },
+        {
+            "name":"contributes to morphology of",
+            "value":"http://purl.obolibrary.org/obo/RO_0002433"
+        }
+    ],
     "categories":["Physiology","Expression","Models","Anatomy","Morphology"],
     "local_context_name":"NeuroKS",
     "literature_host":"starburst.crbs.ucsd.edu",

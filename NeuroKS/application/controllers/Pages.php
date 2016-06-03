@@ -169,6 +169,7 @@ class Pages extends CI_Controller
     
         private function handleLexicon(&$data, $curie)
         {
+            require_once '../NeuroKS/application/models/CustomTree.php';
             require_once 'Config.php'; 
            //include 'Globals.php';
            //include 'JsonClientUtil.php';
@@ -269,7 +270,50 @@ class Pages extends CI_Controller
                 //$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
                 $leafHTML = $leafHTML . "<ul><li><span id=\"".$leaf->id.",".$mainNode->id."\"><i class=\"icon-plus-sign\"></i>" . $leaf->lbl . "</span> <a href=\"".$leafLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a></li></ul>\n";
             }
+            
             $data['leafHTML3'] = $leafHTML;
+            /********************Loop properties***************************/
+            $relation_array = array();
+            
+            $properties = $data["config_array"]->properties_included;
+            foreach($properties as $property)
+            {
+                echo "<br/>".$property->name."-------".$property->value."\n";
+                $tempList = $util->getChildrenIDsIncoming($treeObj, $curie,$property->value);
+                $tempParentID = $util->getParentIDIncoming($treeObj, $curie,$property->value);
+                $tempPrarentNode = $util->getNode($treeObj,$tempParentID);
+                
+                
+                $leafHTML = null;
+                $tempList->setIteratorMode(SplDoublyLinkedList::IT_MODE_FIFO);
+                for ($tempList->rewind(); $tempList->valid(); $tempList->next()) 
+                {
+
+                    $item = $tempList->current();
+                    $leaf = $util->getNode($treeObj, $item);
+
+
+                    $leafLinkName = str_replace(" ", "_", $leaf->lbl);
+                    $leafLinkName = str_replace("(", "_", $leafLinkName);
+                    $leafLinkName = str_replace(")", "_", $leafLinkName);
+                    //$leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
+                    $leafLink = "/".Config::$localContextName."/index.php/pages/view/".$leaf->id;
+                    //$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
+                    $leafHTML = $leafHTML . "<ul><li><span id=\"".$leaf->id.",".$mainNode->id."\"><i class=\"icon-plus-sign\"></i>" . $leaf->lbl . "</span> <a href=\"".$leafLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a></li></ul>\n";
+                }
+                
+                
+                $ctree = new CustomTree(); 
+                $ctree->parentNode = $tempPrarentNode;
+                $ctree->mainNode = $mainNode;
+                $ctree->leafHtml = $leafHTML;
+                
+                $relation_array[$property->name] =$ctree;
+            }
+            
+            $data["relation_array"] = $relation_array;
+            
+            
         }
     
         
