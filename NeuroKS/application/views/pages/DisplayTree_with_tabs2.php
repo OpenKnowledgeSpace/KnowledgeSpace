@@ -1,27 +1,37 @@
+
 <?php
-    require_once '../NeuroKS/application/models/CustomTree.php';
+    if(strcmp($enableHeader, "true")==0)
+    {
+        
+      
  ?>
-<!--------------------Tree panel ----------------------------->
-       <div class="panel panel-grey">
-        <div class="panel-heading clearfix">   
-	<h3 class="panel-title">
-            <a class="pull-right"  href="#" id="relation-fullscreen" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Expand', 'Expand tree panel');">
-            <!--  <i class="glyphicon glyphicon-resize-full" style="color:#008ae6"></i></a> -->
-            <i class="glyphicon glyphicon-zoom-in"></i></a>
-                Relations</h3>							
+  <link rel="stylesheet" type="text/css" href="sckb.css"> 
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <div class="panel panel-default">
+
+            <div class="panel-heading">   
+	<h3 class="panel-title"><a href="#" id="relation-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a>Relations</h3>							
         </div>
 
-        <div id="relation-panel-1" class="panel-body" style="min-height: 50%; max-height: 50%;overflow-y: scroll">
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab1default" data-toggle="tab" onclick="updateTreeTabID(1);">SubClassOf</a></li>
-        <?php
+        <div id="relation-panel" class="panel-body" style="min-height: 35%; max-height: 35%;overflow-y: scroll">
+<?php
+    }
+
+?>
+            
+            <!-----------------In relation panel---->
+ <ul class="nav nav-tabs">
+        <li <?php if($tabID==1) echo "class=\"active\""; ?>><a href="#tab1default" data-toggle="tab" onclick="updateTreeTabID(1);">SubClassOf</a></li>
+       <?php 
             $properties = $config_array->properties_included;
             $index = 2;
             foreach($properties as $property)
             {
                 $style = "";
-                //if($index == 2)
-                //   $style = "active";
+                if($index == $tabID)
+                    $style = "active";
                 $customTree = $relation_array[$property->name];
                 $node = $customTree->parentNode;
                 $leafHTML = $customTree->leafHtml;
@@ -30,29 +40,21 @@
                     $index++;
                     continue;
                 }
-                    echo "<li class=\"".$style."\"><a href=\"#tab".$index."default\" data-toggle=\"tab\" onclick=\"updateTreeTabID(".$index.");\">".$property->name."</a></li>";
+                 echo "<li class=\"".$style."\"><a href=\"#tab".$index."default\" data-toggle=\"tab\" onclick=\"updateTreeTabID(".$index.");\">".$property->name."</a></li>";
                 
                 $index++;
             }
         ?>
-        </ul>
-        <!-- Tab content --->
-        <div class="tab-content"> 
-            
-            <!---First Panel -->        
-        <div class="tab-pane fade in active" id="tab1default">
+ </ul>
+       
+        
+        <div class="tab-content">
+        <!---First Panel -->        
+        <div class="tab-pane <?php if($tabID==1) echo " fade in active"; ?>" id="tab1default">
          
         <div id="treeWell2" class="tree well">
-        <?php
+<?php
 
-
-        /*$parentLinkName = str_replace(" ", "_", $node->lbl);
-        $parentLinkName = str_replace("(", "_",$parentLinkName);
-        $parentLinkName = str_replace(")", "_",$parentLinkName);
-        
-        
-	$parentLink = "/".$config_array->local_context_name."/index.php/pages/view/".$node->id;
-        */
         $parentLinkName = "";
         if(isset($node->lbl))
             $parentLinkName = str_replace(" ", "_", $node->lbl);
@@ -65,17 +67,26 @@
             $parentLink = "/".$config_array->local_context_name."/index.php/pages/view/".$node->id;
         else
             $parentLink = "#";
+        if (!is_null($node))
+        {
+            if (strpos($node->id, '/') == false)
+                echo "<ul><li><span id=\"".$node->id.","."none"."\"><i class=\"icon-folder-open\"></i>" . $node->lbl    .    "</span><a target=\"_self\" href=\"".$parentLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>";
+            else
+                echo "<ul><li><span id=\"".$mainNode->id.","."none"."\"><i class=\"icon-folder-open\"></i>" . $node->lbl    .    "</span><a target=\"_self\" href=\"".$parentLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>";
 
-        if(isset($node->id) && isset($node->lbl))
-            echo "<ul><li><span id=\"".$node->id.","."none"."\"><i class=\"icon-folder-open\"></i>" . $node->lbl    .    
-                "</span><a target=\"_self\" href=\"".$parentLink."\" ><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>";
+        }
 
-	$mainLink = "/".$config_array->local_context_name."/index.php/pages/view/".$mainNode->id;
+        $mainLink = "/".$config_array->local_context_name."/index.php/pages/view/".$mainNode->id;
 
-        if(isset($node->id))
+        
+        if (!is_null($node) && strpos($node->id, '/') == false)
             echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.",".$node->id."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
         else
-            echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.",none"."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
+            echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.","."none"."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
+            
+	
+        //$mainLink = "/SciCrunchKS/index.php/pages/view/".$mainNode->id;
+	//echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.",".$node->id."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
 
 
 	echo $leafHTML;
@@ -86,15 +97,17 @@
 	echo "</li></ul>";
 
 
-        ?>
+?>
         </div>
-        </div>
+            </div>
         
-        <!---End First Panel -->    
-            
-            
-            
-            <?php
+        <!---End First Panel -->  
+        
+        
+        
+        <!---Second Panel -->    
+        <!-- <div class="tab-pane <?php //if($tabID==2) echo " fade in active"; ?>" id="tab2default"> -->
+        <?php
             $properties = $config_array->properties_included;
             $index = 2;
             foreach($properties as $property)
@@ -110,8 +123,8 @@
                 }
                 
                 $style = "";
-                //if($index == 1)
-                //   $style = "active";
+                if($index == $tabID)
+                    $style = "active";
                 echo "<div class=\"tab-pane fade in ".$style."\" id=\"tab".$index."default\">";
                 echo "<div id=\"treeWell".$index."\" class=\"tree well\">";
                 
@@ -158,9 +171,30 @@
             }
         
             ?>
-        </div>
-        <!-- End Tab content --->
+        
+        
+        <!-- End second panel -->
+
             
-        </div>
-       </div> 
-       
+         
+
+<?php
+    if(strcmp($enableHeader, "true")==0)
+    {
+        
+      
+ ?>
+
+	</div>
+    </div>
+   
+<?php
+    }
+?>
+
+
+<!---End of panel--------->
+   <!-- </div>
+    </div>
+
+-->
