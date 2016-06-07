@@ -221,8 +221,8 @@ echo "\n</script>";
             </div>
             <div id="innerRelation"  class="col-md-12">
             <?php   
-              //include "innerRelations.php";
-              include "innerRelationList.php";
+             //include "innerRelations.php";
+             include "innerRelationList.php";
             ?>       
             </div>
             <script type="text/javascript">loadButtons();</script> 

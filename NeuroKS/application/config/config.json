@@ -6,15 +6,18 @@
     "properties_included":[
         {
             "name":"Part of",
-            "value":"http://purl.obolibrary.org/obo/BFO_0000050"
+            "value":"http://purl.obolibrary.org/obo/BFO_0000050",
+            "direction":"out-going"
         },
         {
             "name":"Has part",
-            "value": "http://www.obofoundry.org/ro/ro.owl#has_proper_part"
+            "value": "http://www.obofoundry.org/ro/ro.owl#has_proper_part",
+            "direction":"in-coming"
         },
         {
             "name":"Contributes to morphology of",
-            "value":"http://purl.obolibrary.org/obo/RO_0002433"
+            "value":"http://purl.obolibrary.org/obo/RO_0002433",
+            "direction":"in-coming"
         }
     ],
     "categories":["Physiology","Expression","Models","Anatomy","Morphology"],

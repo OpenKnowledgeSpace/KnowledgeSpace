@@ -29,7 +29,7 @@
         <div id="treeWell2" class="tree well">
 <?php
 
-
+        var_dump($node);
         /*$parentLinkName = str_replace(" ", "_", $node->lbl);
         $parentLinkName = str_replace("(", "_",$parentLinkName);
         $parentLinkName = str_replace(")", "_",$parentLinkName);

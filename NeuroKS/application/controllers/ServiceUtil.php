@@ -252,7 +252,7 @@ class ServiceUtil
         require_once('Config.php');
 	//$surl = "http://matrix.neuinfo.org:9000/scigraph/graph/neighbors/". $curie ."?depth=1&blankNodes=false&direction=BOTH&project=%2A";
         $surl = "http://".Config::$sciGraphHost.":9000/scigraph/graph/neighbors/". $curie ."?depth=1&blankNodes=false&direction=BOTH&project=%2A";
-        echo $surl;
+        //echo $surl;
 	$obj = $this->getJsonObj($surl);
 	return $obj;
 

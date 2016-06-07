@@ -106,8 +106,8 @@ $(document).ready(function ()
                 var treeIds = e.target.id.split(',');
                 if(treeIds.length == 2 && !treeIds[0].startsWith("http:"))
                 {
-                    var treeURL = "/NeuroKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
-                    //alert(treeURL);
+                    var treeURL = "/NeuroKS/index.php/Tree_with_tabs2/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
+                    //alert("fullscreen_layout:"+treeURL);
                     loadTree(treeURL);
                 }
                 else if(treeIds.length == 2)
@@ -240,8 +240,8 @@ $(document).ready(function ()
                 if(treeIds.length == 2 && !treeIds[0].startsWith("http:"))
                 {
                 
-                    var treeURL = "/NeuroKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
-                    //alert(treeURL);
+                    var treeURL = "/NeuroKS/index.php/Tree_with_tabs2/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
+                    //alert("relation-fullscreen:"+treeURL);
                     loadTree(treeURL);
                 }
                 else if(treeIds.length == 2)

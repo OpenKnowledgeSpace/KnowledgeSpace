@@ -33,9 +33,9 @@
                 if($index == $tabID)
                     $style = "active";
                 $customTree = $relation_array[$property->name];
-                $node = $customTree->parentNode;
-                $leafHTML = $customTree->leafHtml;
-                if(is_null($node) && is_null($leafHTML))
+                $myNode = $customTree->parentNode;
+                $leafHTML2 = $customTree->leafHtml;
+                if(is_null($myNode) && is_null($leafHTML2))
                 {
                     $index++;
                     continue;

@@ -278,9 +278,23 @@ class Pages extends CI_Controller
             $properties = $data["config_array"]->properties_included;
             foreach($properties as $property)
             {
-                echo "<br/>".$property->name."-------".$property->value."\n";
-                $tempList = $util->getChildrenIDsIncoming($treeObj, $curie,$property->value);
-                $tempParentID = $util->getParentIDIncoming($treeObj, $curie,$property->value);
+                //echo "<br/>".$property->name."-------".$property->value."\n";
+                $tempList = null;
+                $tempParentID = null;
+                
+                if(strcmp($property->direction, "in-coming"))
+                {
+                    $tempList=$util->getChildrenIDsIncoming($treeObj, $curie,$property->value);
+                    $tempParentID=$util->getParentIDIncoming($treeObj, $curie,$property->value);
+                }
+                else if(strcmp($property->direction, "out-going"))
+                {
+                    $tempList = $util->getOtherChildrenIDs($treeObj, $curie,$property->value);
+                    $tempParentID = $util->getOtherParentID($treeObj, $curie,$property->value);
+                }
+                    
+                
+                
                 $tempPrarentNode = $util->getNode($treeObj,$tempParentID);
                 
                 

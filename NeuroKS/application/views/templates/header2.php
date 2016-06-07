@@ -363,8 +363,8 @@ function loadTree(theUrl)
         
         var treeURL = "/NeuroKS/index.php/Has_proper_part/view/"+treeIds[0]+"/false/"+treeIds[1]; 
         loadTree(treeURL);*/
-        var treeURL = "/NeuroKS/index.php/Tree_with_tabs/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
-        //alert(treeURL);
+        var treeURL = "/NeuroKS/index.php/Tree_with_tabs2/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
+        //alert("LoadTree:"+treeURL);
         loadTree(treeURL);
             });
         
@@ -389,7 +389,7 @@ $(function () {
         var treeIds = e.target.id.split(',');
 
         var treeURL = "/NeuroKS/index.php/Tree_with_tabs2/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
-        alert(treeURL);
+        //alert(treeURL);
         loadTree(treeURL);
 
     });
