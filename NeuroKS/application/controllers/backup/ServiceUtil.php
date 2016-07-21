@@ -101,26 +101,12 @@ class ServiceUtil
         $prefix = "https://".Config::$gitHubRawHost."/tgbugs/ksdesc/master/";
         $surl = $prefix.$postfix.".md";
         $file_headers = @get_headers($surl);
-        
-	if(is_null($file_headers[0]))
-		return NULL;
-	//echo "CODE:".$file_headers[0]."---------";
+        //echo "CODE:".$file_headers[0]."---------";
         if($file_headers[0] == 'HTTP/1.1 404 Not Found')
             return NULL;
 
-	try
-	{
         $content = file_get_contents($surl);
-	}
-	catch(Exception $e)
-	{
-	   return NULL;
-	}
-
             //echo $content;
-
-
-
             return $content;
         //echo $surl;
         /*if(get_http_response_code($url)!=404 || get_http_response_code($url)!=200 )

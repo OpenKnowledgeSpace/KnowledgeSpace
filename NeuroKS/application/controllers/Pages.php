@@ -582,7 +582,7 @@ class Pages extends CI_Controller
                     {
                
                         $data['pageName'] = $pageName;                  
-                        $termObj = getTerm($pageName);
+                        $termObj = $util->getTerm($pageName);
                     }
                }
                else
