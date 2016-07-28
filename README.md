@@ -1,5 +1,5 @@
 ##Description
-KnowledgeSpace (KS) is a community encyclopaedia that links brain research concepts with data, models and literature from around the world. It is an open project and welcomes participation and contributions from members of the global research community. 
+KnowledgeSpace (KS) is a community encyclopaedia that links brain research concepts and terminology with data, models and literature from around the world. It is an open project and welcomes participation and contributions from members of the global research community. It has support from a number of projects or organization such as the International Neuroinformatics Coordinating Facility, the Blue Brain Project, the Human Brain project, the Neuroscience Information Framework and others. 
 
 ##Requirements
 1. PHP version: PHP 5.4.40+
