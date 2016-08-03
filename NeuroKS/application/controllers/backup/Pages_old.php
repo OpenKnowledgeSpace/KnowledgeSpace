@@ -345,18 +345,18 @@ class Pages extends CI_Controller
             
             $latestResult = $util->searchLatestLiterature($terms,0,5,"*","*");
             
-            //$litResult = $util->searchLiteratureByYearUsingSolr($terms,0,25000000,"year","*");
+            $litResult = $util->searchLiteratureByYearUsingSolr($terms,0,25000000,"year","*");
+            //$data['litResult'] = $litResult;
             
-            
-            //$litMap = $util->processLiteratureObj2($litResult);
+            $litMap = $util->processLiteratureObj2($litResult);
             
             $data['latestResult'] = $latestResult;
             $data['litSearchTerms'] = $terms;
             //var_dump($litMap);
-            //$data['litMap'] = $litMap;
+            $data['litMap'] = $litMap;
            
-            //$count = count($litMap);
-            //$data['count'] = $count; 
+            $count = count($litMap);
+            $data['count'] = $count; 
         }
         private function handleSummary(&$data, $termObj, $searchName)
         {
@@ -714,15 +714,15 @@ class Pages extends CI_Controller
                 if(isset($termObj[0]))
                     $this->handleLexicon($data,$termObj[0]->curie);
                 
-                //if(!$loadCache)
-                    $this->handleLiterature($data, $pageName);
+                if(!$loadCache)
+                  $this->handleLiterature($data, $pageName);
 
                 
 
                     $this->load->view('templates/header2', $data);
                     //$this->load->view('pages/'.$page, $data);
                     //$this->load->view('pages/term', $data);
-                    $this->load->view('pages/layout3', $data);
+                    $this->load->view('pages/layout2', $data);
                     $this->load->view('templates/footer2', $data);
 
                 ///////////////////////////////////////////////

@@ -1,3 +1,245 @@
+function drawLiterature(mydata,contextName,title) 
+{
+    //alert("drawLiterature:"+mydata);
+    $('#container').highcharts({
+        chart: {
+            
+            type: 'spline'
+        },
+        title: {
+            text: 'Year by Number of Publications'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            title: {
+                text: 'Year'
+            },
+            min: 1976
+           
+        },
+        yAxis: {
+            title: {
+                text: 'Number of publications'
+            },
+            min: 0
+        },
+        tooltip: {
+            headerFormat: '<b>{series.name}</b><br>',
+            pointFormat: 'Year {point.x:.0f}: {point.y:.0f} publications'
+        },
+
+       
+            
+        plotOptions: {
+            series: {
+                   marker: {
+                        enabled: true,
+                        symbol: 'circle',
+                        radius: 1,
+                        states: {
+                            hover: {
+                                enabled: true
+                            }
+                        }
+                },    
+                cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function(e) {
+
+                                 var url = "/"+contextName+"/index.php/publications/view/"+title+"/"+this.x+"/1";
+        
+        
+                                 window.open(url);
+                            }
+                        }
+                    }
+                }
+
+        },
+        
+   
+   
+        
+
+        series: [{
+            name: "Publications",
+            data: mydata
+        }]
+    });
+}
+
+function drawLiterature2(mydata,contextName,title) 
+{
+    //alert("drawLiterature:"+mydata);
+    $('#container2').highcharts({
+        chart: {
+            
+            type: 'spline'
+        },
+        title: {
+            text: 'Year by Number of Publications'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            title: {
+                text: 'Year'
+            },
+            min: 1976
+           
+        },
+        yAxis: {
+            title: {
+                text: 'Number of publications'
+            },
+            min: 0
+        },
+        tooltip: {
+            headerFormat: '<b>{series.name}</b><br>',
+            pointFormat: 'Year {point.x:.0f}: {point.y:.0f} publications'
+        },
+
+       
+            
+        plotOptions: {
+            series: {
+                   marker: {
+                        enabled: true,
+                        symbol: 'circle',
+                        radius: 1,
+                        states: {
+                            hover: {
+                                enabled: true
+                            }
+                        }
+                },    
+                cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function(e) {
+
+                                 var url = "/"+contextName+"/index.php/publications/view/"+title+"/"+this.x+"/1";
+        
+        
+                                 window.open(url);
+                            }
+                        }
+                    }
+                }
+
+        },
+        
+   
+   
+        
+
+        series: [{
+            name: "Publications",
+            data: mydata
+        }]
+    });
+}
+
+
+
+
+
+function loadLiteratureJS(theUrl,contextName,title)
+{
+    //alert(theUrl);
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            var text = xmlhttp.responseText;
+            //alert(text);
+            //document.getElementById("literature-loading").innerHTML=xmlhttp.responseText+
+            //        "";
+            //drawLiterature(mydata);
+            var text = text.trim(); 
+            var myData = text.split(",");
+            
+            //alert("Count:"+myData.length);
+            var mySeries = [];
+            var testing = "";
+            for (var i = 0; i < myData.length; i++) 
+            {
+                //testing = testing+"<br/>"+myData[i]+","+ myData[i + 1];
+                mySeries.push([Number(myData[i]), Number(myData[i + 1])]);
+                i++
+            }
+            
+            
+           /* for(var i=0;i<mySeries.length;i++)
+            {
+                var temp =mySeries[i];
+                testing = testing+"<br/>\n"+temp[0]+","+temp[1];
+            }
+            alert("testing:"+testing);
+            
+            
+            alert("Count:"+mySeries.length); */
+            document.getElementById("litContent2Row").innerHTML=
+                    "<div id=\"container\" style=\"min-width: auto; height: 50%; margin: 0 auto\"></div>";
+            
+            document.getElementById("litContent2Row2").innerHTML=
+            "<div id=\"container2\" style=\"min-width: auto; height: 380px; margin: 0 auto\"></div>";
+            
+            drawLiterature(mySeries,contextName,title);
+            drawLiterature2(mySeries,contextName,title);
+            /*var chart = $('#container').highcharts();
+            chart.series[0].setData(mySeries);*/
+            // chart.series[0].setData([[1978,1],[1979,2]]);
+            //var chart=$("#container").highcharts();
+            //chart.series[0].setData(mySeries);
+            
+            /*var index=$("#container").data('highchartsChart');
+            var chart=Highcharts.charts[index];
+            //alert(chart);
+            chart.series[0].setData(mySeries,true);*/
+            
+        }
+    }
+    xmlhttp.open("GET", theUrl, true );
+    xmlhttp.send();    
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length,c.length);
+        }
+    }
+    return "";
+}
+
+
+
 /**
  * Tracking the UI event on webpages.
  * 

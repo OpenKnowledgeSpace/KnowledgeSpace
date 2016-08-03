@@ -81,8 +81,8 @@ echo "\n</script>";
                 ?>
                 <?php   
                 $c = "";
-               
-                 if($config_array->enable_caching)
+                include "fullLiteratureSmartLoading.php";
+                /* if($config_array->enable_caching)
                 {
                     
                     if($loadCache)
@@ -104,7 +104,7 @@ echo "\n</script>";
                     file_put_contents($cacheFullLitfile, $c);
                     ob_end_clean();
                     echo $c;
-                } 
+                } */
             ?>       
             </div>
             </div> 
@@ -153,39 +153,15 @@ echo "\n</script>";
             <div  id="innerLiterature" class="col-md-12">
             <?php   
                 $c = "";
-               
-                if($config_array->enable_caching)
-                {
-                    
-                    if($loadCache)
-                    {
-                      $c = @file_get_contents($cacheLitfile);
-                      echo $c;
-                      
-                    }
-
-                }
+                include "literatureSmartLoading.php";
                 
-                if($config_array->enable_caching && !$loadCache)
-                {
-                    //echo "-----Loading literature on javascript..";
-                    
-                   ob_start();
-                
-                    include "innerLiteratureWithTabs.php";
-                    
-                    $c = ob_get_contents();
-                    file_put_contents($cacheLitfile, $c);
-                    ob_end_clean();
-                    echo $c; 
             ?>        
+                <!-- <script type="text/javascript">
+                var litURL = "http://localhost/NeuroKS/index.php/LiteratureOnly/view/<?php echo $curie; ?>";
+                alert(litURL);
+                loadLiteratureJS(litURL);
+                </script> -->
                 
-            <?php
-                    
-                    
-                   
-                }
-            ?>       
         
             </div>
             

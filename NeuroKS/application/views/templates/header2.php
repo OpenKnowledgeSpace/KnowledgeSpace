@@ -403,7 +403,7 @@ $(function () {
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="/index.html">
-					<img src="/img/ks6.png" alt="Logo">
+					<img src="/img/ks7.png" alt="Logo">
                                         <span style="color:gray;text-decoration: none;background-color: none;font-size:18px;" href="/index.html">KnowledgeSpace</span>
 				</a>
                                 
@@ -488,9 +488,9 @@ $(function () {
 			<!-- <a href="/NeuroKS/documentation.php">Documentation</a> -->
                         <a href="/NeuroKS/index.php/Documentation">Documentation</a>
 		    </li>
-                    <li>
+                    <!-- <li>
                         <img width="85px" height="auto"  src="/Knowledge_Space_files/human-brain-project.8f47bd2d109f.jpg">
-                    </li>
+                    </li> -->
                     <?php if($enable_config){?>
                     <!-- <li>
                         <a href="#" data-toggle="modal" data-target="#demoModal" onclick="updateConfig()">Configurations</a>
