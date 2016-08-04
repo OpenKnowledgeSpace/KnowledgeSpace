@@ -93,7 +93,7 @@ class LiteratureOnly extends CI_Controller
                 $stats=stat($fileName);
             $current = time();
             $diff= $current - $stats[9];
-            if (file_exists($fileName) && $diff > (86400 * 1))
+            /*if (file_exists($fileName) && $diff > (86400 * 1))
             {
                 unlink($fileName);
                 //echo "unlinking due to expiration.";
@@ -102,7 +102,7 @@ class LiteratureOnly extends CI_Controller
             {
                 unlink($fileName);
                 //echo "unlinking due to empty file";
-            }
+            }*/
             // $fileContent = file_get_contents($fileName);
             //echo "<br/>File content:".$fileContent."------";
             if(!file_exists($fileName))

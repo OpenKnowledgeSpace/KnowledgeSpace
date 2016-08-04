@@ -6,19 +6,19 @@
 					<div class="headline"><h2>Contributors</h2></div>
                                         <ul>
                                                     
-                                                    <li><span>Neurolex.org</span></li>
-                                                    <li>Allen Brain Institute cell-types </li>
-                                                    <li>Blue Brain Project</li>
-                                                    <li>Neuromorpho.org</li>
-                                                    <li>	Neuroelectro.org</li>
-                                                    <li>	Cell Image Library</li>
-                                                    <li>	NIF Integrated Connectivity</li>
-                                                    <li>	Channelpedia.net</li>
-                                                    <li>	Ion Channel Genealogy</li>
-                                                    <li>	ModelDB</li>
-                                                    <li>	OpenSourceBrain</li>
-                                                    <li>	GenSat</li>
-                                                    <li>	Pubmed</li>
+                                            <li><a style="color:#00BFFF" href="http://neurolex.org/" target="_blank">Neurolex.org</a></li>
+                                            <li><a style="color:#00BFFF" href="http://celltypes.brain-map.org/" target="_blank">Allen Brain Institute cell-types</a> </li>
+                                            <li><a style="color:#00BFFF" href="http://bluebrain.epfl.ch/" target="_blank">Blue Brain Project</a></li>
+                                            <li><a style="color:#00BFFF" href="http://neuromorpho.org/" target="_blank">Neuromorpho.or</a></li>
+                                            <li><a style="color:#00BFFF" href="http://neuroelectro.org/" target="_blank">Neuroelectro.org</a></li>
+                                            <li><a style="color:#00BFFF" href="http://www.cellimagelibrary.org/" target="_blank">Cell Image Library</a></li>
+                                            <li><a style="color:#00BFFF" href="http://connectivity-brainer.rhcloud.com/" target="_blank">NIF Integrated Connectivity</a></li>
+                                            <li><a style="color:#00BFFF" href="http://channelpedia.epfl.ch/" target="_blank">Channelpedia.net</a></li>
+                                            <li><a style="color:#00BFFF" href="http://icg.neurotheory.ox.ac.uk" target="_blank">Ion Channel Genealogy</a></li>
+                                            <li><a style="color:#00BFFF" href="http://senselab.med.yale.edu/neurondb" target="_blank">ModelDB</a></li>
+                                            <li><a style="color:#00BFFF" href="http://opensourcebrain.org/" target="_blank">OpenSourceBrain</a></li>
+                                            <li><a style="color:#00BFFF" href="http://www.gensat.org/" target="_blank">GenSat</a></li>
+                                            <li><a style="color:#00BFFF" href="http://www.ncbi.nlm.nih.gov/pubmed" target="_blank">Pubmed</a></li>
                                                     <li>	and more to come</li>
 						</ul>
                                 </div>
