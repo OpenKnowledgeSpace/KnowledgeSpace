@@ -469,7 +469,7 @@ $(function () {
                         <a href="/NeuroKS/index.php/About">About</a>
                     </li>
                     <li>
-                        <a href="/NeuroKS/index.php/Contributors">Contributors</a>
+                        <a href="/NeuroKS/index.php/Data_sources">Data Sources</a>
                     </li>
                     <!-- <li>
                         <a href="/#examples">Examples</a>
