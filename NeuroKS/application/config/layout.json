@@ -1,0 +1,19 @@
+{
+    "layout_templates":[
+        {
+            "name":"default",
+            "value":["summary","image_gallery","literature","lexicon","data_space","relations"]
+        }
+        ,
+        {
+            "name":"cell",
+            "value":["summary","image_gallery","literature","lexicon","data_space","relations"]
+        }
+         ,
+        {
+            "name":"disease",
+            "value":["summary","image_gallery","literature","lexicon","data_space","relations"]
+        }
+        
+    ]
+}
