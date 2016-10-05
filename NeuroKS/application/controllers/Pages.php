@@ -552,7 +552,7 @@ class Pages extends CI_Controller
                }*/
                
                
-               
+               $data['category'] = "default";
                
                if( $pos != false)
                {
@@ -561,6 +561,11 @@ class Pages extends CI_Controller
                     if(!is_null($termObj) && !is_null($termObj[0]))
                     {
                         $data['curie'] = $termObj[0]->curie;
+                        $categoryArray = $termObj[0]->categories;
+                        if( !is_null($categoryArray) && count($categoryArray) > 0 )
+                            $data['category'] = $categoryArray[0];
+                        
+                        
                         if(count($termObj[0]->labels) > 0)
                         {
                             $data['pageName'] = $termObj[0]->labels[0];
@@ -717,7 +722,7 @@ class Pages extends CI_Controller
                 //if(!$loadCache)
                     $this->handleLiterature($data, $pageName);
 
-                
+                    $data["original_name"] = $page;
 
                     $this->load->view('templates/header2', $data);
                     //$this->load->view('pages/'.$page, $data);

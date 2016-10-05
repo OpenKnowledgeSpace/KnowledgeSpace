@@ -62,5 +62,17 @@ class Config {
             Config::$gitHubRawHost=$array->github_host;
             Config::$nifServiceForData=$array->nif_service_host;
             //////////Ending loading server config///////////////
-        }
+            
+            $this->loadLayoutTemplates($data);
+    }
+    
+    public function loadLayoutTemplates(&$data)
+    {
+        $layoutJson = file_get_contents(getcwd()."/application/config/layout.json");
+        $array = json_decode($layoutJson);
+        $data["layout_array"] = $array;
+        ///echo "--------------------loadLayoutTemplates-----------------------";
+        //var_dump($array);
+        //echo "-------------------------------------------";
+    }
 }

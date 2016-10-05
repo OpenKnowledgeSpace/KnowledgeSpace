@@ -14,6 +14,15 @@
             "name":"disease",
             "value":["summary","image_gallery","literature","lexicon","data_space","relations"]
         }
-        
+        ,
+        {
+            "name":"anatomical entity",
+            "value":["summary","literature","lexicon","data_space","relations"]
+        }
+        ,
+        {
+            "name":"molecular entity",
+            "value":["summary","image_gallery","literature","lexicon","data_space","relations"]
+        }
     ]
 }

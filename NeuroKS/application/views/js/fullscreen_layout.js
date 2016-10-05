@@ -277,17 +277,17 @@ $(document).ready(function ()
 
             
             
-            document.getElementById("summaryOutter0").className="collapse";
-            document.getElementById("summaryOutter1").className="collapse";
-            document.getElementById("summaryOutter2").className="collapse";
-            document.getElementById("dataspaceOutter").className="col-md-12";
-            document.getElementById("summaryOutter").className = "col-md-12";
-            document.getElementById("innerLiterature").className = "col-md-12";
-            document.getElementById("innerRelation").className="col-md-12";
+            try{document.getElementById("summaryOutter0").className="collapse";}catch(err) {}
+            try{document.getElementById("summaryOutter1").className="collapse";}catch(err) {}
+            try{document.getElementById("summaryOutter2").className="collapse";}catch(err) {}
+            try{document.getElementById("dataspaceOutter").className="col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("innerLiterature").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("innerRelation").className="col-md-12";}catch(err) {}
         
         
         
-            document.getElementById("dataspace_panel0").innerHTML ="";
+            try{document.getElementById("dataspace_panel0").innerHTML ="";}catch(err) {}
             loadButtons();
             history.pushState('', document.title, window.location.pathname);
             setCookie('screen_state','',365);
@@ -308,15 +308,15 @@ $(document).ready(function ()
             document.getElementById("summaryOutter").className = "col-md-12";
             document.getElementById("innerLiterature").className = "col-md-12";*/
             
-            document.getElementById("summaryOutter0").className="collapse";
-            document.getElementById("summaryOutter1").className="collapse";
-            document.getElementById("summaryOutter2").className="collapse";
-            document.getElementById("dataspaceOutter").className="col-md-12";
-            document.getElementById("summaryOutter").className = "col-md-12";
-            document.getElementById("innerLiterature").className = "col-md-12";
-            document.getElementById("innerRelation").className="col-md-12";
+            try{document.getElementById("summaryOutter0").className="collapse";}catch(err) {}
+            try{document.getElementById("summaryOutter1").className="collapse";}catch(err) {}
+            try{document.getElementById("summaryOutter2").className="collapse";}catch(err) {}
+            try{document.getElementById("dataspaceOutter").className="col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("innerLiterature").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("innerRelation").className="col-md-12";}catch(err) {}
 
-            document.getElementById("dataspace_panel0").innerHTML ="";
+            try{document.getElementById("dataspace_panel0").innerHTML ="";}catch(err) {}
             loadButtons();
             history.pushState('', document.title, window.location.pathname);
             setCookie('screen_state','',365);
@@ -329,15 +329,15 @@ $(document).ready(function ()
         
         var $this = $(this);
 
-            document.getElementById("innerRelation").className="col-md-12";
-            document.getElementById("summaryOutter0").className="collapse";
-            document.getElementById("summaryOutter1").className="collapse";
-            document.getElementById("summaryOutter2").className="collapse";
-            document.getElementById("dataspaceOutter").className="col-md-12";
-            document.getElementById("summaryOutter").className = "col-md-12";
-            document.getElementById("innerLiterature").className = "col-md-12";
+            try{document.getElementById("innerRelation").className="col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter0").className="collapse";}catch(err) {}
+            try{document.getElementById("summaryOutter1").className="collapse";}catch(err) {}
+            try{document.getElementById("summaryOutter2").className="collapse";}catch(err) {}
+            try{document.getElementById("dataspaceOutter").className="col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("innerLiterature").className = "col-md-12";}catch(err) {}
             //document.getElementById("literature-outter").className = "panel panel-default";
-            document.getElementById("dataspace_panel0").innerHTML ="";
+            try{document.getElementById("dataspace_panel0").innerHTML ="";}catch(err) {}
             loadButtons();
             expandTree=false;
             document.getElementById("relation-panel-1").innerHTML =document.getElementById("relation-panel").innerHTML;
@@ -406,13 +406,13 @@ $(document).ready(function ()
         var $this = $(this);
         
         
-            document.getElementById("summaryOutter0").className="collapse";
-            document.getElementById("summaryOutter1").className="col-md-12";
-            document.getElementById("summaryOutter2").className="collapse";
-            document.getElementById("dataspaceOutter").className="col-md-12";
-            document.getElementById("summaryOutter").className = "col-md-12";
-            document.getElementById("innerLiterature").className = "collapse";
-            document.getElementById("innerRelation").className="col-md-12";
+            try{document.getElementById("summaryOutter0").className="collapse";}catch(err) {}
+            try{document.getElementById("summaryOutter1").className="col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter2").className="collapse";}catch(err) {}
+            try{document.getElementById("dataspaceOutter").className="col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("innerLiterature").className = "collapse";}catch(err) {}
+            try{document.getElementById("innerRelation").className="col-md-12";}catch(err) {}
         
         //document.getElementById("literature-outter").className = "collapse";
         /*document.getElementById("innerLiterature").className = "collapse";
@@ -449,14 +449,13 @@ $(document).ready(function ()
         
         var $this = $(this);
         
-
-            document.getElementById("summaryOutter0").className="collapse";
-            document.getElementById("summaryOutter1").className="collapse";
-            document.getElementById("summaryOutter2").className="col-md-12";
-            document.getElementById("dataspaceOutter").className="col-md-12";
-            document.getElementById("summaryOutter").className = "col-md-12";
-            document.getElementById("innerLiterature").className = "col-md-12";
-            document.getElementById("innerRelation").className="collapse";
+            try{document.getElementById("summaryOutter0").className="collapse";}catch(err) {}
+            try{document.getElementById("summaryOutter1").className="collapse";}catch(err) {}
+            try{document.getElementById("summaryOutter2").className="col-md-12";}catch(err) {}
+            try{document.getElementById("dataspaceOutter").className="col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("innerLiterature").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("innerRelation").className="collapse";}catch(err) {}
         
         
         
@@ -572,13 +571,13 @@ $(document).ready(function ()
         /*document.getElementById("summaryOutter").className = "collapse";
         document.getElementById("summaryOutter0").className = "col-md-12";      
         document.getElementById("dataspaceOutter").className = "col-md-12";*/
-            document.getElementById("summaryOutter0").className="col-md-12";
-            document.getElementById("summaryOutter1").className="collapse";
-            document.getElementById("summaryOutter2").className="collapse";
-            document.getElementById("dataspaceOutter").className="col-md-12";
-            document.getElementById("summaryOutter").className = "collapse";
-            document.getElementById("innerLiterature").className = "col-md-12";
-            document.getElementById("innerRelation").className="col-md-12";
+            try{document.getElementById("summaryOutter0").className="col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter1").className="collapse";}catch(err) {}
+            try{document.getElementById("summaryOutter2").className="collapse";}catch(err) {}
+            try{document.getElementById("dataspaceOutter").className="col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter").className = "collapse";}catch(err) {}
+            try{document.getElementById("innerLiterature").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("innerRelation").className="col-md-12";}catch(err) {}
         
         
         
@@ -625,13 +624,13 @@ $(document).ready(function ()
              //document.getElementById("summaryOutter0").className = "col-md-12";
              //document.getElementById("dataspaceOutter").className = "collapse";
              
-            document.getElementById("summaryOutter0").className="col-md-12";
-            document.getElementById("summaryOutter1").className="collapse";
-            document.getElementById("summaryOutter2").className="collapse";
-            document.getElementById("dataspaceOutter").className="collapse";
-            document.getElementById("summaryOutter").className = "col-md-12";
-            document.getElementById("innerLiterature").className = "col-md-12";
-            document.getElementById("innerRelation").className="col-md-12";
+            try{document.getElementById("summaryOutter0").className="col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter1").className="collapse";}catch(err) {}
+            try{document.getElementById("summaryOutter2").className="collapse";}catch(err) {}
+            try{document.getElementById("dataspaceOutter").className="collapse";}catch(err) {}
+            try{document.getElementById("summaryOutter").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("innerLiterature").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("innerRelation").className="col-md-12";}catch(err) {}
              
              
 
@@ -838,7 +837,11 @@ function loadButtons()
  
     
     html = html+"</div>";
-    document.getElementById("dataspace_panel").innerHTML=html;
+    try
+    {
+        document.getElementById("dataspace_panel").innerHTML=html;
+    }
+    catch(err) {}
     
 }
 

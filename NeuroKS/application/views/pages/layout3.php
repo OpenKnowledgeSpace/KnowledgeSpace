@@ -8,6 +8,14 @@
 </script>
 
 <?php
+
+    require_once 'ViewUtil.php';
+    $vutil = new ViewUtil();
+    $template_array = $vutil->getLayoutArray($layout_array,$category);
+?>
+
+
+<?php
 //echo "-------testing------";
 echo "\n<script type=\"text/javascript\">";
 echo "\n var title = '".$title."';";
@@ -33,6 +41,19 @@ echo "\n</script>";
     <div class="row">
         <div class="col-md-12">
             <?php
+            
+        // echo "----".$original_name."----";  
+            
+        /*$pos = strpos($original_name,":");
+        $prefix = "default";
+        if($pos > 0)
+        {
+            $prefix = substr($original_name, 0, $pos);
+            $prefix = strtolower($prefix);
+        }
+        echo  "----".$prefix."----"; */
+        //echo "---CAT:---".$category."-------";
+            
         $tempTitle = str_replace("%20", " ", $title);
         $tempTitle = str_replace("%2c", ",", $tempTitle);
         echo "<h1>".ucfirst($tempTitle).":</h1>"; 
@@ -139,21 +160,26 @@ echo "\n</script>";
     <div id="leftCol"    class="col-md-8" >
         <div class="row">
             <div id="summaryOutter"    class="col-md-12" >
-            <?php   
-               include "innerWiki_1.php";
+            <?php 
+            
+               if(!is_null($template_array) && in_array("summary", $template_array))
+                include "innerWiki_1.php";
             ?>       
             </div>
             
             <div id="imageGalleryOutter"    class="col-md-12" >
-            <?php   
-                include "ImageGallery2.php";
+            <?php 
+            
+                if(!is_null($template_array) && in_array("image_gallery", $template_array))
+                    include "ImageGallery2.php";
             ?>  
             </div>
             
             <div  id="innerLiterature" class="col-md-12">
             <?php   
                 $c = "";
-                include "literatureSmartLoading.php";
+                if(!is_null($template_array) && in_array("literature", $template_array))
+                    include "literatureSmartLoading.php";
                 
             ?>        
                 <!-- <script type="text/javascript">
@@ -167,7 +193,9 @@ echo "\n</script>";
             
             <div id="lexionOutter"  class="col-md-12">
             <?php   
-              include "innerLexicon_2.php";
+            
+                if(!is_null($template_array) && in_array("lexicon", $template_array))
+                    include "innerLexicon_2.php";
             ?>       
             </div>
             
@@ -176,7 +204,10 @@ echo "\n</script>";
     <div id="rightCol"    class="col-md-4" >
         <div class="row">
  
-            
+            <?php 
+                    if(!is_null($template_array) && in_array("data_space", $template_array))
+                    {
+            ?>
             <div id="dataspaceOutter" class="col-md-12" >
                 <div class="panel panel-grey">
 
@@ -188,22 +219,22 @@ echo "\n</script>";
 								
                 </div>
 
-                <div id="dataspace_panel" class="panel-body" style="min-height: 50%; max-height: 19%;overflow-y: scroll">
-
-    
-                </div>
+                <div id="dataspace_panel" class="panel-body" style="min-height: 50%; max-height: 19%;overflow-y: scroll"></div>
+               
                 <?php   
-                    include "DataSpacePopup_1.php";
+                    
+                        include "DataSpacePopup_1.php";
                 ?>   
   
                 </div>
-   
-    
-        
             </div>
+            <?php
+                }
+            ?>
             <div id="innerRelation"  class="col-md-12">
             <?php   
              //include "innerRelations.php";
+            if(!is_null($template_array) && in_array("relations", $template_array))
              include "innerRelationList.php";
             ?>       
             </div>
