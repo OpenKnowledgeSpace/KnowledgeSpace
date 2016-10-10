@@ -124,9 +124,9 @@ class API extends CI_Controller
                     }
                     else
                     {
-                        
-                        $data['pageName'] = $pageName;                  
-                        $termObj = getTerm($pageName);
+                        show_404();
+                        //$data['pageName'] = $pageName;                  
+                        //$termObj = getTerm($pageName);
                     }
         }
         
