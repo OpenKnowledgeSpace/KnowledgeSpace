@@ -99,6 +99,9 @@ class API extends CI_Controller
         {
                     $termObj[0] = $util->getObjByCurie($pageName);
                     #echo "\n-------Willy----!is_null(termObj):".!is_null($termObj)."\n";
+                    //echo "---------------------TermObj-------------------------";
+                    //var_dump($termObj);
+                    //echo "----------------------------------------------";
                     if(!is_null($termObj) && !is_null($termObj[0]))
                     {
                         $data['curie'] = $termObj[0]->curie;
@@ -121,7 +124,7 @@ class API extends CI_Controller
                     }
                     else
                     {
-               
+                        
                         $data['pageName'] = $pageName;                  
                         $termObj = getTerm($pageName);
                     }
@@ -148,12 +151,14 @@ class API extends CI_Controller
             $data['title'] = $stitle;
         }
             
-               
-        $this->handleDataSpace($data, $pageName);
         
-        
-        
-        $this->load->view('api/view_summary', $data);
+        if(!isset($data['curie']))
+            show_404();
+        else 
+        {
+            $this->handleDataSpace($data, $pageName);
+            $this->load->view('api/view_summary', $data);
+        }
     }
     
 
