@@ -159,9 +159,22 @@ echo "\n</script>";
 
     <div id="leftCol"    class="col-md-8" >
         <div class="row">
+            <?php 
+                if(strpos($curie, 'MBA:') === 0)
+                {
+                    
+             ?>
+            <div id="atlasOutter"    class="col-md-12" >
+            <?php
+                 include "innerAtlas.php";
+            ?>
+            </div>
+            <?php
+                }
+            ?>
             <div id="summaryOutter"    class="col-md-12" >
             <?php 
-            
+                
                if(!is_null($template_array) && in_array("summary", $template_array))
                 include "innerWiki_1.php";
             ?>       

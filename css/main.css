@@ -1,0 +1,269 @@
+.first-container {
+   margin-top:40px;
+    margin-bottom:40px;
+}
+.container {
+    width:90%;
+}
+.notifications {
+    position: fixed;
+    bottom:10px;
+    right:0;
+    z-index: 999;
+}
+.profile .panel-heading-v2.overflow-h i.pull-right, .profile .panel-heading.overflow-h i.pull-right {
+    top:3px;
+    font-size: 20px;
+}
+.icon-dropdown {
+    max-height: 400px;
+    width: 220px;
+    overflow: auto;
+}
+.background {
+    position: fixed;
+    width:100%;
+    left:0;
+    top:0;
+    height:100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 990;
+    display: none;
+}
+.component-select-container,.cont-select-container,.user-add-container,.user-edit-container, .file-load,.saved-this-search, .component-delete, .article-delete, .forgot-password{
+    position: fixed;
+    left:50%;
+    margin-left:-300px;
+    top:20px;
+    width:600px;
+    padding:20px;
+    border: 1px solid #666;
+    z-index: 1150;
+    display: none;
+    background:#fff;
+    max-height: 90%;
+    overflow: auto;
+}
+
+.components-select {
+    height:500px;
+    overflow: auto;
+}
+.component-select-image,.container-select-image {
+    width:80%;
+    margin:0px 10%;
+    border: 1px solid #999;
+    cursor: pointer;
+}
+.component-add-load,.data-add-load, .field-add,.field-edit, .category-form-load, .container-add-load,.custom-form, .large-modal {
+    position: fixed;
+    left:50%;
+    margin-left:-400px;
+    top:20px;
+    width:800px;
+    padding:20px;
+    border: 1px solid #666;
+    z-index: 991;
+    display: none;
+    background:#fff;
+    max-height: 90%;
+    overflow: auto;
+}
+.component-add-load.no-padding,.data-add-load.no-padding, .field-add.no-padding,.field-edit.no-padding, .category-form-load.no-padding, .container-add-load.no-padding,.custom-form.no-padding, .large-modal.no-padding,
+.component-select-container.no-padding,.cont-select-container.no-padding,.user-add-container.no-padding,.user-edit-container.no-padding, .file-load.no-padding,.saved-this-search.no-padding, .component-delete.no-padding, .article-delete.no-padding, .forgot-password.no-padding{
+    padding:0;
+}
+.list-unstyled .active a {
+    color:#72c02c;
+    font-weight: bold;
+}
+.joyride-tip-guide p {
+    color:#fff;
+}
+.auto {
+    display: block;
+    position: absolute;
+}
+.auto ul {
+    z-index: 10 !important;
+    top:27px;
+    left:0;
+    margin-left:1px;
+    border-left:1px solid #bbb;
+    border-right:1px solid #bbb;
+    border-bottom:1px solid #bbb;
+    max-height:200px;
+    margin-left: 0;
+    padding:0;
+    overflow-y:scroll;
+}
+.auto ul li {
+    list-style: none;
+    margin:0;
+    padding:5px;
+    margin:0;
+    background:#fff;
+    text-align: left;
+}
+.auto ul li a{
+    height:20px;
+    text-align:left;
+    display:inline;
+    padding:2px 2px 2px 5px;
+    color:#000;
+    font-size:14px;
+    margin:0;
+    cursor: pointer;
+}
+.auto ul li .float,.auto2 ul li .float {
+    float:right;
+    display: inline;
+}
+.auto ul li .autoRight{
+    float:right;
+    color:#007841;
+}
+.auto ul li .autoRight span{
+    color:#1120CC;
+    text-decoration:underline;
+    cursor:pointer;
+}
+.auto ul li .ui-state-hover,.auto ul li:hover {
+    background:#EBF4F4;
+}
+.body-component {
+    width:100%;
+    position: relative;
+}
+.body-component img {
+    width:100%;
+}
+.body-component .body-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left:0;
+    top:0;
+    display: none;
+    z-index: 888;
+    background: rgba(0,0,0,.8);
+}
+.body-component:hover .body-overlay {
+    display: block;
+}
+.body-component .body-overlay h3 {
+    display: inline-block;
+    margin-left: 30px;
+    margin-top:30px;
+    color:#fff;
+    font-size: 32px;
+}
+.body-component .body-overlay button, .body-component .body-overlay a {
+    vertical-align: middle;
+    font-size: 16px;
+    margin-right: 10px;
+}
+.body-component .body-overlay button .button-text, .body-component .body-overlay a .button-text {
+    display: none;
+    margin-left:7px;
+}
+
+.editmode {
+    position: relative;
+}
+.editmode .body-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left:0;
+    top:0;
+    display: none;
+    z-index: 100;
+    background: rgba(0,0,0,.8);
+    text-align: left;
+}
+.editmode:hover .body-overlay {
+    display: block;
+}
+.editmode .body-overlay h3 {
+    display: inline-block;
+    margin-left: 30px;
+    margin-top:30px;
+    color:#fff;
+    font-size: 32px;
+}
+.editmode .body-overlay button, .editmode .body-overlay a {
+    vertical-align: middle;
+    font-size: 16px;
+    margin-right: 10px;
+}
+.editmode .body-overlay button .button-text, .editmode .body-overlay a .button-text {
+    display: none;
+    margin-left:7px;
+}
+.close {
+    position:absolute;
+    cursor: pointer;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+}
+.close.light {
+    right:10px;
+    top:10px;
+    color:#fff;
+    text-shadow: 0 1px 0 #000;
+    filter: alpha(opacity=20);
+    opacity: .7;
+}
+.close.light:hover {
+    opacity: .9;
+}
+.close.dark {
+    right:15px;
+    top:15px;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+}
+.close.dark.less-right {
+    right:10px;
+    top:10px;
+}
+.close.dark:hover {
+    opacity: .6;
+}
+.reg-block {
+    position: relative;
+}
+.sponsor-img {
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+}
+.works-img {
+    max-width: 200px;
+    max-height: 200px;
+    width: auto;
+}
+.relationship1 {
+    color: #0088FF;
+}
+.relationship2 {
+    color: #FF00FF;
+}
+.notification-bubble {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color:red;
+    color: white;
+    padding: 1px;
+    z-index: 10;
+}
+.notification-inline {
+    background-color:red;
+    color: white;
+    padding: 1px;
+}

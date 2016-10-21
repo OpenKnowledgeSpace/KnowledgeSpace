@@ -48,6 +48,34 @@
         
         
         <link href="/static/css/custom.d4ef5c8a635d.css" rel="stylesheet">
+        	<!-- JS Global Compulsory -->
+	<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
+	<script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
+	<script type="text/javascript" src="assets/plugins/parallax-slider/js/modernizr.js"></script>
+	<script type="text/javascript" src="assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
+	<script type="text/javascript" src="assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+	<!-- JS Customization -->
+	<script type="text/javascript" src="assets/js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script type="text/javascript" src="assets/js/app.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/owl-carousel.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/style-switcher.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/parallax-slider.js"></script>
+        <script src="/NeuroKS/application/views/js/fullscreen_layout.js"></script>
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-76646751-1', 'auto');
+        ga('send', 'pageview');
+
+        </script>
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50"> 
@@ -63,7 +91,7 @@
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="index.html">
-					<img src="/img/ks6.png" alt="Logo">
+					<img src="/img/ks7.png" alt="Logo">
                                         <span style="color:gray;text-decoration: none;background-color: none;font-size:18px;">KnowledgeSpace</span>
 				</a>
 				<!-- End Logo -->
@@ -100,7 +128,7 @@
                         <a href="/NeuroKS/index.php/About">About</a>
                     </li>
                     <li>
-                        <a href="/NeuroKS/index.php/Contributors">Contributors</a>
+                        <a href="/NeuroKS/index.php/Data_sources">Data Sources</a>
                     </li>
                     <!-- <li>
                         <a href="/#examples">Examples</a>
@@ -113,7 +141,9 @@
 			<!-- <a href="./NeuroKS/documentation.php">Documentation</a> -->
                         <a href="/NeuroKS/index.php/Documentation">Documentation</a>
 		    </li>
-						
+                    <!-- <li>
+                        <img width="85px" height="auto" src="/Knowledge_Space_files/human-brain-project.8f47bd2d109f.jpg">
+                    </li> -->
 
 
 						<!-- Search Block -->
@@ -156,9 +186,9 @@
 							<!-- <div class="search-open"> -->
                                                             <form action="/NeuroKS/index.php/Search" method="post">
 								<div class="input-group animated fadeInDown">
-									<input name="keywords" type="text" class="form-control" placeholder="Search">
+									<input id="main_page_search" name="keywords" type="text" class="form-control" placeholder="Search">
 									<span class="input-group-btn">
-										<button class="btn-u btn-u-blue" type="submit">Go</button>
+										<button class="btn-u btn-u-blue" type="submit" onclick="return ksTrackEvent('Button', 'Search from the main page', document.getElementById('main_page_search').value);">Go</button>
 									</span>
 								</div>
                                                             </form>
@@ -201,7 +231,7 @@
 			<div class="container overflow-h">
 				<div class="row">
 					<div class="col-md-12 animated fadeInLeft">
-						 <span>KnowledgeSpace (KS) is a community-based encyclopedia.</span> 
+						 <span>A community encyclopedia linking brain research concepts to data, models, and literature.</span> 
                                                
 					</div>
 					
@@ -372,7 +402,7 @@ If you would like to sign up on our mailing list, please email us your full name
 			<div class="owl-clients-v1">
 				<div class="item">
 					<a href="http://bluebrain.epfl.ch" target="_blank">
-			<img src="/Knowledge_Space_files/Blue_Brain_Project_Logo.jpg" width="100" height="70"></a>                    
+			<img src="/Knowledge_Space_files/BBPLogo-1.png" width="100" height="70"></a>                    
                                    			</div>
 				<div class="item">
 				<a href="https://www.humanbrainproject.eu/" target="_blank">
@@ -386,7 +416,7 @@ If you would like to sign up on our mailing list, please email us your full name
 				</div>
 				<div class="item">
 					<a href="http://www.neuinfo.org/" target="_blank">
-                        <img src="/Knowledge_Space_files/nif-logo.e83d9d4157b0.png">
+                        <img src="/Knowledge_Space_files/nif-logo.png">
                     </a>
 				</div>
 			</div>
@@ -522,23 +552,7 @@ If you would like to sign up on our mailing list, please email us your full name
 
    
 
-	<!-- JS Global Compulsory -->
-	<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
-	<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<!-- JS Implementing Plugins -->
-	<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
-	<script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
-	<script type="text/javascript" src="assets/plugins/parallax-slider/js/modernizr.js"></script>
-	<script type="text/javascript" src="assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
-	<script type="text/javascript" src="assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
-	<!-- JS Customization -->
-	<script type="text/javascript" src="assets/js/custom.js"></script>
-	<!-- JS Page Level -->
-	<script type="text/javascript" src="assets/js/app.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/owl-carousel.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/style-switcher.js"></script>
-	<script type="text/javascript" src="assets/js/plugins/parallax-slider.js"></script>
+
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
 			App.init();
@@ -552,6 +566,6 @@ If you would like to sign up on our mailing list, please email us your full name
 			<script src="assets/plugins/html5shiv.js"></script>
 			<script src="assets/plugins/placeholder-IE-fixes.js"></script>
 		<![endif]-->
-
+        
 	</body>
 	</html>

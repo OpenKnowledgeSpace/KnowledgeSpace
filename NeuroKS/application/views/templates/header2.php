@@ -471,6 +471,9 @@ $(function () {
                     <li>
                         <a href="/NeuroKS/index.php/Data_sources">Data Sources</a>
                     </li>
+                    <li>
+                        <a href="/NeuroKS/index.php/Categories">Categories</a>
+                    </li>
                     <!-- <li>
                         <a href="/#examples">Examples</a>
                     </li> -->

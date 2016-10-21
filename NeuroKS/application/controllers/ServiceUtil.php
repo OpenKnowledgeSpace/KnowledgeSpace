@@ -169,7 +169,7 @@ class ServiceUtil
         $surl="http://".Config::$literatureHost.":8080/literature/collection1/select?q=%7B!lucene%20q.op=OR%7D".
             $terms."&start=".$start."&fl=".$fl."&rows=".$rows."&wt=json&indent=true&fq=year:".$year;
     
-        //echo "<br/><br/>".$surl;
+       echo "<br/><br/>".$surl;
     
         $obj = $this->getJsonObj($surl);
         //$obj = file_get_contents($surl);
@@ -453,7 +453,7 @@ class ServiceUtil
         //$surl = "http://".Config::$nifServiceForData."/servicesv1/v1/literature/search?count=30000&q=" . $searchTerm;
         $surl="http://".Config::$literatureHost.":8080/literature/collection1/select?sort=year+desc,month+desc,day+desc&q=%7B!lucene%20q.op=OR%7D".
             $terms."&start=".$start."&fl=".$fl."&rows=".$rows."&wt=json&indent=true&fq=year:".$year;
-        //echo $surl;
+        echo $surl;
         return $this->getJsonObj($surl);
     
     }

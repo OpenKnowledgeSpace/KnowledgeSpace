@@ -1,0 +1,15 @@
+.search-block:before{
+    background: rgba(0,0,0,0);
+}
+.search-block {
+    margin-bottom: 0;
+    background-image: none;
+    background: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#search-banner-input{
+    height: 34px;
+    border: 1px solid #000;
+    border-right: 0px;
+}

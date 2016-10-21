@@ -1,6 +1,6 @@
 {
     "enable_caching":true,
-    "cache_folder": "/webCache/",
+    "cache_folder": "C:/webCache/",
     "part_of_property": "http://purl.obolibrary.org/obo/BFO_0000050",
     "has_proper_part_property": "http://www.obofoundry.org/ro/ro.owl#has_proper_part",
     "properties_included":[

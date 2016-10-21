@@ -64,6 +64,7 @@ class Config {
             //////////Ending loading server config///////////////
             
             $this->loadLayoutTemplates($data);
+            $this->loadCategories($data);
     }
     
     public function loadLayoutTemplates(&$data)
@@ -74,5 +75,45 @@ class Config {
         ///echo "--------------------loadLayoutTemplates-----------------------";
         //var_dump($array);
         //echo "-------------------------------------------";
+    }
+    
+    public function loadCategories(&$data)
+    {
+        $layoutJson = file_get_contents(getcwd()."/application/config/category_organism.json");
+        $array = json_decode($layoutJson);
+        $data["category_organism"] = $array;
+        
+        
+        $layoutJson = file_get_contents(getcwd()."/application/config/category_disease.json");
+        $array = json_decode($layoutJson);
+        $data["category_disease"] = $array;
+        
+        $layoutJson = file_get_contents(getcwd()."/application/config/category_anatomical.json");
+        $array = json_decode($layoutJson);
+        $data["category_anatomical"] = $array;
+        
+        $layoutJson = file_get_contents(getcwd()."/application/config/category_technique.json");
+        $array = json_decode($layoutJson);
+        $data["category_technique"] = $array;
+        
+        $layoutJson = file_get_contents(getcwd()."/application/config/category_biological_process.json");
+        $array = json_decode($layoutJson);
+        $data["category_biological_process"] = $array;
+        
+        $layoutJson = file_get_contents(getcwd()."/application/config/category_subcellular.json");
+        $array = json_decode($layoutJson);
+        $data["category_subcellular"] = $array;
+        
+        $layoutJson = file_get_contents(getcwd()."/application/config/category_quality.json");
+        $array = json_decode($layoutJson);
+        $data["category_quality"] = $array;
+        
+        $layoutJson = file_get_contents(getcwd()."/application/config/category_institution.json");
+        $array = json_decode($layoutJson);
+        $data["category_institution"] = $array;
+        
+        $layoutJson = file_get_contents(getcwd()."/application/config/category_resource.json");
+        $array = json_decode($layoutJson);
+        $data["category_resource"] = $array;
     }
 }
