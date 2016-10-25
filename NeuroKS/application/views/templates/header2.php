@@ -472,7 +472,8 @@ $(function () {
                         <a href="/NeuroKS/index.php/Data_sources">Data Sources</a>
                     </li>
                     <li>
-                        <a href="/NeuroKS/index.php/Categories">Categories</a>
+                        <!-- <a href="/NeuroKS/index.php/Categories">Categories</a> -->
+                         <a href="/NeuroKS/index.php/Categories/view/organism">Categories</a> 
                     </li>
                     <!-- <li>
                         <a href="/#examples">Examples</a>

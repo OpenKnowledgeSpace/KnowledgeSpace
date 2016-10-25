@@ -142,6 +142,8 @@ echo "\n</script>";
              
                 <h3 class="panel-title">
                 <a class="pull-right" href="#" id="panel-fullscreen2" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Minimize', 'Minimize relation panel');">
+                
+                
                 <i class="glyphicon glyphicon-resize-small"></i></a><span id="panel_title3">Relations</span></h3>
 								
                 </div>
@@ -159,6 +161,14 @@ echo "\n</script>";
 
     <div id="leftCol"    class="col-md-8" >
         <div class="row">
+            
+            <div id="summaryOutter"    class="col-md-12" >
+            <?php 
+                
+               if(!is_null($template_array) && in_array("summary", $template_array))
+                include "innerWiki_1.php";
+            ?>       
+            </div>
             <?php 
                 if(strpos($curie, 'MBA:') === 0)
                 {
@@ -172,13 +182,6 @@ echo "\n</script>";
             <?php
                 }
             ?>
-            <div id="summaryOutter"    class="col-md-12" >
-            <?php 
-                
-               if(!is_null($template_array) && in_array("summary", $template_array))
-                include "innerWiki_1.php";
-            ?>       
-            </div>
             
             <div id="imageGalleryOutter"    class="col-md-12" >
             <?php 

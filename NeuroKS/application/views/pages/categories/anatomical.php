@@ -7,6 +7,7 @@
     $terms = $category_anatomical->terms;
     //var_dump($terms);
     $count = count($terms);
+    echo "<h2>".$count." terms:</h2>";
     $i=0;
     //foreach($terms as $term)
     while($i < $count)

@@ -98,19 +98,29 @@ class ServiceUtil
     {
         $postfix = str_replace(":","/", $curie);
         //$prefix = "https://raw.githubusercontent.com/tgbugs/ksdesc/master/";
-        $prefix = "https://".Config::$gitHubRawHost."/tgbugs/ksdesc/master/";
+        //$prefix = "https://".Config::$gitHubRawHost."/tgbugs/ksdesc/master/";
+        $prefix = "https://".Config::$gitHubRawHost."/OpenKnowledgeSpace/ksdesc/master/";
         $surl = $prefix.$postfix.".md";
+        //echo $surl;
         $file_headers = @get_headers($surl);
-        
+        //var_dump($file_headers);
 	if(is_null($file_headers[0]))
-		return NULL;
+        {
+            //echo "<br/>-----is_null";
+            
+            return NULL;
+        }
 	//echo "CODE:".$file_headers[0]."---------";
         if($file_headers[0] == 'HTTP/1.1 404 Not Found')
+        {
+            //echo "<br/>-----HTTP/1.1 404 Not Found";
             return NULL;
+        }
 
 	try
 	{
         $content = file_get_contents($surl);
+        //echo "-----Content:".$content;
 	}
 	catch(Exception $e)
 	{
@@ -169,7 +179,7 @@ class ServiceUtil
         $surl="http://".Config::$literatureHost.":8080/literature/collection1/select?q=%7B!lucene%20q.op=OR%7D".
             $terms."&start=".$start."&fl=".$fl."&rows=".$rows."&wt=json&indent=true&fq=year:".$year;
     
-       //echo "<br/><br/>".$surl;
+       echo "<br/><br/>".$surl;
     
         $obj = $this->getJsonObj($surl);
         //$obj = file_get_contents($surl);

@@ -8,6 +8,11 @@
         <div class="panel-heading">
              
 	<h3 class="panel-title"><a class="pull-right" href="#" id="summary-fullscreen" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Expand', 'Expand summary panel');"><i class="glyphicon glyphicon-zoom-in"></i></a>
+        <?php
+            //echo $curie;
+            $editName = str_replace(":", "/", $curie).".md";
+        ?>
+            <a class="pull-right" href="http://prose.io/#OpenKnowledgeSpace/ksdesc/edit/master/<?php echo $editName; ?>" target="_blank" title="Edit description"><i class="glyphicon  glyphicon-edit"></i></a>
         Summary</h3>
 								
         </div>
