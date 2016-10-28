@@ -280,10 +280,10 @@ $(document).ready(function ()
             try{document.getElementById("summaryOutter0").className="collapse";}catch(err) {}
             try{document.getElementById("summaryOutter1").className="collapse";}catch(err) {}
             try{document.getElementById("summaryOutter2").className="collapse";}catch(err) {}
-            try{document.getElementById("dataspaceOutter").className="col-md-12";}catch(err) {}
-            try{document.getElementById("summaryOutter").className = "col-md-12";}catch(err) {}
-            try{document.getElementById("innerLiterature").className = "col-md-12";}catch(err) {}
-            try{document.getElementById("innerRelation").className="col-md-12";}catch(err) {}
+            try{document.getElementById("dataspaceOutter").className="col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("summaryOutter").className = "col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("innerLiterature").className = "col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("innerRelation").className="col-md-12 row_no_gap";}catch(err) {}
         
         
         
@@ -304,17 +304,17 @@ $(document).ready(function ()
             /*document.getElementById("summaryOutter0").className="collapse";
             document.getElementById("summaryOutter1").className="collapse";
             document.getElementById("summaryOutter2").className="collapse";
-            document.getElementById("dataspaceOutter").className="col-md-12";
-            document.getElementById("summaryOutter").className = "col-md-12";
-            document.getElementById("innerLiterature").className = "col-md-12";*/
+            document.getElementById("dataspaceOutter").className="col-md-12 row_no_gap";
+            document.getElementById("summaryOutter").className = "col-md-12 row_no_gap";
+            document.getElementById("innerLiterature").className = "col-md-12 row_no_gap";*/
             
             try{document.getElementById("summaryOutter0").className="collapse";}catch(err) {}
             try{document.getElementById("summaryOutter1").className="collapse";}catch(err) {}
             try{document.getElementById("summaryOutter2").className="collapse";}catch(err) {}
-            try{document.getElementById("dataspaceOutter").className="col-md-12";}catch(err) {}
-            try{document.getElementById("summaryOutter").className = "col-md-12";}catch(err) {}
-            try{document.getElementById("innerLiterature").className = "col-md-12";}catch(err) {}
-            try{document.getElementById("innerRelation").className="col-md-12";}catch(err) {}
+            try{document.getElementById("dataspaceOutter").className="col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("summaryOutter").className = "col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("innerLiterature").className = "col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("innerRelation").className="col-md-12 row_no_gap";}catch(err) {}
 
             try{document.getElementById("dataspace_panel0").innerHTML ="";}catch(err) {}
             loadButtons();
@@ -329,13 +329,13 @@ $(document).ready(function ()
         
         var $this = $(this);
 
-            try{document.getElementById("innerRelation").className="col-md-12";}catch(err) {}
+            try{document.getElementById("innerRelation").className="col-md-12 row_no_gap";}catch(err) {}
             try{document.getElementById("summaryOutter0").className="collapse";}catch(err) {}
             try{document.getElementById("summaryOutter1").className="collapse";}catch(err) {}
             try{document.getElementById("summaryOutter2").className="collapse";}catch(err) {}
-            try{document.getElementById("dataspaceOutter").className="col-md-12";}catch(err) {}
-            try{document.getElementById("summaryOutter").className = "col-md-12";}catch(err) {}
-            try{document.getElementById("innerLiterature").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("dataspaceOutter").className="col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("summaryOutter").className = "col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("innerLiterature").className = "col-md-12 row_no_gap";}catch(err) {}
             //document.getElementById("literature-outter").className = "panel panel-default";
             try{document.getElementById("dataspace_panel0").innerHTML ="";}catch(err) {}
             loadButtons();
@@ -407,18 +407,18 @@ $(document).ready(function ()
         
         
             try{document.getElementById("summaryOutter0").className="collapse";}catch(err) {}
-            try{document.getElementById("summaryOutter1").className="col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter1").className="col-md-12 row_no_gap";}catch(err) {}
             try{document.getElementById("summaryOutter2").className="collapse";}catch(err) {}
-            try{document.getElementById("dataspaceOutter").className="col-md-12";}catch(err) {}
-            try{document.getElementById("summaryOutter").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("dataspaceOutter").className="col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("summaryOutter").className = "col-md-12 row_no_gap";}catch(err) {}
             try{document.getElementById("innerLiterature").className = "collapse";}catch(err) {}
-            try{document.getElementById("innerRelation").className="col-md-12";}catch(err) {}
+            try{document.getElementById("innerRelation").className="col-md-12 row_no_gap";}catch(err) {}
         
         //document.getElementById("literature-outter").className = "collapse";
         /*document.getElementById("innerLiterature").className = "collapse";
         document.getElementById("summaryOutter0").className = "collapse";
-        document.getElementById("summaryOutter1").className = "col-md-12";
-        document.getElementById("dataspaceOutter").className = "col-md-12";*/
+        document.getElementById("summaryOutter1").className = "col-md-12 row_no_gap";
+        document.getElementById("dataspaceOutter").className = "col-md-12 row_no_gap";*/
         
        //var title = getCookie('title');
         //alert(title);
@@ -451,10 +451,10 @@ $(document).ready(function ()
         
             try{document.getElementById("summaryOutter0").className="collapse";}catch(err) {}
             try{document.getElementById("summaryOutter1").className="collapse";}catch(err) {}
-            try{document.getElementById("summaryOutter2").className="col-md-12";}catch(err) {}
-            try{document.getElementById("dataspaceOutter").className="col-md-12";}catch(err) {}
-            try{document.getElementById("summaryOutter").className = "col-md-12";}catch(err) {}
-            try{document.getElementById("innerLiterature").className = "col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter2").className="col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("dataspaceOutter").className="col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("summaryOutter").className = "col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("innerLiterature").className = "col-md-12 row_no_gap";}catch(err) {}
             try{document.getElementById("innerRelation").className="collapse";}catch(err) {}
         
         
@@ -569,15 +569,15 @@ $(document).ready(function ()
         var $this = $(this);
         
         /*document.getElementById("summaryOutter").className = "collapse";
-        document.getElementById("summaryOutter0").className = "col-md-12";      
-        document.getElementById("dataspaceOutter").className = "col-md-12";*/
-            try{document.getElementById("summaryOutter0").className="col-md-12";}catch(err) {}
+        document.getElementById("summaryOutter0").className = "col-md-12 row_no_gap";      
+        document.getElementById("dataspaceOutter").className = "col-md-12 row_no_gap";*/
+            try{document.getElementById("summaryOutter0").className="col-md-12 row_no_gap";}catch(err) {}
             try{document.getElementById("summaryOutter1").className="collapse";}catch(err) {}
             try{document.getElementById("summaryOutter2").className="collapse";}catch(err) {}
-            try{document.getElementById("dataspaceOutter").className="col-md-12";}catch(err) {}
+            try{document.getElementById("dataspaceOutter").className="col-md-12 row_no_gap";}catch(err) {}
             try{document.getElementById("summaryOutter").className = "collapse";}catch(err) {}
-            try{document.getElementById("innerLiterature").className = "col-md-12";}catch(err) {}
-            try{document.getElementById("innerRelation").className="col-md-12";}catch(err) {}
+            try{document.getElementById("innerLiterature").className = "col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("innerRelation").className="col-md-12 row_no_gap";}catch(err) {}
         
         
         
@@ -621,16 +621,16 @@ $(document).ready(function ()
             //$this.children('i').addClass('glyphicon-resize-small');
             
 
-             //document.getElementById("summaryOutter0").className = "col-md-12";
+             //document.getElementById("summaryOutter0").className = "col-md-12 row_no_gap";
              //document.getElementById("dataspaceOutter").className = "collapse";
              
-            try{document.getElementById("summaryOutter0").className="col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter0").className="col-md-12 row_no_gap";}catch(err) {}
             try{document.getElementById("summaryOutter1").className="collapse";}catch(err) {}
             try{document.getElementById("summaryOutter2").className="collapse";}catch(err) {}
             try{document.getElementById("dataspaceOutter").className="collapse";}catch(err) {}
-            try{document.getElementById("summaryOutter").className = "col-md-12";}catch(err) {}
-            try{document.getElementById("innerLiterature").className = "col-md-12";}catch(err) {}
-            try{document.getElementById("innerRelation").className="col-md-12";}catch(err) {}
+            try{document.getElementById("summaryOutter").className = "col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("innerLiterature").className = "col-md-12 row_no_gap";}catch(err) {}
+            try{document.getElementById("innerRelation").className="col-md-12 row_no_gap";}catch(err) {}
              
              
 
@@ -663,7 +663,7 @@ $(document).ready(function ()
             
 
             document.getElementById("summaryOutter0").className = "collapse";
-            document.getElementById("dataspaceOutter").className = "col-md-12";
+            document.getElementById("dataspaceOutter").className = "col-md-12 row_no_gap";
             document.getElementById("summaryOutter0").innerHTML = ""; 
             
             //var summaryOutter = document.getElementById("summaryOutter").innerHTML;

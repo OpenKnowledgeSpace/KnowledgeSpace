@@ -40,53 +40,45 @@ echo "\n</script>";
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <?php
-            
-        // echo "----".$original_name."----";  
-            
-        /*$pos = strpos($original_name,":");
-        $prefix = "default";
-        if($pos > 0)
-        {
-            $prefix = substr($original_name, 0, $pos);
-            $prefix = strtolower($prefix);
-        }
-        echo  "----".$prefix."----"; */
-        //echo "---CAT:---".$category."-------";
+        <?php
             
         $tempTitle = str_replace("%20", " ", $title);
         $tempTitle = str_replace("%2c", ",", $tempTitle);
         echo "<h1>".ucfirst($tempTitle).":</h1>"; 
 
-            ?>
+        ?>
         </div>
-        <div  id="summaryOutter0"    class="collapse" >
-        <div class="panel panel-grey">
+        <!---------------------------------Full Dataspace--------------------->
+        <div class="col-md-12">
+            <div  id="summaryOutter0"    class="collapse" >
+            <div class="panel panel-grey row_small_gap">
 
-        <div class="panel-heading">
-             
-            <h3 class="panel-title">
-            <a class="pull-right" href="#" id="panel-fullscreen0" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Minimize', 'Minimize dataspace panel');">
-            <i class="glyphicon glyphicon-resize-small"></i></a><span id="panel_title">Data space</span></h3>
-								
-        </div>
+            <div class="panel-heading">
 
-	 <div id="dataspace_panel0" class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll">
-        
-        <!--    <div id="dataspace_panel0" class="panel-body" style="min-height: auto; max-height:auto;overflow-y: scroll">
-        -->
+                <h3 class="panel-title">
+                <a class="pull-right" href="#" id="panel-fullscreen0" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Minimize', 'Minimize dataspace panel');">
+                <i class="glyphicon glyphicon-resize-small"></i></a><span id="panel_title">Data space</span></h3>
+
+            </div>
+
+             <div id="dataspace_panel0" class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll">
+
+            <!--    <div id="dataspace_panel0" class="panel-body" style="min-height: auto; max-height:auto;overflow-y: scroll">
+            -->
+            </div>
+            </div> 
+            </div>
         </div>
-        </div> 
-        </div>
+        <!---------------------------------End Full Dataspace--------------------->
     </div>
   
-     
+    <!----------------------------------------Full Literature--------------------------->
     <div class="row">
         
-        
+         <div class="col-md-12">
                
             <div  id="summaryOutter1"    class="collapse" >
-            <div class="panel panel-grey">
+            <div class="panel panel-grey row_small_gap">
 
         <div class="panel-heading">
              
@@ -130,13 +122,17 @@ echo "\n</script>";
             </div>
             </div> 
             </div>
-          
+         </div>
         
     </div>
+    <!----------------------------------------End Full Literature--------------------------->
     
-    <div class="row">   
+    
+    <!---------------------------------------------Full Relation--------------------------->
+    <div class="row">
+        <div class="col-md-12">
             <div  id="summaryOutter2"    class="collapse" >
-                <div class="panel panel-grey">
+                <div class="panel panel-grey row_small_gap">
 
                 <div class="panel-heading">
              
@@ -154,15 +150,17 @@ echo "\n</script>";
                 </div>
                 </div>
             </div>
+        </div>
     </div>
+    <!---------------------------------------------End Full Relation--------------------------->
     
-    
-<div class="row">
+
+    <div class="row">
 
     <div id="leftCol"    class="col-md-8">
         <!-- <div class="row" style="background-color: red;padding-bottom: 0; padding-top: 0; margin-bottom: 0;margin-top: 0"> -->
             
-            <div id="summaryOutter"    class="col-md-12 row-grid row_no_gap"> 
+            <div id="summaryOutter"    class="col-md-12 row_no_gap"> 
             <?php 
                 
                if(!is_null($template_array) && in_array("summary", $template_array))
@@ -174,7 +172,7 @@ echo "\n</script>";
                 {
                     
              ?>
-            <div id="atlasOutter"    class="col-md-12 row-grid row_no_gap">
+            <div id="atlasOutter"    class="col-md-12  row_no_gap">
             <?php
                  include "innerAtlas.php";
             ?>
@@ -183,14 +181,25 @@ echo "\n</script>";
                 }
             ?>
             
+            <div id="innerRelation"  class="col-md-12 row_no_gap">
+            <?php   
+             //include "innerRelations.php";
+            if(!is_null($template_array) && in_array("relations", $template_array))
+             include "innerRelationList.php";
+            ?>       
+            </div>
+        
+            <!------ Image gallery------->
             <div id="imageGalleryOutter"    class="col-md-12 row_no_gap" >
             <?php 
             
                 if(!is_null($template_array) && in_array("image_gallery", $template_array))
                     include "ImageGallery2.php";
-            ?>  
+            ?> 
             </div>
-            
+            <!------End Image gallery------->   
+        
+        
             <div  id="innerLiterature" class="col-md-12 row_no_gap">
             <?php   
                 $c = "";
@@ -198,22 +207,9 @@ echo "\n</script>";
                     include "literatureSmartLoading.php";
                 
             ?>        
-                <!-- <script type="text/javascript">
-                var litURL = "http://localhost/NeuroKS/index.php/LiteratureOnly/view/<?php echo $curie; ?>";
-                alert(litURL);
-                loadLiteratureJS(litURL);
-                </script> -->
-                
-        
             </div>
             
-            <div id="lexionOutter"  class="col-md-12 row_no_gap">
-            <?php   
             
-                if(!is_null($template_array) && in_array("lexicon", $template_array))
-                    include "innerLexicon_2.php";
-            ?>       
-            </div>
             
         <!-- </div> -->
     </div>
@@ -247,13 +243,17 @@ echo "\n</script>";
             <?php
                 }
             ?>
-            <div id="innerRelation"  class="col-md-12 row_no_gap">
+            
+            <!------Panel ----->
+            <div id="lexionOutter"  class="col-md-12 row_no_gap">
             <?php   
-             //include "innerRelations.php";
-            if(!is_null($template_array) && in_array("relations", $template_array))
-             include "innerRelationList.php";
+            
+                if(!is_null($template_array) && in_array("lexicon", $template_array))
+                    include "innerLexicon_2.php";
             ?>       
             </div>
+            
+            <!---END panel----------->
             <script type="text/javascript">loadButtons();</script> 
             
             

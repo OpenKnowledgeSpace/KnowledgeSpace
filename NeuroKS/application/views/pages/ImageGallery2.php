@@ -1,6 +1,6 @@
 
 <!-----------------------Image gallery----------------------->
-    <div class="panel panel-grey">
+    <div class="panel panel-grey row_small_gap">
     <div class="panel-heading">Image gallery</div>
 
     <div class="panel-body" style="min-height: 23%; max-height: 23%;overflow-y: scroll"> 

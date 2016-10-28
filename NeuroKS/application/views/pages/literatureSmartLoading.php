@@ -4,7 +4,7 @@
 <div id="literature-loading">
     <!--javascript highchart here -->
 </div>
-<div id="literature-outter" class="panel panel-grey">
+<div id="literature-outter" class="panel panel-grey row_small_gap">
     <div class="panel-heading">
              <!--       Literature
                 <ul class="list-inline panel-actions">

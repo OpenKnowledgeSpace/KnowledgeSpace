@@ -1,6 +1,6 @@
    <!-- Lexicon table -->
   
-     <div class="panel panel-grey">
+     <div class="panel panel-grey row_small_gap">
     <div class="panel-heading">Lexicon</div>
 
 	<div class="panel-body" style="min-height: 22%; max-height: 22%;overflow-y: scroll">

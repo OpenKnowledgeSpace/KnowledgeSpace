@@ -1,6 +1,6 @@
 {
     "enable_caching":true,
-    "cache_folder": "C:/webCache/",
+    "cache_folder": "/webCache/",
     "part_of_property": "http://purl.obolibrary.org/obo/BFO_0000050",
     "has_proper_part_property": "http://www.obofoundry.org/ro/ro.owl#has_proper_part",
     "properties_included":[
@@ -22,7 +22,7 @@
     ],
     "categories":["Physiology","Expression","Models","Anatomy","Morphology"],
     "local_context_name":"NeuroKS",
-    "literature_host":"starburst.crbs.ucsd.edu",
+    "literature_host":"vivaldi.crbs.ucsd.edu",
     "scigraph_host":"matrix.neuinfo.org",
     "github_host":"raw.githubusercontent.com",
     "nif_service_host":"nif-services.neuinfo.org",

@@ -37,5 +37,11 @@
             }
         } 
         //$newCurie = str_replace(":","_",$curie);
-        file_put_contents("/".$config_array->cache_folder."/".$curie."-literature-String.cache", $content);
+        $curie= str_replace(":", "_", $curie);
+        try
+        {
+            file_put_contents($config_array->cache_folder."/".$curie."-literature-String.cache", $content);
+        } catch (Exception $e) 
+        {
+        }
 ?>     

@@ -86,7 +86,9 @@ class LiteratureOnly extends CI_Controller
       
             //$newCurie = str_replace(":","_",$data['curie']);
                
-            $fileName = "/".$data['config_array']->cache_folder."/".$data['curie']."-literature-String.cache";
+            $curieName = str_replace(":", "_", $data['curie']);
+            $fileName = $data['config_array']->cache_folder."/".$curieName."-literature-String.cache";
+            
             //echo "<br/>".$fileName;
             $stats = NULL;
             if (file_exists($fileName))

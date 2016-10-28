@@ -179,7 +179,7 @@ class ServiceUtil
         $surl="http://".Config::$literatureHost.":8080/literature/collection1/select?q=%7B!lucene%20q.op=OR%7D".
             $terms."&start=".$start."&fl=".$fl."&rows=".$rows."&wt=json&indent=true&fq=year:".$year;
     
-       echo "<br/><br/>".$surl;
+       //echo "<br/><br/>".$surl;
     
         $obj = $this->getJsonObj($surl);
         //$obj = file_get_contents($surl);

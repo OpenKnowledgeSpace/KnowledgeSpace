@@ -1,5 +1,5 @@
 
-    <div id="summaryOutter" class="panel panel-grey">
+<div id="summaryOutter" class=" panel panel-grey row_small_gap" >
         <!-- <div class="panel-heading" style="min-height: 80; max-height: 80"><h3><?php echo "$title";  ?></h3>
                     <ul class="list-inline panel-actions">
                         <li><a href="#" id="summary-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a></li>
@@ -12,6 +12,7 @@
             //echo $curie;
             $editName = str_replace(":", "/", $curie).".md";
         ?>
+                <a class="pull-right"><i> </i></a>
             <a class="pull-right" href="http://prose.io/#OpenKnowledgeSpace/ksdesc/edit/master/<?php echo $editName; ?>" target="_blank" title="Edit description"><i class="glyphicon  glyphicon-edit"></i></a>
         Summary</h3>
 								

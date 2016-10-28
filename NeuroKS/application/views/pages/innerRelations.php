@@ -1,7 +1,7 @@
   <!-- <link rel="stylesheet" type="text/css" href="sckb.css"> -->
 
        <!--------------------Tree panel ----------------------------->
-       <div class="panel panel-grey">
+       <div class="panel panel-grey row_small_gap">
         <div class="panel-heading clearfix">   
 	<h3 class="panel-title">
             <a class="pull-right"  href="#" id="relation-fullscreen" role="button" title="Toggle fullscreen" onclick="return ksTrackEvent('Link', 'Expand', 'Expand tree panel');">

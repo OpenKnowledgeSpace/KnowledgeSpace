@@ -1,12 +1,12 @@
 
-    <div id="summaryOutter" class="panel panel-grey">
+    <div id="summaryOutter" class="panel panel-grey row_small_gap" >
         <div class="panel-heading">
              
 	<h3 class="panel-title"><a class="pull-right" href="#" id="summary-fullscreen" role="button" title="Toggle fullscreen" ></a>
-        Altas</h3>
+        Atlas</h3>
 								
         </div>
-    <div id="summary-panel"   class="panel-body" style="min-height: 75%; max-height: 75%;overflow-y: scroll">
+    <div id="summary-panel"   class="panel-body" style="min-height: 75%; max-height: 75%;overflow-y: scroll" >
      <?php 
             
    
