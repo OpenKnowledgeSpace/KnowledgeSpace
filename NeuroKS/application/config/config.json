@@ -127,6 +127,14 @@
         "description":"provides a database of neuronal cell types based on multimodal characterization of single cells to enable data-driven approaches to classification. For more details about the experiments, please refer to the <a class=\"external\" target=\"_blank\" href=\"http://help.brain-map.org/download/attachments/8323525/EphysOverview.pdf\">technical white paper</a>."
     },
     {
+        "source_name":"ABA Mouse Brain: Expression",
+        "curie":"nif-0000-00508-1",
+        "categories":["Expression"],
+        "enabled":true,
+        "has_images":false,
+        "description":"A genome-wide database of gene expression in the mouse brain."
+    },
+    {
         "source_name":"BrainMaps: Atlas",
         "curie":"nif-0000-00093-2",
         "categories":["Anatomy"],
