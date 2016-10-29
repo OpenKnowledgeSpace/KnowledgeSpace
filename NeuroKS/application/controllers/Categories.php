@@ -18,6 +18,9 @@ class Categories extends CI_Controller
     
     public function view($category)
     {
+        require_once 'Config.php';
+        $myConfig = new Config();
+        $myConfig->loadJsonConfig($data);
         $data['page_title'] = "Categories";
         $data['enable_config'] = true;
         $this->load->view('templates/header2', $data);
@@ -92,6 +95,12 @@ class Categories extends CI_Controller
             $array = json_decode($layoutJson);
             $data["category_resource"] = $array;
             //$this->load->view('pages/categories/disease_only', $data);
+        }
+        else if(strcmp($category,"cell")==0)
+        {
+            $layoutJson = file_get_contents(getcwd()."/application/config/category_cell.json");
+            $array = json_decode($layoutJson);
+            $data["category_cell"] = $array;
         }
         
         

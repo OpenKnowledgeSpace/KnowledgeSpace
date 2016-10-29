@@ -49,7 +49,7 @@
             echo "<tr>";
 
             echo "<td width=\"30%\">";
-            echo "      <a href=\"/".$config_array->local_context_name."/index.php?/Results/view/".$csource->curie."/".$pageName."/1\" target=\"_blank\">".
+            echo "      <a href=\"/index.php?/Results/view/".$csource->curie."/".$pageName."/1\" target=\"_blank\">".
                         $csource->source_name." (".$source_search_result[$csource->curie]->result->resultCount.")</a>";
             echo "</td>";
             echo "<td width=\"70%\">";
@@ -81,7 +81,7 @@
         echo "<div class=\"row\" ".$rowColor.">";
         echo "   <div class=\"col-md-3\">";
 
-        echo "      <a href=\"/".$config_array->local_context_name."/index.php?/Results/view/".$csource->curie."/".$pageName."/1\" target=\"_blank\">".
+        echo "      <a href=\"/index.php?/Results/view/".$csource->curie."/".$pageName."/1\" target=\"_blank\">".
                         $csource->source_name." (".$source_search_result[$csource->curie]->result->resultCount.")</a>";
         
         

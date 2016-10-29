@@ -45,7 +45,7 @@
         {
             echo "<div class=\"row\">";
             
-            echo "<center><a  style=\"font-size:16\"  target=\"_blank\" href=\"/".$config_array->local_context_name."/index.php/LatestPublications/view/".$title."/1\">See more</a></center>";
+            echo "<center><a  style=\"font-size:16\"  target=\"_blank\" href=\""."/index.php/LatestPublications/view/".$title."/1\">See more</a></center>";
 
             echo "</div><br/>";
         }

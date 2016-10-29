@@ -199,7 +199,7 @@ echo "\n</script>";
                 
             ?>        
                 <!-- <script type="text/javascript">
-                var litURL = "http://localhost/NeuroKS/index.php/LiteratureOnly/view/<?php echo $curie; ?>";
+                var litURL = "http://localhost/index.php/LiteratureOnly/view/<?php echo $curie; ?>";
                 alert(litURL);
                 loadLiteratureJS(litURL);
                 </script> -->

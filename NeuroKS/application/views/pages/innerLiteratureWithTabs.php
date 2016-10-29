@@ -1,6 +1,6 @@
 
-    <script src="/<?php  echo $config_array->local_context_name; ?>/application/views/js/highcharts.js"></script>
-    <script src="/<?php echo $config_array->local_context_name; ?>/application/views/js/exporting.js"></script>  
+    <script src="/js/highcharts.js"></script>
+    <script src="/js/exporting.js"></script>  
  
   <script type="text/javascript">
 $(function () {
@@ -59,7 +59,7 @@ $(function () {
                     events: {
                         click: function(e) {
 
-                                 var url = "/<?php echo $config_array->local_context_name; ?>/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
+                                 var url = "/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
         
         
                                  window.open(url);
@@ -163,7 +163,7 @@ $(function () {
                     events: {
                         click: function(e) {
 
-                                 var url = "/<?php echo $config_array->local_context_name; ?>/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
+                                 var url = "/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
                
                                  window.open(url);
                             }
@@ -277,7 +277,7 @@ $(function () {
         {
             echo "<div class=\"row\">";
 
-            echo "<center><a  style=\"font-size:16\"  target=\"_blank\" href=\"/".$config_array->local_context_name."/index.php/LatestPublications/view/".$title."/1\">See more</a></center>";
+            echo "<center><a  style=\"font-size:16\"  target=\"_blank\" href=\"/index.php/LatestPublications/view/".$title."/1\">See more</a></center>";
 
             echo "</div><br/>";
         }

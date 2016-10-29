@@ -13,7 +13,7 @@
  */
 class Config {
     
-    public static $localContextName = "";//NeuroKS"; 
+    //public static $localContextName = "";
     public static $literatureHost = "";//starburst.crbs.ucsd.edu";
     public static $sciGraphHost = "";//matrix.neuinfo.org";
     public static $gitHubRawHost = "";//raw.githubusercontent.com";
@@ -56,11 +56,12 @@ class Config {
             $data['sourceNameArray'] = $sourceNameArray;
             $data['enable_config'] = false;
             //////////Loading server config///////////////
-            Config::$localContextName=$array->local_context_name;
+            
             Config::$literatureHost=$array->literature_host;
             Config::$sciGraphHost=$array->scigraph_host;
             Config::$gitHubRawHost=$array->github_host;
             Config::$nifServiceForData=$array->nif_service_host;
+            
             //////////Ending loading server config///////////////
             
             $this->loadLayoutTemplates($data);

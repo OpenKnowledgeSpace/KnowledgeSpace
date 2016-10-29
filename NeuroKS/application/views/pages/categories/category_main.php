@@ -28,6 +28,8 @@
                                                                 include_once 'institution.php'; 
                                                             else if(strcmp($category, "resource") ==0 )
                                                                 include_once 'resource.php'; 
+                                                            else if(strcmp($category, "cell") ==0 )
+                                                                include_once 'cell.php'; 
                                                         ?>
                                                     </div>
                                                 </div>

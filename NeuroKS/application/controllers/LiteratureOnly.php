@@ -4,7 +4,6 @@
    * This class is controller for displaying the term pages.
    * 
    * 
-   * @package    NeuroKS
    * @subpackage Controller
    * @author     Willy Wong <wwong@ncmir.ucsd.edu>
    */

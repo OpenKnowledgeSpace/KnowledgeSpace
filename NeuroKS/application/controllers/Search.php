@@ -106,8 +106,8 @@
                     if(isset($termResult[0]->curie))
                     {
                         //echo "<br/><center>Redirecting to ".$termResult[0]->curie." ...</center>";
-                        //redirect($protocol."://".$domainName."/".Config::$localContextName."/index.php/pages/view/".$termResult[0]->curie, 'refresh');
-                        redirect($protocol.$domainName."/".Config::$localContextName."/index.php/pages/view/".$termResult[0]->curie,'location',301);
+                        //redirect($protocol."://".$domainName."/index.php/pages/view/".$termResult[0]->curie, 'refresh');
+                        redirect($protocol.$domainName."/index.php/pages/view/".$termResult[0]->curie,'location',301);
                          
                     }   
                     return;

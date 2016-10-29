@@ -1,5 +1,5 @@
-<script src="/<?php  echo $config_array->local_context_name; ?>/application/views/js/highcharts.js"></script>
-<script src="/<?php echo $config_array->local_context_name; ?>/application/views/js/exporting.js"></script>  
+<script src="/js/highcharts.js"></script>
+<script src="/js/exporting.js"></script>  
  
 <div id="literature-loading">
     <!--javascript highchart here -->
@@ -68,7 +68,7 @@
         {
             echo "<div class=\"row\">";
 
-            echo "<center><a  style=\"font-size:16\"  target=\"_blank\" href=\"/".$config_array->local_context_name."/index.php/LatestPublications/view/".$title."/1\">See more</a></center>";
+            echo "<center><a  style=\"font-size:16\"  target=\"_blank\" href=\"/index.php/LatestPublications/view/".$title."/1\">See more</a></center>";
 
             echo "</div><br/>";
         }
@@ -100,11 +100,11 @@
 
     
                 <script type="text/javascript">
-                //var litURL = "http://localhost/NeuroKS/index.php/LiteratureOnly/view/<?php echo $curie; ?>";
-                var litURL = "/NeuroKS/index.php/LiteratureOnly/view/<?php echo $curie; ?>";
+                //var litURL = "http://localhost/index.php/LiteratureOnly/view/<?php echo $curie; ?>";
+                var litURL = "/index.php/LiteratureOnly/view/<?php echo $curie; ?>";
 
                 //alert(litURL);
-                loadLiteratureJS(litURL,"<?php echo $config_array->local_context_name; ?>","<?php echo $title;  ?>");
+                loadLiteratureJS(litURL,"","<?php echo $title;  ?>");
                 
                 </script>
                 

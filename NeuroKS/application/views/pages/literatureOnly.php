@@ -1,9 +1,6 @@
-<!-----------------------------------Literature only -------------------------->
- <!--   <script src="/<?php  //echo $config_array->local_context_name; ?>/application/views/js/highcharts.js"></script>
-    <script src="/<?php //echo $config_array->local_context_name; ?>/application/views/js/exporting.js"></script>  
- -->
+
   <script type="text/javascript">
-      alert('highchart-----');
+  
 //$(function () {
     $('#container').highcharts({
         chart: {
@@ -60,7 +57,7 @@
                     events: {
                         click: function(e) {
 
-                                 var url = "/<?php echo $config_array->local_context_name; ?>/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
+                                 var url = "/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
         
         
                                  window.open(url);
@@ -164,7 +161,7 @@
                     events: {
                         click: function(e) {
 
-                                 var url = "/<?php echo $config_array->local_context_name; ?>/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
+                                 var url = "/index.php/publications/view/<?php echo $title;  ?>/"+this.x+"/1";
                
                                  window.open(url);
                             }

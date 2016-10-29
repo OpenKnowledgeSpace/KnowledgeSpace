@@ -1,3 +1,4 @@
+
 <!-- About --><br/>
           <div class="tag-box tag-box-v2 box-shadow shadow-effect-1">
         
@@ -11,7 +12,7 @@
 						<p>KnowledgeSpace (KS) is a community encyclopaedia that links brain research concepts with data, models and literature from around the world. It is an open project and welcomes participation and contributions from members of the global research community.  </p>
                                                 <p>KS is the result of recommendations from a community workshop held by the INCF Program on Ontologies of Neural Structures in 2012 and include the report attached below to community workshop.</p>
                                                 <p>
-                                                <a href="/NeuroKS/files/2012_PONS_ws_report.pdf" target="_blank">2012 INCF Workshop Report</a>
+                                                <a href="/files/2012_PONS_ws_report.pdf" target="_blank">2012 INCF Workshop Report</a>
                                                 </p>
                                                 <br/>
                                                 <p>

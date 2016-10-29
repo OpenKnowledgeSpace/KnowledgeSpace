@@ -13,7 +13,7 @@ class ViewAllData extends CI_Controller
 		}
                 $surl = $protocol."://".
                         $_SERVER['SERVER_NAME']
-                        ."/".Config::$localContextName."/resources/source_description/".$sourceID;
+                        ."/resources/source_description/".$sourceID;
                 
 		$responseCode =  @get_headers($surl);
    
@@ -75,7 +75,7 @@ class ViewAllData extends CI_Controller
             $myConfig = new Config();
             $myConfig->loadJsonConfig($data);
             
-            
+            $term = str_replace("|", "/", $term);
             $page = $term;
             $data["pageName"] = $page;
             

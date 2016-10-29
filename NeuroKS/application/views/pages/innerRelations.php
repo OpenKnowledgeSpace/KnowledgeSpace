@@ -35,7 +35,7 @@
         $parentLinkName = str_replace(")", "_",$parentLinkName);
         
         
-	$parentLink = "/".$config_array->local_context_name."/index.php/pages/view/".$node->id;
+	$parentLink = "/index.php/pages/view/".$node->id;
         */
         $parentLinkName = "";
         if(isset($node->lbl))
@@ -46,7 +46,7 @@
         $parentLinkName = str_replace(")", "_",$parentLinkName);
         $parentLink="";
         if(isset($node->id))
-            $parentLink = "/".$config_array->local_context_name."/index.php/pages/view/".$node->id;
+            $parentLink = "/index.php/pages/view/".$node->id;
         else
             $parentLink = "#";
 
@@ -54,7 +54,7 @@
             echo "<ul><li><span id=\"".$node->id.","."none"."\"><i class=\"icon-folder-open\"></i>" . $node->lbl    .    
                 "</span><a target=\"_self\" href=\"".$parentLink."\" ><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>";
 
-	$mainLink = "/".$config_array->local_context_name."/index.php/pages/view/".$mainNode->id;
+	$mainLink = "/index.php/pages/view/".$mainNode->id;
 
         if(isset($node->id))
             echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.",".$node->id."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
@@ -87,12 +87,12 @@
             $parentLinkName = str_replace("(", "_",$parentLinkName);
             $parentLinkName = str_replace(")", "_",$parentLinkName);
             
-            $parentLink = "/".$config_array->local_context_name."/index.php/pages/view/".$node2->id;
+            $parentLink = "/index.php/pages/view/".$node2->id;
             
             echo "<ul><li><span id=\"".$node2->id.","."none"."\"><i class=\"icon-folder-open\"></i>" . $node2->lbl    .    "</span><a target=\"_self\" href=\"".$parentLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>";
         }
 
-	$mainLink = "/".$config_array->local_context_name."/index.php/pages/view/".$mainNode->id;
+	$mainLink = "/index.php/pages/view/".$mainNode->id;
 
         echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.",".$node->id."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
 
@@ -126,13 +126,13 @@
             $parentLinkName = str_replace("(", "_",$parentLinkName);
             $parentLinkName = str_replace(")", "_",$parentLinkName);
             
-            $parentLink = "/".$config_array->local_context_name."/index.php/pages/view/".$node3->id;
+            $parentLink = "/index.php/pages/view/".$node3->id;
             
             echo "<ul><li><span id=\"".$node3->id.","."none"."\"><i class=\"icon-folder-open\"></i>" . $node3->lbl    .    "</span><a target=\"_self\" href=\"".$parentLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>";
 
         }
         
-        $mainLink = "/".$config_array->local_context_name."/index.php/pages/view/".$mainNode->id;
+        $mainLink = "/index.php/pages/view/".$mainNode->id;
 	
         echo "<ul><li><span style=\"background-color: #FFFF00\" id=\"".$mainNode->id.",".$node->id."\"><i class=\"icon-plus-sign\"></i>" . $mainNode->lbl . "</span> <a href=\"".$mainLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a>"; 
 

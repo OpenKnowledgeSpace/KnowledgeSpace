@@ -1,4 +1,11 @@
 <?php
+
+$path = $_SERVER['REQUEST_URI'];
+        if(strcmp($path, "/") == 0)
+        {
+            header('Location: ' . "/index.html");
+            die();
+        }
 /**
  * CodeIgniter
  *
@@ -230,6 +237,7 @@ switch (ENVIRONMENT)
 	// Name of the "system folder"
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 
+        
 	// The path to the "application" folder
 	if (is_dir($application_folder))
 	{
@@ -280,6 +288,7 @@ switch (ENVIRONMENT)
 		$view_folder = rtrim($view_folder, '/\\').DIRECTORY_SEPARATOR;
 	}
 
+        
 	define('VIEWPATH', $view_folder);
 
 /*

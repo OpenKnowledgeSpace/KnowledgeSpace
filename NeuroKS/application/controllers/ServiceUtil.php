@@ -4,7 +4,6 @@
    * This class provides all utility functions to query the services.
    * 
    * 
-   * @package    NeuroKS
    * @subpackage Utility
    * @author     Willy Wong <wwong@ncmir.ucsd.edu>
    */

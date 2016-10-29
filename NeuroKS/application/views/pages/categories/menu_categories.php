@@ -8,6 +8,7 @@
     $quality = "";
     $institution = "";
     $resource = "";
+    $cell="";
     if(strcmp($category,"organism")==0)
          $organism = "active";
     else if(strcmp($category,"disease")==0)
@@ -26,24 +27,19 @@
          $institution = "active";
     else if(strcmp($category,"resource")==0)
          $resource = "active";
-    
+     else if(strcmp($category,"cell")==0)
+         $cell = "active";
     
 ?>
 
 
-      <li class="<?php echo $organism; ?>"><a href="/NeuroKS/index.php/Categories/view/organism">Organism</a></li>
-      <li class="<?php echo $disease;  ?>"><a href="/NeuroKS/index.php/Categories/view/disease">Disease</a></li>
-      <li class="<?php echo $anatomical; ?>"><a href="/NeuroKS/index.php/Categories/view/anatomical">Anatomical</a></li>
-      <li class="<?php echo $technique; ?>"><a href="/NeuroKS/index.php/Categories/view/technique">Technique</a></li>
-      <li class="<?php echo $biological_process; ?>"><a href="/NeuroKS/index.php/Categories/view/biological_process">Biological Process</a></li>
-      <li class="<?php echo $subcellular; ?>"><a href="/NeuroKS/index.php/Categories/view/subcellular">Subcellular</a></li>
-      <li class="<?php echo $quality; ?>"><a href="/NeuroKS/index.php/Categories/view/quality">Quality</a></li>
-      <li class="<?php echo $institution; ?>"><a href="/NeuroKS/index.php/Categories/view/institution">Institution</a></li>
-      <li class="<?php echo $resource; ?>"><a href="/NeuroKS/index.php/Categories/view/resource">Resource</a></li>
-                                                        <!-- <li><a href="#messages" data-toggle="tab">Anatomical</a></li>
-							<li><a href="#settings" data-toggle="tab">Technique</a></li>
-                                                        <li><a href="#biological_process" data-toggle="tab">Biological process</a></li>
-                                                        <li><a href="#subcellular" data-toggle="tab">Subcellular</a></li>
-                                                        <li><a href="#quality" data-toggle="tab">Quality</a></li>
-                                                        <li><a href="#institution" data-toggle="tab">Institution</a></li>
-                                                        <li><a href="#resource" data-toggle="tab">Resource</a></li> -->
+      <li class="<?php echo $organism; ?>"><a href="/category/organism">Organism</a></li>
+      <li class="<?php echo $disease;  ?>"><a href="/category/disease">Disease</a></li>
+      <li class="<?php echo $anatomical; ?>"><a href="/category/anatomical">Anatomical</a></li>
+      <li class="<?php echo $technique; ?>"><a href="/category/technique">Technique</a></li>
+      <li class="<?php echo $biological_process; ?>"><a href="/category/biological_process">Biological Process</a></li>
+       <li class="<?php echo $cell; ?>"><a href="/category/cell">Cell</a></li>
+      <li class="<?php echo $subcellular; ?>"><a href="/category/subcellular">Subcellular</a></li>
+      <li class="<?php echo $quality; ?>"><a href="/category/quality">Quality</a></li>
+      <li class="<?php echo $institution; ?>"><a href="/category/institution">Institution</a></li>
+      <li class="<?php echo $resource; ?>"><a href="/category/resource">Resource</a></li>

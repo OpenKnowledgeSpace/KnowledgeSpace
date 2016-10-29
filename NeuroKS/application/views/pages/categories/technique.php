@@ -21,7 +21,7 @@
 <tr>
 <td>
     <?php
-        echo "<td><a href=\"/NeuroKS/index.php/pages/view/".$term->{$key}."\" target=\"_blank\">".$key."</a>";
+        echo "<td><a href=\"/".$config_array->pagePrefix."/".$term->{$key}."\" target=\"_blank\">".$key."</a>";
     ?>
 </td>
                 
@@ -33,7 +33,7 @@
           $term = $terms[$i];
           $key = key($term);   
           $i++;
-          echo "<td><a href=\"/NeuroKS/index.php/pages/view/".$term->{$key}."\" target=\"_blank\">".$key."</a></td>";
+          echo "<td><a href=\"/".$config_array->pagePrefix."/".$term->{$key}."\" target=\"_blank\">".$key."</a></td>";
         }
 
     }

@@ -36,13 +36,13 @@
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="/assets/css/custom.css">
         <link href="/static/css/custom.d4ef5c8a635d.css" rel="stylesheet">
-          <link rel="stylesheet" type="text/css" href="/NeuroKS/resources/sckb.css">
-          <link rel="stylesheet" type="text/css" href="/NeuroKS/resources/waiting.css"> 
-          <link rel="stylesheet" href="/NeuroKS/js/sortable/css/sortable-theme-bootstrap.css" /> 
-           <link rel="stylesheet" href="/NeuroKS/js/sortable/css/sortable-theme-finder.css" />
-   <!-- <link href="/NeuroKS/resources/Knowledge_Space_files/bootstrap.min.78e7f91c0c4c.css" rel="stylesheet"> -->
-    <link href="/NeuroKS/resources/Knowledge_Space_files/landing-page.c750721445d1.css" rel="stylesheet">
-    <link href="/NeuroKS/resources/Knowledge_Space_files/custom.d4ef5c8a635d.css" rel="stylesheet">
+          <link rel="stylesheet" type="text/css" href="/resources/sckb.css">
+          <link rel="stylesheet" type="text/css" href="/resources/waiting.css"> 
+          <link rel="stylesheet" href="/js/sortable/css/sortable-theme-bootstrap.css" /> 
+           <link rel="stylesheet" href="/js/sortable/css/sortable-theme-finder.css" />
+   <!-- <link href="/resources/Knowledge_Space_files/bootstrap.min.78e7f91c0c4c.css" rel="stylesheet"> -->
+    <link href="/resources/Knowledge_Space_files/landing-page.c750721445d1.css" rel="stylesheet">
+    <link href="/resources/Knowledge_Space_files/custom.d4ef5c8a635d.css" rel="stylesheet">
    
           
           	<!-- JS Global Compulsory -->
@@ -70,9 +70,9 @@
 	<script type="text/javascript" src="/assets/js/plugins/style-switcher.js"></script>
 	<script type="text/javascript" src="/assets/js/plugins/parallax-slider.js"></script>
         <!-- Custom js -->
-        <!-- <script src="/NeuroKS/application/views/js/fullscreen.js"></script> -->
-        <script src="/NeuroKS/application/views/js/fullscreen_layout.js?<?php echo time(); ?>"></script>
-        <script src="/NeuroKS/js/sortable/js/sortable.min.js"></script>
+        <!-- <script src="/application/views/js/fullscreen.js"></script> -->
+        <script src="/js/fullscreen_layout.js?<?php echo time(); ?>"></script>
+        <script src="/js/sortable/js/sortable.min.js"></script>
         
         <!-- Adding hypothesis javascript -->
         <script async defer src="https://hypothes.is/embed.js"></script>
@@ -353,17 +353,17 @@ function loadTree(theUrl)
             
             $('.tree li').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
             $('.tree li.parent_li > span').on('click', function (e) { 
-                //loadTree("/NeuroKS/index.php/Tree/view/"+e.target.id+"/false");
+                //loadTree("/index.php/Tree/view/"+e.target.id+"/false");
                 //alert(e.target.id);
                 var treeIds = e.target.id.split(',');
 
-        /*var treeURL = "/NeuroKS/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1]; 
+        /*var treeURL = "/index.php/Tree/view/"+treeIds[0]+"/false/"+treeIds[1]; 
         loadTree(treeURL);
         
         
-        var treeURL = "/NeuroKS/index.php/Has_proper_part/view/"+treeIds[0]+"/false/"+treeIds[1]; 
+        var treeURL = "/index.php/Has_proper_part/view/"+treeIds[0]+"/false/"+treeIds[1]; 
         loadTree(treeURL);*/
-        var treeURL = "/NeuroKS/index.php/Tree_with_tabs2/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
+        var treeURL = "/index.php/Tree_with_tabs2/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
         //alert("LoadTree:"+treeURL);
         loadTree(treeURL);
             });
@@ -388,7 +388,7 @@ $(function () {
         //alert(e.target.id);
         var treeIds = e.target.id.split(',');
 
-        var treeURL = "/NeuroKS/index.php/Tree_with_tabs2/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
+        var treeURL = "/index.php/Tree_with_tabs2/view/"+treeIds[0]+"/false/"+treeIds[1]+"/"+treeTabID; 
         //alert(treeURL);
         loadTree(treeURL);
 
@@ -427,7 +427,8 @@ $(function () {
                             
                     ?>
                     <center>			
-                    <form action="/NeuroKS/index.php/Search" method="post">
+                    <!-- <form action="/index.php/Search" method="post"> -->
+                    <form action="/Search" method="post">
 		    <input id="header_search" name="keywords" type="text" size="50" placeholder="Search">
                         
 			<button class="btn-u btn-u-sm btn-u-blue" type="submit" onclick="return ksTrackEvent('Button', 'Search from the header', document.getElementById('header_search').value);">Go</button>
@@ -448,7 +449,7 @@ $(function () {
                             
                     ?>
                     <!-- <li><center>			
-                    <form action="/NeuroKS/index.php/Search" method="post">
+                    <form action="/index.php/Search" method="post">
 		    <input name="keywords" type="text" size="50" placeholder="Search">
                         
 			<button class="btn-u btn-u-sm btn-u-blue" type="submit" >Go</button>
@@ -466,14 +467,14 @@ $(function () {
                         &nbsp;&nbsp;&nbsp;&nbsp;
                     </li> -->
                     <li>
-                        <a href="/NeuroKS/index.php/About">About</a>
+                        <a href="/About">About</a>
                     </li>
                     <li>
-                        <a href="/NeuroKS/index.php/Data_sources">Data Sources</a>
+                        <a href="/Data_sources">Data Sources</a>
                     </li>
                     <li>
-                        <!-- <a href="/NeuroKS/index.php/Categories">Categories</a> -->
-                         <a href="/NeuroKS/index.php/Categories/view/organism">Categories</a> 
+                        <!-- <a href="/index.php/Categories">Categories</a> -->
+                         <a href="/category/organism">Categories</a> 
                     </li>
                     <!-- <li>
                         <a href="/#examples">Examples</a>
@@ -484,13 +485,13 @@ $(function () {
 							</a>
 
                       <ul class="dropdown-menu">
-                      <li><a href="/NeuroKS/index.php/pages/view/Neocortical_pyramidal_cell">View demo</a></li>
+                      <li><a href="/index.php/pages/view/Neocortical_pyramidal_cell">View demo</a></li>
                       <li><a href="#" data-toggle="modal" data-target="#demoModal">Configurations</a></li>
                       </ul>
                     </li> -->
 		    <li>
-			<!-- <a href="/NeuroKS/documentation.php">Documentation</a> -->
-                        <a href="/NeuroKS/index.php/Documentation">Documentation</a>
+			<!-- <a href="/documentation.php">Documentation</a> -->
+                        <a href="/Documentation">Documentation</a>
 		    </li>
                     <!-- <li>
                         <img width="85px" height="auto"  src="/Knowledge_Space_files/human-brain-project.8f47bd2d109f.jpg">
@@ -505,7 +506,7 @@ $(function () {
 						<!-- <li>
 							<i class="search fa fa-search search-btn"></i>
 							<div class="search-open">
-                                                            <form action="/NeuroKS/index.php/Search" method="post">
+                                                            <form action="/index.php/Search" method="post">
 								<div class="input-group animated fadeInDown">
 									<input name="keywords" type="text" class="form-control" placeholder="Search">
 									<span class="input-group-btn">

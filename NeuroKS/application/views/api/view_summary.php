@@ -8,7 +8,7 @@ $domainName = $_SERVER['HTTP_HOST'];
 $categories =  $config_array->categories;
 
 $root = array();
-$root["overview_url"] = $protocol.$domainName."/".$config_array->local_context_name."/index.php/pages/view/".$curie;
+$root["overview_url"] = $protocol.$domainName."/index.php/pages/view/".$curie;
 foreach($categories as $category)
 {
     //$root[$category] = array();
@@ -29,10 +29,10 @@ foreach($categories as $category)
         $root[$category][$source->curie]['description'] = $source->description;
 
         
-        //$root[$category][$source->curie]['link'] = $protocol.$domainName."/".$config_array->local_context_name."/pages/view/".$curie;
+        //$root[$category][$source->curie]['link'] = $protocol.$domainName."/pages/view/".$curie;
         
         $root[$category][$source->curie]['link'] = 
-                $protocol.$domainName."/".$config_array->local_context_name.
+                $protocol.$domainName.
                 "/index.php?/Results/view/".$source->curie."/".$pageName."/1";
         
         /*echo "<br/>Name".$source->source_name;

@@ -71,7 +71,7 @@ class Results extends CI_Controller
 		}
                 $surl = $protocol."://".
                         $_SERVER['SERVER_NAME']
-                        ."/".Config::$localContextName."/resources/source_description/".$sourceID;
+                        ."/resources/source_description/".$sourceID;
                 //echo "\n".$surl;
 		$responseCode =  @get_headers($surl);
     //echo "CODE:".$file_headers[0]."---------";

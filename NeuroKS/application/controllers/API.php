@@ -4,7 +4,7 @@
    * This class is controller for the KS API
    * 
    * 
-   * @package    NeuroKS
+   * 
    * @subpackage Controller
    * @author     Willy Wong <wwong@ncmir.ucsd.edu>
    */

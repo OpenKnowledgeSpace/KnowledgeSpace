@@ -46,7 +46,7 @@
             if(($pageID-1) > 0)
             {
                 
-                echo "<li><a href=\"/".$config_array->local_context_name."/index.php/Results/view/"
+                echo "<li><a href=\"/index.php/Results/view/"
                 .$sourceID."/".$term."/".($pageID-1).
                 "\">&laquo;</a></li>";
                 
@@ -77,7 +77,7 @@
                 else
                 {
                     
-                    echo "<li class=\"page-item\"><a href=\"/".$config_array->local_context_name."/index.php/Results/view/"
+                    echo "<li class=\"page-item\"><a href=\"/index.php/Results/view/"
                     .$sourceID."/".$term."/".$i
                         ."\">".$i."</a></li>";
                 }
@@ -88,7 +88,7 @@
             if(($pageID+1) <= $num)
             {
                 
-                echo "<li><a href=\"/".$config_array->local_context_name."/index.php/Results/view/"
+                echo "<li><a href=\"/index.php/Results/view/"
                 .$sourceID."/".$term."/".($pageID+1).
                 "\">&raquo;</a></li>";
             }
@@ -173,7 +173,7 @@
             {
                 
                 
-                echo "<li><a href=\"/".$config_array->local_context_name."/index.php/Results/view/"
+                echo "<li><a href=\"/index.php/Results/view/"
                 .$sourceID."/".$term."/".($pageID-1).
                 "\">&laquo;</a></li>";
                 
@@ -203,7 +203,7 @@
                 else
                 {
                     
-                    echo "<li class=\"page-item\"><a href=\"/".$config_array->local_context_name."/index.php/Results/view/"
+                    echo "<li class=\"page-item\"><a href=\"/index.php/Results/view/"
                     .$sourceID."/".$term."/".$i
                         ."\">".$i."</a></li>";
                     
@@ -215,7 +215,7 @@
             if(($pageID+1) <= $num)
             {
                 
-                echo "<li><a href=\"/".$config_array->local_context_name."/index.php/Results/view/"
+                echo "<li><a href=\"/index.php/Results/view/"
                 .$sourceID."/".$term."/".($pageID+1).
                 "\">&raquo;</a></li>";
             

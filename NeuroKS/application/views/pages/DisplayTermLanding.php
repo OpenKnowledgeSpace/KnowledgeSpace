@@ -39,7 +39,7 @@
                         echo "<tr>\n";
                         
                         echo "<td class=\"col-md-2\">". 
-                                "<a href=\"/".$config_array->local_context_name."/index.php/pages/view/".$row->curie."\" target=\"_self\" >"
+                                "<a href=\"/index.php/pages/view/".$row->curie."\" target=\"_self\" >"
                                 .$row->curie. "</a></td>"; 
                         
                         echo "<td class=\"col-md-3\">". implode($row->labels,","). "</td>";

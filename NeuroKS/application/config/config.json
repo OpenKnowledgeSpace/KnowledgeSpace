@@ -21,8 +21,8 @@
         }
     ],
     "categories":["Physiology","Expression","Models","Anatomy","Morphology"],
-    "local_context_name":"NeuroKS",
     "literature_host":"vivaldi.crbs.ucsd.edu",
+    "pagePrefix":"wiki",
     "scigraph_host":"matrix.neuinfo.org",
     "github_host":"raw.githubusercontent.com",
     "nif_service_host":"nif-services.neuinfo.org",

@@ -5,7 +5,6 @@
    * This class is controller for displaying the term pages.
    * 
    * 
-   * @package    NeuroKS
    * @subpackage Controller
    * @author     Willy Wong <wwong@ncmir.ucsd.edu>
    */
@@ -207,7 +206,7 @@ class Pages extends CI_Controller
                 $leafLinkName = str_replace("(", "_", $leafLinkName);
                 $leafLinkName = str_replace(")", "_", $leafLinkName);
                 //$leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
-		$leafLink = "/".Config::$localContextName."/index.php/pages/view/".$leaf->id;
+		$leafLink = "/".$data["config_array"]->pagePrefix."/".$leaf->id;
                 //$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
                 $leafHTML = $leafHTML . "<ul><li><span id=\"".$leaf->id.",".$mainNode->id."\"><i class=\"icon-plus-sign\"></i>" . $leaf->lbl . "</span> <a href=\"".$leafLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a></li></ul>\n";
             }
@@ -238,7 +237,7 @@ class Pages extends CI_Controller
                 $leafLinkName = str_replace("(", "_", $leafLinkName);
                 $leafLinkName = str_replace(")", "_", $leafLinkName);
                 //$leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
-		$leafLink = "/".Config::$localContextName."/index.php/pages/view/".$leaf->id;
+		$leafLink = "/index.php/pages/view/".$leaf->id;
                 //$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
                 $leafHTML = $leafHTML . "<ul><li><span id=\"".$leaf->id.",".$mainNode->id."\"><i class=\"icon-plus-sign\"></i>" . $leaf->lbl . "</span> <a href=\"".$leafLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a></li></ul>\n";
             }
@@ -266,7 +265,7 @@ class Pages extends CI_Controller
                 $leafLinkName = str_replace("(", "_", $leafLinkName);
                 $leafLinkName = str_replace(")", "_", $leafLinkName);
                 //$leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
-		$leafLink = "/".Config::$localContextName."/index.php/pages/view/".$leaf->id;
+		$leafLink = "/index.php/pages/view/".$leaf->id;
                 //$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
                 $leafHTML = $leafHTML . "<ul><li><span id=\"".$leaf->id.",".$mainNode->id."\"><i class=\"icon-plus-sign\"></i>" . $leaf->lbl . "</span> <a href=\"".$leafLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a></li></ul>\n";
             }
@@ -311,7 +310,7 @@ class Pages extends CI_Controller
                     $leafLinkName = str_replace("(", "_", $leafLinkName);
                     $leafLinkName = str_replace(")", "_", $leafLinkName);
                     //$leafLink = "/SciCrunchKS/index.php/pages/view/".$leafLinkName;
-                    $leafLink = "/".Config::$localContextName."/index.php/pages/view/".$leaf->id;
+                    $leafLink = "/index.php/pages/view/".$leaf->id;
                     //$leafHTML = $leafHTML . "<ul><li><span><i class=\"icon-leaf\"></i><a href=\"".$leafLink."\">" . $leaf->lbl . "</a></span> <a href=\"\"></a></li></ul>\n";
                     $leafHTML = $leafHTML . "<ul><li><span id=\"".$leaf->id.",".$mainNode->id."\"><i class=\"icon-plus-sign\"></i>" . $leaf->lbl . "</span> <a href=\"".$leafLink."\"><img src=\"/img/view-icon.png\" width=\"25\" height=\"25\"></a></li></ul>\n";
                 }
@@ -496,6 +495,7 @@ class Pages extends CI_Controller
         
 	public function view($page = 'home')
 	{
+            
                //require  'Globals.php';
             //$enableCaching = false;
                //require_once 'CacheConfig.php';
@@ -607,7 +607,7 @@ class Pages extends CI_Controller
                           
                            //redirect('http://google.com', 'location');
                             
-                           redirect($protocol.$domainName."/".Config::$localContextName."/index.php/pages/view/".$termObj[0]->curie, 'location',301);
+                           redirect($protocol.$domainName."/index.php/pages/view/".$termObj[0]->curie, 'location',301);
                            
                            
                        }
@@ -615,16 +615,14 @@ class Pages extends CI_Controller
                        if(count($termObj)> 1)
                        {
                            
-                           //http://localhost/NeuroKS/index.php/TermLanding/view/cerebellum%20purkinje%20cell
-                           //redirect($protocol.":/".$domainName."/".Config::$localContextName."/index.php/Term/view/".$page, 'refresh');
+                           
                            $data['termObj'] = $termObj;
                            $temp_page_title = $pageName = str_replace(str_split('_,'), ' ', $page );
                            $data['page_title'] = "Term:".$temp_page_title;
                            $data['enable_config'] = false;
                            //redirect('http://google.com', 'location');
                             
-                           //redirect($protocol."://".$domainName."/".Config::$localContextName."/index.php/pages/view/".$termObj[0]->curie, 'refresh');
-                           //exit(0);
+                           
                             $this->load->view('templates/header2', $data);
                             $this->load->view('pages/DisplayTermLanding', $data);
                             $this->load->view('templates/footer2', $data);

@@ -24,7 +24,7 @@
 
 <div class="row">
 <div class="col-md-12" >
-    <form action="/<?php echo($config_array->local_context_name); ?>/index.php/Search" method="post"> 
+    <form action="/Search" method="post"> 
     <br/>
 <div class="input-group animated fadeInDown">
 <input name="keywords" type="text" class="form-control" placeholder="Search" value="<?php
@@ -69,7 +69,7 @@
                         echo "<tr>\n";
                         
                         echo "<td class=\"col-md-2\">". 
-                                "<a href=\"/".$config_array->local_context_name."/index.php/pages/view/".$row->curie."\" target=\"_self\" >"
+                                "<a href=\"/".$config_array->pagePrefix."/".$row->curie."\" target=\"_self\" >"
                                 .$row->curie. "</a></td>";
                         
                         

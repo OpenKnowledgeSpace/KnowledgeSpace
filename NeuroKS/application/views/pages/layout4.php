@@ -157,9 +157,9 @@ echo "\n</script>";
 
     <div class="row">
 
-    <div id="leftCol"    class="col-md-8">
+    <div id="leftCol"    class="col-md-8 row_small_gap2">
         <!-- <div class="row" style="background-color: red;padding-bottom: 0; padding-top: 0; margin-bottom: 0;margin-top: 0"> -->
-            
+           <!-- <div class="row" >  -->
             <div id="summaryOutter"    class="col-md-12 row_no_gap"> 
             <?php 
                 
@@ -211,10 +211,10 @@ echo "\n</script>";
             
             
             
-        <!-- </div> -->
+         <!-- </div> -->
     </div>
-    <div id="rightCol"    class="col-md-4 row_small_gap2">
-        <div class="row" >
+    <div id="rightCol"    class="col-md-4 row_no_gap">
+        <!-- <div class="row" > -->
  
             <?php 
                     if(!is_null($template_array) && in_array("data_space", $template_array))
@@ -257,7 +257,7 @@ echo "\n</script>";
             <script type="text/javascript">loadButtons();</script> 
             
             
-        </div>
+      <!--  </div> -->
     </div>
 </div>
     
