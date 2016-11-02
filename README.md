@@ -12,7 +12,8 @@ As a condition of your use of KnowledgeSpace, you agree NOT to:
 3. upload, post, email, transmit or otherwise make available any unsolicited or unauthorized advertising, promotional materials, "junk mail," "spam," "chain letters," "pyramid schemes," or any other form of solicitation;
 4. modify, adapt or hack KnowledgeSpace or falsely imply that some other site or service is associated with KnowledgeSpace; or
 5. use the SciCrunch Sites/Services for any illegal or unauthorized purpose. You must not, in the use of SciCrunch Sites/Services, violate any laws in your jurisdiction (including but not limited to copyright laws).
-6. Violation of Terms of Use: KnowledgeSpace reserves the right to investigate and prosecute violations of any of these Terms of Use to the fullest extent of the law. KnowledgeSpace may involve and cooperate with law enforcement authorities in prosecuting users who violate the Terms of Use. You acknowledge that KnowledgeSpace has no obligation to pre-screen or monitor your access to or use of KnowledgeSpace or any information, materials or other content provided or made available through KnowledgeSpace, but has the right to do so. You hereby agree that KnowledgeSpace may, in the exercise of KnowledgeSpace's sole discretion, remove or delete any entries, information, materials or other content that violates these Terms of Use or that is otherwise objectionable
+
+Violation of Terms of Use: KnowledgeSpace reserves the right to investigate and prosecute violations of any of these Terms of Use to the fullest extent of the law. KnowledgeSpace may involve and cooperate with law enforcement authorities in prosecuting users who violate the Terms of Use. You acknowledge that KnowledgeSpace has no obligation to pre-screen or monitor your access to or use of KnowledgeSpace or any information, materials or other content provided or made available through KnowledgeSpace, but has the right to do so. You hereby agree that KnowledgeSpace may, in the exercise of KnowledgeSpace's sole discretion, remove or delete any entries, information, materials or other content that violates these Terms of Use or that is otherwise objectionable
 
 ##Requirements
 1. PHP version: PHP 5.4.40+
@@ -35,3 +36,6 @@ The PHP file at /controllers/ServiceUtil.php contains all utility functions for 
   2. cache_folder - The folder for storing the cached data.
   3. sources - Append additional source items to the "sources" array for the dataspace.
 2. Change the background image: Edit parallax-slider.css
+
+##License
+Creative Commons Attrinution-Sharealike 3.0 Unported License (CC-BY-SA) and the GNU Free Documentation License (GFDL)
