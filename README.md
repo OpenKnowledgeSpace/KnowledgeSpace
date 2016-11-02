@@ -1,12 +1,15 @@
 ##Description
 KnowledgeSpace (KS) is the interface between neuroscience knowledge and data from around the world. KnowledgeSpace supplies a dynamic semantic framework that comes from existing ontologies (concepts to full ontologies), as well as data and data models. The data in KnowledgeSpace comes from either general or community-specific repositories. Repositories can drag vocabularies from KnowledgeSpace via SciCrunch, as well as push vocabularies back to KnowledgeSpace. Features of KnowledgeSpace that simplify integration and facilitate querying include:
+
 1. Controlled vocabularies and RRIDs
 2. Repository APIs
 3. Common data models, open formats, and data elements
+
 The interface which is a work in progress currently looks like an encyclopedia; but in time, we plan for the representation to look like a brain (rodent, human, etc…). KnowledgeSpace is a loose confederation of people working together to maintain the framework, data, and data models, and we welcome participation and contributions from members of the global research community (neuroscientists, ontologists, and developers). It has support from a number of projects or organizations such as the International Neuroinformatics Coordinating Facility, the Blue Brain Project, the Human Brain Project, the Neuroscience Information Framework, and others. KnowledgeSpace contains both source and remote content. You are being granted a limited license to copy anything from KnowledgeSpace as well as link to the content of KnowledgeSpace from your tools, resources, or websites. All data indexed and referenced by KnowledgeSpace, unless otherwise stated, are licensed by the respective owners of such data. Use and distribution is subject to the Terms of Use Policy by the original resource.  
 
 ##Terms of Use
 As a condition of your use of KnowledgeSpace, you agree NOT to:
+
 1. upload, post, email, transmit or otherwise make available any information, materials or other content that is illegal, harmful, threatening, abusive, harassing, defamatory, obscene, pornographic, or offensive; or that infringes another's rights, including any intellectual property rights;
 2. impersonate any person or entity or falsely state or otherwise misrepresent your affiliation with a person or entity; or obtain, collect, store or modify personal information about other users;
 3. upload, post, email, transmit or otherwise make available any unsolicited or unauthorized advertising, promotional materials, "junk mail," "spam," "chain letters," "pyramid schemes," or any other form of solicitation;
