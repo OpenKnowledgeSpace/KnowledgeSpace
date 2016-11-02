@@ -30,6 +30,9 @@ As a condition of your use of KnowledgeSpace, you agree NOT to:
 
 Violation of Terms of Use: KnowledgeSpace reserves the right to investigate and prosecute violations of any of these Terms of Use to the fullest extent of the law. KnowledgeSpace may involve and cooperate with law enforcement authorities in prosecuting users who violate the Terms of Use. You acknowledge that KnowledgeSpace has no obligation to pre-screen or monitor your access to or use of KnowledgeSpace or any information, materials or other content provided or made available through KnowledgeSpace, but has the right to do so. You hereby agree that KnowledgeSpace may, in the exercise of KnowledgeSpace's sole discretion, remove or delete any entries, information, materials or other content that violates these Terms of Use or that is otherwise objectionable
 
+##Contributing
+If you would like to contribute to KnowledgeSpace, please fork the repository and submit pull requests or contact us: Mathew@incf.org with subject KnowledgeSpace Contribution
+
 ##Requirements
 1. PHP version: PHP 5.4.40+
 2. Web server: Apache web server
