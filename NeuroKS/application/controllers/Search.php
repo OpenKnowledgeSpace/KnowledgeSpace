@@ -130,10 +130,19 @@
                             continue;
                           else
                           {
-                            $unique[$row->curie] =$row->curie;
-                            array_push($uniqueArray,$row);
+                             if(!$row->deprecated) 
+							 {
+                                $unique[$row->curie] =$row->curie;
+                                array_push($uniqueArray,$row);
+							 }
                           }
                        }
+					   /*
+					   usort($uniqueArray, function($a, $b){
+							   return strcmp(strtolower(empty($a->categories) ? 'zzzz' : current($a->categories)),
+									   strtolower(empty($b->categories) ? 'zzzz' : current($b->categories)));
+                                                           });
+						*/
                        $searchResult = $uniqueArray;
                        
                     }
