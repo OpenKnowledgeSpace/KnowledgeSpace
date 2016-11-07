@@ -1,5 +1,5 @@
 ##Description
-KnowledgeSpace (KS) is the interface between neuroscience knowledge and data from around the world. KnowledgeSpace supplies a dynamic semantic framework that comes from existing ontologies (concepts to full ontologies), as well as data and data models. The data in KnowledgeSpace comes from either general or community-specific repositories. Repositories can drag vocabularies from KnowledgeSpace via SciCrunch, as well as push vocabularies back to KnowledgeSpace. Features of KnowledgeSpace that simplify integration and facilitate querying include:
+KnowledgeSpace Public Beta is the interface between neuroscience knowledge and data from around the world. KnowledgeSpace (KS) supplies a dynamic semantic framework that comes from existing ontologies (concepts to full ontologies), as well as data and data models. The data in KnowledgeSpace comes from either general or community-specific repositories. Repositories can drag vocabularies from KnowledgeSpace via SciCrunch, as well as push vocabularies back to KnowledgeSpace. Features of KnowledgeSpace that simplify integration and facilitate querying include:
 
 1. Controlled vocabularies and RRIDs
 2. Repository APIs
