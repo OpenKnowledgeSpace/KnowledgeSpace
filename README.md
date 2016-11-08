@@ -56,4 +56,4 @@ The PHP file at /controllers/ServiceUtil.php contains all utility functions for 
 2. Change the background image: Edit parallax-slider.css
 
 ##License
-Creative Commons Attrinution-Sharealike 3.0 Unported License (CC-BY-SA) and the GNU Free Documentation License (GFDL)
+Creative Commons Attribution-Sharealike 3.0 Unported License (CC-BY-SA) and the GNU Free Documentation License (GFDL)
