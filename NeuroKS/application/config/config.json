@@ -18,6 +18,16 @@
             "name":"Contributes to morphology of",
             "value":"http://purl.obolibrary.org/obo/RO_0002433",
             "direction":"in-coming"
+        },
+        {
+            "name":"Delineated By",
+            "value":"http://uri.interlex.org/base/delineatedBy",
+            "direction":"out-going"
+        },
+        {
+            "name":"Delineates",
+            "value":"http://uri.interlex.org/base/delineates",
+            "direction":"out-going"
         }
     ],
     "categories":["Physiology","Expression","Models","Anatomy","Morphology"],
