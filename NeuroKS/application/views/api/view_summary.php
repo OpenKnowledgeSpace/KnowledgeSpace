@@ -8,7 +8,7 @@ $domainName = $_SERVER['HTTP_HOST'];
 $categories =  $config_array->categories;
 
 $root = array();
-$root["overview_url"] = $protocol.$domainName."/index.php/pages/view/".$curie;
+$root["overview_url"] = $protocol.$domainName."/wiki/".$curie;
 foreach($categories as $category)
 {
     //$root[$category] = array();

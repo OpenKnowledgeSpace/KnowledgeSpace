@@ -319,6 +319,29 @@ window.onpaint = prepareCookies();
 ?> 
 </script>
 
+<!------End Counting runtime --->
+
+<!---------Zopim------------------->
+<script type="text/javascript">
+    window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+        d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+        $.src='//v2.zopim.com/?2CsONjIPURBMECjYLIRkz9JVf7erv9vw';z.t=+new Date;$.
+            type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+    $zopim(function() {
+        $zopim.livechat.addTags("zopim", "livechatAPI");
+        $zopim.livechat.setGreetings({
+            "online":"Report an issue",
+            "offline":"Report an issue"
+        });
+
+        $zopim.livechat.window.setTitle("Report an issue");
+        $zopim.livechat.offlineForm.setGreetings("Please leave a description of the issue and, if applicable, a URL where the issue occurs.");
+    });
+</script> 
+
+<!----------End Zopim--------------------->
+
 </head>
 <body>
   <script type="text/javascript">
