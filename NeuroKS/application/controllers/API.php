@@ -71,6 +71,7 @@ class API extends CI_Controller
     
     public function summary($page)
     {
+        error_reporting(0);
         require_once 'ServiceUtil.php';
         $util = new ServiceUtil();
                 
@@ -78,86 +79,92 @@ class API extends CI_Controller
         $myConfig = new Config();
         $myConfig->loadJsonConfig($data);
         
-        
-        $pageName = NULL;
-        $termObj = NULL;
+        try
+        {
+            $pageName = NULL;
+            $termObj = NULL;
 
-        $pageName = $page;
-        $pos = strpos($pageName,":");
-        //echo "----pos:".$pos;
-        if($pos == false)
-        {
-            $pageName = str_replace("_", "%20", $page);
-            $pageName = str_replace(",","%2c",$pageName);
-            $data["page"] = $page;
-        }
-               
-        $isNifID = false;
-        $originalPageName="";
-        
-        if( $pos != false)
-        {
-                    $termObj[0] = $util->getObjByCurie($pageName);
-                    #echo "\n-------Willy----!is_null(termObj):".!is_null($termObj)."\n";
-                    //echo "---------------------TermObj-------------------------";
-                    //var_dump($termObj);
-                    //echo "----------------------------------------------";
-                    if(!is_null($termObj) && !is_null($termObj[0]))
-                    {
-                        $data['curie'] = $termObj[0]->curie;
-                        if(count($termObj[0]->labels) > 0)
+            $pageName = $page;
+            $pos = strpos($pageName,":");
+            //echo "----pos:".$pos;
+            if($pos == false)
+            {
+                $pageName = str_replace("_", "%20", $page);
+                $pageName = str_replace(",","%2c",$pageName);
+                $data["page"] = $page;
+            }
+
+            $isNifID = false;
+            $originalPageName="";
+
+            if( $pos != false)
+            {
+                        $termObj[0] = $util->getObjByCurie($pageName);
+                        #echo "\n-------Willy----!is_null(termObj):".!is_null($termObj)."\n";
+                        //echo "---------------------TermObj-------------------------";
+                        //var_dump($termObj);
+                        //echo "----------------------------------------------";
+                        if(!is_null($termObj) && !is_null($termObj[0]))
                         {
-                            $data['pageName'] = $termObj[0]->labels[0];
-                            $pageName = $data['pageName'];
-                            
-                            $originalPageName=$pageName;
-                            $pageName = str_replace(" ", "%20", $pageName);
-                            
-                            $pageName = str_replace(",", "%2c", $pageName);
-                            
-                             $data['pageName'] = $pageName;
-                            $isNifID = true;
+                            $data['curie'] = $termObj[0]->curie;
+                            if(count($termObj[0]->labels) > 0)
+                            {
+                                $data['pageName'] = $termObj[0]->labels[0];
+                                $pageName = $data['pageName'];
+
+                                $originalPageName=$pageName;
+                                $pageName = str_replace(" ", "%20", $pageName);
+
+                                $pageName = str_replace(",", "%2c", $pageName);
+
+                                 $data['pageName'] = $pageName;
+                                $isNifID = true;
+                            }
+                            else
+                                $data['pageName'] = $pageName;
+
                         }
                         else
-                            $data['pageName'] = $pageName;
-                        
-                    }
-                    else
-                    {
-                        show_404();
-                        //$data['pageName'] = $pageName;                  
-                        //$termObj = getTerm($pageName);
-                    }
+                        {
+                            show_404();
+                            //$data['pageName'] = $pageName;                  
+                            //$termObj = getTerm($pageName);
+                        }
+            }
+
+            $pageName = str_replace(str_split('_'), '%20',$pageName );
+            $pageName = str_replace(str_split(','), '%2c',$pageName );
+            $pageName = str_replace(str_split('/'), '%2f',$pageName );
+
+            $data['pageName'] = $pageName;
+            $data['page_title'] = $pageName;
+            $data['enable_config'] = true;
+
+            $stitle="";
+            if(!$isNifID)
+            {
+                $stitle = ucfirst($page);
+                $stitle = str_replace("_", " ", $stitle);
+                $data['title'] = $stitle;
+            }
+            else
+            {
+                $stitle = $originalPageName;
+                $data['title'] = $stitle;
+            }
+
+
+            if(!isset($data['curie']))
+                show_404();
+            else 
+            {
+                $this->handleDataSpace($data, $pageName);
+                $this->load->view('api/view_summary', $data);
+            }
         }
-        
-        $pageName = str_replace(str_split('_'), '%20',$pageName );
-        $pageName = str_replace(str_split(','), '%2c',$pageName );
-        $pageName = str_replace(str_split('/'), '%2f',$pageName );
-               
-        $data['pageName'] = $pageName;
-        $data['page_title'] = $pageName;
-        $data['enable_config'] = true;
-        
-        $stitle="";
-        if(!$isNifID)
+        catch(Exception $e)
         {
-            $stitle = ucfirst($page);
-            $stitle = str_replace("_", " ", $stitle);
-            $data['title'] = $stitle;
-        }
-        else
-        {
-            $stitle = $originalPageName;
-            $data['title'] = $stitle;
-        }
-            
-        
-        if(!isset($data['curie']))
-            show_404();
-        else 
-        {
-            $this->handleDataSpace($data, $pageName);
-            $this->load->view('api/view_summary', $data);
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
     
