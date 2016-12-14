@@ -1,6 +1,7 @@
 {
     "terms_of_use":[
         {
+            "id":"nlx_151885-1",
             "name":"NeuroElectro",
             "agreement_link":"http://www.neuroelectro.org/publications/",
             "data_type":"e-phys",
@@ -10,6 +11,7 @@
             
         },
         {
+            "id":"nif-0000-00006-1",
             "name":"NeuroMorpho",
             "agreement_link":"http://neuromorpho.org/useterm.jsp",
             "data_type":"digitally reconstructed neurons",
@@ -20,6 +22,7 @@
         }
         ,
         {
+            "id":"nif-0000-00130-1",
             "name":"GENSAT",
             "agreement_link":"http://www.gensat.org/about.jsp",
             "data_type":"gene expression",
@@ -30,6 +33,7 @@
         }
         ,
         {
+            "id":"nif-0000-00054-1",
             "name":"NeuronDB",
             "data_type":"three types of neuronal properties: voltage gated conductances, neurotransmitter receptors, and neurotransmitter substances",
             "contribution_method":"community contributions accepted (curation status unknown)",
@@ -38,6 +42,16 @@
         }
         ,
         {
+            "id":"nif-0000-00054-3",
+            "name":"NeuronDB",
+            "data_type":"three types of neuronal properties: voltage gated conductances, neurotransmitter receptors, and neurotransmitter substances",
+            "contribution_method":"community contributions accepted (curation status unknown)",
+            "administrator":["senselab_admin@mailman.yale.edu"],
+            "contribution_model":"open to all users"
+        }
+        ,
+        {
+            "id":"nif-0000-37639-1",
             "name":"Cell Image Library",
             "agreement_link":"http://www.cellimagelibrary.org/pages/license",
             "data_type":"public repository of reviewed and annotated images, videos, and animations of cells from a variety of organisms, showcasing cell architecture, intracellular functionalities, and both normal and abnormal processes.",
@@ -47,12 +61,14 @@
         }
         ,
         {
+            "id":"scr_013705-1",
             "name":"NeuroML database",
             "data_type":"relational database that provides a means for exchanging these NeuroML model descriptions and their components.",
             "contribution_method":"community contributions accepted",
             "administrator":["neuroml.info@gmail.com"]
         },
         {
+            "id":"nlx_152590-1",
             "name":"Open Source Brain",
             "data_type":"a resource for sharing and collaboratively developing computational models of neural systems. ",
             "contribution_method":"community contributions accepted",
@@ -70,11 +86,13 @@
         }
         ,
         {
+            "id":"nif-0000-00039-1",
             "name":"GARA",
             "data_type":"olfactory map"
         }
         ,
         {
+            "id":"nif-0000-00508-5",
             "name":"Allen Human Brain Atlas",
             "agreement_link":"http://www.alleninstitute.org/legal/terms-use/",
             "data_type":"cell morphology",
@@ -85,6 +103,7 @@
         }
         ,
         {
+            "id":"nif-0000-00508-4",
             "name":"Allen Human Brain Atlas",
             "agreement_link":"http://www.alleninstitute.org/legal/terms-use/",
             "data_type":"e-phys",
@@ -95,6 +114,7 @@
         }
         ,
         {
+            "id":"nif-0000-00093-2",
             "name":"Brain Maps",
             "agreement_link":"http://brainmaps.org/index.php?p=termsofuse",
             "data_type":"an interactive, multiresolution next-generation brain atlas that is based on over 140 million megapixels of sub-micron resolution, annotated, scanned images of serial sections of both primate and non-primate brains and that is integrated with a high-speed database for querying and retrieving data about brain structure and function over the internet. ",
@@ -105,11 +125,13 @@
         }
         ,
         {
+            "id":"nlx_154697-8",
             "name":"Integrated Connectivity"
             
         }
         ,
         {
+            "id":"nif-0000-00088-1",
             "name":"Human Brain Project",
             "data_type":"cell morphology",
             "contribution_method":"project data only"
