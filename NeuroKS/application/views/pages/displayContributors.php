@@ -12,7 +12,7 @@
                                             <li><a style="color:#00BFFF" href="http://neuromorpho.org/" target="_blank">Neuromorpho.or</a></li>
                                             <li><a style="color:#00BFFF" href="http://neuroelectro.org/" target="_blank">Neuroelectro.org</a></li>
                                             <li><a style="color:#00BFFF" href="http://www.cellimagelibrary.org/" target="_blank">Cell Image Library</a></li>
-                                            <li><a style="color:#00BFFF" href="http://connectivity-brainer.rhcloud.com/" target="_blank">NIF Integrated Connectivity</a></li>
+                                            <li><a style="color:#00BFFF" href="https://scicrunch.org/browse/resources/SCR_006391" target="_blank">NIF Integrated Connectivity</a></li>
                                             <li><a style="color:#00BFFF" href="http://channelpedia.epfl.ch/" target="_blank">Channelpedia.net</a></li>
                                             <li><a style="color:#00BFFF" href="http://icg.neurotheory.ox.ac.uk" target="_blank">Ion Channel Genealogy</a></li>
                                             <li><a style="color:#00BFFF" href="http://senselab.med.yale.edu/neurondb" target="_blank">ModelDB</a></li>
