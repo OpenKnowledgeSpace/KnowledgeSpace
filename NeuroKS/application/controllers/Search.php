@@ -102,6 +102,8 @@
                 //echo "------Term size:".$termSize."<br/>\n";
                 if($termSize == 1)
                 {
+                    if(!property_exiss($termResult[0], "curie"))
+                      continue;
                     //echo "------Curie:".$termResult[0]->curie."<br/>\n";
                     if(isset($termResult[0]->curie))
                     {
@@ -126,6 +128,8 @@
                        $uniqueArray = array();
                        foreach($searchResult as  $row )
                        {
+                          if(!property_exists($row, "curie"))
+                            continue;
                           if(isset($unique[$row->curie]))
                             continue;
                           else
