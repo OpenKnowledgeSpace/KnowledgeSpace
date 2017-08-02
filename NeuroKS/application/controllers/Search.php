@@ -102,7 +102,7 @@
                 //echo "------Term size:".$termSize."<br/>\n";
                 if($termSize == 1)
                 {
-                    if(!property_exiss($termResult[0], "curie"))
+                    if(!property_exists($termResult[0], "curie"))
                       continue;
                     //echo "------Curie:".$termResult[0]->curie."<br/>\n";
                     if(isset($termResult[0]->curie))
