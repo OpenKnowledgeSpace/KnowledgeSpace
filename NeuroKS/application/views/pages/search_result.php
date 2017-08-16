@@ -41,6 +41,11 @@
 <?php
     //echo "search result...";
     //var_dump($searchResult);
+    if(!is_array($searchResult))
+    {
+        if($searchResult->code >= 400)
+            $searchResult = null;
+    }
     if(!is_null($searchResult))
     {
         $count = count($searchResult);
