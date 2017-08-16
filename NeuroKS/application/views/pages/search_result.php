@@ -71,11 +71,17 @@
                         else
                             $unique[$row->curie] =$row->curie;*/
                         
+                        if(!property_exists($row, "curie"))
+						{
+                            $thing = $row->iri;
+						}
+						else
+						    $thing = $row->curie;
                         echo "<tr>\n";
                         
                         echo "<td class=\"col-md-2\">". 
-                                "<a href=\"/".$config_array->pagePrefix."/".$row->curie."\" target=\"_self\" >"
-                                .$row->curie. "</a></td>";
+                                "<a href=\"/".$config_array->pagePrefix."/".$thing."\" target=\"_self\" >"
+                                .$thing. "</a></td>";
                         
                         
                         echo "<td class=\"col-md-2\">". implode($row->labels,","). "</td>";
