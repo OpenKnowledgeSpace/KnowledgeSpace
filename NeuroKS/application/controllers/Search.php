@@ -96,6 +96,11 @@
                 $termResult = $util->getTerm($keywords);
                 //var_dump($termResult);
                 $termSize = 0;
+				if(!is_array($termResult))
+				{
+						if($termResult->code >= 400)
+							$termResult = null;
+				}
                 if(!is_null($termResult))
                     $termSize = count($termResult);
                
