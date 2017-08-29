@@ -1,4 +1,4 @@
-##Description
+## Description
 KnowledgeSpace Public Beta is the interface between neuroscience knowledge and data from around the world. KnowledgeSpace (KS) supplies a dynamic semantic framework that comes from existing ontologies (concepts to full ontologies), as well as data and data models. The data in KnowledgeSpace comes from either general or community-specific repositories. Repositories can drag vocabularies from KnowledgeSpace via SciCrunch, as well as push vocabularies back to KnowledgeSpace. Features of KnowledgeSpace that simplify integration and facilitate querying include:
 
 1. Controlled vocabularies and RRIDs
@@ -7,7 +7,7 @@ KnowledgeSpace Public Beta is the interface between neuroscience knowledge and d
 
 The interface which is a work in progress currently looks like an encyclopedia; but in time, we plan for the representation to look like a brain (rodent, human, etc…). KnowledgeSpace is a loose confederation of people working together to maintain the framework, data, and data models, and we welcome participation and contributions from members of the global research community (neuroscientists, ontologists, and developers). It has support from a number of projects or organizations such as the International Neuroinformatics Coordinating Facility, the Blue Brain Project, the Human Brain Project, the Neuroscience Information Framework, and others. KnowledgeSpace contains both source and remote content. You are being granted a limited license to copy anything from KnowledgeSpace as well as link to the content of KnowledgeSpace from your tools, resources, or websites. All data indexed and referenced by KnowledgeSpace, unless otherwise stated, are licensed by the respective owners of such data. Use and distribution is subject to the Terms of Use Policy by the original resource.  
 
-##Disclaimer
+## Disclaimer
 
 1. KnowledgeSpace makes no guarantee of validity. KnowledgeSpace is an online open-content collaborative encyclopedia that is the product of a voluntary association of individuals, groups, and organizations working to develop a common resource of scientific knowledge. The governance model of KnowledgeSpace allows anyone to alter or add to its content. KnowledgeSpace cannot guarantee the validity of the information found within. The content of any given entry may have been recently changed, vandalized, or altered by someone whose opinion does not correspond with the current state of knowledge in the relevant fields. Please note that most other encyclopedias and reference works also have disclaimers.
 
@@ -19,7 +19,7 @@ The interface which is a work in progress currently looks like an encyclopedia; 
 
 5. Jurisdiction and legality of content. Publication of materials found in KnowledgeSpace may be in violation of the laws of the country or jurisdiction from where you are viewing information. The databases providing content to KnowledgeSpace are located around the world and are protected by their respective local and national laws. Laws in your country or jurisdiction may not protect or allow the same kinds of speech or distribution. KnowledgeSpace does not encourage the violation of any laws and cannot be responsible for any violation of such laws should you link to this domain or use, reproduce, or republish the content contained herein.
 
-##Terms of Use
+## Terms of Use
 As a condition of your use of KnowledgeSpace, you agree NOT to:
 
 1. upload, post, email, transmit or otherwise make available any information, materials or other content that is illegal, harmful, threatening, abusive, harassing, defamatory, obscene, pornographic, or offensive; or that infringes another's rights, including any intellectual property rights;
@@ -30,10 +30,10 @@ As a condition of your use of KnowledgeSpace, you agree NOT to:
 
 Violation of Terms of Use: KnowledgeSpace reserves the right to investigate and prosecute violations of any of these Terms of Use to the fullest extent of the law. KnowledgeSpace may involve and cooperate with law enforcement authorities in prosecuting users who violate the Terms of Use. You acknowledge that KnowledgeSpace has no obligation to pre-screen or monitor your access to or use of KnowledgeSpace or any information, materials or other content provided or made available through KnowledgeSpace, but has the right to do so. You hereby agree that KnowledgeSpace may, in the exercise of KnowledgeSpace's sole discretion, remove or delete any entries, information, materials or other content that violates these Terms of Use or that is otherwise objectionable
 
-##Contributing
+## Contributing
 If you would like to contribute to KnowledgeSpace, please fork the repository and submit pull requests or contact us: Mathew@incf.org with subject KnowledgeSpace Contribution
 
-##Requirements
+## Requirements
 1. PHP version: PHP 5.4.40+
 2. Web server: Apache web server
 
@@ -44,7 +44,7 @@ The KS utilizes the CodeIgniter-3.0.3 to the maintain the Model View Controller(
 The PHP file at /controllers/ServiceUtil.php contains all utility functions for accessing the data through the REST API.
 
 
-##Installation
+## Installation
 1. Check out the latest source code
 2. Copy or move KnowledgeSpace/* to your $apache_document_root (For example, /var/www/html)
 
@@ -55,5 +55,5 @@ The PHP file at /controllers/ServiceUtil.php contains all utility functions for 
   3. sources - Append additional source items to the "sources" array for the dataspace.
 2. Change the background image: Edit parallax-slider.css
 
-##License
+## License
 Creative Commons Attribution-Sharealike 3.0 Unported License (CC-BY-SA) and the GNU Free Documentation License (GFDL)
