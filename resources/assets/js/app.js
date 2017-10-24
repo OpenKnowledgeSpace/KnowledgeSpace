@@ -14,3 +14,5 @@ import Relationships from './components/Relationships';
 import ImageGallery from './components/ImageGallery';
 import Literature from './components/Literature';
 import Search from './components/Search';
+import DataspacePage from './components/DataspacePage';
+import Categories from "./components/Categories";

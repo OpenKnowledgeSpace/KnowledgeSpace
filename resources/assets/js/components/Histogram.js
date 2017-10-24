@@ -20,7 +20,7 @@ class Histogram extends Component {
 		let { height,  width } = this.props; 
 		/* yuck */
    	if (  document.getElementById("literature") ) {
-        width = document.getElementById("literature").offsetWidth;	
+        width = document.getElementById("literature").offsetWidth - 100;	
 				this.setState( { width: width, height: height });
 		}
 	}

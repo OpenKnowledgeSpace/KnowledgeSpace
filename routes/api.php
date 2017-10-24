@@ -34,6 +34,19 @@ Route::middleware('api')->get('/dataspace', function() {
   return response()->json(  config('services.dataspace_sources')  );
 });
 
+Route::middleware('api')->get('/dataspace/{source}/info', function(Request $request, $source) {
+  $data = array(); 
+  foreach ( array_values(config('services.dataspace_sources')) as $category  ) { 
+    foreach ( $category as $ds ) {
+      if ( $source == $ds["curie"] ) {
+        $data = $ds;
+        break;      
+      } 
+    }
+  } 
+  return response()->json( $data );
+});
+
 Route::middleware('api')->get('/dataspace/{source}', function(Request $request, $source) {
 	$count = ( $request->input('count') ? $request->input('count') : 20 ); 
 	$offset = ( $request->input('offset') ? $request->input('offset') : 0 ); 
@@ -51,15 +64,16 @@ Route::middleware('api')->get('/dataspace/images/{curie}', function(Request $req
 
 
 Route::middleware('api')->get('/literature', function(Request $request) {
-  
   $params = array();
-
   $params["rows"] = ( $request->input('rows') ? $request->input('rows') : 20 ); 
 	$params["start"] = ( $request->input('start') ? $request->input('start') : 0 ); 
 	$params["fl"] = ( $request->input('fl') ? $request->input('fl') : "*" ); 
-  
   $terms = ( $request->input('terms') ? $request->input('terms') : [] ); 
   $year = ( $request->input('year') ? $request->input('year') : "*" ); 
-  
   return response()->json( ScicrunchClient::searchLatestLiterature($terms, $year, $params) );  
+});
+
+Route::middleware('api')->get('/categories/{category}', function(Request $request, $category) {
+  $json = json_decode( file_get_contents(storage_path().'/json/category_'.$category.'.json'), true ); 
+  return response()->json( $json);  
 });

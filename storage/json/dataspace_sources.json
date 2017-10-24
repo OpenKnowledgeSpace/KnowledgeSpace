@@ -1,140 +1,182 @@
-[
-    {
-        "source_name":"NeuroElectro:EPhysData",
-        "curie":"nlx_151885-1",
-        "categories":["Physiology"],
-        "enabled":true,
-        "has_images":false,
-        "description":"is a database of elecrophysiological properties text-mined from the biomedical literature as a function of neuron type."
-    },
-    {
-        "source_name":"NeuroMorpho:ModelImage",
-        "curie":"nif-0000-00006-1",
-        "categories":["Morphology"],
-        "enabled":true,
-        "has_images":true,
-        "description":"contains a curated repository of digitally reconstructed neurons."
-    },
-    {
-        "source_name":"GENSAT:GeneExpression",
-        "curie":"nif-0000-00130-1",
-        "categories":["Expression"],
-        "enabled":true,
-        "has_images":false,
-        "description":"contains gene expression data and maps of the mouse brain and spinal cord."
-    },
-    {
-        "source_name":"NeuronDB:Currents",
-        "curie":"nif-0000-00054-1",
-        "categories":["Physiology"],
-        "enabled":true,
-        "has_images":false,
-        "description":"provides data about neurotransmitter properties for submitted neurons."
-    },
-    {
-        "source_name":"CellImageLibrary:Images",
-        "curie":"nif-0000-37639-1",
-        "categories":["Morphology"],
-        "enabled":true,
-        "has_images":true,
-        "description":"provides annotated images, videos and animations of cellular processes."
-        
-    },
-    {
-        "source_name":"NeuroML database:Models",
-        "curie":"scr_013705-1",
-        "categories":["Models"],
-        "enabled":true,
-        "has_images":false,
-        "description":"is a curated relational database that provides for the storage and retrieval of computational neuroscience model."
-    },
-    {
-        "source_name":"ModelDB:Models",
-        "curie":"nif-0000-00004-1",
-        "categories":["Models"],
-        "enabled":true,
-        "has_images":false,
-        "description":"provides high quality computational neuroscience models. ModelDB is tightly coupled with <a href=\"http://senselab.med.yale.edu/neurondb\">NeuronDB</a>."
-    },
-    {
-        "source_name":"Open Source Brain:models",
-        "curie":"nlx_152590-1",
-        "categories":["Models"],
-        "enabled":true,
-        "has_images":false,
-        "description":"provides annotated computational models."
-        
-    },
-    {
-        "source_name":"HumanBrainAtlas: Atlas",
-        "curie":"nif-0000-00088-1",
-        "categories":["Anatomy"],
-        "enabled":true,
-        "has_images":false,
-        "description":"contains sections stained for cell bodies or nerve fibers, as well as corresponding MRI sections through a living human brain."
-    },
-    {
-        "source_name":"GARA: OlfactoryMap",
-        "curie":"nif-0000-00339-1",
-        "categories":["Physiology"],
-        "enabled":true,
-        "has_images":false,
-        "description":"contains spatial distribution maps of rat olfactory bulb in response to odorant stimuli."
-    },
-    {
-        "source_name":"ABA Mouse Brain: CellType MorphoData",
-        "curie":"nif-0000-00508-5",
-        "categories":["Morphology"],
-        "enabled":true,
-        "has_images":false,
-        "description":"provides a database of neuronal cell types based on multimodal characterization of single cells to enable data-driven approaches to classification. For more details about the experiments, please refer to the <a class=\"external\" target=\"_blank\" href=\"http://help.brain-map.org/download/attachments/8323525/MorphOverview.pdf\">technical white paper</a>."
-    },
-    {
-        "source_name":"ABA Mouse Brain: CellType EphysData",
-        "curie":"nif-0000-00508-4",
-        "categories":["Physiology"],
-        "enabled":true,
-        "has_images":false,
-        "description":"provides a database of neuronal cell types based on multimodal characterization of single cells to enable data-driven approaches to classification. For more details about the experiments, please refer to the <a class=\"external\" target=\"_blank\" href=\"http://help.brain-map.org/download/attachments/8323525/EphysOverview.pdf\">technical white paper</a>."
-    },
-    {
-        "source_name":"ABA Mouse Brain: Expression",
-        "curie":"nif-0000-00508-1",
-        "categories":["Expression"],
-        "enabled":true,
-        "has_images":false,
-        "description":"A genome-wide database of gene expression in the mouse brain."
-    },
-    {
-        "source_name":"BrainMaps: Atlas",
-        "curie":"nif-0000-00093-2",
-        "categories":["Anatomy"],
-        "enabled":true,
-        "has_images":false,
-        "description":"is a high-resolution brain atlas of primate and non-primate brains."
-    },
-    {
-        "source_name":"Integrated: Connectivity",
-        "curie":"nlx_154697-8",
-        "categories":["Anatomy"],
-        "enabled":true,
-        "has_images":false,
-        "description":"is an aggregated dataset of connectivity statements from <a class=\"external\" target=\"_blank\" href=\"http://brancusi.usc.edu/bkms/\">BAMS</a>, <a class=\"external\" target=\"_blank\" href=\"http://cocomac.org/home.asp\">CoCoMac</a>, <a class=\"external\" target=\"_blank\" href=\"http://brainmaps.org/index.php?\">BrainMaps</a>, Connectome Wiki, the Hippocampal-Parahippocampal Table of <a class=\"external\" target=\"_blank\" href=\"http://www.temporal-lobe.com/\">Temporal-Lobe.com</a> and Avian Brain Circuitry Database. Connectome Wiki, CoCoMac, and Avian Brain Circuitry Database are no longer in service, so the links may not be functional."
-    },
-    {
-        "source_name":"Human Brain Project: Cell Morphology",
-        "curie":"SCR_014306-1",
-        "categories":["Morphology"],
-        "enabled":true,
-        "has_images":false,
-        "description":"has <a class=\"external\" target=\"_blank\" href=\"http://microcircuits.epfl.ch/#/article/article_3_mph\">3D models</a> of rat neuronal morphologies."
-    },
-    {
-       "source_name":"IonChannelGenealogy: Ion Channels",
-        "curie":"SCR_014194-1",
-        "categories":["Models"],
-        "enabled":true,
-        "has_images":false,
-        "description":"<a class=\"external\" target=\"_blank\" href=\"http://icg.neurotheory.ox.ac.uk/\">IonChannelGenealogy</a> provides a quantitative assay of publicly available ion channel models. Descriptions of the columns are available <a class=\"external\" target=\"_blank\" href=\"http://icg.neurotheory.ox.ac.uk/manual/#sec:selecting-a-model\">here</a>." 
-    }
-] 
+{
+    "Anatomy": [
+        {
+            "categories": [
+                "Anatomy"
+            ],
+            "curie": "nif-0000-00088-1",
+            "description": "contains sections stained for cell bodies or nerve fibers, as well as corresponding MRI sections through a living human brain.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "HumanBrainAtlas: Atlas"
+        },
+        {
+            "categories": [
+                "Anatomy"
+            ],
+            "curie": "nif-0000-00093-2",
+            "description": "is a high-resolution brain atlas of primate and non-primate brains.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "BrainMaps: Atlas"
+        },
+        {
+            "categories": [
+                "Anatomy"
+            ],
+            "curie": "nlx_154697-8",
+            "description": "is an aggregated dataset of connectivity statements from <a class=\"external\" target=\"_blank\" href=\"http://brancusi.usc.edu/bkms/\">BAMS</a>, <a class=\"external\" target=\"_blank\" href=\"http://cocomac.org/home.asp\">CoCoMac</a>, <a class=\"external\" target=\"_blank\" href=\"http://brainmaps.org/index.php?\">BrainMaps</a>, Connectome Wiki, the Hippocampal-Parahippocampal Table of <a class=\"external\" target=\"_blank\" href=\"http://www.temporal-lobe.com/\">Temporal-Lobe.com</a> and Avian Brain Circuitry Database. Connectome Wiki, CoCoMac, and Avian Brain Circuitry Database are no longer in service, so the links may not be functional.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "Integrated: Connectivity"
+        }
+    ],
+    "Expression": [
+        {
+            "categories": [
+                "Expression"
+            ],
+            "curie": "nif-0000-00130-1",
+            "description": "contains gene expression data and maps of the mouse brain and spinal cord.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "GENSAT:GeneExpression"
+        },
+        {
+            "categories": [
+                "Expression"
+            ],
+            "curie": "nif-0000-00508-1",
+            "description": "A genome-wide database of gene expression in the mouse brain.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "ABA Mouse Brain: Expression"
+        }
+    ],
+    "Models": [
+        {
+            "categories": [
+                "Models"
+            ],
+            "curie": "scr_013705-1",
+            "description": "is a curated relational database that provides for the storage and retrieval of computational neuroscience model.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "NeuroML database:Models"
+        },
+        {
+            "categories": [
+                "Models"
+            ],
+            "curie": "nif-0000-00004-1",
+            "description": "provides high quality computational neuroscience models. ModelDB is tightly coupled with <a href=\"http://senselab.med.yale.edu/neurondb\">NeuronDB</a>.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "ModelDB:Models"
+        },
+        {
+            "categories": [
+                "Models"
+            ],
+            "curie": "nlx_152590-1",
+            "description": "provides annotated computational models.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "Open Source Brain:models"
+        },
+        {
+            "categories": [
+                "Models"
+            ],
+            "curie": "SCR_014194-1",
+            "description": "<a class=\"external\" target=\"_blank\" href=\"http://icg.neurotheory.ox.ac.uk/\">IonChannelGenealogy</a> provides a quantitative assay of publicly available ion channel models. Descriptions of the columns are available <a class=\"external\" target=\"_blank\" href=\"http://icg.neurotheory.ox.ac.uk/manual/#sec:selecting-a-model\">here</a>.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "IonChannelGenealogy: Ion Channels"
+        }
+    ],
+    "Morphology": [
+        {
+            "categories": [
+                "Morphology"
+            ],
+            "curie": "nif-0000-00006-1",
+            "description": "contains a curated repository of digitally reconstructed neurons.",
+            "enabled": true,
+            "has_images": true,
+            "source_name": "NeuroMorpho:ModelImage"
+        },
+        {
+            "categories": [
+                "Morphology"
+            ],
+            "curie": "nif-0000-37639-1",
+            "description": "provides annotated images, videos and animations of cellular processes.",
+            "enabled": true,
+            "has_images": true,
+            "source_name": "CellImageLibrary:Images"
+        },
+        {
+            "categories": [
+                "Morphology"
+            ],
+            "curie": "nif-0000-00508-5",
+            "description": "provides a database of neuronal cell types based on multimodal characterization of single cells to enable data-driven approaches to classification. For more details about the experiments, please refer to the <a class=\"external\" target=\"_blank\" href=\"http://help.brain-map.org/download/attachments/8323525/MorphOverview.pdf\">technical white paper</a>.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "ABA Mouse Brain: CellType MorphoData"
+        },
+        {
+            "categories": [
+                "Morphology"
+            ],
+            "curie": "SCR_014306-1",
+            "description": "has <a class=\"external\" target=\"_blank\" href=\"http://microcircuits.epfl.ch/#/article/article_3_mph\">3D models</a> of rat neuronal morphologies.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "Human Brain Project: Cell Morphology"
+        }
+    ],
+    "Physiology": [
+        {
+            "categories": [
+                "Physiology"
+            ],
+            "curie": "nlx_151885-1",
+            "description": "is a database of elecrophysiological properties text-mined from the biomedical literature as a function of neuron type.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "NeuroElectro:EPhysData"
+        },
+        {
+            "categories": [
+                "Physiology"
+            ],
+            "curie": "nif-0000-00054-1",
+            "description": "provides data about neurotransmitter properties for submitted neurons.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "NeuronDB:Currents"
+        },
+        {
+            "categories": [
+                "Physiology"
+            ],
+            "curie": "nif-0000-00339-1",
+            "description": "contains spatial distribution maps of rat olfactory bulb in response to odorant stimuli.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "GARA: OlfactoryMap"
+        },
+        {
+            "categories": [
+                "Physiology"
+            ],
+            "curie": "nif-0000-00508-4",
+            "description": "provides a database of neuronal cell types based on multimodal characterization of single cells to enable data-driven approaches to classification. For more details about the experiments, please refer to the <a class=\"external\" target=\"_blank\" href=\"http://help.brain-map.org/download/attachments/8323525/EphysOverview.pdf\">technical white paper</a>.",
+            "enabled": true,
+            "has_images": false,
+            "source_name": "ABA Mouse Brain: CellType EphysData"
+        }
+    ]
+}

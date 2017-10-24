@@ -10,7 +10,28 @@ window._ = require('lodash');
 try {
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap-sass');
+    require('materialize-css');
+
+    $(function(){
+      $('.button-collapse').sideNav();
+      $('.parallax').parallax();
+			$('.scrollspy').scrollSpy();   
+      $('#term-nav').each( function() {
+        var $this = $(this);
+        var offset = $this.parent().height(); 
+        var top = $this.offset().top;
+        $this.pushpin( { top: top } );
+        $this.width( $this.parent().width() ); 
+      });
+      
+      $('input#main-page-search').focus(function() { $(this).parent().addClass('focused'); });
+      $('input#main-page-search').blur(function() {
+        if (!$(this).val()) {
+          $(this).parent().removeClass('focused');
+        }
+      });
+    }); // end of document ready
+
 } catch (e) {}
 
 /**

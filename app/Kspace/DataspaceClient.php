@@ -27,22 +27,23 @@ class DataspaceClient
     public function searchImages($query)
     {
       $images = array(); 
-      foreach ( config('services.dataspace_sources') as $source  ) { 
-        if ( $source["has_images"] == true ) {   
-          $sourceCurie = $source["curie"]; 
-          $res = $this->client->request("GET", "/servicesv1/v1/federation/data/".$sourceCurie.'.json', [ 
-                    'query' => $query
-                  ]);
-          
-          foreach ( json_decode( $res->getBody() )->{"result"}->{"result"} as $result ) { 
-            $image =  str_replace("grackle.crbs.ucsd.edu:8001", "am.celllibrary.org", $result->{"Image"});
-            array_push($images, $image );
-          }; 
-          
+      foreach ( array_values(config('services.dataspace_sources')) as $category  ) { 
+        foreach ( $category as $source ) {
+          if ( $source["has_images"] == true ) {   
+            $sourceCurie = $source["curie"]; 
+            try { 
+              $res = $this->client->request("GET", "/servicesv1/v1/federation/data/".$sourceCurie.'.json', [ 
+                        'query' => $query
+                      ]);
+              
+              foreach ( json_decode( $res->getBody() )->{"result"}->{"result"} as $result ) { 
+                $image =  str_replace("grackle.crbs.ucsd.edu:8001", "am.celllibrary.org", $result->{"Image"});
+                array_push($images, $image );
+              };
+            } catch ( ClientException $e ) {}
+          } 
         }
       };
       return  $images; 
     }
-
-
 }

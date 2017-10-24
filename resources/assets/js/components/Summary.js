@@ -25,49 +25,71 @@ class Summary extends Component {
 
   render() {
     return (
-      <div className='container'> 
+      <div className='section'> 
         <div className="row"> 
-          <h1 className='col-md-12'>{ this.state.labels ? this.state.labels[0] : "" }</h1> 
-        </div> 
-        <div className="row"> 
-          <div className='col-md-9'> 
-            <section id="summary">
-              <h3>Summary</h3>
-              <div className='row'> 
-                <div className='form-group'>
-                  <label className="col-sm-2">Definition:</label>
-                  <div className="col-sm-9 label-only">{ this.state.definitions ? this.state.definitions[0] : "" }</div>
-                </div>
-              </div> 
-            </section>
-            <section id="lexicon">
-              <h3>Lexicon</h3>
-              <div className='row'> 
-                <div className='form-group'>
-                  <label className="col-sm-2">Concept URI:</label>
-                  <div className="col-sm-9 label-only"><a href={ this.state.iri ? this.state.iri : '' } target='_blank'>{ this.state.iri ? this.state.iri : '' }</a></div>
-                </div>
-              </div> 
-              <div className='row'> 
-                <div className='form-group'>
-                  <label className="col-sm-2">Labels:</label>
-                  <div className="col-sm-9 label-only">
-                    <List items={this.state.labels} name='labels' /> 
-                  </div> 
-                </div>
-              </div> 
-              <div className='row'> 
-                <div className='form-group'>
-                  <label className="col-sm-2">Synonyms:</label>
-                  <div className="col-sm-9 label-only">
-                      <List items={this.state.synonyms} name='synonyms' /> 
-                  </div> 
-                </div>
-              </div> 
-            </section>
+          <div className="row"> 
+            <h2 className='col s12 term-title'>{ this.state.labels ? this.state.labels[0] : "" }</h2> 
           </div> 
-          <div className='col-md-3'>
-              <Dataspace terms={this.state.labels} /> 
+          <div className="row"> 
+            <nav id='term-nav'>
+              <div className="nav-wrapper">
+                <ul id="nav-mobile" className="left whide-on-med-and-down">
+                  <li><a href="#summary-box">Summary</a></li>
+                  <li><a href="#lexicon">Lexicon</a></li>
+                  <li><a href="#dataspace">Data Space</a></li>
+                  <li><a href="#literature-box">Literature</a></li>
+                  <li><a href="#relationships-box">Relationships</a></li>
+                  <li><a href="#image-gallery-box">Image Gallery</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div> 
+        </div>
+        <div className="row"> 
+          <div className='col m4 s12 right'>
+              <Dataspace terms={this.state.labels} termCurie={ this.props.curie } /> 
+          </div>
+          <div className='col m8 s12'> 
+            <div className="card horizontal blue-grey darken-1" id="summary">
+              <div className="card-content white-text"> 
+                <span className="card-title activator white-text">Summary<i className="material-icons right">more_vert</i></span> 
+                <div className='form-group'>
+                  <label className="col s2">Definition:</label>
+                  <div className="col s9 label-only">{ this.state.definitions ? this.state.definitions[0] : "" }</div>
+                </div>
+              </div> 
+              <div className="card-reveal grey-text text-darken-4">
+                <span className='card-title'>Summary<i className='material-icons right'>close</i></span>
+                <p>Some provenance information will go here?</p>
+              </div>      
+            </div>
+          </div>
+          <div className='col m8 s12'> 
+            <div className="card horizontal blue-grey darken-1" id="lexicon">
+              <div className="card-content white-text"> 
+                <span className="card-title activator white-text">Lexicon<i className="material-icons right">more_vert</i></span> 
+                <div className='row'>
+                      <label className="col s2">Concept URI:</label>
+                      <div className="col s9 label-only"><a href={ this.state.iri ? this.state.iri : '' } target='_blank'>{ this.state.iri ? this.state.iri : '' }</a></div>
+                </div>
+                <div className='row'>
+                      <label className="col s2">Labels:</label>
+                      <div className="col s9 label-only">
+                        <List items={this.state.labels} name='labels' /> 
+                      </div> 
+                 </div>
+                <div className='row'>
+                  <label className="col s2">Synonyms:</label>
+                  <div className="col s9 label-only">
+                          <List items={this.state.synonyms} name='synonyms' /> 
+                  </div> 
+                </div>
+              </div> 
+              <div className="card-reveal grey-text text-darken-4">
+                <span className='card-title'>Lexicon<i className='material-icons right'>close</i></span>
+                <p>Not sure this card needs to flip...</p>
+              </div>      
+            </div>
           </div>
         </div>
       </div> 

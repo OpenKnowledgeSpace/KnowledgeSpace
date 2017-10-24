@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import SearchResultsTable from './SearchResultsTable';
-
+import Table from './Table';
+import Pagination from './Pagination';
 
 class Search extends Component {  
 
   constructor(props) {
     super(props);
-    this.state = { results: [] }; 
+    this.state = { results: [], pageOfResults: [], page: 1 }; 
+    this.onChangePage = this.onChangePage.bind(this); 
+  }
+  
+  onChangePage(page) {
+    if (  !isNaN(page) && this.state.page !== page ) { 
+      let offset = page * 20;
+      let pageOfResults = this.state.results.slice(offset, offset + 20);
+      this.setState({ page: page, pageOfResults: pageOfResults },  this.searchScigraph );
+    }
   }
   
   searchScigraph() {
-		var _this = this; 
     $.ajax({  url: '/api/search',
               data: this.props, 
               dataType: 'json', 
     }).then( function( data ){ 
-      _this.setState({results: data});
-    });
+      let pageOfResults = data.slice(0, 0 + 20);
+      this.setState({results: data, pageOfResults: pageOfResults } );
+    }.bind(this));
   }
   
   componentWillMount () { 
@@ -25,34 +34,41 @@ class Search extends Component {
   }
 
 
-
-
   render() {
     return( 
-     <section> 
-      <h3>Search Results for: <span className='label label-primary'>{ this.props.q } 
-					{ this.state.results.length > 0 && <span className='badge'>{ this.state.results.length} records</span> }
-					</span> 
+    <div className="" id="search-page"> 
+      <div className='section'> 
+        <div className="row"> 
+          <div className="row"> 
+            <h2 className='col s12 term-title'>Search Results for: { this.props.q }
+              <span className='new badge right' data-badge-caption="Records Found">{ this.state.results.length }</span>
+            </h2> 
+          </div> 
 					<form action='/search' method='GET' className='form-inline pull-right'>
 						<div id='home-search'>	
-							<div className='input-group col-md-12'>
-								<input id='main-page-search' className='form-control input-lg' name='q' placeholder='SEARCH' type='text' />
-								<span className="input-group-btn">
-									<button className="btn btn-info btn-lg" type="submit">
-										<i className='glyphicon glyphicon-search'></i>	
-									</button>
-								</span>
+							<div className='input-field col s6'>
+							  <i className="material-icons prefix">search</i>	
+                <input id='main-page-search' className='form-control' defaultValue={ this.props.q } name='q' placeholder='SEARCH' type='text' />
+                <label htmlFor='main-page-search'>Search</label>
 							</div>
 						</div> 
 					</form>
-      
-      
-      
-      </h3>
-		 
-			<SearchResultsTable results={this.state.results} />
-
-     </section> 
+	      </div> 
+	    </div>	
+      <div className='row'>
+        <div className="col m12 s12"> 
+          <div className="card">
+            <div className="card-content">
+              <Table columns={{ curie: "Curie", labels: "Labels", categories: "Categories", definitions: "Definitions"  }} 
+                rows={ this.state.pageOfResults } />
+              <div className='card-action center'> 
+                <Pagination items={ this.state.results.length } onChangePage={this.onChangePage}  / > 
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
     );
   }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import List from "./List";
+import Carousel from "./Carousel";
 
 class ImageGallery extends Component {  
 
@@ -22,12 +22,14 @@ class ImageGallery extends Component {
     var state = this.state; 
     var props = this.props; 
     return (
-      <div className='container'> 
-        <section id="image-gallery"> 
-          <h3>Image Gallery</h3>
-          <List items={this.state.images} name='image-gallery' /> 
-        </section>
+    <div className='col m4 s12'>      
+      <div className='card cyan lighten-5'> 
+        <div id="image-gallery" className='card-content'> 
+          <span className='card-title'>Image Gallery</span>
+          <Carousel images={this.state.images} /> 
+        </div>
       </div> 
+    </div>
     )}
 
 }

@@ -101,14 +101,16 @@ class Relationships extends Component {
       }
     };
     return (
-      <div className="container"> 
-          <section id="relationships">
-            <h3>Relations</h3>
+    <div className="col m8 s12"> 
+      <div className="card grey lighten-4"> 
+          <div id="relationships" className='card-content'>
+            <span className='card-title'>Relationships</span>
             <div id="treeWrapper" style={{ height: '585px'}}>
-              { this.state.data && <Tree data={this.state.data } translate={ { x: 75, y: 292 } }  depthFactor={ 400 }  styles={ styles }  />}
+              { this.state.data && <Tree data={this.state.data }  translate={ { x: 75, y: 292 } }  depthFactor={ 0 }  styles={ styles }  />}
             </div>
-          </section>
+          </div>
       </div>
+    </div>
     );
   }
 
