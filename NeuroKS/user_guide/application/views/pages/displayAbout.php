@@ -44,7 +44,7 @@
                                                
                                                 <!--<p><em>KS</em> is envisioned to be a part of a system of 3 spaces, together with the  <a href="https://incf.org/activities/resources/data-space" target="_blank">INCF Data Space</a> and the HBP LabSpace, where neuroscientists can store, curate/annotate, and share their data.</p>
                                                 -->
-						<p>The current status of KS is in development, with a beta-version launch scheduled for Spring 2016. If you would like to sign up on our mailing list, please <a href="mailto:wwong@ncmir.ucsd.edu?Subject=About%20KS" target="_top">email us</a>.
+						<p>The current status of KS is in development, with a beta-version launch scheduled for Spring 2016. If you would like to sign up on our mailing list, please <a href="mailto:knowledgespace@incf.org?Subject=About%20KS" target="_top">email us</a>.
                                                 </p> 
                                 <!-- </blockquote> -->
 				</div><!--/col-md-8-->
