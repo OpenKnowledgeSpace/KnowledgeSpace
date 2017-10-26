@@ -22,7 +22,7 @@
             <p>The current KnowledgeSpace integrated data sources are:</p>
 						@include('datasources-list')
                                                 
-						<p>The current status of KS is in development, with a beta-version launch scheduled for Spring 2016. If you would like to sign up on our mailing list, please <a href="mailto:wwong@ncmir.ucsd.edu?Subject=About%20KS" target="_top">email us</a>.</p> 
+						<p>The current status of KS is in development, with a beta-version launch scheduled for Spring 2016. If you would like to sign up on our mailing list, please <a href="mailto:knowledgespace@incf.org?Subject=About%20KS" target="_top">email us</a>.</p> 
 				</div><!--/col-md-12-->
 	</section> <!-- About -->
 
