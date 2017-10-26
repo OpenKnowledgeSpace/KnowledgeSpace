@@ -124,7 +124,7 @@
 						<li class='btn red lighten-1'><a class='white-text' href="http://neurolex.org/" target="_blank">Neurolex.org</a></li>
 						<li class='btn red lighten-1'><a class='white-text' href="http://celltypes.brain-map.org/" target="_blank">Allen Brain Institute cell-types</a></li>
 						<li class='btn red lighten-1'><a class='white-text' href="http://bluebrain.epfl.ch/" target="_blank">Blue Brain Project</a></li>
-						<li class='btn red lighten-1'><a class='white-text' href="http://neuromorpho.org/" target="_blank">Neuromorpho.or</a></li>
+						<li class='btn red lighten-1'><a class='white-text' href="http://neuromorpho.org/" target="_blank">Neuromorpho.org</a></li>
             <li class='btn red lighten-1'><a class='white-text' href="http://neuroelectro.org/" target="_blank">Neuroelectro.org</a></li>
             <li class='btn red lighten-1'><a class='white-text' href="http://www.cellimagelibrary.org/" target="_blank">Cell Image Library</a></li>
             <li class='btn red lighten-1'><a class='white-text' href="http://connectivity-brainer.rhcloud.com/" target="_blank">NIF Integrated Connectivity</a></li>
