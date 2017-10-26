@@ -56,7 +56,7 @@
                       Hosted at the University of California, San Diego <br>
                       9500 Gilman Drive <br>
                       La Jolla, CA 92093 <br>
-                      Email: <a href="mailto:wwong@ncmir.ucsd.edu" class="">wwong@ncmir.ucsd.edu</a>
+                      Email: <a href="mailto:knowledgespace@incf.org" class="">knowledgespace@incf.org</a>
                 </address> 
               </div>
             </div> 
