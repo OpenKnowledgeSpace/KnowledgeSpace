@@ -7,9 +7,10 @@ nav {
 }
 
 
-#DataSources, #Documentation { 
+#DataSources, #Documentation, #categories { 
   ul { 
     margin: 20px 0;  
+    .btn { padding: 0 1.3rem; } 
     li {
       margin: 5px; 
       a { padding: 5px; } 
@@ -245,7 +246,6 @@ footer {
   .page-only { display: none; }
 }
 
-.categories-list { .btn { padding: 0 1.3rem; } }
 
 #histogram-container {  background-color: white; } 
 .react-d3-histogram {

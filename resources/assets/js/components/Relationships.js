@@ -10,7 +10,18 @@ class Relationships extends Component {
     super(props);
     this.state = {
       data: undefined,
+      zoomable: false, 
+      scaleExtent: { min: 0.1, max: 1 } 
     };
+    this.handleClick = this.handleClick.bind(this); 
+  }
+
+  handleClick() {
+    if ( this.state.zoomable) {
+      this.setState({zoomable: false, scaleExtent: { min: 0.1, max: 1 }}); 
+    } else { 
+      this.setState({zoomable: true, scaleExtent: { min: 0.2, max: 1 }}); 
+     }
   }
 
   graphJSONToD3(graph) {
@@ -100,13 +111,19 @@ class Relationships extends Component {
         },
       }
     };
+    
+    var zoomer = this.state.zoomable == true ? (<span className="blue badge white-text" onClick={ this.handleClick } >Zoom Enabled</span>)
+                                             : ( <span className="red badge white-text" onClick={ this.handleClick } >Enable Zoom</span> )
+    
     return (
     <div className="col m8 s12"> 
       <div className="card grey lighten-4"> 
           <div id="relationships" className='card-content'>
-            <span className='card-title'>Relationships</span>
-            <div id="treeWrapper" style={{ height: '585px'}}>
-              { this.state.data && <Tree data={this.state.data }  translate={ { x: 75, y: 292 } }  depthFactor={ 0 }  styles={ styles }  />}
+            <span className='card-title'>Relationships {zoomer}</span>
+            <div id="treeWrapper" style={{ height: '585px'}} >
+              { this.state.data && <Tree data={this.state.data } zoomable={ this.state.zoomable } 
+                scaleExtent={ this.state.scaleExtent } 
+                translate={ { x: 75, y: 292 } }  depthFactor={ 0 }  styles={ styles }  />}
             </div>
           </div>
       </div>

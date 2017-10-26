@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 class Table extends Component {  
-  
+ 
+
   render() {
     var columns = Object.keys(this.props.columns).map(function(col, i) { 
                           return ( <th key={i} >{ this.props.columns[col] }</th> ) }.bind(this));
-   
+ 
+    
     var rows = this.props.rows.map(function( row, i ){
-      return( <tr key={i}>{ Object.keys(this.props.columns).map( function(col, ci) { 
+      return( <tr key={i} onClick={ this.props.handleRowClick }>{ Object.keys(this.props.columns).map( function(col, ci) { 
         return( <td key={ci} dangerouslySetInnerHTML={{ __html: row[col] }}></td> ) })} 
       </tr>)
     }.bind(this))

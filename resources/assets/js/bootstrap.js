@@ -16,10 +16,11 @@ try {
       $('.button-collapse').sideNav();
       $('.parallax').parallax();
 			$('.scrollspy').scrollSpy();   
+      
       $('#term-nav').each( function() {
         var $this = $(this);
         var offset = $this.parent().height(); 
-        var top = $this.offset().top;
+        var top = $this.offset().top - 20;
         $this.pushpin( { top: top } );
         $this.width( $this.parent().width() ); 
       });

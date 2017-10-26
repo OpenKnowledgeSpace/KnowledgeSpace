@@ -15681,7 +15681,7 @@ var Table = function (_Component) {
       var rows = this.props.rows.map(function (row, i) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'tr',
-          { key: i },
+          { key: i, onClick: this.props.handleRowClick },
           Object.keys(this.props.columns).map(function (col, ci) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { key: ci, dangerouslySetInnerHTML: { __html: row[col] } });
           })
@@ -32824,10 +32824,11 @@ try {
     $('.button-collapse').sideNav();
     $('.parallax').parallax();
     $('.scrollspy').scrollSpy();
+
     $('#term-nav').each(function () {
       var $this = $(this);
       var offset = $this.parent().height();
-      var top = $this.offset().top;
+      var top = $this.offset().top - 20;
       $this.pushpin({ top: top });
       $this.width($this.parent().width());
     });
@@ -32903,6 +32904,8 @@ anchors.add('.anchor');
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32926,7 +32929,60 @@ var Article = function (_Component) {
   _createClass(Article, [{
     key: 'render',
     value: function render() {
-      var article = this.props.article;
+      var meta = this.props.article._source.dc;
+      var link;
+
+      var _meta$identifier$spli = meta.identifier.split(':'),
+          _meta$identifier$spli2 = _slicedToArray(_meta$identifier$spli, 2),
+          ns = _meta$identifier$spli2[0],
+          id = _meta$identifier$spli2[1];
+
+      switch (ns) {
+        case "arxiv":
+          link = "https://arxiv.org/abs/" + id;
+          break;
+        default:
+          link = 'http://www.ncbi.nlm.nih.gov/pubmed?term=' + id;
+      }
+
+      var ids = [],
+          publishers = [];
+      ids.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'li',
+        { key: 1, className: 'valign-wrapper' },
+        'Identifier: ',
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'span',
+          { className: 'red badge white-text' },
+          meta.identifier
+        )
+      ));
+      if (meta.doi) {
+        ids.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'li',
+          { key: 2, className: 'valign-wrapper' },
+          'DOI: ',
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            { className: 'blue badge white-text' },
+            meta.doi
+          )
+        ));
+      }
+
+      if (meta.publishers) {
+        publishers = meta.publishers.map(function (pub, i) {
+          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            { key: i },
+            'Published In: ',
+            pub.name,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+            ' '
+          );
+        });
+      }
+
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'li',
         { className: 'collection-item' },
@@ -32935,32 +32991,25 @@ var Article = function (_Component) {
           { className: 'title' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'a',
-            { href: 'http://www.ncbi.nlm.nih.gov/pubmed?term=' + article.pmid },
-            article.title
+            { target: '_blank', href: link },
+            meta.title
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'p',
+          { className: 'publisher-info' },
+          meta.creators.map(function (c, i) {
+            return c.name;
+          }).join(', '),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+          publishers,
+          meta.publicationYear,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null)
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'ul',
           { className: '' },
-          article.author.join(", "),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'b',
-            null,
-            article.journal
-          ),
-          ' (',
-          article.year,
-          '-',
-          article.month,
-          '-',
-          article.day,
-          ')',
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
-          'DOI:',
-          article.doi,
-          ' PMID:',
-          article.pmid
+          ids
         )
       );
     }
@@ -33291,7 +33340,7 @@ var Category = function (_Component) {
         'li',
         {
           onClick: this.handleClick,
-          className: this.props.activeCategory == this.props.label ? 'red lighten-1 active btn' : 'red lighten-3 waves-effect waves-light btn' },
+          className: this.props.activeCategory == this.props.label ? 'blue lighten-1 active btn' : 'blue lighten-3 waves-effect waves-light btn' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'a',
           { className: 'white-text', href: '#' },
@@ -34311,14 +34360,14 @@ var Literature = function (_Component) {
       var terms = _this.state.synonyms.map(function (s) {
         return "terms[]=" + s;
       });
-      var rows = _this.state.per_page;
+      var size = _this.state.per_page;
       // a funny solr thing. if we're on page 1 we start a item 0  
-      var start = '&start=' + rows * (this.state.page - 1);
-      $.ajax({ url: '/api/literature?' + terms.join("&") + "&rows=" + rows + start,
+      var from = '&from=' + size * (this.state.page - 1);
+      $.ajax({ url: '/api/literature?' + terms.join("&") + "&size=" + size + from,
         dataType: 'json',
         success: function success(data) {
-          _this.setState({ articles: data.response.docs });
-          _this.setState({ numFound: data.response.numFound });
+          _this.setState({ articles: data.hits.hits });
+          _this.setState({ numFound: data.hits.total });
           _this.setState({ years: data.facet_counts.facet_fields.year });
         }
       });
@@ -34498,12 +34547,24 @@ var Relationships = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Relationships.__proto__ || Object.getPrototypeOf(Relationships)).call(this, props));
 
     _this.state = {
-      data: undefined
+      data: undefined,
+      zoomable: false,
+      scaleExtent: { min: 0.1, max: 1 }
     };
+    _this.handleClick = _this.handleClick.bind(_this);
     return _this;
   }
 
   _createClass(Relationships, [{
+    key: 'handleClick',
+    value: function handleClick() {
+      if (this.state.zoomable) {
+        this.setState({ zoomable: false, scaleExtent: { min: 0.1, max: 1 } });
+      } else {
+        this.setState({ zoomable: true, scaleExtent: { min: 0.2, max: 1 } });
+      }
+    }
+  }, {
     key: 'graphJSONToD3',
     value: function graphJSONToD3(graph) {
       var nodesByCurie = {};
@@ -34597,6 +34658,17 @@ var Relationships = function (_Component) {
           }
         }
       };
+
+      var zoomer = this.state.zoomable == true ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'span',
+        { className: 'blue badge white-text', onClick: this.handleClick },
+        'Zoom Enabled'
+      ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'span',
+        { className: 'red badge white-text', onClick: this.handleClick },
+        'Enable Zoom'
+      );
+
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'col m8 s12' },
@@ -34609,12 +34681,15 @@ var Relationships = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'span',
               { className: 'card-title' },
-              'Relationships'
+              'Relationships ',
+              zoomer
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { id: 'treeWrapper', style: { height: '585px' } },
-              this.state.data && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_d3_tree__["Tree"], { data: this.state.data, translate: { x: 75, y: 292 }, depthFactor: 0, styles: styles })
+              this.state.data && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_d3_tree__["Tree"], { data: this.state.data, zoomable: this.state.zoomable,
+                scaleExtent: this.state.scaleExtent,
+                translate: { x: 75, y: 292 }, depthFactor: 0, styles: styles })
             )
           )
         )
@@ -34697,6 +34772,10 @@ var Search = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var handleRowClick = function handleRowClick(event) {
+        window.location.href = "/wiki/" + event.currentTarget.childNodes[0].textContent;
+      };
+
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: '', id: 'search-page' },
@@ -34759,7 +34838,8 @@ var Search = function (_Component) {
                 'div',
                 { className: 'card-content' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Table__["a" /* default */], { columns: { curie: "Curie", labels: "Labels", categories: "Categories", definitions: "Definitions" },
-                  rows: this.state.pageOfResults }),
+                  rows: this.state.pageOfResults, handleRowClick: handleRowClick }),
+                '              ',
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'div',
                   { className: 'card-action center' },
@@ -34860,7 +34940,7 @@ var Summary = function (_Component) {
             { className: 'row' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'nav',
-              { id: 'term-nav' },
+              { id: 'term-nav', className: 'blue lighten-2' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'nav-wrapper' },

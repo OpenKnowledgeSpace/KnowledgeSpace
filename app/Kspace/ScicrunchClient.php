@@ -1,45 +1,44 @@
 <?php
   namespace App\Kspace;
 
-  use GuzzleHttp\Exception\GuzzleException;
-  use GuzzleHttp\Client;
+  use Elasticsearch\ClientBuilder;
 
-  /* This is a placeholder until the ElasticSearch stuff gets sorted out */
   class ScicrunchClient 
   {
       protected $client;
+
       public function __construct()
       {
-          $client =  new Client([ 'base_uri' => config('services.literature.host') ]); 
-          $this->client = $client;
+        $this->client =  ClientBuilder::create()->setHosts( 
+                          [config('services.scicrunch.host')] 
+                         )->build(); 
       }
 
-      public function defaultParams()
+/* example agg for when that gets fixed.   
+            'aggs' => [ 
+              "year_facet" => [ 
+                'terms' => [ "field" => "dc.publicationDate" ] 
+              ] 
+            ],
+*/ 
+
+      protected function default_params($terms)
       {
-        return array( 'start' => 0, 'rows' => 5, 'fl' => '*', 'wt' => 'json', 
-          'indent' => true, 
-          'facet' => 'on',
-          'facet.field' => "year",
-					'json.nl' => 'arrarr', 
-          'sort' => 'year desc,month desc,day desc' 
-        );
- 
+        return [  'index' => "*", 
+          'type' => 'literature',
+          'from' => 0,
+          'size' => 20, 
+          'custom' => [ 'key' => config('services.scicrunch.key') ], 
+          'body' => [ 
+            'query' => [ 'match' => [   '_all' => join($terms, '  ') ] ]
+          ]
+         ]; 
       }
-
-
-      public function searchLatestLiterature($terms, $year,  $params = array())
-      {
-        
-        $params = array_merge( $this->defaultParams(), $params );
-        $params["q"] = "{!lucene q.op=OR}".implode(" ", $terms);
-        $params["fq"] = "year:".$year; 
-        $res = $this->client->request("GET", "/literature/collection1/select", 
-                                 [ 'query' => $params ]     
-                                  );
-          return json_decode( $res->getBody() ); 
-           
       
+      public function search($terms, $params = array( 'size' => 5, 'from' => 0 ) ) 
+      {
+        $params = array_merge( $this->default_params($terms), $params );
+        return $this->client->search($params); 
       }
-
 
   }

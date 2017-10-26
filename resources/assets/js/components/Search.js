@@ -35,6 +35,8 @@ class Search extends Component {
 
 
   render() {
+    var handleRowClick = function(event) {  window.location.href = "/wiki/" + event.currentTarget.childNodes[0].textContent }; 
+ 
     return( 
     <div className="" id="search-page"> 
       <div className='section'> 
@@ -60,8 +62,7 @@ class Search extends Component {
           <div className="card">
             <div className="card-content">
               <Table columns={{ curie: "Curie", labels: "Labels", categories: "Categories", definitions: "Definitions"  }} 
-                rows={ this.state.pageOfResults } />
-              <div className='card-action center'> 
+                rows={ this.state.pageOfResults }  handleRowClick={ handleRowClick }/>              <div className='card-action center'> 
                 <Pagination items={ this.state.results.length } onChangePage={this.onChangePage}  / > 
               </div> 
             </div>

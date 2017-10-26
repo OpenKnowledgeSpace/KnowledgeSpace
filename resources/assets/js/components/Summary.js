@@ -31,7 +31,7 @@ class Summary extends Component {
             <h2 className='col s12 term-title'>{ this.state.labels ? this.state.labels[0] : "" }</h2> 
           </div> 
           <div className="row"> 
-            <nav id='term-nav'>
+            <nav id='term-nav' className="blue lighten-2">
               <div className="nav-wrapper">
                 <ul id="nav-mobile" className="left whide-on-med-and-down">
                   <li><a href="#summary-box">Summary</a></li>

@@ -22,14 +22,14 @@ class Literature extends Component {
   getResultsFromScicrunch() { 
 		  var _this = this; 
       var terms = _this.state.synonyms.map( function(s) { return "terms[]=" + s } ); 
-      var rows = _this.state.per_page;
+      var size = _this.state.per_page;
       // a funny solr thing. if we're on page 1 we start a item 0  
-      var start = '&start=' + ( rows * ( this.state.page - 1 ) );
-      $.ajax({ url: '/api/literature?' + terms.join("&") + "&rows=" + rows + start,
+      var from = '&from=' + ( size * ( this.state.page - 1 ) );
+      $.ajax({ url: '/api/literature?' + terms.join("&") + "&size=" + size + from,
                dataType: 'json', 
                success: function(data) { 
-                _this.setState({ articles: data.response.docs });
-                _this.setState({ numFound: data.response.numFound });
+                _this.setState({ articles: data.hits.hits });
+                _this.setState({ numFound: data.hits.total });
 								_this.setState({ years: data.facet_counts.facet_fields.year });
                }
       });
@@ -88,7 +88,6 @@ class Literature extends Component {
       </div>
      </div>
     )}
-
 }
 
 export default Literature;

@@ -9,7 +9,7 @@
       protected $client;
       public function __construct()
       {
-          $client =  new Client([ 'base_uri' => config('services.scigraph.host') ]); 
+          $client =  new Client([ 'base_uri' => config('services.scigraph.host'), 'exceptions' => false ]); 
           $this->client = $client;
       }
       
@@ -36,7 +36,12 @@
         $terms = $params["q"];
         unset($params["q"]);
         $res = $this->client->request("GET", "/scigraph/vocabulary/search/".$terms, [ "query" => $params ]);
-        return json_decode( $res->getBody() );
+        if ( $res->getStatusCode() < 400 ) {
+          return json_decode( $res->getBody() );
+        } else {    
+          return json_decode( );
+        }   
+        
       }
 
   }

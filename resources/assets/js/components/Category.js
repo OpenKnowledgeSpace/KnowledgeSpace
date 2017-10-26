@@ -16,7 +16,7 @@ class Category extends Component {
   render() {
     return( <li 
                 onClick={ this.handleClick } 
-                className={ this.props.activeCategory == this.props.label ? 'red lighten-1 active btn' : 'red lighten-3 waves-effect waves-light btn' }>
+                className={ this.props.activeCategory == this.props.label ? 'blue lighten-1 active btn' : 'blue lighten-3 waves-effect waves-light btn' }>
                 <a className="white-text" href="#" >{ this.props.label }</a>
               </li>
       ) 

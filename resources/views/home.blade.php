@@ -45,9 +45,9 @@
 							<li><a href="/wiki/PR:000000705">HCN1</a></li>
 							<li><a href="/wiki/PR:000000706">HCN2</a></li>
 							<li><a href="/wiki/PR:000000707">HCN3</a></li>
-							<li><a href="/wiki/NIFMOL:sao1700719022">AChR</a></li>
-							<li><a href="/wiki/NIFMOL:nifext_5242">GABA A</a></li>
-							<li><a href="/wiki/NIFMOL:nlx_mol_20090505">MGluR2</a></li>
+							<li><a href="/wiki/SAO:1700719022">AChR</a></li>
+							<li><a href="/wiki/NIFEXT:5242">GABA A</a></li>
+							<li><a href="/wiki/NLXMOL:20090505">MGluR2</a></li>
 						</ul>	
 					</div>
 				</div>	
@@ -56,11 +56,11 @@
 						<img class='' src="/imgs/cell-types.jpg" alt="CELL TYPES" />
 						<div class='img-caption btn btn-primary blue'>Cell Types</div>
 						<ul class='center'>
-							<li><a href="/wiki/NIFCELL:sao862606388">Pyramidal neuron</a></li>
-							<li><a href="/wiki/NIFCELL:sao408819766">Schwann cell</a></li>
-							<li><a href="/wiki/NIFNEURMOR:nlx_cell_100601">Spiny neuron</a></li>
-							<li><a href="/wiki/NIFCELL:nifext_55">Neocortex Martinotti cell</a></li>
-							<li><a href="/wiki/NIFCELL:sao666951243">Cerebellum basket cell</a></li>
+							<li><a href="/wiki/SAO:862606388">Pyramidal neuron</a></li>
+							<li><a href="/wiki/SAO:408819766">Schwann cell</a></li>
+							<li><a href="/wiki/NLXCELL:100601">Spiny neuron</a></li>
+							<li><a href="/wiki/NIFEXT:55">Neocortex Martinotti cell</a></li>
+							<li><a href="/wiki/SAO:666951243">Cerebellum basket cell</a></li>
 							<li><br/></li>
 						</ul>	
 					</div>
