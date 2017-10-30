@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class='container' id='search' data-q="{{ $q }}" data-page="{{$page}}"
-      data-sort="{{ $sort }}" >
+<div class='container'>
+  <div id='search-page' data-q="{{ $q }}" data-page="{{$page}}" data-sort="{{ $sort }}" ></div>
 </div>
 @endsection

@@ -10,21 +10,28 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
+    "anchor-js": "^4.0.0",
     "axios": "^0.15.3",
     "babel-preset-react": "^6.24.1",
-    "materialize-css" : "*", 
     "cross-env": "^3.2.3",
+    "d3-time": "^1.0.7",
     "jquery": "^3.1.1",
     "laravel-mix": "0.*",
     "lodash": "^4.17.4",
+    "materialize-css": "*",
+    "prop-types": "*",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "prop-types": "*", 
-    "anchor-js": "^4.0.0",
-    "react-resizable": "^1.7.1",
+    "react-bootstrap-table": "^4.0.1",
+    "react-cursor-position": "^2.2.0",
     "react-d3-tree": "^1.4.0",
-    "d3-time": "^1.0.7",
-    "react-cursor-position" : "^2.2.0",
-    "react-bootstrap-table" : "^4.0.1" 
+    "react-dom": "^15.6.1",
+    "react-resizable": "^1.7.1"
+  },
+  "dependencies": {
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "react-markdown": "^2.5.0"
   }
 }

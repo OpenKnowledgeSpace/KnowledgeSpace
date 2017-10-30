@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class='container' id='categories' ></div>
+<div class='container'> 
+  <div id='category-page'></div>
+</div>
 @endsection

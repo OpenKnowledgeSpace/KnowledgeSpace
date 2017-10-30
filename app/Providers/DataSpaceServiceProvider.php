@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
-class DataspaceServiceProvider extends ServiceProvider
+class DataSpaceServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -25,8 +25,8 @@ class DataspaceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-       $this->app->bind( 'DataspaceClient', function ($app) {
-          return new \App\Kspace\DataspaceClient; 
+       $this->app->bind( 'DataSpaceClient', function ($app) {
+          return new \App\Kspace\DataSpaceClient; 
        }); 
     }
 }

@@ -5,7 +5,7 @@
   use GuzzleHttp\Client;
 
   /* This is a placeholder until the ElasticSearch stuff gets sorted out */
-  class ScicrunchClient 
+  class SolrScicrunchClient 
   {
       protected $client;
       public function __construct()

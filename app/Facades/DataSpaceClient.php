@@ -3,11 +3,11 @@
 namespace App\Facades;
 use Illuminate\Support\Facades\Facade;
 
-class DataspaceClient extends Facade
+class DataSpaceClient extends Facade
 {
   protected static function getFacadeAccessor()
   {
-    return 'DataspaceClient';
+    return 'DataSpaceClient';
   }
 }
 

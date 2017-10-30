@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 class Article extends Component {  
+
   render() {
-    var meta = this.props.article._source.dc;
-    var link; 
-    var [ ns, id ] = meta.identifier.split(':');
+    let meta = this.props.article._source.dc;
+    let link; 
+    let [ ns, id ] = meta.identifier.split(':');
     switch ( ns ) {
       case "arxiv":
         link = "https://arxiv.org/abs/" + id;
@@ -15,7 +16,7 @@ class Article extends Component {
     } 
     
     
-    var ids = [],
+    let ids = [],
         publishers = [];
     ids.push(<li key={1} className='valign-wrapper'>Identifier: <span className='red badge white-text'>{meta.identifier}</span></li>); 
     if ( meta.doi ) {
@@ -25,7 +26,7 @@ class Article extends Component {
     
     if ( meta.publishers ) { 
       publishers = meta.publishers.map( function(pub, i) { return( <span key={i}>Published In: { pub.name }<br/> </span>   )   } ); 
-     }
+    }
 
     return( 
         <li className='collection-item'>

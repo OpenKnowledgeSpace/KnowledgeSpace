@@ -30,7 +30,7 @@
       public function search($params = array() )
       {
         
-        $defaults = array( "q" => 0, 'limit' => "1000", 'searchSynonyms' => "false",
+        $defaults = array( "q" => 0, 'limit' => "100000", 'searchSynonyms' => "false",
           'searchAbbreviations' => "false", 'searchAcronyms' => "false"  );
         $params = array_merge( $defaults, $params );
         $terms = $params["q"];

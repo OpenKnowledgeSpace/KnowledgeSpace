@@ -19,6 +19,14 @@ return [
   'nif' => [
     'host' => env('NIF_HOST'),    
   ],
+  
+  'data_space' => [
+    'host' => env('BIOCADDIE_HOST'),
+    'user' => env('BIOCADDIE_USER'),
+    'pass' => env('BIOCADDIE_PASS')
+  ], 
+  'data_space_sources' =>  json_decode( file_get_contents(storage_path().'/json/data_space_sources.json'), true ),
+  
   'literature' => [
     'host' => env('LITERATURE_HOST'),    
   ],
@@ -27,8 +35,11 @@ return [
     'host' => env('SCICRUNCH_HOST'),    
     'key' => env('SCICRUNCH_KEY'),    
   ],
-
-  'dataspace_sources' =>  json_decode( file_get_contents(storage_path().'/json/dataspace_sources.json'), true ),
+  
+  'github' => [
+    'host' => env('GITHUB_HOST'),    
+  ],
+  
 
 
   'mailgun' => [

@@ -2,21 +2,19 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import  D3 from 'd3';
 
-class Histogram extends Component {  
+class LineChart extends Component {  
 
   constructor(props) {
     super(props);
 		this.state = { 
 			width: this.props.width,
 			height: this.props.height
-		}		
+		
+    }		
 	}
   
-	componentWillMount () { 
-    this.setState( {  "focusStyle": { display:  'none' }} );
-  }
- 
 	componentDidMount() { 
+    this.setState( {  "focusStyle": { display:  'none' }} );
 		let { height,  width } = this.props; 
 		/* yuck */
    	if (  document.getElementById("literature") ) {
@@ -24,8 +22,6 @@ class Histogram extends Component {
 				this.setState( { width: width, height: height });
 		}
 	}
-
-
  
   xExtent() {
     return d3.extent( this.props.data, (d) =>   d[0]  ); 
@@ -36,23 +32,24 @@ class Histogram extends Component {
   }
 
   onMouseMove(event) { 
-   	d3.event = event;
-   	var { top, right, bottom, left, data } = this.props;
-	 	var { width, height } = this.state;  
+   	try { 
+      d3.event = event;
+      var { top, right, bottom, left, data } = this.props;
+      var { width, height } = this.state;  
 
-		let position = d3.mouse(this.el);  
-    let x = d3.scale.linear().domain(this.xExtent()).range([0, width - left - right ]);
-    let y = d3.scale.linear().domain(this.yExtent()).range([ height - top - bottom, 0 ]);
-    let bisectYear = d3.bisector( (d) => d[0] ).left;
-     
-     var x0 = x.invert( position[0]  ),
-              i = bisectYear( data, x0, 1 );
-     var d0 = data[i - 1],
-              d1 = data[i],
-              d = x0 - d0[0] > d1[0] - x0 ? d1 : d0
-    
-			this.setState({ transform: "translate(" + x(d[0]) + "," + y(d[1]) + ")" });
- 
+      let position = d3.mouse(this.el);  
+      let x = d3.scale.linear().domain(this.xExtent()).range([0, width - left - right ]);
+      let y = d3.scale.linear().domain(this.yExtent()).range([ height - top - bottom, 0 ]);
+      let bisectYear = d3.bisector( (d) => d[0] ).left;
+       
+      let x0 = x.invert( position[0]  ),
+                i = bisectYear( data, x0, 1 );
+      let d0 = data[i - 1],
+                d1 = data[i];
+      let d = x0 - d0[0] > d1[0] - x0 ? d1 : d0
+      
+        this.setState({ transform: "translate(" + x(d[0]) + "," + y(d[1]) + ")" });
+    } catch (e) { return null; } 
   }
   
 
@@ -88,7 +85,7 @@ class Histogram extends Component {
 }
 
 
-Histogram.defaultProps = {
+LineChart.defaultProps = {
     top: 20,
     right: 10,
     bottom: 30,
@@ -196,4 +193,4 @@ export class YAxis extends Component {
   }
 }
 
-export default Histogram;
+export default LineChart;

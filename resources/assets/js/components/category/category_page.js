@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Table from './Table';
-import Pagination from './Pagination';
-import Category from "./Category";
 
-
+import Table from '../shared/table';
+import Pagination from '../shared/pagination';
+import Category from "./category";
 
  
 const defaultProps = {
@@ -14,11 +13,11 @@ const defaultProps = {
               ]
 }
 
-class Categories extends Component {  
+class CategoryPage extends Component {  
 
   constructor(props) {
     super(props);
-    this.state = { results: [], pageOfResults: [], page: 1, activeCategory: this.props.categories[0]  }; 
+    this.state = { results: [], pageOfResults: [], page: 1, activeCategory: this.props.categories[0], preloader: true  }; 
     
     this.onChangePage = this.onChangePage.bind(this); 
     this.onChangeCategory = this.onChangeCategory.bind(this); 
@@ -30,20 +29,17 @@ class Categories extends Component {
     var changePage = this.onChangePage; 
     var snake_cat = this.state.activeCategory.toLowerCase().replace(/\s/g, "_"); 
     
-    $.ajax({ url: '/api/categories/' + snake_cat,
-               dataType: 'json', 
-               success: function(data) { 
-                this.setState({ results: data.terms }, function() { changePage(1); } );
-               }.bind(this)
-    });
+    axios.get('/api/categories/' + snake_cat)
+      .then( function(response) { 
+        this.setState({ results: response.data.terms }, () => changePage(1)  );
+        }.bind(this))
+  }
   
-  
-   }
   
 
   onChangeCategory(category) { 
     if ( this.state.activeCategory !== category ) { 
-      this.setState({activeCategory: category}, this.getCategories ) 
+      this.setState({activeCategory: category, preloader: true }, this.getCategories ) 
        
     }
    }
@@ -63,7 +59,7 @@ class Categories extends Component {
 
   getCategoryList(cat, i) {
     var activeCategory = this.state.activeCategory;   
-    return( <Category key={i} label={cat} activeCategory={ activeCategory } onChangeCategory={ this.onChangeCategory  } />  ) 
+    return( <Category key={i} label={cat} activeCategory={ activeCategory } onChangeCategory={ this.onChangeCategory  } preloader={ this.state.preloader } />  ) 
   }
 
   getRows(row, i) {
@@ -80,15 +76,15 @@ class Categories extends Component {
 
 
   render() {
-    var catList = this.props.categories.map( this.getCategoryList );
-    var rows = this.state.pageOfResults.map( this.getRows ); 
+    let catList = this.props.categories.map( this.getCategoryList ),
+      rows = this.state.pageOfResults.map( this.getRows ); 
     
     return( 
     <div className="" id="categories-page"> 
       <div className='section'> 
         <div className="row"> 
           <div className="row"> 
-            <h2 className='col s12 term-title'>Categories</h2> 
+            <h2 className='col s12 page-title'>Categories</h2> 
           </div> 
           <div className="row"> 
 	          <ul className="categories-list center">{ catList }</ul> 
@@ -102,7 +98,7 @@ class Categories extends Component {
               <table className='highlight'>
                 <thead>
                   <tr>
-                      <td>Term</td><td>Curie or Description?</td>
+                      <td>Term</td><td>Curie</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -122,10 +118,10 @@ class Categories extends Component {
 
 }
 
-export default Categories;
-Categories.defaultProps = defaultProps;
+export default CategoryPage;
+CategoryPage.defaultProps = defaultProps;
 
-if (document.getElementById('categories')) {
-  const el = document.getElementById('categories') 
-  ReactDOM.render( <Categories />, el );
+if (document.getElementById('category-page')) {
+  const el = document.getElementById('category-page') 
+  ReactDOM.render( <CategoryPage />, el );
 }

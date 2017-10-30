@@ -7,7 +7,7 @@ nav {
 }
 
 
-#DataSources, #Documentation, #categories { 
+#DataSources, #Documentation, #category-page { 
   ul { 
     margin: 20px 0;  
     .btn { padding: 0 1.3rem; } 
@@ -151,35 +151,78 @@ footer {
 
 .homepage-container { i { display: block; font-size: inherit; } } 
 
-/* TERMS PAGE */
+.table-of-contents { 
+  
+  a:hover { 
+    border-left: none;
+    border-bottom: 2px solid #757575;
+    color: #fff;
+  } 
+  
+  a.active {
+    color: #fff; 
+    border-left: none;
+    border-bottom: 2px solid #fff;
+  } 
 
+}
+
+/* WIKI/TERMS PAGE */
+#atlas  { iframe {  min-height: 547px; }} 
+
+#term-nav { z-index: 9999 }
+
+.page-title {
+  border-bottom: 2px solid; 
+  padding-bottom: 7px;  
+}
+
+#wiki-page {
+
+ .term-summary-card { width: 100%; }  
+  ul { padding-left: 12px; }
+  ul#dataspace-categories {
+    list-style-type: none;  
+    padding-left: 0;
+    li { 
+        margin: 15px 0; 
+        padding: 5px 0; 
+        .btn { height: 42px; } 
+      } 
+    .dataspace-category { width: 100%; font-weight: bold; font-size: 16px; } 
+    .category-counter { margin-top: 5px; } 
+  }
+}
+
+#lexicon { 
+  ul { 
+    margin: 0;
+    li { list-style-type: disc; }
+  }
+}
+
+#literature {
+  #articles {
+    min-height: 200px; 
+  }
+}
+
+#image-gallery {
+  h4 { border-bottom: 1px solid; } 
+  .carousel {
+    min-height: 585px; 
+  }
+} 
+
+/* probably old... */
 #terms-detail {  
-  #atlas-box  { iframe {  min-height: 547px; }} 
-
-  #term-nav { z-index: 9999 }
   .term-title { margin-bottom: 0; } 
   margin-top: 25px;
   .card-content { width: 100%; } 
   .form-group { display: block }
   #summary-box { 
     
-    h2 { 
-      border-bottom: 2px solid; 
-      padding-bottom: 7px;  
-    }  
-    ul { padding-left: 12px; }
 
-    ul#dataspace-categories {
-      list-style-type: none;  
-      padding-left: 0;
-      li { 
-          margin: 15px 0; 
-          padding: 5px 0; 
-          .btn { height: 42px; } 
-        } 
-      .dataspace-category { width: 100%; font-weight: bold; font-size: 16px; } 
-      .category-counter { margin-top: 5px; } 
-    }
 
   }
 
@@ -200,14 +243,6 @@ footer {
   
   #image-gallery-box { 
     min-height: 120px; 
-    #image-gallery {
-
-      h4 { border-bottom: 1px solid; } 
-      .carousel {
-        height: 100px; 
-        .carousel-item { width: 100px; height: 84px; } 
-      }
-    } 
   }
 
   /* Dataspace Modal */

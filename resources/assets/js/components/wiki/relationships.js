@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Tree, treeUtil } from 'react-d3-tree';
 import { json } from 'd3';
 import uuid from 'uuid';
+import PreloaderCircle from '../shared/preloader_circle';
 
 class Relationships extends Component {  
 
@@ -11,7 +12,8 @@ class Relationships extends Component {
     this.state = {
       data: undefined,
       zoomable: false, 
-      scaleExtent: { min: 0.1, max: 1 } 
+      scaleExtent: { min: 0.1, max: 2 },
+      preloader: true
     };
     this.handleClick = this.handleClick.bind(this); 
   }
@@ -75,13 +77,13 @@ class Relationships extends Component {
       json("/api/graph/" + this.props.curie, (data) => { resolve( this.graphJSONToD3(data) ) ; })
     }) 
     .then((data) => {
-      this.setState( { data: data } ); 
+     this.setState( { data: data, preloader: false } ); 
     })
     .catch((err) => console.error(err));
   }
 
   render() {
-    var styles = { 
+    let styles = { 
       links: {
         fill: 'none',
         stroke: '#ccc',
@@ -112,14 +114,16 @@ class Relationships extends Component {
       }
     };
     
-    var zoomer = this.state.zoomable == true ? (<span className="blue badge white-text" onClick={ this.handleClick } >Zoom Enabled</span>)
-                                             : ( <span className="red badge white-text" onClick={ this.handleClick } >Enable Zoom</span> )
-    
+    let zoomer = this.state.zoomable == true ? (<span className="blue badge white-text" >Pan & Zoom Enabled</span>)
+                                             : ( <span className="red badge white-text" onClick={ this.handleClick } >Enable Pan & Zoom</span> );
+    let preloader = this.state.preloader; 
+
     return (
-    <div className="col m8 s12"> 
+    <div className="col m8 s12 scrollspy" id="relationships"> 
       <div className="card grey lighten-4"> 
           <div id="relationships" className='card-content'>
             <span className='card-title'>Relationships {zoomer}</span>
+            <PreloaderCircle enabled={ preloader } style={{ left: "45%", top: "200px" }} /> 
             <div id="treeWrapper" style={{ height: '585px'}} >
               { this.state.data && <Tree data={this.state.data } zoomable={ this.state.zoomable } 
                 scaleExtent={ this.state.scaleExtent } 
@@ -137,8 +141,3 @@ class Relationships extends Component {
 }
 
 export default Relationships;
-
-if (document.getElementById('relationships-box')) {
-  const el = document.getElementById('relationships-box') 
-  ReactDOM.render( <Relationships curie={ el.attributes['data-curie'].value } />, document.getElementById('relationships-box'));
-}

@@ -38,16 +38,15 @@ Route::get('/wiki/{id}', function ($id) {
 });
 
 Route::get('/literature', function () { 
-  return view('literature.show', [ 'curie' => Request::input('curie', ''),
+  return view('literature.show', [ 'terms' => Request::input('terms', []),
                                    'page' => Request::input('page', 1 )
                                  ]);
 });
 
-Route::get('/data_space', function () { 
-  return view('data_space.show', [ 'curie' => Request::input('curie', ''),
-                                    'data_source' => Request::input('data_source', "" ),
-                                    'page' => Request::input('page', 1 ),
-                                    'q' => Request::input('q', 0)   
+Route::get('/data_space/{curie}', function ($curie) { 
+  return view('data_space.show', [ 'curie' => $curie,
+                                   'page' => Request::input('page', 1 ),
+                                    'terms' => Request::input('terms', [])   
                                 ]);
 });
 

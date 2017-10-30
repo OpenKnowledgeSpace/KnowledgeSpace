@@ -22,6 +22,10 @@ Route::middleware('api')->get('/terms/{id}', function($id) {
   return response()->json( ScigraphClient::getTerm($id) );  
 });
 
+Route::middleware('api')->get('/terms/{id}/description', function($id) {
+  return response( GithubClient::getDescription($id) );  
+});
+
 Route::middleware('api')->get('/graph/{id}', function($id) {
   return response()->json( ScigraphClient::getGraph($id) );  
 });
@@ -30,36 +34,23 @@ Route::middleware('api')->get('/search', function(Request $request) {
   return response()->json( ScigraphClient::search($request->query()));  
 });
 
-Route::middleware('api')->get('/dataspace', function() {
-  return response()->json(  config('services.dataspace_sources')  );
+Route::middleware('api')->get('/data_space', function() {
+  return response()->json(  config('services.data_space_sources')  );
 });
 
-Route::middleware('api')->get('/dataspace/{source}/info', function(Request $request, $source) {
-  $data = array(); 
-  foreach ( array_values(config('services.dataspace_sources')) as $category  ) { 
-    foreach ( $category as $ds ) {
-      if ( $source == $ds["curie"] ) {
-        $data = $ds;
-        break;      
-      } 
-    }
-  } 
-  return response()->json( $data );
+Route::middleware('api')->get('/data_space/{sources}', function(Request $request, $sources) {
+  $params = $request->input();
+  $terms = $params["terms"];
+  unset($params["terms"]);
+ 
+  return response()->json( DataSpaceClient::search($sources, $terms, $params) );  
 });
 
-Route::middleware('api')->get('/dataspace/{source}', function(Request $request, $source) {
-	$count = ( $request->input('count') ? $request->input('count') : 20 ); 
-	$offset = ( $request->input('offset') ? $request->input('offset') : 0 ); 
-	$term = ( $request->input('q') ? $request->input('q') : "*" ); 
-	$query = [ 'q' => $term, 'count' => $count, 'offset' => $offset ];  
-  return response()->json( DataspaceClient::searchInSource($source, $query) );  
-});
-
-Route::middleware('api')->get('/dataspace/images/{curie}', function(Request $request, $curie) {
+Route::middleware('api')->get('/data_space/images/{curie}', function(Request $request, $curie) {
 	$count = ( $request->input('count') ? $request->input('count') : 20 ); 
 	$offset = ( $request->input('offset') ? $request->input('offset') : 0 ); 
 	$query = [ 'q' => $curie, 'count' => $count, 'offset' => $offset ];  
-  return response()->json( DataspaceClient::searchImages($query) );  
+  return response()->json( DataSpaceClient::searchImages($query) );  
 });
 
 

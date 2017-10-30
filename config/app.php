@@ -178,9 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ScigraphServiceProvider::class,
         App\Providers\ScicrunchServiceProvider::class,
-        App\Providers\DataspaceServiceProvider::class,
-
-        React\ReactServiceProvider::class,
+        App\Providers\DataSpaceServiceProvider::class,
+        App\Providers\GithubServiceProvider::class,
 
     ],
 
@@ -232,8 +231,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         
         'ScigraphClient' => App\Facades\ScigraphClient::class,
-        'DataspaceClient' => App\Facades\DataspaceClient::class,
+        'DataSpaceClient' => App\Facades\DataSpaceClient::class,
         'ScicrunchClient' => App\Facades\ScicrunchClient::class,
+        'GithubClient' => App\Facades\GithubClient::class,
 
 
     ],

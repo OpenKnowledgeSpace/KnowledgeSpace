@@ -11,8 +11,7 @@
         "laravel/tinker": "~1.0",
         "solarium/solarium": "*",
         "guzzlehttp/guzzle": "*", 
-        "elasticsearch/elasticsearch": "~5.0",
-        "talyssonoc/react-laravel": "0.11"
+        "elasticsearch/elasticsearch": "~5.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -6,6 +6,14 @@
  */
 
 require('./bootstrap');
+
+import WikiPage from './components/wiki/wiki_page';
+import DataSpacePage from './components/data_space/data_space_page';
+import LiteraturePage from './components/literature/literature_page';
+import SearchPage from './components/search/search_page';
+import CategoryPage from './components/category/category_page';
+
+/*j
 require('./components/Anchor');
 
 
@@ -16,3 +24,4 @@ import Literature from './components/Literature';
 import Search from './components/Search';
 import DataspacePage from './components/DataspacePage';
 import Categories from "./components/Categories";
+*/
