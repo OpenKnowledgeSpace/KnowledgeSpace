@@ -77,7 +77,7 @@ class WikiPage extends Component {
               { term.labels ? term.labels[0] : null }
             </h2> 
         </div>
-        <div className="row"> 
+        <div className="row hide-on-small-only" style={{ 'min-height': '68px' }} > 
           { subNavBar } 
         </div> 
         <div className="row" id='summary-box'> 

@@ -63,12 +63,14 @@ class CategoryPage extends Component {
   }
 
   getRows(row, i) {
-    let term = Object.keys(row)[0];
-    let desc = { __html: Object.values(row)[0] };
+    let term = Object.keys(row)[0],
+      curie = row[term], 
+      handleClick = () =>  window.open( '/wiki/' + curie, '_blank' ); 
+
 
     return(
-      <tr key={i}>
-        <td>{term}</td><td dangerouslySetInnerHTML={desc}></td>
+      <tr key={i} onClick={handleClick}>
+        <td>{term}</td><td>{curie}</td>
       </tr>  
      )
   

@@ -167,6 +167,10 @@ footer {
 
 }
 
+.page-container { 
+  min-height: 1000px;
+}
+
 /* WIKI/TERMS PAGE */
 #atlas  { iframe {  min-height: 547px; }} 
 
@@ -176,6 +180,7 @@ footer {
   border-bottom: 2px solid; 
   padding-bottom: 7px;  
 }
+
 
 #wiki-page {
 
