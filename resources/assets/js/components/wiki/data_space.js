@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import DataSpaceCategory from './data_space_category';
 import PreloaderCircle from '../shared/preloader_circle';
 
+import $ from "jquery";
 
 class DataSpace extends Component {  
   
@@ -11,10 +12,17 @@ class DataSpace extends Component {
     this.state = { categories: {}, preloader: true };
   }
 
-	/* First we get out Categories and Datasources */  
+  componentDidUpdate() { 
+    $('.collapsible').collapsible('destroy');
+    $('.collapsible').collapsible();
+  }
+	
+  /* First we get out Categories and Datasources */  
 	componentDidMount() { 
     axios.get('/api/data_space')
-      .then( function(response) { this.setState({  categories: response.data, preloader: false }), this.getResultsFromDataSpace }.bind(this) )
+      .then( function(response) { 
+        this.setState({  categories: response.data, preloader: false }, this.getResultsFromDataSpace);
+      }.bind(this) )
       .catch( function(error) {  this.setState( { notFound: true }) }.bind(this) );
   }
   
@@ -25,7 +33,7 @@ class DataSpace extends Component {
     let classes = this.props.classes;
 
     let list = preloader  ? null : 
-      (  <ul id='dataspace-categories' >
+      (  <ul id='dataspace-categories' className='collapsible' data-collapsible="expandable" >
             { Object.keys(categories).map( function(cat, i) { 
               return <DataSpaceCategory key={i} terms={ terms } category={cat} sources={ categories[cat] } /> 
             })}
@@ -34,7 +42,7 @@ class DataSpace extends Component {
 
     return (
     <div className={ classes } id='data-space'>
-      <div className="card light-blue lighten-5">
+      <div className="card">
         <div className="card-content"> 
           <span className="card-title text-white">Data Space</span> 
           <PreloaderCircle enabled={ preloader } style={{ left: "40%"  }} /> 
@@ -48,7 +56,7 @@ class DataSpace extends Component {
 
 const defaultProps = {
     categories: [ 'anatomy', 'expression', 'models', 'morphology', 'physiology' ],
-    classes: 'col m4 s12 right scrollspy'
+    classes: 'col m12 s12 scrollspy'
 }
 
 DataSpace.defaultProps = defaultProps;

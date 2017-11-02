@@ -77,13 +77,15 @@ class WikiPage extends Component {
               { term.labels ? term.labels[0] : null }
             </h2> 
         </div>
-        <div className="row hide-on-small-only" style={{ 'min-height': '68px' }} > 
+        <div className="row hide-on-small-only" style={{ minHeight: '68px' }} > 
           { subNavBar } 
         </div> 
         <div className="row" id='summary-box'> 
-          <DataSpace terms={term.labels} curie={ term.curie } preloader={ this.state.preloader } /> 
           <TermSummary curie={ curie } /> 
           <Lexicon term={ term } preloader={this.state.preloader} />
+        </div>
+        <div className='row' id='dataspace'>
+          <DataSpace terms={term.labels} curie={ term.curie } preloader={ this.state.preloader } /> 
         </div>
         <div className='row' id='atlas'>
 					{ atlas } 			
@@ -101,6 +103,6 @@ class WikiPage extends Component {
 
 export default WikiPage;
 if (document.getElementById('wiki-page')) {
-  const el = document.getElementById('wiki-page') 
+  const el = document.getElementById('wiki-page'); 
   ReactDOM.render( <WikiPage curie={ el.attributes['data-curie'].value } />, document.getElementById('wiki-page'));
 }

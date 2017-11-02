@@ -189,21 +189,18 @@ footer {
   ul#dataspace-categories {
     list-style-type: none;  
     padding-left: 0;
-    li { 
-        margin: 15px 0; 
-        padding: 5px 0; 
-        .btn { height: 42px; } 
-      } 
     .dataspace-category { width: 100%; font-weight: bold; font-size: 16px; } 
-    .category-counter { margin-top: 5px; } 
   }
 }
 
 #lexicon { 
-  ul { 
-    margin: 0;
-    li { list-style-type: disc; }
-  }
+  .lexicon-lists { margin-top: 15px; }
+  .lexicon-list { 
+      ul { 
+        margin: 0 0 30px 10px;
+        li { list-style-type: disc; }
+      } 
+    }
 }
 
 #literature {

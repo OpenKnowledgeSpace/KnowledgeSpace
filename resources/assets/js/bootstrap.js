@@ -16,7 +16,8 @@ try {
       $('.button-collapse').sideNav();
       $('.parallax').parallax();
 			$('.scrollspy').scrollSpy({ scrollOffset: 400 });   
-      
+      $('.collapsible').collapsible();
+
       $('#term-nav').each( function() {
         var $this = $(this);
         var offset = $this.parent().height(); 

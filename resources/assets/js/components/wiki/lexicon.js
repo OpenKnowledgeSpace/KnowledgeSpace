@@ -8,9 +8,9 @@ class Lexicon extends Component {
   getList( key, term,  i) {
     if ( term[key].length < 1 ) { return null; } 
     return ( 
-      <div className='row' key={i}>
-            <label className="col s2">{ key.toUpperCase() }</label>
-            <div className="col s9 label-only">
+      <div className='lexicon-list' key={i}>
+            <h6 className="">{ key.toUpperCase() }</h6>
+            <div className="lexicon-list">
               <List items={ term[key] } name={key} /> 
             </div> 
        </div>
@@ -23,7 +23,7 @@ class Lexicon extends Component {
     let keys = this.props.keys;; 
     let getList = this.getList;
     return ( 
-      <div>
+      <div className='lexicon-lists'>
         { keys.map( function(key, i) { if ( key in term ) { return ( getList(key, term, i)  ) } }) } 
       </div> ) 
     }
@@ -49,7 +49,7 @@ class Lexicon extends Component {
 
 const defaultProps = {
     keys: ['iri','categories','labels', 'synonyms'],
-    classes: 'col m8 s12 scrollspy'
+    classes: 'col m4 s12 right scrollspy'
 }
 
 Lexicon.defaultProps = defaultProps;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import Preloader from '../shared/preloader';
-import DataSpaceModal from './data_space_modal';
+import DataSpaceSources from './data_space_sources';
 
 class DataSpaceCategory extends Component {  
 
@@ -49,16 +49,24 @@ class DataSpaceCategory extends Component {
 
     return (
       <li> 
-        <a className="btn blue lighten-3 dataspace-category clearfix valign-wrapper waves-effect waves-light modal-trigger" href={ "#" + category }>
-          <span className='left'>{ category }</span>
-          <span className='badge category-counter right'>
-            { preloader ? <Preloader enabled={ preloader }  wrapperStyle={{ top: "25%" }} /> : this.state.total_count}
+        <div className="collapsible-header">
+          <i className="material-icons">expand_more</i>
+          {category}
+          <span className='new badge blue' data-badge-caption="Records Found">
+             { this.state.total_count}
           </span>
-        </a>
-        <DataSpaceModal category={ category } terms={ terms } sources={ sources } source_count={ source_count } />
+        </div>
+        <div className="collapsible-body light-blue lighten-5">
+          <DataSpaceSources category={ category } terms={ terms } sources={ sources } source_count={ source_count } />
+        </div>   
       </li> 
     )}
 
 }
-
+/*
+ *
+ *
+        <a className="btn blue lighten-3 dataspace-category clearfix valign-wrapper waves-effect waves-light modal-trigger" href={ "#" + category }>
+          <span className='left'>{ category }</span>
+        </a> */
 export default DataSpaceCategory;
