@@ -93,10 +93,10 @@
         },
         {
             "curie": "ks_act_20160916",
-            "description": "ks_act_20160916",
+            "description": "Allen Cell Types Database",
             "enabled": true,
             "has_images": false,
-            "source_name": "Need's a Name.."
+            "source_name": "Contains a multimodal characterization of single brain cells by electrophysiology and morphology, as well as single-cell transcriptional data from nuclei or whole cells."
         }
     ],
     "physiology": [
