@@ -100,9 +100,8 @@ class Relationships extends Component {
         },
         node: { 
           name: {
-            fontSize: "18px", 
-            textAnchor: "end",
-            fontFamily: '"Helvetica Neue", Helvetica',
+            fontSize: '18px', 
+            fontFamily: "'Helvetica Neue', Helvetica",
           }, 
           circle: { 
             cursor: 'pointer',
@@ -127,6 +126,7 @@ class Relationships extends Component {
             <div id="treeWrapper" style={{ height: '585px'}} >
               { this.state.data && <Tree data={this.state.data } zoomable={ this.state.zoomable } 
                 scaleExtent={ this.state.scaleExtent } 
+                textLayout={{ textAnchor: 'start', y: -20, x: -20 }} 
                 translate={ { x: 75, y: 292 } }  depthFactor={ 0 }  styles={ styles }  />}
             </div>
           </div>
@@ -134,8 +134,6 @@ class Relationships extends Component {
     </div>
     );
   }
-
-
 
 
 }

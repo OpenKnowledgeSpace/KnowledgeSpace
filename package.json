@@ -23,7 +23,7 @@
     "react": "^15.6.1",
     "react-bootstrap-table": "^4.0.1",
     "react-cursor-position": "^2.2.0",
-    "react-d3-tree": "^1.4.0",
+    "react-d3-tree": "^1.6.0",
     "react-dom": "^15.6.1",
     "react-resizable": "^1.7.1"
   },
