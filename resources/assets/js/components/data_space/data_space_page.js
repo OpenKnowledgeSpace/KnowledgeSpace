@@ -49,6 +49,12 @@ class DataSpacePage extends Component {
           'dataset.availability': 'Availability',
           'dataset.dateReleased': "Release Date",
         };
+      case 'neuromorpho_20171102':
+        return {
+          'dataset.title': "Title",
+          'dataset.creators': 'Creators',
+          'dataset.availability': 'Availability',
+        }
       case 'ks_ic_20160916':
         return {
           "pr_nlx_154697_8.database": 'Database',

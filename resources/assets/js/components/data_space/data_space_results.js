@@ -16,16 +16,17 @@ class DataSpaceResults extends Component {
 
     // This gets bound to the table row.
     let handleRowClick = function() {
-      let distro = this.props.row.datasetDistributions || 
-                   this.props.row.access  ||  
-                   this.props.row.pr_nlx_154697_8  ||
-                   this.props.row.dataset  || 
-                   this.props.row.Data || null;
+      let distro =  this.props.row.access  ||  
+                    this.props.row.datasetDistributions || 
+                    this.props.row.pr_nlx_154697_8  ||
+                    this.props.row.dataset  || 
+                    this.props.row.Data || null;
     
       if ( distro instanceof Array ) {
         distro = distro.find( (distro) => distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url );
       }
-      if ( distro ) { window.open( distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url, '_blank' ); }
+      let url = distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url; 
+      if ( distro ) { window.open( unescape(url),  '_blank' ); }
     }
     
     return(   

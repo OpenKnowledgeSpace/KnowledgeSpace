@@ -27,7 +27,8 @@ class DataSpaceSourceSummary extends Component {
   render() {
     let source_name = this.state.source_name, 
       description = this.state.description,
-      preloader = this.state.preloader;
+      preloader = this.state.preloader,
+      url = this.state.url;
 
     return( 
       <div className="row"> 
@@ -35,7 +36,9 @@ class DataSpaceSourceSummary extends Component {
             <div className="card horizontal blue-grey darken-1" id="summary">
               <Preloader enabled={ preloader } wrapperStyle={{ position: 'absolute', top: '40%', transform: 'translateY(-50%)' }}  />
               <div className="card-content white-text"> 
-                <span className="card-title activator white-text">{ source_name }</span> 
+                <span className="card-title activator white-text">
+                    <a href={ url  } target="_blank">{ source_name }</a>
+                </span> 
                 <div className='form-group flow-text'>
                   <div className="col label-only" dangerouslySetInnerHTML={ { __html: description } }></div>
                 </div>

@@ -5,56 +5,64 @@
             "description": "A public repository of unthresholded statistical maps, parcellations, and atlases of the human brain",
             "enabled": true,
             "has_images": false,
-            "source_name": "NeuroVault"
+            "source_name": "NeuroVault",
+            "url": "https://neurovault.org/"
         },
         {
             "curie": "datacite_crcns_20170809",
             "description": "Collaborative Research in Computational Neuroscience data sharing",
             "enabled": true,
             "has_images": false,
-            "source_name": "CRCNS"
+            "source_name": "CRCNS",
+            "url" : "https://crcns.org/"
         },
         {
             "curie": "datacite_figshare_20170813",
             "description": "DataCite Figshare",
             "enabled": true,
             "has_images": false,
-            "source_name": "DataCite Figshare"
+            "source_name": "DataCite Figshare",
+            "url" : "https://www.datacite.org/"
         },
         {
             "curie": "dataverse_20160229",
             "description": "Open source research data repository",
             "enabled": true,
             "has_images": false,
-            "source_name": "Dataverse"
+            "source_name": "Dataverse",
+            "url": "https://dataverse.harvard.edu/"
         },
         {
             "curie": "dryad_20170811",
             "description": "A collection of free openly-licensed, high-quality, hands-on, educational modules for students to engage in scientific inquiry using real data.",
             "enabled": true,
             "has_images": false,
-            "source_name": "Dryad Digital Repository"
+            "source_name": "Dryad Digital Repository",
+            "url": "http://datadryad.org/"
         },
         {  
           "curie": "nitrc_ir_20171102", 
           "description": "a cloud-based federated neuroimaging data storage system for resource sharing of neuroimaging data in DlCOM and NIfTI formats",
           "enabled": true,
           "has_images": true,
-          "source_name": "NITRC-IR"
+          "source_name": "NITRC-IR",
+          "url": "https://www.nitrc.org/ir/"
         },
         {  
           "curie": "openfmri_20170718", 
           "description": "OpenfMRI datasets",
           "enabled": true,
           "has_images": true,
-          "source_name": "OpenfMRI"
+          "source_name": "OpenfMRI",
+          "url": "https://openfmri.org/"
         },
         {  
           "curie": "ks_ic_20160916", 
           "description": "An aggregated dataset of connectivity statements",
           "enabled": true,
           "has_images": true,
-          "source_name": "Integrated Connectivity"
+          "source_name": "Integrated Connectivity",
+          "url": "http://brancusi.usc.edu/bkms/"
         }
 
     ],
@@ -64,14 +72,16 @@
             "description": "Tools and database for meta-analysis of functional genomics data",
             "enabled": true,
             "has_images": false,
-            "source_name": "Gemma"
+            "source_name": "Gemma",
+            "url": "https://gemma.msl.ubc.ca/home.html" 
         },
         {
             "curie": "neurosynth_20151112",
             "description": "A platform for large-scale, automated synthesis of functional magnetic resonance imaging (fMRI) data.",
             "enabled": true,
             "has_images": true,
-            "source_name": "Neurosynth"
+            "source_name": "Neurosynth",
+            "url": "http://neurosynth.org/"
         }
     ],
     "models": [
@@ -82,21 +92,24 @@
             "description": "Provides annotated images, videos and animations of cellular processes.",
             "enabled": true,
             "has_images": true,
-            "source_name": "Cell Image Library"
+            "source_name": "Cell Image Library",
+            "url": "http://www.cellimagelibrary.org/"
         },
         {
-            "curie": "neuromorpho_20171031",
+            "curie": "neuromorpho_20171102",
             "description": "A centrally curated inventory of digitally reconstructed neurons associated with peer-reviewed publications.",
             "enabled": true,
             "has_images": true,
-            "source_name": "NeuroMorpho.org"
+            "source_name": "NeuroMorpho",
+            "url": "http://neuromorpho.org"
         },
         {
             "curie": "ks_act_20160916",
-            "description": "Allen Cell Types Database",
+            "source_name": "Allen Cell Types Database",
             "enabled": true,
             "has_images": false,
-            "source_name": "Contains a multimodal characterization of single brain cells by electrophysiology and morphology, as well as single-cell transcriptional data from nuclei or whole cells."
+            "description": "Contains a multimodal characterization of single brain cells by electrophysiology and morphology, as well as single-cell transcriptional data from nuclei or whole cells.",
+            "url": "http://help.brain-map.org/display/celltypes/Allen+Cell+Types+Database"
         }
     ],
     "physiology": [
@@ -105,7 +118,8 @@
             "description": "A database of elecrophysiological properties text-mined from the biomedical literature as a function of neuron type.",
             "enabled": true,
             "has_images": false,
-            "source_name": "NeuroElectro"
+            "source_name": "NeuroElectro",
+            "url": "http://www.neuroelectro.org/"
         }
     ]
 }

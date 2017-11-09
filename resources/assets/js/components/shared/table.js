@@ -16,7 +16,10 @@ class TableRow extends Component {
     
     return( <tr onClick={ this.handleRowClick }>
         { columns.map( function(col, i) { 
-          let value = col.split('.').reduce((a,b) =>  a[b], row ); 
+          let value = col.split('.').reduce((a,b) =>  a[b], row );
+          if ( value instanceof Array ) { 
+            value = value.map( (a) => a.replace(/^\s+|\s+$/g, '')).filter((v) => !v.match(/^,/));
+          }
           return( <td key={i} dangerouslySetInnerHTML={{ __html: value }}></td> ) })}
       </tr>);
   }
