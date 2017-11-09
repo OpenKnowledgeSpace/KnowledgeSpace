@@ -56,7 +56,7 @@ class DataSpaceCategory extends Component {
              { this.state.total_count}
           </span>
         </div>
-        <div className="collapsible-body light-blue lighten-5">
+        <div className="collapsible-body">
           <DataSpaceSources category={ category } terms={ terms } sources={ sources } source_count={ source_count } />
         </div>   
       </li> 

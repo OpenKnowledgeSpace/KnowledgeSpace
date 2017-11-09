@@ -41,11 +41,26 @@ class DataSpacePage extends Component {
   }
 
   getColumns() {
-    return { 'dataset.title': "Title",
-             'dataset.creators': 'Creators',
-             'dataset.availability': 'Availability',
-            'dataset.dateReleased': "Release Date",
-    }
+    switch(this.props.curie) {
+      default: 
+        return { 
+          'dataset.title': "Title",
+          'dataset.creators': 'Creators',
+          'dataset.availability': 'Availability',
+          'dataset.dateReleased': "Release Date",
+        };
+      case 'ks_ic_20160916':
+        return {
+          "pr_nlx_154697_8.database": 'Database',
+          "pr_nlx_154697_8.notes": 'Notes',
+        }
+      case "neurosynth_20151112":
+        return {
+          "Data.title": 'Title',
+          "Data.reference": 'Reference',
+        }
+
+    } 
   }
 
   componentWillMount () { 

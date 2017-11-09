@@ -20,7 +20,7 @@ class ImageGallery extends Component {
     var props = this.props; 
     return (
     <div className='col m4 s12 scrollspy' id='image-gallery'>      
-      <div className='card cyan lighten-5'> 
+      <div className='card'> 
         <div id="image-gallery" className='card-content'> 
           <span className='card-title'>Image Gallery</span>
           <Carousel /> 

@@ -18,15 +18,6 @@ try {
 			$('.scrollspy').scrollSpy({ scrollOffset: 400 });   
       $('.collapsible').collapsible();
 
-      $('#term-nav').each( function() {
-        var $this = $(this);
-        var offset = $this.parent().height(); 
-        var top = $this.offset().top;
-        $this.pushpin( { top: top } );
-        $this.width( $this.parent().width() ); 
-      });
-
-
 
       $('input#main-page-search').focus(function() { $(this).parent().addClass('focused'); });
       $('input#main-page-search').blur(function() {

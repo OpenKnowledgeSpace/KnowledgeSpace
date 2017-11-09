@@ -32,20 +32,18 @@ class WikiPage extends Component {
             <li><a href="#atlas">Atlas</a></li> : null; 
 
     return( 
-      <nav id='term-nav' className="blue lighten-2">
-        <div className="nav-wrapper">
-          <ul id="nav-mobile" className="left whide-on-med-and-down table-of-contents">
-            <li><a href="#summary">Summary</a></li>
-            <li><a href="#data-space">Data Space</a></li>
-            <li><a href="#lexicon">Lexicon</a></li>
-						{ atlas } 
-						<li><a href="#literature">Literature</a></li>
-            <li><a href="#relationships">Relationships</a></li>
-            <li><a href="#image-gallery">Image Gallery</a></li>
-          </ul>
-        </div>
-      </nav>)
-   }
+      <div className="toc-wrapper pinned"> 
+        <ul className="section table-of-contents">
+          <li><a href="#summary">Summary / Lexicon</a></li>
+          <li><a href="#data-space">Data Space</a></li>
+          { atlas } 
+          <li><a href="#literature">Literature</a></li>
+          <li><a href="#relationships">Relationships</a></li>
+          <li><a href="#image-gallery">Image Gallery</a></li>
+        </ul>
+      </div>)
+     
+    }
 
 	getAtlas() { 
 		let curie = this.props.curie;	
@@ -70,32 +68,36 @@ class WikiPage extends Component {
 		let atlas = this.getAtlas();
  
     return (
-      <div className='section'> 
-        <div className="row"> 
-            <h2 className='col s12 term-title page-title'>
-              <Preloader enabled={ this.state.preloader } /> 
-              { term.labels ? term.labels[0] : null }
-            </h2> 
-        </div>
-        <div className="row hide-on-small-only" style={{ minHeight: '68px' }} > 
-          { subNavBar } 
-        </div> 
-        <div className="row" id='summary-box'> 
-          <TermSummary curie={ curie } /> 
-          <Lexicon term={ term } preloader={this.state.preloader} />
-        </div>
-        <div className='row' id='dataspace'>
-          <DataSpace terms={term.labels} curie={ term.curie } preloader={ this.state.preloader } /> 
-        </div>
-        <div className='row' id='atlas'>
-					{ atlas } 			
-				</div>
-        <div className='row' id='literature-box'>
-          <Literature terms={ term.labels } per_page={5} />
-        </div>
-        <div className='row' id='relationship-box'>
-          <Relationships curie={ curie } /> 
-          <ImageGallery curie={ curie } />
+      <div className='container page-container'> 
+        <div className='row'>
+          <div className="col hide-on-small-only m3 l2" > 
+              { subNavBar } 
+          </div>
+          <div className="col s12 m9 l10"> 
+            <div className="row"> 
+                <h2 className='col s12 term-title page-title'>
+                  <Preloader enabled={ this.state.preloader } /> 
+                  { term.labels ? term.labels[0] : null }
+                </h2> 
+            </div>
+            <div className="row" id='summary-box'> 
+              <TermSummary curie={ curie } /> 
+              <Lexicon term={ term } preloader={this.state.preloader} />
+            </div>
+            <div className='row' id='dataspace'>
+              <DataSpace terms={term.labels} curie={ term.curie } preloader={ this.state.preloader } /> 
+            </div>
+            <div className='row' id='atlas'>
+              { atlas } 			
+            </div>
+            <div className='row' id='literature-box'>
+              <Literature terms={ term.labels } per_page={5} />
+            </div>
+            <div className='row' id='relationship-box'>
+              <Relationships curie={ curie } /> 
+              <ImageGallery curie={ curie } />
+            </div>
+          </div> 
         </div>
       </div>
     )}

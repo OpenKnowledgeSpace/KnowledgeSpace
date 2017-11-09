@@ -21,7 +21,7 @@ class TermSummary extends Component {
           let redirect = body.match(/^..\/(.*)\.md$/)[1].replace("/", ":");
           this.getMarkdown(redirect); 
         } else {  
-          this.setState({  content: body, preloader: false } ) } 
+          this.setState({  content: body, preloader: false, source_curie: curie } ) } 
       }.bind(this) )
       .catch( function(error) {  this.setState( { notFound: true }) }.bind(this) );
 
@@ -31,27 +31,28 @@ class TermSummary extends Component {
     this.getMarkdown();  
   }
 
-  getSummaries() {
-    if ( this.state.content  ) {
-      return (  <ReactMarkdown source={this.state.content} /> )
-    } else { return null }
+  getProvenance() {
+    let source_curie = this.state.source_curie || null;
+    if ( source_curie == null )  { return null }
+    let source_url = source_curie.replace(":", "/") + ".md";
+    return(<p><a target="_blank" href={ 'https://github.com/OpenKnowledgeSpace/ksdesc/blob/master/' + source_url } >Definition on Github</a></p>)
   }
 
   render() {
     let classes = this.props.classes; 
     let preloader =  this.state.preloader;
-
+    let prov = this.getProvenance();
     return (
     <div className={classes} id='summary'> 
-      <div className="card horizontal blue-grey darken-1">
-        <div className="card-content white-text term-summary-card"> 
-          <span className="card-title activator white-text" style={{ width: '100%' }}>Summary<i className="material-icons right">more_vert</i></span> 
+      <div className="card horizontal">
+        <div className="card-content term-summary-card"> 
+          <span className="card-title activator" style={{ width: '100%' }}>Summary<i className="material-icons right">more_vert</i></span> 
           <PreloaderCircle enabled={ preloader } style={{ left: "40%"  }} /> 
           <div className='flow-text'><ReactMarkdown source={this.state.content} /></div> 
         </div> 
         <div className="card-reveal grey-text text-darken-4">
           <span className='card-title'>Summary<i className='material-icons right'>close</i></span>
-          <p>Some provenance information will go here?</p>
+          { prov } 
         </div>      
       </div>
     </div>

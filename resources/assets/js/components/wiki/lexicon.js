@@ -35,9 +35,9 @@ class Lexicon extends Component {
     
     return (
     <div className={ classes } id='lexicon'>
-      <div className="card light-blue lighten-5" >
+      <div className="card" >
         <div className="card-content"> 
-          <span className="card-title text-white">Lexicon</span> 
+          <span className="card-title">Lexicon</span> 
           <PreloaderCircle enabled={ preloader } style={{ left: "40%"  }} /> 
           { list }
         </div>

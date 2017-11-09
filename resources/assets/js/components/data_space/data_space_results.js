@@ -12,14 +12,20 @@ class DataSpaceResults extends Component {
       onChangePage = this.props.onChangePage,
       columns = this.props.columns,
       preloader = this.props.preloader;
-  
+
+
     // This gets bound to the table row.
     let handleRowClick = function() {
-      let distros = this.props.row.datasetDistributions || 
-                    [ this.props.row.access ] ||  
-                    [ this.props.row.dataset ] || [], 
-        distro = distros.find( (distro) => distro.accessURL || distro.downloadURL || distro.landingPage );
-      if ( distro ) { window.open( distro.accessURL || distro.downloadURL || distro.landingPage, '_blank' ); }
+      let distro = this.props.row.datasetDistributions || 
+                   this.props.row.access  ||  
+                   this.props.row.pr_nlx_154697_8  ||
+                   this.props.row.dataset  || 
+                   this.props.row.Data || null;
+    
+      if ( distro instanceof Array ) {
+        distro = distro.find( (distro) => distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url );
+      }
+      if ( distro ) { window.open( distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url, '_blank' ); }
     }
     
     return(   
