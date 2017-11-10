@@ -17,7 +17,9 @@
       {
           $path =  "/OpenKnowledgeSpace/ksdesc/master/".str_replace(":","/", $term).".md";  
           $res = $this->client->request("GET", $path );
-          return  $res->getBody(); 
+          if ( $res->getStatusCode() < 400 ) {
+            return  $res->getBody(); 
+          } else { return "### No Description Found"; }     
       }
       
 

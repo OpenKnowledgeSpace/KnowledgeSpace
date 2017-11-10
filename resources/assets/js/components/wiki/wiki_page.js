@@ -23,8 +23,12 @@ class WikiPage extends Component {
 
   componentDidMount() { 
     axios.get('/api/terms/' + this.props.curie)
-      .then( function(response) { this.setState({  term: response.data, preloader: false } ) }.bind(this) )
-      .catch( function(error) {  this.setState( { notFound: true }) }.bind(this) );
+      .then( function(response) { 
+        let data = response.data;         
+        if ( data.hasOwnProperty('code') ) { return window.location.href = "/not_found"; } 
+        this.setState({  term: response.data, preloader: false } ) 
+      }.bind(this) )
+      .catch( function(error) { return window.location.href = '/not_found'; }.bind(this) );
   }
 
   subNavBar() { 

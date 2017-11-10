@@ -24,8 +24,11 @@ class SearchPage extends Component {
   searchScigraph() {
     axios.get('/api/search',{ params:  this.props })
       .then( function( response ){ 
-      let pageOfResults = response.data.slice(0, 0 + 20);
-      this.setState({results: response.data, pageOfResults: pageOfResults, preloader: false } );
+        let data = response.data; 
+        if ( data.hasOwnProperty('redirect') ) { window.location.href = '/wiki/' + data['redirect']; }
+        let pageOfResults = data.slice(0, 0 + 20);
+        this.setState({results: data, pageOfResults: pageOfResults, preloader: false } );
+    
     }.bind(this));
   }
   

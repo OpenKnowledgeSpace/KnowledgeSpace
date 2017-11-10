@@ -6,6 +6,25 @@ nav {
  
 }
 
+#not-found { 
+  margin-top: 100px; 
+    .search-wrapper.focused { margin: 0 }
+    
+    .search-wrapper { 
+      -webkit-transition:  margin .25s ease; 
+      position: relative; 
+      margin: 0 12px;
+      input { background: #fff; padding: 0 10px; }
+      i.material-icons {
+        color: #444; 
+        position: absolute;
+        top: 10px;
+        right: 0px;
+        cursor: pointer;
+        font-weight: 600;
+       }
+     } 
+}
 
 #DataSources, #Documentation, #category-page { 
   ul { 
@@ -188,6 +207,16 @@ footer {
   .lexicon-lists { margin-top: 15px; }
   .lexicon-list { 
       ul { 
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+         word-break: break-all;
+        word-break: break-word;
+        /* Adds a hyphen where the word breaks, if supported (No Blink) */
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
         margin: 0 0 30px 10px;
         li { list-style-type: disc; }
       } 

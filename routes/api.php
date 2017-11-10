@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::middleware('api')->get('/terms/{id}', function($id) {
-  return response()->json( ScigraphClient::getTerm($id) );  
+  return response()->json( ScigraphClient::getTermWithCurie($id) );  
 });
 
 Route::middleware('api')->get('/terms/{id}/description', function($id) {

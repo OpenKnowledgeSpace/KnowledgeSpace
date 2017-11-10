@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+
+Route::get('/not_found', function() {
+  return view('not_found');
+});
+
 Route::get('/About', function () {
     return redirect("/#AboutUs");
 });
