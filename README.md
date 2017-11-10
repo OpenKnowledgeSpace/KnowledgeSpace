@@ -4,19 +4,17 @@ KnowledgeSpace
 This is a new version of the knowledge-space.org application. It is a web
 application that uses the following:
 
-* (Laravel)[https://laravel.com/] MVC framework for PHP ( for the backend )
-* (React)[https://reactjs.org/] Javscript library for UI ( for the frontend )
+* [Laravel](https://laravel.com/) MVC framework for PHP ( for the backend )
+* [React](https://reactjs.org/) Javscript library for UI ( for the frontend )
 
 These require some dependencies for both running the application & development. 
 These include: 
 
-* (PHP)[http://php.net] PHP 7+
-* (Composer)[https://getcomposer.org] PHP package manager
-* (v8)[https://github.com/v8/v8] v8 Javascript engine ( development )
-* (v8js) PHP v8 extension ( development )
-* (NodeJS)[https://nodejs.org/en/] Node.js runtime ( v6.11 LTS ) ( development)
-* (Yarn)[https://github.com/yarnpkg/yarn] JS package manager ( optional,
-  development )
+* [PHP](http://php.net) PHP 7+
+* [Composer](https://getcomposer.org) PHP package manager
+* [v8](https://github.com/v8/v8) v8 Javascript engine ( development )
+* [NodeJS](https://nodejs.org/en/) Node.js runtime ( v6.11 LTS ) ( development)
+* [Yarn](https://github.com/yarnpkg/yarn) JS package manager ( optional, development )
 
 ### Quick Start
 
@@ -68,68 +66,101 @@ $ npm run watch
 On Linux platforms, most of the libraries can be installed using the standard
 instructions found on their related documentation pages:
 
-* (Composer install documentation)[https://getcomposer.org/download/]
-* (NodeJS using a package manager)[https://nodejs.org/en/download/package-manager/]
-* (Installing Yarn)[https://yarnpkg.com/en/docs/install]
-
-However installing v8js does require a bit more work. Instructions can be the
-[v8js install page](https://github.com/phpv8/v8js/blob/php7/README.Linux.md).
-The relevant steps is as follows: 
+* [Composer install documentation](https://getcomposer.org/download/)
+* [NodeJS using a package manager](https://nodejs.org/en/download/package-manager/)
+* [Installing Yarn](https://yarnpkg.com/en/docs/install)
 
 
+### Deploying to Production
 
-Compile libv8
--------------
+There are many ways to deploy a laravel app to production. A popular way is to
+use the following:
 
-```
-# Install required dependencies
-sudo apt-get install build-essential git python libglib2.0-dev
-
-cd /tmp
-
-# Install depot_tools first (needed for source checkout)
-git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-export PATH=`pwd`/depot_tools:"$PATH"
-
-# Download v8
-fetch v8
-cd v8
-
-gclient sync
-
-# Setup GN
-tools/dev/v8gen.py -vv x64.release -- is_component_build=true
-
-# Build ( this will take awhile. )
-ninja -C out.gn/x64.release/
-
-# Install to /opt/v8/
-sudo mkdir -p /opt/v8/{lib,include}
-sudo cp out.gn/x64.release/lib*.so out.gn/x64.release/*_blob.bin \
-  out.gn/x64.release/icudtl.dat /opt/v8/lib/
-sudo cp -R include/* /opt/v8/include/
-```
+* [PHP 7](http://php.net/)
+* [PHP-FMP: PHP FastCGI](http://php.net/manual/en/install.fpm.php)
+* [Nginx](https://nginx.org/)
 
 
+Here's an example Nginx config file. This assumes:
 
-Compile php-v8js itself
------------------------
+* The application is running at knowledge-space.org
+* The application is installed in /opt/KnowledgeSpace
+
+Here's an example nginx configuration:
 
 ```
-cd /tmp
-git clone https://github.com/phpv8/v8js.git
-cd v8js
-phpize
-./configure --with-v8js=/opt/v8
-make
-make test
-sudo make install
+fastcgi_cache_path /etc/nginx/cache levels=1:2 keys_zone=KSPACE:250m inactive=1w;
+fastcgi_cache_key "$scheme$request_method$host$request_uri";
+
+server {
+    listen 80;
+    server_name knowledge-space.org;
+    root /opt/KnowledgeSpace/public;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-XSS-Protection "1; mode=block";
+    add_header X-Content-Type-Options "nosniff";
+
+    index index.html index.htm index.php;
+
+    charset utf-8;
+
+    location / {
+      try_files $uri $uri/ /index.php?$query_string;
+			fastcgi_cache KSPACE;
+			fastcgi_cache_valid 200 1w;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    error_page 404 /index.php;
+
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+				fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+
+	
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+
+}
 ```
 
-Now in you php.ini file ( usually in /etc, or in a file like
-/etc/php.d/20-v8js.ini if your platform uses the php.d directory for extension
-configurations ), add the following line:
+Once you have PHP, PHP FastCGI, and Nginx installed and you've checked out the code,
+you'll need to do the following to get everything ready. 
+
+Install your PHP dependencies: 
 
 ```
-extension=v8js.so
+$ composer install --no-dev
+```
+
+Install your JS libraries:
+
+```
+$ yarn install --production
+$ yarn run prod
+### or ...
+$ npm install production
+$ npm run production
+```
+
+Now for Laravel:
+
+```
+$ php artisan config:clear
+$ php artisan key:generate
+```
+
+Start Nginx and PHP-FMP and you should be good to go. ( depends on your distro ) 
+
+```
+$ service php-fpm start
+$ service nginx start
 ```
