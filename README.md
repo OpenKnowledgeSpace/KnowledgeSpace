@@ -81,6 +81,13 @@ use the following:
 * [Nginx](https://nginx.org/)
 
 
+Many of the environment-specific configuration settings are put into a .env
+file. These include things like URL to REST endpoints, as well as passwords and
+tokens. This file is not checked into git. You can see a default template file
+the env.dist file. Copy this file to be '.env' and edit it to add your specific
+environment settings.
+
+
 Here's an example Nginx config file. This assumes:
 
 * The application is running at knowledge-space.org
