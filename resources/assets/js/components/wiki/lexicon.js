@@ -38,7 +38,7 @@ class Lexicon extends Component {
       <div className="card" >
         <div className="card-content"> 
           <span className="card-title">Lexicon</span> 
-          <PreloaderCircle enabled={ preloader } style={{ left: "40%"  }} /> 
+          <PreloaderCircle enabled={ preloader } style={{ left: "40%", padding: '6px', margin: '40px 0'  }} /> 
           { list }
         </div>
       </div> 

@@ -1,7 +1,7 @@
 import React, {  Component } from 'react';
 import PropTypes from 'prop-types'; 
 import ReactDOM from 'react-dom';
-
+import * as _ from 'lodash';
  
 const propTypes = {
     items: PropTypes.number.isRequired,

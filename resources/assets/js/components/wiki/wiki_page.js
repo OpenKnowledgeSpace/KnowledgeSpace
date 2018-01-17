@@ -80,7 +80,7 @@ class WikiPage extends Component {
           <div className="col s12 m9 l10"> 
             <div className="row"> 
                 <h2 className='col s12 term-title page-title'>
-                  <Preloader enabled={ this.state.preloader } /> 
+                  <Preloader enabled={ this.state.preloader } wrapperStyle={{ padding: '3px' }} /> 
                   { term.labels ? term.labels[0] : null }
                 </h2> 
             </div>

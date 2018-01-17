@@ -15,8 +15,6 @@ class Literature extends Component {
       numFound: 0, labels: [], page: 1, preloader: true };
     this.getResultsFromScicrunch = this.getResultsFromScicrunch.bind(this); 
     this.onChangePage = this.onChangePage.bind(this); 
- 
-  
   }
 
   onChangePage(page) {
@@ -25,30 +23,45 @@ class Literature extends Component {
   }
 
   // this uses a list of terms to get results from scicrunch.
-  getResultsFromScicrunch(terms) {
+  getResultsFromScicrunch(terms, keywords = null) {
+      // if what's being passed is isn't what's in our props, the user has
+      // updated the input, so lets just move on 
+      if ( keywords && keywords !== this.props.keywords ) {  return  }    
+      this.setState({ preloader: true }); 
       terms = terms || this.props.terms;
       terms = terms.map( function(s) { return "terms[]=" + s } );
       let size = this.props.per_page;
       // a funny solr thing. if we're on page 1 we start a item 0  
       let from = '&from=' + ( size * ( this.state.page - 1 ) );
       let url = '/api/literature?' + terms.join("&") + "&size=" + size + from;      
+     
+      if ( keywords ) {
+        url = url + "&keywords[]=" + keywords; 
+      }
+    
       axios.get(url).then( function(response) { 
                                   this.setState({
                                       articles: response.data.hits.hits,
                                       numFound: response.data.hits.total,
                                       queryTerms: terms,  
                                       years: [...Array(37).keys()].map( (k ) => { return [ 1970+k, Math.floor((Math.random() * 10000) + 1) ] } ),
-                                      preloader :false })
+                                      preloader: false
+                                  })
                                   }.bind(this))
         .catch( function(error) {  this.setState( { notFound: true }) }.bind(this) );
   }
 
-  componentWillReceiveProps(nextProps) { 
-    if ( nextProps.terms.length > 0 && nextProps.terms !== this.props.terms ) {
-      this.getResultsFromScicrunch(nextProps.terms); 
-    }	
+  componentWillReceiveProps(nextProps) {
+    let terms = false, keywords = false
+    
+    if ( nextProps.terms !== this.props.terms ) { terms = nextProps.terms }
+    if ( nextProps.keywords !== this.props.keywords ) { keywords = nextProps.keywords }
+    
+    if (  terms || keywords ) {
+      setTimeout( ()=>  this.getResultsFromScicrunch(terms,keywords ), 1000);
+    } 
   }
- 
+
   componentDidMount() {
     if  ( this.props.terms && this.props.terms.length > 0 ) { 
       this.getResultsFromScicrunch(); 
@@ -73,20 +86,26 @@ class Literature extends Component {
         <div className="col m12 s12 scrollspy" id='literature'> 
           <div className="card">
             <div className="card-content">
-              <span className="card-title activator">Literature<i className="material-icons right">insert_chart</i></span> 
-              <Preloader enabled={ preloader }  wrapperStyle={{ bottom: '-100px' }}  /> 
+              <span className="card-title">Literature  ( { this.state.numFound } record found )
+                <i className="material-icons activator right">insert_chart</i>
+                {  embedded  &&  <a href={ '/literature?' + queryTerms.join('&') } 
+                  className="embedded-only  right waves-effect waves-light">
+                  <i className="material-icons">search</i></a> }
+              </span> 
               <ul id='articles' className="collection" >
-                { articles } 
+                { preloader && <li><Preloader enabled={ preloader }  wrapperStyle={{ top: '80px', width: '99%', margin: 'auto', padding: '6px' }}  /></li>  }
+                { !preloader && articles } 
               </ul>
               <div className='card-action center'> 
-              {  embedded  &&  <a href={ '/literature?' + queryTerms.join('&') } 
-                  className="embedded-only btn-floating right btn-large waves-effect waves-light red">
-                  <i className="material-icons">more</i></a> }
                 <Pagination items={ this.state.numFound } onChangePage={this.onChangePage}  / > 
               </div> 
             </div>
             <div className="card-reveal grey-text text-darken-4">
-                <span className='card-title'>Literature<i className='material-icons right'>view_list</i></span>
+                <span className='card-title'>Literature<i className='material-icons right'>view_list</i>
+                  <a href={ '/literature?' + queryTerms.join('&') } className="embedded-only  right waves-effect waves-light">
+                    <i className="material-icons">search</i>
+                  </a> 
+                </span> 
                 <div id="line-chart">
                   <LineChart data={ this.state.years.sort().filter( (d) => d[0] > 1970  ) } />
                 </div>

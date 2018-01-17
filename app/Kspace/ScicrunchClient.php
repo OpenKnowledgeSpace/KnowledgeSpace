@@ -14,30 +14,37 @@
                          )->build(); 
       }
 
-/* example agg for when that gets fixed.   
-            'aggs' => [ 
-              "year_facet" => [ 
-                'terms' => [ "field" => "dc.publicationDate" ] 
-              ] 
-            ],
-*/ 
 
-      protected function default_params($terms)
+      protected function default_params($terms, $keywords = '')
       {
-        return [  'index' => "*", 
+        
+        $params =  array(  'index' => "*", 
           'type' => 'literature',
           'from' => 0,
           'size' => 20, 
           'custom' => [ 'key' => config('services.scicrunch.key') ], 
           'body' => [ 
-            'query' => [ 'match' => [   '_all' => join($terms, '  ') ] ]
+            'query' => [ 
+              'bool' => [
+                'must' => [
+                  array_map( function($val) { 
+                    return array('match_phrase' => ['_all' => $val ]);
+                  }, $terms ),
+                  array_map( function($val) { 
+                    return array('match' => ['_all' => $val ]);
+                  }, $keywords )
+                ] 
+              ] 
+            ]
           ]
-         ]; 
+        ); 
+      
+        return $params; 
       }
       
-      public function search($terms, $params = array( 'size' => 5, 'from' => 0 ) ) 
+      public function search($terms, $keywords = '', $params = array( 'size' => 5, 'from' => 0 ) ) 
       {
-        $params = array_merge( $this->default_params($terms), $params );
+        $params = array_merge( $this->default_params($terms, $keywords), $params );
         return $this->client->search($params); 
       }
 

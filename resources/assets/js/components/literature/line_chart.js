@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import  D3 from 'd3';
 
+
+/* Currently this is using a randomly generated distrubtion of YEAR data 
+ * This is because SciCrunch ( which provides Literature Data ) cannot
+ * currently give YEAR buckets. Waiting for this to be resolved 
+*/
 class LineChart extends Component {  
 
   constructor(props) {
@@ -13,7 +18,8 @@ class LineChart extends Component {
     }		
 	}
   
-	componentDidMount() { 
+  
+  componentDidMount() { 
     this.setState( {  "focusStyle": { display:  'none' }} );
 		let { height,  width } = this.props; 
 		/* yuck */
@@ -68,7 +74,7 @@ class LineChart extends Component {
 
 
    return (
-      <div className="react-d3-histogram" ref={ (el) => this.el = el } >
+      <div  className="react-d3-histogram" ref={ (el) => this.el = el } >
         <svg width={ width   } height={ height }>
           <g transform={ "translate(" + left + "," + top + ")" } >
             <Path data={valueLine(data)}  />

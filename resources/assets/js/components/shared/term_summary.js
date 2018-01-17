@@ -47,7 +47,7 @@ class TermSummary extends Component {
       <div className="card horizontal">
         <div className="card-content term-summary-card"> 
           <span className="card-title activator" style={{ width: '100%' }}>Summary<i className="material-icons right">more_vert</i></span> 
-          <PreloaderCircle enabled={ preloader } style={{ left: "40%"  }} /> 
+          <PreloaderCircle enabled={ preloader } style={{ left: "40%", margin: '41px 0'  }} /> 
           <div className='flow-text'><ReactMarkdown source={this.state.content} /></div> 
         </div> 
         <div className="card-reveal grey-text text-darken-4">

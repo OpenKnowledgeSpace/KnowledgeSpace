@@ -56,9 +56,18 @@ Route::middleware('api')->get('/data_space/images/{curie}', function(Request $re
 
 Route::middleware('api')->get('/literature', function(Request $request) {
   $params = $request->input();
-  $terms = $params["terms"];
-  unset($params["terms"]);
-  return response()->json( ScicrunchClient::search($terms, $params) );  
+  
+  if ( isset($params["terms"]) ) {  
+    $terms = $params["terms"];
+    unset($params["terms"]);
+  } else { $terms = []; }
+    
+  if ( isset($params["keywords"]) ){  
+    $keywords = $params["keywords"];
+    unset($params["keywords"]);
+  } else { $keywords = []; }
+
+  return response()->json( ScicrunchClient::search($terms, $keywords,  $params) );  
 });
 
 Route::middleware('api')->get('/categories/{category}', function(Request $request, $category) {
