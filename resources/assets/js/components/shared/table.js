@@ -43,16 +43,17 @@ class Table extends Component {
       return ( <TableRow key={i} columns={ Object.keys(columns) } row={ row } handleRowClick={ handleRowClick } />  ) 
     });
 
-    let table = preloader ? 
-       <Preloader enabled={preloader} />  :
+    let preloaderHtml  = ( <Preloader enabled={preloader} wrapperStyle={{ top: '15px', width: '99%', padding: '3px', margin: 'auto' }} /> ) 
+
+    let table = 
       <table className='highlight'>
         <thead>
           <tr>
-            { headerColumns }
+            { preloader ? preloaderHtml : headerColumns }
           </tr>
         </thead>
         <tbody>
-            { rows }
+            { preloader ? preloaderHtml : rows }
         </tbody>
       </table>
     return(table) 
