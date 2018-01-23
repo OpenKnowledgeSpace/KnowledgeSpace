@@ -195,7 +195,6 @@ footer {
     box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.12); 
   }
  .term-summary-card { width: 100%; }  
-  ul { padding-left: 12px; }
   ul#dataspace-categories {
     list-style-type: none;  
     padding-left: 0;
@@ -207,6 +206,7 @@ footer {
   .lexicon-lists { margin-top: 15px; }
   .lexicon-list { 
       ul { 
+        padding-left: 12px;
         overflow-wrap: break-word;
         word-wrap: break-word;
         -ms-word-break: break-all;
