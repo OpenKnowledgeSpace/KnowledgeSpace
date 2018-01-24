@@ -36,7 +36,7 @@ class WikiPage extends Component {
             <li><a href="#atlas">Atlas</a></li> : null; 
 
     return( 
-      <div className="toc-wrapper pinned"> 
+      <div className="toc-wrapper"> 
         <ul className="section table-of-contents">
           <li><a href="#summary">Summary / Lexicon</a></li>
           <li><a href="#data-space">Data Space</a></li>
