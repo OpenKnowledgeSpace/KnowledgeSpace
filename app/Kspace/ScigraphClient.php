@@ -43,11 +43,7 @@
         // First we check the terms endpoint to see if there's something there
         // thats better than str8 keyword
         $termSearch = ScigraphClient::getTermWithKeyword($params["q"]);
-        // we got a match, just go there 
-        if ( count($termSearch) == 1 ) {
-          return [ 'redirect' => $termSearch[0]->curie ];
-        }
-
+        
         $defaults = array( "q" => 0, 'limit' => "100000", 'searchSynonyms' => "false",
           'searchAbbreviations' => "false", 'searchAcronyms' => "false"  );
         $params = array_merge( $defaults, $params );
@@ -57,11 +53,11 @@
         if ( $res->getStatusCode() < 400 ) {
           // this merges in our results from the term search and the keyword
           // search 
-          //$response = array_merge( $terms, $res->getBody() );
-          return array_merge($termSearch, json_decode( $res->getBody()));
-        } else {    
+          $results = array( "term" => $termSearch, "keyword" => json_decode( $res->getBody() ));
+          return $results;
+        } else {
           return json_decode("[]");
-        }   
+        }
       }
 
   }

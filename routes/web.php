@@ -57,7 +57,7 @@ Route::get('/data_space/{curie}', function ($curie) {
 
 Route::get('/search', function() { 
   return view('search.show', [ 'q' => Request::input('q', '0'), 'page' => Request::input('page', 1),
-                                'sort' => Request::input('sort', false)  ]);
+                                'sort' => Request::input('sort', false), 'redirect' => Request::input('redirect', true) ]);
 });
 
 Route::get('/categories', function () {

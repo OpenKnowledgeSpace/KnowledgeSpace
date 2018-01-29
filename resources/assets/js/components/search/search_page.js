@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Table from '../shared/table';
 import Pagination from '../shared/pagination';
+import DidYouMean from './did_you_mean';
 
 class SearchPage extends Component {  
 
@@ -24,10 +25,21 @@ class SearchPage extends Component {
   searchScigraph() {
     axios.get('/api/search',{ params:  this.props })
       .then( function( response ){ 
-        let data = response.data; 
-        if ( data.hasOwnProperty('redirect') ) { window.location.href = '/wiki/' + data['redirect']; }
-        let pageOfResults = data.slice(0, 0 + 20);
-        this.setState({results: data, pageOfResults: pageOfResults, preloader: false } );
+        let termResults = response.data.term,
+          keywordResults = response.data.keyword,
+          redirect = this.props.redirect;
+  
+        let pageOfResults = keywordResults.slice(0, 0 + 20);
+        // this there's only one termResult hit, let's just go there, man.
+        // This is the default. It a redirect=true param ( like in a 
+        // "Search Terms Like This" ) is passed, we display
+        // the search results instead. 
+        if ( termResults.length === 1 && redirect ) {
+          window.location.replace("/wiki/" + termResults[0].curie );
+          return; 
+        } 
+        
+        this.setState({results: keywordResults, termResults: termResults, pageOfResults: pageOfResults, preloader: false } );
     
     }.bind(this));
   }
@@ -40,7 +52,8 @@ class SearchPage extends Component {
   render() {
     
     let handleRowClick = function(event) {  window.location.href = "/wiki/" + event.currentTarget.childNodes[0].textContent }; 
- 
+    let termResults = this.state.termResults || [];
+
     return( 
     <div className="" id="search"> 
       <div className='section'> 
@@ -71,6 +84,7 @@ class SearchPage extends Component {
         <div className="col m12 s12"> 
           <div className="card">
             <div className="card-content">
+              { termResults.length > 0 && <DidYouMean terms={termResults } /> }
               <span className='chip right'>{ this.state.results.length } Records Found</span>
               <Table columns={{ curie: "Curie", labels: "Labels", categories: "Categories", definitions: "Definitions"  }} 
                 rows={ this.state.pageOfResults }  handleRowClick={ handleRowClick } preloader={ this.state.preloader } />   
@@ -91,5 +105,5 @@ export default SearchPage;
 
 if (document.getElementById('search-page')) {
   const el = document.getElementById('search-page') 
-  ReactDOM.render( <SearchPage q={ el.attributes['data-q'].value } />, el );
+  ReactDOM.render( <SearchPage q={ el.attributes['data-q'].value } redirect={ el.attributes['data-redirect'].value === 1 } />, el );
 }
