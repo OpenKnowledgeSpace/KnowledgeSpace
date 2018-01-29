@@ -14,11 +14,12 @@ class Article extends Component {
       default:
         link = 'http://www.ncbi.nlm.nih.gov/pubmed?term=' + id;  
     } 
-    
+
+    let idFix = (id) => id.replace(/^arxiv\:/, "arXiv:").replace(/^pmid\:/, "PMID:")
     
     let ids = [],
         publishers = [];
-    ids.push(<li key={1} className='valign-wrapper'>Identifier: <span className='red badge white-text'>{meta.identifier}</span></li>); 
+    ids.push(<li key={1} className='valign-wrapper'>Identifier: <span className='red badge white-text'>{idFix( meta.identifier )}</span></li>); 
     if ( meta.doi ) {
       ids.push(<li key={2} className='valign-wrapper'>DOI: <span className='blue badge white-text'>{meta.doi}</span></li>); 
     }
