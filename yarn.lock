@@ -1930,8 +1930,8 @@ dns-txt@^2.0.2:
     buffer-indexof "^1.0.0"
 
 dom-helpers@^3.2.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.2.1.tgz#3203e07fed217bd1f424b019735582fc37b2825a"
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.3.1.tgz#fc1a4e15ffdf60ddde03a480a9c0fece821dd4a6"
 
 domain-browser@^1.1.1:
   version "1.1.7"
@@ -4888,7 +4888,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@*, prop-types@15.x, prop-types@^15.5.1, prop-types@^15.5.10, prop-types@^15.5.6, prop-types@^15.6.0:
+prop-types@*, prop-types@15.x, prop-types@^15.5.1, prop-types@^15.5.10, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -5029,8 +5029,8 @@ react-cursor-position@^2.2.0:
     prop-types "^15.6.0"
 
 react-d3-tree@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/react-d3-tree/-/react-d3-tree-1.6.0.tgz#b60e364a55db978580c7dc9c265ce7c16cabb691"
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/react-d3-tree/-/react-d3-tree-1.8.0.tgz#4f261d18d2b7cfef4b5eb339235dfcb1d46ca820"
   dependencies:
     clone "^2.1.1"
     d3 "3.5.17"
@@ -5093,6 +5093,12 @@ react-transition-group@^1.1.3:
     loose-envify "^1.3.1"
     prop-types "^15.5.6"
     warning "^3.0.0"
+
+react-treeview@^0.4.7:
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/react-treeview/-/react-treeview-0.4.7.tgz#f647e04f70496eb11fb0912c35187e80eb60d458"
+  dependencies:
+    prop-types "^15.5.8"
 
 react@^15.6.1:
   version "15.6.2"

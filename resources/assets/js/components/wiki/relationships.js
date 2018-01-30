@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Tree, treeUtil } from 'react-d3-tree';
-import { json } from 'd3';
 import uuid from 'uuid';
 import PreloaderCircle from '../shared/preloader_circle';
+import TreeView from 'react-treeview';
 
 class Relationships extends Component {  
 
@@ -11,22 +10,12 @@ class Relationships extends Component {
     super(props);
     this.state = {
       data: undefined,
-      zoomable: false, 
-      scaleExtent: { min: 0.1, max: 2 },
       preloader: true
     };
-    this.handleClick = this.handleClick.bind(this); 
+    this.nodeToLeaf = this.nodeToLeaf.bind(this); 
   }
 
-  handleClick() {
-    if ( this.state.zoomable) {
-      this.setState({zoomable: false, scaleExtent: { min: 0.1, max: 1 }}); 
-    } else { 
-      this.setState({zoomable: true, scaleExtent: { min: 0.2, max: 1 }}); 
-     }
-  }
-
-  graphJSONToD3(graph) {
+  parseGraphJSON(graph) {
     const nodesByCurie = {};
    
     /* this assigns the node. good name, eh? 
@@ -36,7 +25,9 @@ class Relationships extends Component {
       if (!nodesByCurie[curie]) {
         nodesByCurie[curie] = {
           name: attributes.lbl,
-          attributes: {},
+          curie: curie, 
+          
+          attributes: attributes,
         };
       }
       return nodesByCurie[curie];
@@ -69,72 +60,47 @@ class Relationships extends Component {
 
     });
     const root = graph.edges.filter((edge) => edge.source && !edge.source.parent );
-    return [root[0].source];
+    return root[0].source;
+	}
+
+
+  componentDidMount () { 
+    let url = '/api/graph/' + this.props.curie;
+    axios.get(url).then( function(response) { this.setState({data: this.parseGraphJSON( response.data ), preloader: false}) }.bind(this) )
+      .catch( function(error) {  this.setState( { preloader: false }) }.bind(this) );
   }
 
-  componentWillMount() {
-    new Promise((resolve, reject) => {
-      json("/api/graph/" + this.props.curie, (data) => { resolve( this.graphJSONToD3(data) ) ; })
-    }) 
-    .then((data) => {
-     this.setState( { data: data, preloader: false } ); 
-    })
-    .catch((err) => console.error(err));
-  }
+  // This turns a SciGraph JSON node into a TreeView leaf.
+  nodeToLeaf(node) {
+    if ( typeof node == 'undefined' ) { return "" } 
+    if ( node._children ) { 
+      let label = <span className='node'><a href={ '/wiki/' + node.curie }>{node.name}</a></span>;
+      return (
+        <TreeView nodeLabel={label} key={node.id} defaultCollapsed={false}>
+          { node._children.map( (child) => this.nodeToLeaf(child) ) } 
+        </TreeView>
+      ) 
+    } else { 
+      let div = <div className="info" key={node.id}><span className="" style={{ paddingRight: "5px"}}>●</span><a href={ '/wiki/' + node.curie }>{node.name}</a></div> 
+      return ( div )
+    }
+  } 
 
   render() {
-    let styles = { 
-      links: {
-        fill: 'none',
-        stroke: '#ccc',
-        strokeWidth: '1.5px'
-      },
-      nodes: {
-        leafNode: {
-          circle: { 
-            cursor: 'pointer',
-            fill: '#fff',
-            stroke: 'steelblue',
-            strokeWidth: '1.5px'
-          }
-        },
-        node: { 
-          name: {
-            fontSize: '18px', 
-            fontFamily: "'Helvetica Neue', Helvetica",
-          }, 
-          circle: { 
-            cursor: 'pointer',
-            fill: '#fff',
-            stroke: 'steelblue',
-            strokeWidth: '1.5px'
-          } 
-        },
-      }
-    };
-    
-    let zoomer = this.state.zoomable == true ? (<span className="blue badge white-text" >Pan & Zoom Enabled</span>)
-                                             : ( <span className="red badge white-text" onClick={ this.handleClick } >Enable Pan & Zoom</span> );
     let preloader = this.state.preloader; 
-
+    let tree = this.nodeToLeaf(this.state.data);
+     
     return (
     <div className="col m8 s12 scrollspy" id="relationships"> 
       <div className="card grey lighten-4"> 
           <div id="relationships" className='card-content'>
-            <span className='card-title'>Relationships {zoomer}</span>
-            <PreloaderCircle enabled={ preloader } style={{ left: "45%", top: "200px" }} /> 
-            <div id="treeWrapper" style={{ height: '585px'}} >
-              { this.state.data && <Tree data={this.state.data } zoomable={ this.state.zoomable } 
-                scaleExtent={ this.state.scaleExtent } 
-                textLayout={{ textAnchor: 'start', y: -20, x: -20 }} 
-                translate={ { x: 75, y: 292 } }  depthFactor={ 0 }  styles={ styles }  />}
-            </div>
-          </div>
+            <span className='card-title'>Relationships</span>
+            <PreloaderCircle enabled={ preloader } style={{ left: "45%" }} /> 
+            { tree } 
+					</div>
       </div>
-    </div>
-    );
+    </div>);
   }
-
 
 }
 
