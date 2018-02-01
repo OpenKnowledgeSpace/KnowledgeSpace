@@ -32,12 +32,11 @@ class SearchPage extends Component {
         // We want to push all results with a curie prefix of SCR to the
         // bottom of the pile.. 
         keywordResults = keywordResults
-          .filter( (res) => !res.deprecated ) 
+          .filter( (res) => !res.deprecated && typeof res.curie != 'undefined'    ) 
           .map( function(res) {
             res.weight = /^SCR\:/.test(res.curie) ? -1 : 0;
             return res
          }).sort( (a,b) => b.weight - a.weight )  
-  
         let pageOfResults = keywordResults.slice(0, 0 + 20);
         // this there's only one termResult hit, let's just go there, man.
         // This is the default. It a redirect=true param ( like in a 
