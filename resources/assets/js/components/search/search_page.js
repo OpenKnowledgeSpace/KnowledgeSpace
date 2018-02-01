@@ -25,9 +25,16 @@ class SearchPage extends Component {
   searchScigraph() {
     axios.get('/api/search',{ params:  this.props })
       .then( function( response ){ 
-        let termResults = response.data.term,
-          keywordResults = response.data.keyword,
+        let termResults = response.data.term || [],
+          keywordResults = response.data.keyword || [],
           redirect = this.props.redirect;
+        
+        // We want to push all results with a curie prefix of SCR to the
+        // bottom of the pile.. 
+        keywordResults = keywordResults.map( function(res) {
+          res.weight = /^SCR\:/.test(res.curie) ? -1 : 0;
+           return res
+         }).sort( (a,b) => b.weight - a.weight )  
   
         let pageOfResults = keywordResults.slice(0, 0 + 20);
         // this there's only one termResult hit, let's just go there, man.
@@ -55,12 +62,9 @@ class SearchPage extends Component {
     let termResults = this.state.termResults || [];
 
     return( 
-    <div className="" id="search"> 
-      <div className='section'> 
-        <div className="row"> 
-          <div className="row"> 
-            <h2 className='col s12 page-title valign-wrapper'>Search Results for: { this.props.q }</h2> 
-          </div> 
+    
+      <div className="" id="search"> 
+        <div className='section'> 
           <div className="row"> 
             <div className='col m12 s12'> 
               <div className="card horizontal blue-grey darken-1" id="summary">
@@ -78,23 +82,22 @@ class SearchPage extends Component {
               </div>
             </div>
           </div>
-	      </div> 
-	    </div>	
-      <div className='row'>
-        <div className="col m12 s12"> 
-          <div className="card">
-            <div className="card-content">
-              { termResults.length > 0 && <DidYouMean terms={termResults } /> }
-              <span className='chip right'>{ this.state.results.length } Records Found</span>
-              <Table columns={{ curie: "Curie", labels: "Labels", categories: "Categories", definitions: "Definitions"  }} 
-                rows={ this.state.pageOfResults }  handleRowClick={ handleRowClick } preloader={ this.state.preloader } />   
-              <div className='card-action center'> 
-              <Pagination items={ this.state.results.length } onChangePage={this.onChangePage}  / > 
-              </div> 
+          <div className='row'>
+            <div className="col m12 s12"> 
+              <div className="card">
+                <div className="card-content">
+                  { termResults.length > 0 && <DidYouMean terms={termResults } /> }
+                  <span className='chip right'>{ this.state.results.length } Records Found</span>
+                  <Table columns={{ curie: "Curie", labels: "Labels", categories: "Categories", definitions: "Definitions"  }} 
+                    rows={ this.state.pageOfResults }  handleRowClick={ handleRowClick } preloader={ this.state.preloader } />   
+                  <div className='card-action center'> 
+                  <Pagination items={ this.state.results.length } onChangePage={this.onChangePage}  / > 
+                </div> 
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> 
     </div> 
     );
   }
