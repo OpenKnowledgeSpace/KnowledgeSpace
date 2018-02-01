@@ -18,8 +18,11 @@
           $path =  "/OpenKnowledgeSpace/ksdesc/master/".str_replace(":","/", $term).".md";  
           $res = $this->client->request("GET", $path );
           if ( $res->getStatusCode() < 400 ) {
-            return  $res->getBody(); 
-          } else { return "### No Description Found"; }     
+            $desc = $res->getBody(); 
+            $json = array( "description" => "$desc", 'source' => "Github", 
+              'url' =>  config('services.github.host').$path);
+            return  $json; 
+          } else { return false; }     
       }
       
 

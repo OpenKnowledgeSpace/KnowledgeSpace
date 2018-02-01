@@ -23,7 +23,12 @@ Route::middleware('api')->get('/terms/{id}', function($id) {
 });
 
 Route::middleware('api')->get('/terms/{id}/description', function($id) {
-  return response( GithubClient::getDescription($id) );  
+  $response = GithubClient::getDescription($id);
+  if ( !$response ) {
+    return response()->json(ScigraphClient::getDescriptionWithCurie($id));
+  } else { 
+    return response()->json($response);  
+  } 
 });
 
 Route::middleware('api')->get('/graph/{id}', function($id) {

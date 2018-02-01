@@ -21,6 +21,20 @@
           try { return json_decode( $res->getBody() ); } catch (Exception $e) { return json_decode([]); } 
       }
       
+      public function getDescriptionWithCurie($curie)
+      {
+          // Weird bug with PHP URI library not liking colons. 
+          // https://github.com/guzzle/guzzle/issues/1550
+         $path =  "/scigraph/vocabulary/id/".$curie."?"; 
+         $res = $this->client->request("GET", $path);
+          try { 
+            $term = json_decode($res->getBody());
+            $json = array("description" => $term->definitions[0], 'source' => "SciGraph", 
+              'url' =>  config('services.scigraph.host').$path);
+            return $json; 
+          } catch (Exception $e) { return json_decode([]); } 
+      }
+      
       public function getTermWithKeyword($term)
       {
           // Weird bug with PHP URI library not liking colons. 

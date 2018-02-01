@@ -198,12 +198,23 @@ footer {
   .card-title {
     box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.12); 
   }
- .term-summary-card { width: 100%; }  
-  ul#dataspace-categories {
+  
+  .term-summary-card {
+    width: 100%;
+    .description-text h1 {
+      display: none;
+    }
+
+  }  
+  
+ ul#dataspace-categories {
     list-style-type: none;  
     padding-left: 0;
     .dataspace-category { width: 100%; font-weight: bold; font-size: 16px; } 
   }
+
+
+
 }
 
 #lexicon { 

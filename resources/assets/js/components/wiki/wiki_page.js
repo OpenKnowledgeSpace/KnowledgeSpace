@@ -18,7 +18,7 @@ class WikiPage extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { term: { labels: [], synonyms: [] }, preloader: true }; 
+    this.state = { term: { labels: [], synonyms: [], definitions: [] }, preloader: true }; 
   }
 
   componentDidMount() { 
@@ -67,7 +67,7 @@ class WikiPage extends Component {
 
   render() { 
     let curie = this.props.curie; 
-    let term = this.state.term;
+    let term = this.state.term; 
     let subNavBar = this.subNavBar();
 		let atlas = this.getAtlas();
  
