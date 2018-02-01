@@ -29,7 +29,12 @@
          $res = $this->client->request("GET", $path);
           try { 
             $term = json_decode($res->getBody());
-            $json = array("description" => $term->definitions[0], 'source' => "SciGraph", 
+            $definition = "#### No Descriptions Found.";
+            if ( !empty($term->definitions) ) { 
+              $definition = $term->definitions[0]; 
+            } 
+            
+            $json = array("description" => $definition, 'source' => "SciGraph", 
               'url' =>  config('services.scigraph.host').$path);
             return $json; 
           } catch (Exception $e) { return json_decode([]); } 
