@@ -31,9 +31,11 @@ class SearchPage extends Component {
         
         // We want to push all results with a curie prefix of SCR to the
         // bottom of the pile.. 
-        keywordResults = keywordResults.map( function(res) {
-          res.weight = /^SCR\:/.test(res.curie) ? -1 : 0;
-           return res
+        keywordResults = keywordResults
+          .filter( (res) => !res.deprecated ) 
+          .map( function(res) {
+            res.weight = /^SCR\:/.test(res.curie) ? -1 : 0;
+            return res
          }).sort( (a,b) => b.weight - a.weight )  
   
         let pageOfResults = keywordResults.slice(0, 0 + 20);
