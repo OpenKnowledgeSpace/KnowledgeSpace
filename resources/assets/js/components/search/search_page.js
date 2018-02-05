@@ -61,7 +61,6 @@ class SearchPage extends Component {
     
     let handleRowClick = function(event) {  window.location.href = "/wiki/" + event.currentTarget.childNodes[0].textContent }; 
     let termResults = this.state.termResults || [];
-
     return( 
     
       <div className="" id="search"> 
@@ -79,6 +78,11 @@ class SearchPage extends Component {
                       </div>
                     </div> 
                   </form>
+                  { this.props.q.length < 1 && 
+                    <div className='col m12'> 
+                      <h6 className="col white-text m12">No Search Terms Entered</h6>
+                     </div> 
+                  }
                 </div> 
               </div>
             </div>

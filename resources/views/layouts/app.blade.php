@@ -31,6 +31,9 @@
                     <li><a href="{{ route('categories') }}">Categories</a></li> 
                    <!-- <li><a href="{{ route('atlas') }}">Atlas</a></li> --> 
                     <li><a href="{{ Request::path() == "/" ? "#Documentation" : "/#Documentation" }}">Documentation</a></li> 
+                   	<li>
+												<a href="/search?q="><i class="material-icons blue-text" style="float: right">search</i></a>
+        						</li>  
                 </ul>
             </div>
         </nav>

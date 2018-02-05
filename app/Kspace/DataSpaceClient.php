@@ -27,7 +27,7 @@ namespace App\Kspace;
           'from' => 0,
           'size' => 20, 
           'body' => [ 
-            'query' => [ 'match' => [   '_all' => join($terms, '  ') ] ],
+            'query' => [ 'match' => [   '_all' => [ 'query' => join($terms, '  '), 'operator' => 'and'  ] ] ],
             'aggs' => [ 'source_count' => [ 'terms' => [ 'field' => '_index', 'size' => 10 ] ] ] 
           ]
          ]; 

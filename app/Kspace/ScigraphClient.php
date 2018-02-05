@@ -63,7 +63,7 @@
         // thats better than str8 keyword
         $termSearch = ScigraphClient::getTermWithKeyword($params["q"]);
         
-        $defaults = array( "q" => 0, 'limit' => "100000", 'searchSynonyms' => "false",
+        $defaults = array( "q" => "", 'limit' => "100000", 'searchSynonyms' => "false",
           'searchAbbreviations' => "false", 'searchAcronyms' => "false"  );
         $params = array_merge( $defaults, $params );
         $terms = $params["q"];

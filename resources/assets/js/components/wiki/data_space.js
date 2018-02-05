@@ -21,7 +21,7 @@ class DataSpace extends Component {
 	componentDidMount() { 
     axios.get('/api/data_space')
       .then( function(response) { 
-        this.setState({  categories: response.data, preloader: false }, this.getResultsFromDataSpace);
+        this.setState({  categories: response.data, preloader: false });
       }.bind(this) )
       .catch( function(error) {  this.setState( { notFound: true }) }.bind(this) );
   }
@@ -33,7 +33,7 @@ class DataSpace extends Component {
     let classes = this.props.classes;
 
     let list = preloader  ? null : 
-      (  <ul id='dataspace-categories' className='collapsible' data-collapsible="expandable" >
+      (  <ul id='dataspace-categories' className='collapsible' data-collapsible="expandable">
             { Object.keys(categories).map( function(cat, i) { 
               return <DataSpaceCategory key={i} terms={ terms } category={cat} sources={ categories[cat] } /> 
             })}
