@@ -6,12 +6,20 @@ import List from "../shared/list";
 class Lexicon extends Component {  
 
   getList( key, term,  i) {
-    if ( term[key].length < 1 ) { return null; } 
+    let list = term[key],
+      el = null;
+    if ( list.length < 1 ) { return null; } 
+    if ( key == 'iri' ) {
+      el = <a href={list}>{list}</a> 
+    } else { 
+      el =<List items={ list } name={key} /> 
+    }
+    
     return ( 
       <div className='lexicon-list' key={i}>
             <h6 className="">{ key.toUpperCase() }</h6>
             <div className="lexicon-list">
-              <List items={ term[key] } name={key} /> 
+              {el} 
             </div> 
        </div>
      );
