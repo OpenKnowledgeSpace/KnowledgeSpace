@@ -79,12 +79,15 @@ class WikiPage extends Component {
           </div>
           <div className="col s12 m9 l10"> 
             <div className="row"> 
-                <h2 className='col s12 term-title page-title'>
+                <div className='col s12 term-title page-title'>
                   <Preloader enabled={ this.state.preloader } wrapperStyle={{ padding: '3px' }} /> 
-                  { term.labels ? term.labels[0] : null }
-                  { term.labels[0] && <a className='right search-this-term' href={ '/search?redirect=false&q=' + term.labels[0] } >Search this term</a> }
-                </h2> 
+                  { term.labels ? <span className='flow-text'>{term.labels[0]}</span> : null }
+                  { term.labels[0] && <a className='right search-this-term hide-on-small-only' href={ '/search?redirect=false&q=' + term.labels[0] } >Search for this term</a> }
+                </div> 
             </div>
+            <div className="row"> 
+              { term.labels[0] && <a className='center hide-on-med-and-up show-on-small' href={ '/search?redirect=false&q=' + term.labels[0] } >Search for this term</a> }
+            </div> 
             <div className="row" id='summary-box'> 
               <TermSummary curie={ curie } /> 
               <Lexicon term={ term } preloader={this.state.preloader} />

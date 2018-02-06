@@ -6,6 +6,11 @@ nav {
  
 }
 
+input[type='text']:not(.browser-default) { 
+  border-bottom: 1px solid $input-border;
+ }
+
+
 #not-found { 
   margin-top: 100px; 
     .search-wrapper.focused { margin: 0 }
@@ -169,7 +174,12 @@ footer {
 }
 
 .homepage-container { i { display: block; font-size: inherit; } } 
-.table-of-contents {  text-align: right; }
+.table-of-contents { 
+  font-size: 12px; 
+  a.active,a:hover { padding-left: 4px; padding-right: 6px }
+  a { padding-left: 2px; padding-right: 6px; letter-spacing: 0px; }
+
+}
 
 .page-container { 
   min-height: 1000px;
@@ -182,12 +192,14 @@ footer {
 
 .page-title {
   border-bottom: 2px solid; 
-  padding-bottom: 7px;  
+  margin-bottom: 15px;
+  margin-top: 30px;
   position: relative; 
+  span { font-weight: bold; } 
   .search-this-term {
     font-size: 14px;
     position: absolute;
-    bottom: -10px;
+    bottom: 0px;
     right: 0;
   }
 }
@@ -220,18 +232,18 @@ footer {
 #lexicon { 
   .lexicon-lists { margin-top: 15px; }
   .lexicon-list { 
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      -ms-word-break: break-all;
+       word-break: break-all;
+      word-break: break-word;
+      /* Adds a hyphen where the word breaks, if supported (No Blink) */
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
       ul { 
         padding-left: 12px;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        -ms-word-break: break-all;
-         word-break: break-all;
-        word-break: break-word;
-        /* Adds a hyphen where the word breaks, if supported (No Blink) */
-        -ms-hyphens: auto;
-        -moz-hyphens: auto;
-        -webkit-hyphens: auto;
-        hyphens: auto;
         margin: 0 0 30px 10px;
         li { list-style-type: disc; }
       } 

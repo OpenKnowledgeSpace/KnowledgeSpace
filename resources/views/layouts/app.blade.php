@@ -21,18 +21,18 @@
             <div class="nav-wrapper container">
                 <!-- Branding Image -->
                 <a id='logo-container' class="brand-logo" href="{{ url('/') }}">
-                  <img src="/imgs/logo.png" alt='KnowledgeSpace Logo'>
+                  <img src="/imgs/logo.png" alt='KnowledgeSpace Logo' class='hide-on-small-only'>
                   {{ config('app.name', 'KnowledgeSpace') }}
                 </a>
                 <!-- Right Side Of Navbar -->
-                <ul class="right">
+                <ul class="right hide-on-med-and-down">
                     <li><a href="{{ Request::path() == "/" ? "#AboutUs" : "/#AboutUs" }}">About</a></li> 
                     <li><a href="{{ Request::path() == "/" ? "#DataSources" : "/#DataSources" }}">Data Sources</a></li> 
                     <li><a href="{{ route('categories') }}">Categories</a></li> 
                    <!-- <li><a href="{{ route('atlas') }}">Atlas</a></li> --> 
                     <li><a href="{{ Request::path() == "/" ? "#Documentation" : "/#Documentation" }}">Documentation</a></li> 
                    	<li>
-												<a href="/search?q="><i class="material-icons blue-text" style="float: right">search</i></a>
+												<a href="/search?q="><i class="material-icons blue-text right">search</i></a>
         						</li>  
                 </ul>
             </div>

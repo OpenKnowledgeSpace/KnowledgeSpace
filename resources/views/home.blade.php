@@ -2,20 +2,41 @@
 
 @section('content')
 <div class="container-fluid" id="home-container" >
-    
-	<div class="parallax-container" id="welcome-banner">
+  
+  <div class="container">
+    <div class='row show-on-small hide-on-med-and-up'>
+      <div class="col s12">
+        <ul>  
+          <li><a href="{{ Request::path() == "/" ? "#AboutUs" : "/#AboutUs" }}">About</a></li> 
+          <li><a href="{{ Request::path() == "/" ? "#DataSources" : "/#DataSources" }}">Data Sources</a></li> 
+          <li><a href="{{ route('categories') }}">Categories</a></li> 
+          <li><a href="{{ Request::path() == "/" ? "#Documentation" : "/#Documentation" }}">Documentation</a></li> 
+        </ul>
+      </div>
+    </div> 
+    <div class='row show-on-small hide-on-med-and-up'>
+      <div class='input-field col s10'>
+        <form action='/search' method='GET' >
+              <i class='material-icons prefix'>search</i> 
+              <input  id='small-search' name='q' type='text' >
+              <label for='small-search'>SEARCH</label> 
+        </form>
+      </div>
+    </div>  
+  </div> 
+  <div class="parallax-container hide-on-small-only" id="welcome-banner">
 		<div class="section no-pad-bot">
       <div class='container'>
-        <br><br>  
-			  <div class="row center">
+			  <div class="row center hide-on-med-and-down">
+          <br><br>  
 				  <h1 class='header center white-text'>KnowledgeSpace</h1>
 			  </div>
-        <div class='row center'>
+        <div class='row center hide-on-med-and-down'>
           <h3 class='header col s12 white-text light'>A community encyclopedia linking brain research concepts to data, models, and literature.</h3>
         </div>
-        
+
         <div class='row center'>
-				  <div class='col l6 s6 offset-s3 offset-l3 center light'>
+				  <div class='col l6 s12 offset-l3 center light'>
 					  <form action='/search' method='GET' >
               <div class='search'>
                 <div class='search-wrapper'>  
@@ -30,7 +51,7 @@
       </div>
      
 		</div>
-    <div class="parallax"><img src='/imgs/welcome-banner.jpg' alt='home page image' ></div>
+    <div class="parallax hide-on-small-only"><img src='/imgs/welcome-banner.jpg' alt='home page image' ></div>
 
   </div> <!-- WELCOME BANNER --> 
 

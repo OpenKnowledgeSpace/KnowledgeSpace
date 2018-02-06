@@ -17,7 +17,7 @@ try {
       $('.parallax').parallax();
 			$('.scrollspy').scrollSpy({ scrollOffset: 400 });   
       $('.collapsible').collapsible();
-      $('.toc-wrapper').pushpin({ offset: 220 });
+      $('.toc-wrapper').pushpin({ offset: 220, bottom: $('main').outerHeight()  });
       
 
       $('input#main-page-search').focus(function() { $(this).parent().addClass('focused'); });
