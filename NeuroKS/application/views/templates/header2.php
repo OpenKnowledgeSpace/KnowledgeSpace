@@ -512,10 +512,10 @@ $(function () {
                       <li><a href="#" data-toggle="modal" data-target="#demoModal">Configurations</a></li>
                       </ul>
                     </li> -->
-		   
-	            <li>
+		    
+	            <!-- <li>
                         <a href="/Atlas">Atlas</a>
-		    </li>
+		    </li> -->
 	            <li>
 			<!-- <a href="/documentation.php">Documentation</a> -->
                         <a href="/Documentation">Documentation</a>
