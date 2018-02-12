@@ -49,7 +49,7 @@
         }    
         
         
-           // $content = getDescriptionByCurie("NIFCELL:sao2128417084");
+           // $content = getDescriptionByCurie("SAO:2128417084");
            // echo $content;
         ?>
     <!-- <br/>

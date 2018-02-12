@@ -175,7 +175,7 @@ class Pages extends CI_Controller
             require_once 'ServiceUtil.php';
             $util = new ServiceUtil;
             
-           //$curie = "NIFCELL:sao2128417084";
+           //$curie = "SAO:2128417084";
            $data['curie'] = $curie;
            
            $treeObj = $util->getTreeObj($curie);
