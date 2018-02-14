@@ -91,7 +91,7 @@ class Relationships extends Component {
     let tree = this.nodeToLeaf(this.state.data);
      
     return (
-    <div className="col m8 s12 scrollspy" id="relationships"> 
+    <div className="col m12 s12 scrollspy" id="relationships"> 
       <div className="card grey lighten-4"> 
           <div id="relationships" className='card-content'>
             <span className='card-title'>Relationships</span>

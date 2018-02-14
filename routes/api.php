@@ -43,6 +43,22 @@ Route::middleware('api')->get('/data_space', function() {
   return response()->json(  config('services.data_space_sources')  );
 });
 
+Route::middleware('api')->get('/data_space/images', function(Request $request) {
+  $sources = [ ]; 
+
+  foreach ( array_values(config('services.data_space_sources')) as $category  ) { 
+    foreach ( $category as $source ) {
+      if ( $source["has_images"] == true ) {   
+        array_push( $sources, $source["curie"]);
+      }
+    }
+  } 
+  $params = $request->input();
+  $terms = $params["terms"];
+  unset($params["terms"]);
+  return response()->json( DataSpaceClient::searchImages($sources, $terms, $params) );  
+});
+
 Route::middleware('api')->get('/data_space/{sources}', function(Request $request, $sources) {
   $params = $request->input();
   $terms = $params["terms"];
@@ -51,12 +67,6 @@ Route::middleware('api')->get('/data_space/{sources}', function(Request $request
   return response()->json( DataSpaceClient::search($sources, $terms, $params) );  
 });
 
-Route::middleware('api')->get('/data_space/images/{curie}', function(Request $request, $curie) {
-	$count = ( $request->input('count') ? $request->input('count') : 20 ); 
-	$offset = ( $request->input('offset') ? $request->input('offset') : 0 ); 
-	$query = [ 'q' => $curie, 'count' => $count, 'offset' => $offset ];  
-  return response()->json( DataSpaceClient::searchImages($query) );  
-});
 
 
 Route::middleware('api')->get('/literature', function(Request $request) {

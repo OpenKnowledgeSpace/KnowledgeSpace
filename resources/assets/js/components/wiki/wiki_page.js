@@ -5,7 +5,7 @@ import DataSpace from './data_space';
 import Lexicon from './lexicon';
 import Literature from '../literature/literature';
 import Relationships from './relationships';
-import ImageGallery from './image_gallery';
+import ImageGallery from '../image_gallery/image_gallery';
 
 import TermSummary from '../shared/term_summary';
 import Preloader from '../shared/preloader';
@@ -103,7 +103,9 @@ class WikiPage extends Component {
             </div>
             <div className='row' id='relationship-box'>
               <Relationships curie={ curie } /> 
-              <ImageGallery curie={ curie } />
+            </div>
+            <div className='row' id='image-gallery-box'>
+              <ImageGallery terms={term.labels} curie={ term.curie } preloader={ this.state.preloader } /> 
             </div>
           </div> 
         </div>

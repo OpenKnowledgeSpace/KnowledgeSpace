@@ -12,6 +12,7 @@ import DataSpacePage from './components/data_space/data_space_page';
 import LiteraturePage from './components/literature/literature_page';
 import SearchPage from './components/search/search_page';
 import CategoryPage from './components/category/category_page';
+import ImageGallery from './components/image_gallery/image_gallery_page';
 
 /*j
 require('./components/Anchor');

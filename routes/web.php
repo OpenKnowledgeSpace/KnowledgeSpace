@@ -48,6 +48,12 @@ Route::get('/literature', function () {
                                  ]);
 });
 
+Route::get('/image_gallery', function () { 
+  return view('image_gallery.show', [ 'terms' => Request::input('terms', []),
+                                   'page' => Request::input('page', 1 )
+                                 ]);
+});
+
 Route::get('/data_space/{curie}', function ($curie) { 
   return view('data_space.show', [ 'curie' => $curie,
                                    'page' => Request::input('page', 1 ),

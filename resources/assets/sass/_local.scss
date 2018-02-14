@@ -256,11 +256,47 @@ footer {
   }
 }
 
+#image-gallery.page {
+  display: flex; 
+}
+
 #image-gallery {
+  min-height: 500px; 
+  .card { width: 100%; } 
   h4 { border-bottom: 1px solid; } 
   .carousel {
-    min-height: 585px; 
+    .indicators .indicator-item.active { 
+      background-color: #ee6e73; 
+     }
+    .carousel-item { 
+      width: 585px;
+      height: 585px;
+     }
   }
+
+  ul#image-list li { 
+    &.inactive { 
+      width: 250px;
+      height: 250px;
+      display: flex; 
+      justify-content: center;
+      a { 
+        text-align: center; 
+        i { color: #eff0f1; }
+      }
+    }
+    
+    display: block;
+    float: left;
+    max-width: 250px;
+    max-height: 250px;
+    width: auto;
+    height: auto;
+    overflow: hidden; 
+    padding: 25px; 
+  }
+  
+
 } 
 
 /* probably old... */

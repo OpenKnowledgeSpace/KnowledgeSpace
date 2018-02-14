@@ -11,8 +11,14 @@ class Literature extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { articles: [], years: [[ 1900, 0 ], [ 2020, 0 ]],
-      numFound: 0, labels: [], page: 1, preloader: true };
+    this.state = { 
+      articles: [],
+      years: [[ 1900, 0 ], [ 2020, 0 ]],
+      numFound: 0, 
+      labels: [],
+      page: 1,
+      preloader: true
+    };
     this.getResultsFromScicrunch = this.getResultsFromScicrunch.bind(this); 
     this.onChangePage = this.onChangePage.bind(this); 
   }
@@ -29,6 +35,7 @@ class Literature extends Component {
       if ( keywords && keywords !== this.props.keywords ) {  return  }    
       this.setState({ preloader: true }); 
       terms = terms || this.props.terms;
+      console.log(this.state.page)  
       terms = terms.map( function(s) { return "terms[]=" + s } );
       let size = this.props.per_page;
       // a funny solr thing. if we're on page 1 we start a item 0  
@@ -116,8 +123,9 @@ class Literature extends Component {
 }
 
 const defaultProps = {
-    classes: 'col m12 s12',
-    per_page: 20, embedded: true
+  classes: 'col m12 s12',
+  per_page: 20,
+  embedded: true
 }
 Literature.defaultProps = defaultProps;
 export default Literature;
