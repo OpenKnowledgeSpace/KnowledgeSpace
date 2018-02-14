@@ -213,10 +213,13 @@ footer {
   
   .term-summary-card {
     width: 100%;
-    .description-text h1 {
-      display: none;
+    .description-text {
+      text-align: justify;
+      text-justify: inter-word;  
+      h1 {
+        display: none;
+      }
     }
-
   }  
   
  ul#dataspace-categories {
