@@ -35,26 +35,37 @@ class Literature extends Component {
       if ( keywords && keywords !== this.props.keywords ) {  return  }    
       this.setState({ preloader: true }); 
       terms = terms || this.props.terms;
-      console.log(this.state.page)  
       terms = terms.map( function(s) { return "terms[]=" + s } );
       let size = this.props.per_page;
       // a funny solr thing. if we're on page 1 we start a item 0  
       let from = '&from=' + ( size * ( this.state.page - 1 ) );
       let url = '/api/literature?' + terms.join("&") + "&size=" + size + from;      
-     
+
       if ( keywords ) {
         url = url + "&keywords[]=" + keywords; 
       }
-    
+      let yearsFromDates = function(arrayOfDates)  { 
+        let years = {};
+        arrayOfDates.forEach( (h, i) => { 
+          let year = h.key.slice(0,4)
+          if ( years[year] ) {
+            years[year] = years[year] + h.doc_count
+          } else { 
+            years[year] = h.doc_count 
+           }
+        });
+        return Object.keys(years).map( (year) => [ year, years[year] ] );
+       }
+
       axios.get(url).then( function(response) { 
-                                  this.setState({
-                                      articles: response.data.hits.hits,
-                                      numFound: response.data.hits.total,
-                                      queryTerms: terms,  
-                                      years: [...Array(37).keys()].map( (k ) => { return [ 1970+k, Math.floor((Math.random() * 10000) + 1) ] } ),
-                                      preloader: false
-                                  })
-                                  }.bind(this))
+        this.setState({
+            articles: response.data.hits.hits,
+            numFound: response.data.hits.total,
+            queryTerms: terms,  
+            years: yearsFromDates(response.data.aggregations.pub_year.buckets),
+            preloader: false
+        })
+        }.bind(this))
         .catch( function(error) {  this.setState( { notFound: true }) }.bind(this) );
   }
 

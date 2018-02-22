@@ -35,6 +35,11 @@
                   }, $keywords )
                 ] 
               ] 
+            ],
+            'aggs' => [ 'pub_year' => 
+              [ 'terms' =>
+                [ 'field' => "dc.publicationDate.keyword", 'size' => 10000 ]
+              ]
             ]
           ]
         ); 
