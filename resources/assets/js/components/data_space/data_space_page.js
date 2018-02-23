@@ -51,19 +51,63 @@ class DataSpacePage extends Component {
         };
       case 'neuromorpho_20171102':
         return {
-          'dataset.title': "Title",
-          'dataset.creators': 'Creators',
+          'molecularEntity.name': "Cell Class",
+          'anatomicalPart.name': 'Brain Region',
+          'taxonomicInformation.name': "Organism",
+          'taxonomicInformation.strain': "Strain",
+          'activity.name': "Activity",
           'dataset.availability': 'Availability',
         }
       case 'ks_ic_20160916':
         return {
           "pr_nlx_154697_8.database": 'Database',
+          "pr_nlx_154697_8.con_from": 'Connected From',
+          "pr_nlx_154697_8.con_to": 'Connected To',
+          "pr_nlx_154697_8.projection_strength": 'Projection Strength',
+          "pr_nlx_154697_8.species": 'Species',
           "pr_nlx_154697_8.notes": 'Notes',
+        }
+      case 'dataverse_20160229':
+        return { 
+          'dataset.title': "Title",
+          'person.name': 'Creators',
+          'dataset.description': "Description",
+         }
+      case 'dryad_20170811':
+        return { 
+          'dataset.title': "Title",
+          'dataset.keywords': 'Keywords',
+          'dataset.description': "Description",
+         }
+      case 'gemma_20171102':
+        return { 
+          'dataset.title': "Title",
+          'dataset.creators': 'Creators',
+          'dataset.description': 'Description',
+          'dataset.availability': 'Availability',
+          'dataset.dateReleased': "Release Date",
         }
       case "neurosynth_20151112":
         return {
           "Data.title": 'Title',
+          "Data.organism": "Organism", 
           "Data.reference": 'Reference',
+        }
+      case 'cil_20160627':
+        return { 
+          'dataset.title': "Title",
+          'dataset.types': "Types",
+          'dataset.dimensions': "Dimensions",
+          'dataset.description': 'Description',
+        }
+      case 'ks_neuroelectro_20160919':
+        return { 
+          'l2_nlx_151885_data_summary.n_name': "Name", 
+          'l2_nlx_151885_data_summary.e_name': "Property", 
+          'l2_nlx_151885_data_summary.e_definition': "Electrophysiology Definition", 
+          'l2_nlx_151885_data_summary.value_mean': "Mean Value", 
+          'l2_nlx_151885_data_summary.value_sd': "SD", 
+          'l2_nlx_151885_data_summary.num_articles': "# of Articles", 
         }
 
     } 

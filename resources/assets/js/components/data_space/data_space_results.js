@@ -26,6 +26,8 @@ class DataSpaceResults extends Component {
         distro = distro.find( (distro) => distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url );
       }
       let url = distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url; 
+      // hack to fix some CIL urls which have unwanted text.. 
+      url = url.replace('Cell Image Library Dataset CIL:', '') 
       if ( distro ) { window.open( unescape(url),  '_blank' ); }
     }
     
