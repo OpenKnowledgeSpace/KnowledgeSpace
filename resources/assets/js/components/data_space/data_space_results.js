@@ -41,6 +41,14 @@ class DataSpaceResults extends Component {
       let url = uri || distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url; 
       // hack to fix some CIL urls which have unwanted text.. 
       url = url.replace('Cell Image Library Dataset CIL:', '') 
+   
+      console.log(url)
+      // some urls dont have the http: ..
+      if ( !/^http/.test(url) ) { 
+        url = "http://" + url;  
+      }
+      
+      
       if ( distro ) { window.open( unescape(url),  '_blank' ); }
     }
     
