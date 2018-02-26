@@ -16,16 +16,29 @@ class DataSpaceResults extends Component {
 
     // This gets bound to the table row.
     let handleRowClick = function() {
-      let distro =  this.props.row.access  ||  
-                    this.props.row.datasetDistributions || 
-                    this.props.row.pr_nlx_154697_8  ||
-                    this.props.row.dataset  || 
-                    this.props.row.Data || null;
-    
+      let { row } = this.props;
+      let uri;
+
+      // DYRAD stores its URIs in the identifiers.ID array.
+      if ( row.identifiers && row.identifiers.ID ) {
+        uri = row.identifiers.ID.find( (id) => /^https?\:/.test(id) ) 
+      }
+      
+      // if we don't have a URI, we look in the access / dataset related
+      // keys... 
+      let distro =  row.access  ||  
+                    row.datasetDistributions || 
+                    row.pr_nlx_154697_8  ||
+                    row.dataset  || 
+                    row.Data || null;
+   
+      // sometimes there's multiples of these keys...
       if ( distro instanceof Array ) {
         distro = distro.find( (distro) => distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url );
       }
-      let url = distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url; 
+     
+      // Ok, lets find the URL!
+      let url = uri || distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url; 
       // hack to fix some CIL urls which have unwanted text.. 
       url = url.replace('Cell Image Library Dataset CIL:', '') 
       if ( distro ) { window.open( unescape(url),  '_blank' ); }
