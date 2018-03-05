@@ -63,8 +63,14 @@ Route::middleware('api')->get('/data_space/{sources}', function(Request $request
   $params = $request->input();
   $terms = $params["terms"];
   unset($params["terms"]);
+  
+  if ( isset($params["keywords"]) ){  
+    $keywords = $params["keywords"];
+    unset($params["keywords"]);
+  } else { $keywords = []; }
  
-  return response()->json( DataSpaceClient::search($sources, $terms, $params) );  
+  return response()->json( DataSpaceClient::search($sources, $terms, $keywords, $params) );  
+
 });
 
 

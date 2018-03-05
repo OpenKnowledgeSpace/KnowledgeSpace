@@ -21,19 +21,37 @@ namespace App\Kspace;
       $this->client =  ClientBuilder::create()->setHosts($host)->build(); 
     }
     
-    protected function default_params($terms)
+    protected function default_params($terms, $keywords = [])
     {
-        return [  'index' => "*", 
+				$keywords = array_filter($keywords);
+				$params = [  'index' => "*", 
           'from' => 0,
           'size' => 20, 
           'body' => [ 
-            'query' => [ 'match' => [   '_all' => [ 'query' => join($terms, '  '), 'operator' => 'and'  ] ] ],
+            'query' => [ 
+              'bool' => [
+                'must' => [
+                  array_map( function($val) { 
+                    return array('match_phrase' => ['_all' => $val ]);
+                  }, $terms ),
+                ],
+							]
+						], 
             'aggs' => [ 'source_count' => [ 'terms' => [ 'field' => '_index', 'size' => 10 ] ] ] 
           ]
-         ]; 
+         ];
+			
+				if ( !empty($keywords) ) {
+					$keyword_query = array( 'simple_query_string' => [ 
+							'query' => join( ' ', array_map( function($val) { return $val. "*"; }, $keywords  ) )
+						 ]  
+					);	
+					array_push( $params["body"]["query"]["bool"]["must"], $keyword_query) ;
+				}
+				return $params; 	
     }
     
-    protected function default_image_params($terms)
+		protected function default_image_params($terms)
     {
         return [  'index' => "*", 
           'from' => 0,
@@ -53,11 +71,12 @@ namespace App\Kspace;
           ]
          ]; 
     }
-      
-    public function search($sources, $terms, $params = array( 'size' => 5, 'from' => 0 ) ) 
+
+
+    public function search($sources, $terms, $keywords = [], $params = array( 'size' => 5, 'from' => 0 ) ) 
     {
-        $params["index"] = $sources;                 
-        $params = array_merge( $this->default_params($terms), $params );
+				$params["index"] = $sources;                 
+        $params = array_merge( $this->default_params($terms, $keywords), $params );
         return $this->client->search($params); 
     }
     

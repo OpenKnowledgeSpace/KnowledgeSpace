@@ -8,38 +8,57 @@ import Preloader from '../shared/preloader';
 import DataSpaceSourceSummary from './data_space_source_summary';
 import DataSpaceResults from './data_space_results';
 
+class DataSpaceSearch extends Component {
+  render() {
+    return (
+    <div className='search'>
+      <div className='search-wrapper input-field'>  
+        <i className='material-icons prefix'>search</i> 
+        <input ref='query' type='text' className='form-control' name='query' placeholder='Keyword Search' onChange={ this.props.submitQuery } /> 
+      </div> 
+    </div>
+    ) 
+  }
+}
+
 class DataSpacePage extends Component {  
   
   constructor(props) {
     super(props);
-    this.state = { results: [], numFound: 0, preloader: true };
+    this.state = { results: [], numFound: 0, preloader: true, keywords: "" };
     this.getResultsFromDataSpace = this.getResultsFromDataSpace.bind(this); 
     this.onChangePage = this.onChangePage.bind(this); 
+    this.keywordQuery = this.keywordQuery.bind(this); 
   }
   
   // this uses a list of terms to get results from this data space.
   getResultsFromDataSpace(curie, terms) {
+    this.setState({ preloader: true });  
     curie = curie || this.props.curie;   
     terms = terms || this.props.terms;
     terms = terms.map( function(s) { return "terms[]=" + s } );
+     
     let size = this.props.per_page,
+      keywords = "&keywords[]=" + this.state.keywords, 
       page = this.props.page || 1,
       from = '&from=' + ( size * ( page - 1 ) ),
-      url = '/api/data_space/' + curie + '?' + terms.join("&") + "&size=" + size + from;     
+      url = '/api/data_space/' + curie + '?' + terms.join("&") + "&size=" + size + from + keywords ;     
     axios.get(url).then( function(response) { 
                                   this.setState({
+                                      page: page, 
                                       results: response.data.hits.hits.map((el) => el._source ),
                                       numFound: response.data.hits.total,
                                       preloader: false })
                                   }.bind(this))
         .catch( function(error) {  this.setState( { notFound: true }) }.bind(this) );
-  }
+   }
  
   onChangePage(page) {
     if ( this.state.page == page ) { return null } 
     this.setState({ page: page, preloader: true, results: [] },  this.getResultsFromDataSpace );
   }
 
+  // This is total garbage. Need to refactor this out..
   getColumns() {
     switch(this.props.curie) {
       default: 
@@ -128,6 +147,12 @@ class DataSpacePage extends Component {
     this.getResultsFromDataSpace(); 
 	}
 	
+  keywordQuery(event, timeout) {
+		let keywords = event.target.value 
+		if ( keywords !== this.state.keywords ) { 
+      this.setState({keywords}, this.getResultsFromDataSpace ) 
+    }
+  }
 
   render() {
     let curie = this.props.curie, 
@@ -145,8 +170,19 @@ class DataSpacePage extends Component {
             </h2>
         </div>
         <DataSpaceSourceSummary curie={curie} />
-        <div className="row">
-          <div className='col m12 s12'><span>Search Term:</span> { termChips }</div>
+        <div className="row"> 
+          <div className='col m12 s12'> 
+            <div className="card horizontal blue-grey darken-1" id="query">
+              <div className="card-content white-text col s12"> 
+                <div className="input-field"> 
+                  <span>Search Term:</span> { termChips }
+                </div> 
+                <div id='home-search'>	
+                  <DataSpaceSearch submitQuery={ this.keywordQuery } /> 
+                </div> 
+              </div> 
+            </div>
+          </div>
         </div>
         <DataSpaceResults results={ results } numFound={ numFound } columns={ columns } onChangePage={ onChangePage } preloader={ preloader } />
       </div>

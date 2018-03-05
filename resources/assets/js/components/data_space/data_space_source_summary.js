@@ -33,11 +33,13 @@ class DataSpaceSourceSummary extends Component {
     return( 
       <div className="row"> 
           <div className='col m12 s12'> 
-            <div className="card horizontal blue-grey darken-1" id="summary">
+            <div className="card horizontal red lighten-2" id="summary">
               <Preloader enabled={ preloader } wrapperStyle={{ padding: '6px', margin: 'auto', top: '5px', left: '15px'}}  />
               <div className="card-content white-text"> 
                 <span className="card-title activator white-text">
-                    <a href={ url  } target="_blank">{ source_name }</a>
+                  <div className='col label-only'>
+                    <a style={{ color: 'white', fontWeight: 'bold',textDecoration: 'underline' }} href={ url  } target="_blank">{ source_name }</a>
+                  </div> 
                 </span> 
                 <div className='form-group flow-text'>
                   <div className="col label-only" dangerouslySetInnerHTML={ { __html: description } }></div>
