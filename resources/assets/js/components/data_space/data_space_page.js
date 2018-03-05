@@ -82,10 +82,8 @@ class DataSpacePage extends Component {
       case 'gemma_20171102':
         return { 
           'dataset.title': "Title",
-          'dataset.creators': 'Creators',
           'dataset.description': 'Description',
           'dataset.availability': 'Availability',
-          'dataset.dateReleased': "Release Date",
         }
       case "neurosynth_20151112":
         return {
