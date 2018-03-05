@@ -36,13 +36,18 @@ class DataSpaceResults extends Component {
       if ( distro instanceof Array ) {
         distro = distro.find( (distro) => distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url );
       }
-     
+
+      // Neuroelectro wants some special stuff here...
+      if ( distro == null && ( 'l2_nlx_151885_data_summary' in row ) ) { 
+        distro = true 
+        uri = "https://neuroelectro.org/neuron/" + row.l2_nlx_151885_data_summary.n_id     
+      }
+      
       // Ok, lets find the URL!
       let url = uri || distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url; 
       // hack to fix some CIL urls which have unwanted text.. 
       url = url.replace('Cell Image Library Dataset CIL:', '') 
    
-      console.log(url)
       // some urls dont have the http: ..
       if ( !/^http/.test(url) ) { 
         url = "http://" + url;  
