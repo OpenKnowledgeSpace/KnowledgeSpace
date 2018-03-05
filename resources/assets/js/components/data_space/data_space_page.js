@@ -113,7 +113,14 @@ class DataSpacePage extends Component {
           'specimen.specimen-tags.specimen-tag.name': 'Specimen', 
           'specimen.structure.name': "Structure" 
          }
-
+      case 'nitrc_ir_20171102':
+        return { 
+          'dataset.ID': 'ID', 
+          'dataset.title': "Dataset Title",
+          'dataset.types': "Types",
+          'dataset.privacy': "Privacy",
+          'dataset.availability': 'Availability'
+        }
     } 
   }
 
