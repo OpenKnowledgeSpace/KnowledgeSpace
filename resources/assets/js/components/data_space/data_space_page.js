@@ -95,10 +95,9 @@ class DataSpacePage extends Component {
         }
       case 'cil_20160627':
         return { 
-          'dataset.title': "Title",
+          'dataset.description': 'Description',
           'dataset.types': "Types",
           'dataset.dimensions': "Dimensions",
-          'dataset.description': 'Description',
         }
       case 'ks_neuroelectro_20160919':
         return { 
