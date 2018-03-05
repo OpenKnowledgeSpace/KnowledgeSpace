@@ -109,6 +109,13 @@ class DataSpacePage extends Component {
           'l2_nlx_151885_data_summary.value_sd': "SD", 
           'l2_nlx_151885_data_summary.num_articles': "# of Articles", 
         }
+      case 'ks_act_20160916':
+        return { 
+          'specimen.name': "Name",
+          'specimen.donor.sex-full-name': 'Sex',
+          'specimen.specimen-tags.specimen-tag.name': 'Specimen', 
+          'specimen.structure.name': "Structure" 
+         }
 
     } 
   }

@@ -120,6 +120,14 @@
             "has_images": false,
             "source_name": "NeuroElectro",
             "url": "http://www.neuroelectro.org/"
+        },
+        {
+            "curie": "ks_act_20160916",
+            "source_name": "Allen Cell Types Database",
+            "enabled": true,
+            "has_images": false,
+            "description": "Contains a multimodal characterization of single brain cells by electrophysiology and morphology, as well as single-cell transcriptional data from nuclei or whole cells.",
+            "url": "http://help.brain-map.org/display/celltypes/Allen+Cell+Types+Database"
         }
     ]
 }

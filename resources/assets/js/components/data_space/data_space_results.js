@@ -41,7 +41,12 @@ class DataSpaceResults extends Component {
       if ( distro == null && ( 'l2_nlx_151885_data_summary' in row ) ) { 
         distro = true 
         uri = "https://neuroelectro.org/neuron/" + row.l2_nlx_151885_data_summary.n_id     
-      }
+      // Allen wants some special stuff... 
+      } else if ( distro == null && ( 'specimen' in row ) ) {
+        distro = true 
+        uri = "http://celltypes.brain-map.org/experiment/electrophysiology/" + row.specimen.id     
+      } 
+      
       
       // Ok, lets find the URL!
       let url = uri || distro.accessURL || distro.downloadURL || distro.landingPage || distro.ref_link || distro.study_url; 
