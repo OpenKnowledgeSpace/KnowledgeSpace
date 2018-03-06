@@ -9,6 +9,7 @@ class TermSummary extends Component {
   constructor(props) {
     super(props);
     this.state = { preloader: true, content:  '', source_link: '' }; 
+    this.getDescription = this.getDescription.bind(this); 
   }
  
   getMarkdown(curie) {
@@ -36,19 +37,30 @@ class TermSummary extends Component {
   componentDidMount() {
     this.getMarkdown();  
   }
-  
+
+  getDescription() {
+    let { content } = this.state; 
+    if ( /<[a-z][\s\S]*>/i.test(content) ) { 
+      return ( <div dangerouslySetInnerHTML={{ __html: content}} / > )
+    } else {
+      return ( <ReactMarkdown source={content} / > )
+    } 
+  }
+
 
   render() {
     let classes = this.props.classes; 
     let preloader =  this.state.preloader,
-       prov = this.state.source_link;
+       prov = this.state.source_link,
+      description = this.getDescription(); 
+    
     return (
     <div className={classes} id='summary'> 
       <div className="card horizontal">
         <div className="card-content term-summary-card"> 
           <span className="card-title activator" style={{ width: '100%' }}>Summary<i className="material-icons right">more_vert</i></span> 
           <PreloaderCircle enabled={ preloader } style={{ left: "40%", margin: '41px 0'  }} /> 
-          <div className='flow-text description-text'><ReactMarkdown source={this.state.content} /></div> 
+          <div className='flow-text description-text'> { description } </div> 
         </div> 
         <div className="card-reveal grey-text text-darken-4">
           <span className='card-title'>Summary<i className='material-icons right'>close</i></span>
