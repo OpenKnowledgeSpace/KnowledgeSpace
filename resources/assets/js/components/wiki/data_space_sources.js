@@ -5,21 +5,17 @@ import ReactDOM from 'react-dom';
 class DataSpaceSource extends Component { 
  
   render() { 
-    let count = this.props.count, 
-      source = this.props.source,
-      terms = this.props.terms,
-      url = "/data_space/" + source.curie + "?" + terms;
+    let { count, source, terms, curie } = this.props, 
+      url = "/data_space/" + source.curie + "?termCurie=" + curie + "&" + terms;
 
     return ( 
       <li  className='collection-item'>
         <span className='title'>
-          <h6><a href={ url }>{source.source_name}</a>
-          <span className='new badge red' data-badge-caption="Records Found">{ count }</span></h6>	
+          <h5><a href={ url }>{source.source_name}</a><span className='new badge red' data-badge-caption="Records Found">{ count }</span></h5>	
         </span>
-        <p className='flow-text description' dangerouslySetInnerHTML={ { __html:  source.description } } />
+        <p className='description' dangerouslySetInnerHTML={ { __html:  source.description } } />
       </li>)
   }
-
 }
 
 DataSpaceSource.defaultProps = { count: 0  };
@@ -29,19 +25,15 @@ DataSpaceSource.defaultProps = { count: 0  };
 class DataSpaceSources extends Component {  
 
   render() {
-    let category = this.props.category,
-      source_count = this.props.source_count,
-      terms = this.props.terms;
-
-    var dsList =  this.props.sources.map( function( source, i) { 
-      return  <DataSpaceSource  key={i} source={ source } count={ source_count[source.curie]  } terms={ terms } />  
-    });
-
+    let { category, source_count, terms, sources, curie } = this.props;
     return (
         <ul id={ category } className="collection with-header">
-						<li className='collection-header'><h5>{ category.charAt(0).toUpperCase() + category.slice(1) } Data Space</h5></li>
-						{ dsList }
-  			</ul> 
+          {
+            sources.map( function( source, i) {
+              return  <DataSpaceSource  key={i} curie={ curie } source={ source } count={ source_count[source.curie]  } terms={ terms } />
+            })
+          }
+  			</ul>
     )}
 
 }

@@ -39,7 +39,9 @@ Route::get('/atlas', function () {
 
 
 Route::get('/wiki/{id}', function ($id) { 
-  return view('wiki.show', [ 'curie' => $id ]);
+  $entry = ScigraphClient::getTermWithCurie($id); 
+  $ds_categories =  config('services.data_space_sources'); 
+  return view('wiki.show', [ 'curie' => $id, 'entry' => $entry, 'ds_categories' => $ds_categories  ]);
 });
 
 Route::get('/literature', function () { 
@@ -56,7 +58,8 @@ Route::get('/image_gallery', function () {
 
 Route::get('/data_space/{curie}', function ($curie) { 
   return view('data_space.show', [ 'curie' => $curie,
-                                   'page' => Request::input('page', 1 ),
+                                    'term_curie' => Request::input('termCurie', ''), 
+                                    'page' => Request::input('page', 1 ),
                                     'terms' => Request::input('terms', [])   
                                 ]);
 });

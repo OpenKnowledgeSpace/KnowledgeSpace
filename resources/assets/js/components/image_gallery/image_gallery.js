@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Carousel from "./carousel";
 
 import Pagination from "../shared/pagination";
-import PreloaderCircle from '../shared/preloader_circle';
+import Preloader from '../shared/preloader';
 
 class ImageGallery extends Component {  
 
@@ -161,7 +161,7 @@ class ImageGallery extends Component {
                 <i className="material-icons">search</i>
               </a> 
             </span>
-            <PreloaderCircle enabled={ state.preloader } style={{ left: "40%", margin: '41px 0'  }} /> 
+            <Preloader enabled={ state.preloader } wrapperStyle={{ width: '99%', margin: 'auto', padding: '6px', top: '200px' }} /> 
             { images.length > 0  && props.embedded &&  <Carousel images={ images }  />  }
             { images.length > 0  && !props.embedded &&  imageList  }
             

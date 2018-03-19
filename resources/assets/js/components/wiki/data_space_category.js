@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-import Preloader from '../shared/preloader';
 import DataSpaceSources from './data_space_sources';
 
 class DataSpaceCategory extends Component {  
 
   constructor(props) {
     super(props);
-    this.state = { total_count: 0, preloader: true, source_count: {} }; 
+    this.state = { total_count: 0, source_count: {}, expand: 'expand_more' }; 
   }
 
   sanitizeTerm (term) { 
     return term.replace(/\ cell|\ neuron$/g, ''); 
   }
   
-	componentDidUpdate() { 
- 		$('.modal:not(.init)').addClass('init').modal(); 
-	}
-
   componentDidMount () { 
     let sanitizeTerm = this.sanitizeTerm,
       indexes = this.props.sources.map( (source, i) => {  return source.curie; } ),
@@ -31,42 +25,34 @@ class DataSpaceCategory extends Component {
       return results;
     }
     
-    axios.get(url)
-      .then( function(response) { this.setState({  total_count: response.data.hits.total, 
-        source_count: aggMapper( response.data.aggregations.source_count.buckets ),
-        serialized_terms: terms, 
-        preloader: false }) }.bind(this) )
-      .catch( function(error) {  this.setState( { notFound: true }) }.bind(this) );
+    axios.get(url).then(
+      function(response) { 
+        this.setState({ total_count: response.data.hits.total, source_count: aggMapper( response.data.aggregations.source_count.buckets ),
+          serialized_terms: terms, 
+        })
+      }.bind(this)
+    ).catch( function(error) {  this.setState( { notFound: true }) }.bind(this) );
   
   }
 
   render() {
-    let preloader = this.state.preloader,
-        category = this.props.category, 
-        terms = this.state.serialized_terms,
-        sources = this.props.sources,
-        source_count = this.state.source_count;
+    let { category, sources, curie } = this.props, 
+      {source_count, serialized_terms}  = this.state;
 
     return (
       <li> 
         <div className="collapsible-header">
           <i className="material-icons">expand_more</i>
-          {category}
+          <h6>{category.charAt(0).toUpperCase() + category.slice(1)}</h6>
           <span className='new badge blue' data-badge-caption="Records Found">
              { this.state.total_count}
           </span>
         </div>
         <div className="collapsible-body">
-          <DataSpaceSources category={ category } terms={ terms } sources={ sources } source_count={ source_count } />
+          <DataSpaceSources curie={ curie } category={ category } terms={ serialized_terms } sources={ sources } source_count={ source_count } />
         </div>   
       </li> 
     )}
 
 }
-/*
- *
- *
-        <a className="btn blue lighten-3 dataspace-category clearfix valign-wrapper waves-effect waves-light modal-trigger" href={ "#" + category }>
-          <span className='left'>{ category }</span>
-        </a> */
 export default DataSpaceCategory;

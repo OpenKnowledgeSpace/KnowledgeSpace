@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import uuid from 'uuid';
-import PreloaderCircle from '../shared/preloader_circle';
+import Preloader from '../shared/preloader';
 import TreeView from 'react-treeview';
 
 class Relationships extends Component {  
@@ -95,7 +95,7 @@ class Relationships extends Component {
       <div className="card grey lighten-4"> 
           <div id="relationships" className='card-content'>
             <span className='card-title'>Relationships</span>
-            <PreloaderCircle enabled={ preloader } style={{ left: "45%" }} /> 
+            <Preloader enabled={ preloader }  wrapperStyle={{ width: '99%', margin: 'auto', padding: '6px' }} />
             { tree } 
 					</div>
       </div>

@@ -13,16 +13,3 @@ import LiteraturePage from './components/literature/literature_page';
 import SearchPage from './components/search/search_page';
 import CategoryPage from './components/category/category_page';
 import ImageGallery from './components/image_gallery/image_gallery_page';
-
-/*j
-require('./components/Anchor');
-
-
-import Summary from './components/Summary';
-import Relationships from './components/Relationships';
-import ImageGallery from './components/ImageGallery';
-import Literature from './components/Literature';
-import Search from './components/Search';
-import DataspacePage from './components/DataspacePage';
-import Categories from "./components/Categories";
-*/

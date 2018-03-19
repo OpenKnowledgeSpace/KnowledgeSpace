@@ -8,6 +8,8 @@ import Preloader from '../shared/preloader';
 import DataSpaceSourceSummary from './data_space_source_summary';
 import DataSpaceResults from './data_space_results';
 
+import { CancelToken } from 'axios';
+
 class DataSpaceSearch extends Component {
   render() {
     return (
@@ -33,7 +35,14 @@ class DataSpacePage extends Component {
   
   // this uses a list of terms to get results from this data space.
   getResultsFromDataSpace(curie, terms) {
-    this.setState({ preloader: true });  
+   
+    if ( 'cancelRequest' in this.state ) {  
+      this.state.cancelRequest.cancel("Cancel..."); 
+    }  
+    
+    let cancelRequest = CancelToken.source();
+    
+    this.setState({ preloader: true, cancelRequest:  cancelRequest });  
     curie = curie || this.props.curie;   
     terms = terms || this.props.terms;
     terms = terms.map( function(s) { return "terms[]=" + s } );
@@ -43,14 +52,17 @@ class DataSpacePage extends Component {
       page = this.props.page || 1,
       from = '&from=' + ( size * ( page - 1 ) ),
       url = '/api/data_space/' + curie + '?' + terms.join("&") + "&size=" + size + from + keywords ;     
-    axios.get(url).then( function(response) { 
+      axios.get(url, { cancelToken: cancelRequest.token }).then( function(response) { 
                                   this.setState({
                                       page: page, 
                                       results: response.data.hits.hits.map((el) => el._source ),
                                       numFound: response.data.hits.total,
                                       preloader: false })
-                                  }.bind(this))
-        .catch( function(error) {  this.setState( { notFound: true }) }.bind(this) );
+                                  }
+                            .bind(this)
+        ).catch( function(error) { 
+          if ( axios.isCancel(error) ) { console.log("Request canceled..") } 
+        }.bind(this) );
    }
  
   onChangePage(page) {
@@ -155,7 +167,8 @@ class DataSpacePage extends Component {
   }
 
   render() {
-    let curie = this.props.curie, 
+    let curie = this.props.curie,
+      termCurie = this.props.termCurie,
       results = this.state.results,
       numFound = this.state.numFound,
       columns = this.getColumns(),
@@ -165,8 +178,11 @@ class DataSpacePage extends Component {
     return( 
       <div className='section'>
         <div className="row">
-            <h2 className='col s12 page-title'>
+            <h2 className='col s12 page-title' style={{ marginTop: "5px" }} >
               Data Space
+              <span style={{ fontSize: '20px'  }} className='right'> 
+                <a href={ '/wiki/' + termCurie } className='left'>View Term Overview Page</a> 
+              </span> 
             </h2>
         </div>
         <DataSpaceSourceSummary curie={curie} />
@@ -174,6 +190,7 @@ class DataSpacePage extends Component {
           <div className='col m12 s12'> 
             <div className="card horizontal blue-grey darken-1" id="query">
               <div className="card-content white-text col s12"> 
+                
                 <div className="input-field"> 
                   <span>Search Term:</span> { termChips }
                 </div> 
@@ -199,6 +216,8 @@ export default DataSpacePage;
 if (document.getElementById('data-space-page')) {
   const el = document.getElementById('data-space-page'); 
   ReactDOM.render( <DataSpacePage curie={ el.attributes['data-curie'].value }
-    terms={ el.attributes['data-terms'].value.split(',') } page={ el.attributes['data-page'].value } />,
+    termCurie= { el.attributes['data-term-curie'].value } 
+    terms={ el.attributes['data-terms'].value.split(',') }
+    page={ el.attributes['data-page'].value } />,
     document.getElementById('data-space-page'));
 }
