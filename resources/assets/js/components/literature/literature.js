@@ -6,6 +6,7 @@ import LineChart from "./line_chart";
 
 import Pagination from "../shared/pagination";
 import Preloader from '../shared/preloader';
+import { CancelToken } from 'axios';
 
 class Literature extends Component {  
 
@@ -32,8 +33,15 @@ class Literature extends Component {
   getResultsFromScicrunch(terms, keywords = null) {
       // if what's being passed is isn't what's in our props, the user has
       // updated the input, so lets just move on 
+      
+      if ( 'cancelRequest' in this.state ) {  
+        this.state.cancelRequest.cancel("Cancel..."); 
+      }  
+      let cancelRequest = CancelToken.source();
+      
       if ( keywords && keywords !== this.props.keywords ) {  return  }    
-      this.setState({ preloader: true }); 
+      this.setState({ preloader: true, cancelRequest: cancelRequest }); 
+      
       terms = terms || this.props.terms;
       terms = terms.map( function(s) { return "terms[]=" + s } );
       let size = this.props.per_page;
@@ -57,7 +65,7 @@ class Literature extends Component {
         return Object.keys(years).map( (year) => [ year, years[year] ] );
        }
 
-      axios.get(url).then( function(response) { 
+      axios.get(url, { cancelToken: cancelRequest.token }).then( function(response) { 
         this.setState({
             articles: response.data.hits.hits,
             numFound: response.data.hits.total,
@@ -66,7 +74,10 @@ class Literature extends Component {
             preloader: false
         })
         }.bind(this))
-        .catch( function(error) {  this.setState( { notFound: true }) }.bind(this) );
+        .catch( function(error) { 
+          if ( axios.isCancel(error) ) { console.log("Request canceled..") } 
+        }.bind(this)
+      );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -98,6 +109,7 @@ class Literature extends Component {
       articles = this.getArticles(),
       embedded = this.props.embedded, 
       preloader = this.state.preloader,
+      termCurie = this.props.curie,
       queryTerms = this.state.queryTerms || [];
     
     return (
@@ -106,7 +118,7 @@ class Literature extends Component {
             <div className="card-content">
               <span className="card-title">Literature  ( { this.state.numFound } record found )
                 <i className="material-icons activator right">insert_chart</i>
-                {  embedded  &&  <a href={ '/literature?' + queryTerms.join('&') } 
+                {  embedded  &&  <a href={ '/literature?termCurie=' + termCurie + "&" +  queryTerms.join('&') } 
                   className="embedded-only  right waves-effect waves-light">
                   <i className="material-icons">search</i></a> }
               </span> 

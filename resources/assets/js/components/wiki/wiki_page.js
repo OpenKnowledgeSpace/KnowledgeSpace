@@ -53,7 +53,7 @@ class WikiPage extends Component {
               <Atlas curie={ curie } /> 			
             </div>
             <div className='row' id='literature-box'>
-              <Literature terms={ entry.labels } per_page={5} />
+              <Literature terms={ entry.labels } curie={ entry.curie } per_page={5} />
             </div>
             <div className='row' id='relationship-box'>
               <Relationships curie={ curie } /> 

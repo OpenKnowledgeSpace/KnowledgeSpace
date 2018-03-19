@@ -38,8 +38,11 @@ class LiteraturePage extends Component {
     return( 
       <div className='section'>
         <div className="row">
-            <h2 className='col s12 page-title'>
+            <h2 className='col s12 page-title' style={{ marginTop: "5px" }} >
               Literature
+              <span style={{ fontSize: '20px'  }} className='right'> 
+                <a href={ '/wiki/' + this.props.termCurie } className='left'>View Term Overview Page</a> 
+              </span> 
             </h2>
         </div>
         <div className="row"> 
@@ -66,6 +69,8 @@ class LiteraturePage extends Component {
 if (document.getElementById('literature-page')) {
   const el = document.getElementById('literature-page'); 
   ReactDOM.render( <LiteraturePage
-    terms={ el.attributes['data-terms'].value.split(',') } page={ el.attributes['data-page'].value } />,
+    terms={ el.attributes['data-terms'].value.split(',') }
+    termCurie={ el.attributes['data-term-curie'].value } 
+    page={ el.attributes['data-page'].value } />,
     el) ;
 }

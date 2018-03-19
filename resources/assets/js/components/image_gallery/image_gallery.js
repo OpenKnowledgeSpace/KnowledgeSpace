@@ -157,7 +157,7 @@ class ImageGallery extends Component {
           <div id="image-gallery" className='card-content'> 
             <span className='card-title activator' style={{ width: '100%'}} >Image Gallery ( { state.numFound } images found ) 
               <i className='material-icons right'>more_vert</i>
-              <a href={ '/image_gallery?' + this.state.queryTerms } className="embedded-only right waves-effect waves-light">
+              <a href={ '/image_gallery?termCurie=' + props.curie + "&" + this.state.queryTerms } className="embedded-only right waves-effect waves-light">
                 <i className="material-icons">search</i>
               </a> 
             </span>

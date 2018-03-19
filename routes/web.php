@@ -46,13 +46,15 @@ Route::get('/wiki/{id}', function ($id) {
 
 Route::get('/literature', function () { 
   return view('literature.show', [ 'terms' => Request::input('terms', []),
+                                    'term_curie' => Request::input('termCurie', ''), 
                                    'page' => Request::input('page', 1 )
                                  ]);
 });
 
 Route::get('/image_gallery', function () { 
   return view('image_gallery.show', [ 'terms' => Request::input('terms', []),
-                                   'page' => Request::input('page', 1 )
+                                      'term_curie' => Request::input('termCurie', ''), 
+                                      'page' => Request::input('page', 1 )
                                  ]);
 });
 
