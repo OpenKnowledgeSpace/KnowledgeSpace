@@ -3,11 +3,11 @@
 namespace App\Facades;
 use Illuminate\Support\Facades\Facade;
 
-class DataSpaceClient extends Facade
+class SolrDataSpaceClient extends Facade
 {
   protected static function getFacadeAccessor()
   {
-    return 'DataSpaceClient';
+    return 'SolrDataSpaceClient';
   }
 }
 

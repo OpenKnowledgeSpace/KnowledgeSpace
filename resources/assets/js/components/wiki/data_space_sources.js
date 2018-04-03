@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom';
 class DataSpaceSource extends Component { 
  
   render() { 
-    let { count, source, terms, curie } = this.props, 
-      url = "/data_space/" + source.curie + "?termCurie=" + curie + "&" + terms;
+    let { count, source, curie } = this.props, 
+      url = "/data_space/" + source.curie + "/" + curie;
 
     return ( 
       <li  className='collection-item'>
@@ -25,12 +25,12 @@ DataSpaceSource.defaultProps = { count: 0  };
 class DataSpaceSources extends Component {  
 
   render() {
-    let { category, source_count, terms, sources, curie } = this.props;
+    let { category, source_count,  sources, curie } = this.props;
     return (
         <ul id={ category } className="collection with-header">
           {
             sources.map( function( source, i) {
-              return  <DataSpaceSource  key={i} curie={ curie } source={ source } count={ source_count[source.curie]  } terms={ terms } />
+              return  <DataSpaceSource  key={i} curie={ curie } source={ source } count={ source_count[source.curie]  }  />
             })
           }
   			</ul>

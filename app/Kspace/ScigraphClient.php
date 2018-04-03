@@ -18,7 +18,7 @@
           // Weird bug with PHP URI library not liking colons. 
           // https://github.com/guzzle/guzzle/issues/1550
           $res = $this->client->request("GET", "/scigraph/vocabulary/id/".$curie."?");
-          try { return json_decode( $res->getBody() ); } catch (Exception $e) { return json_decode([]); } 
+          try { return json_decode( $res->getBody(), true ); } catch (Exception $e) { return json_decode([], true); } 
       }
       
       public function getDescriptionWithCurie($curie)

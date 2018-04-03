@@ -3,6 +3,22 @@ import ReactDOM from 'react-dom';
 
 import Preloader from '../shared/preloader';
 
+class DataSpaceTermChips extends Component {
+  render() {
+    if ( this.props.terms.length == 0 ) { return null; }
+    let termChips = this.props.terms.map( (entry, i) => (<div key={i} className='chip'><a href={'/wiki/' + entry.curie }>{entry.labels[0]}</a></div>) ),
+      label = this.props.terms > 1 ? "Search Terms:" : "Search Term:";
+    return (
+          <div className='card-action data-space-card-action'> 
+                <div className="input-field"> 
+                  { termChips }
+                </div> 
+          </div>
+    ) 
+  }
+
+}
+
 class DataSpaceSourceSummary extends Component {  
 
   constructor(props) {
@@ -28,6 +44,7 @@ class DataSpaceSourceSummary extends Component {
     let source_name = this.state.source_name, 
       description = this.state.description,
       preloader = this.state.preloader,
+      terms = this.props.terms, 
       url = this.state.url;
 
     return( 
@@ -44,6 +61,7 @@ class DataSpaceSourceSummary extends Component {
                 <div className='form-group flow-text'>
                   <div className="col label-only" dangerouslySetInnerHTML={ { __html: description } }></div>
                 </div>
+                <DataSpaceTermChips terms={terms} />
               </div> 
             </div>
           </div>

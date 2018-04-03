@@ -1,67 +1,86 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-
 import Pagination from "../shared/pagination";
 import Preloader from '../shared/preloader';
 
 import DataSpaceSourceSummary from './data_space_source_summary';
 import DataSpaceResults from './data_space_results';
+import DataSpaceFilters from './data_space_filters';
 
 import { CancelToken } from 'axios';
 
-class DataSpaceSearch extends Component {
-  render() {
-    return (
-    <div className='search'>
-      <div className='search-wrapper input-field'>  
-        <i className='material-icons prefix'>search</i> 
-        <input ref='query' type='text' className='form-control' name='query' placeholder='Keyword Search' onChange={ this.props.submitQuery } /> 
-      </div> 
-    </div>
-    ) 
-  }
-}
 
 class DataSpacePage extends Component {  
   
   constructor(props) {
     super(props);
-    this.state = { results: [], numFound: 0, preloader: true, keywords: "" };
+    this.state = { results: [], numFound: 0, preloader: true, columns: {}, 
+      entries: [], facets: [], keywordFilter: "", facetFilters: new Set() };
+    
     this.getResultsFromDataSpace = this.getResultsFromDataSpace.bind(this); 
     this.onChangePage = this.onChangePage.bind(this); 
-    this.keywordQuery = this.keywordQuery.bind(this); 
+    this.onChangeFilters = this.onChangeFilters.bind(this); 
   }
   
   // this uses a list of terms to get results from this data space.
-  getResultsFromDataSpace(curie, terms) {
+  getResultsFromDataSpace() {
    
     if ( 'cancelRequest' in this.state ) {  
       this.state.cancelRequest.cancel("Cancel..."); 
     }  
     
     let cancelRequest = CancelToken.source();
-    
     this.setState({ preloader: true, cancelRequest:  cancelRequest });  
-    curie = curie || this.props.curie;   
-    terms = terms || this.props.terms;
-    terms = terms.map( function(s) { return "terms[]=" + s } );
-     
+   
+    
+    let { sourceCurie, term_curies } =  this.props;
+    
+    // we build our request URL..
     let size = this.props.per_page,
-      keywords = "&keywords[]=" + this.state.keywords, 
-      page = this.props.page || 1,
-      from = '&from=' + ( size * ( page - 1 ) ),
-      url = '/api/data_space/' + curie + '?' + terms.join("&") + "&size=" + size + from + keywords ;     
-      axios.get(url, { cancelToken: cancelRequest.token }).then( function(response) { 
-                                  this.setState({
-                                      page: page, 
-                                      results: response.data.hits.hits.map((el) => el._source ),
-                                      numFound: response.data.hits.total,
-                                      preloader: false })
-                                  }
-                            .bind(this)
+      facetFilters = this.state.facetFilters, 
+      keywords = "&keywords[]=" + this.state.keywordFilter, 
+      page = this.state.page || 1,
+      from = '&offset=' + ( size * ( page - 1 ) ),
+      url = '/api/data_space/' + sourceCurie + '/' + term_curies.join(',') + "?count=" + size + from + keywords;     
+      
+      facetFilters.forEach( (filter) => url += "&facet=" + filter );
+
+      axios.get(url, { cancelToken: cancelRequest.token })
+        .then( function(response) {
+          let entries = response.data.entries, 
+            results = response.data[sourceCurie].data.result.results.row,
+            facets = response.data[sourceCurie].facets,
+            numFound = parseInt(response.data[sourceCurie].data.result["@attributes"].resultCount),
+            columns = {};
+          
+          if ( typeof results == 'undefined' ) {
+            results = []; 
+          } else {
+            results = results.map( (row) => row.data
+              .reduce( (a,c) => { a[c.name] = c.value; return a }, {} )
+            );
+            
+            [... new Set( results.map( (row) => Object.keys(row) )
+              .reduce( (a,b) => a.concat(b) ) )
+            ].forEach( (v) => columns[v] = v );
+          
+          } 
+          
+          
+          this.setState({
+            page: page, 
+            results: results,
+            columns: columns,
+            entries: entries, 
+            numFound: numFound,
+            facets: facets,
+            preloader: false
+          })
+          }.bind(this)
         ).catch( function(error) { 
-          if ( axios.isCancel(error) ) { console.log("Request canceled..") } 
+          if ( axios.isCancel(error) ) { console.log("Request canceled..") }
+          else { debugger; }
         }.bind(this) );
    }
  
@@ -69,139 +88,51 @@ class DataSpacePage extends Component {
     if ( this.state.page == page ) { return null } 
     this.setState({ page: page, preloader: true, results: [] },  this.getResultsFromDataSpace );
   }
-
-  // This is total garbage. Need to refactor this out..
-  getColumns() {
-    switch(this.props.curie) {
-      default: 
-        return { 
-          'dataset.title': "Title",
-          'dataset.creators': 'Creators',
-          'dataset.availability': 'Availability',
-          'dataset.dateReleased': "Release Date",
-        };
-      case 'neuromorpho_20171102':
-        return {
-          'molecularEntity.name': "Cell Class",
-          'anatomicalPart.name': 'Brain Region',
-          'taxonomicInformation.name': "Organism",
-          'taxonomicInformation.strain': "Strain",
-          'activity.name': "Activity",
-          'dataset.availability': 'Availability',
-        }
-      case 'ks_ic_20160916':
-        return {
-          "pr_nlx_154697_8.database": 'Database',
-          "pr_nlx_154697_8.con_from": 'Connected From',
-          "pr_nlx_154697_8.con_to": 'Connected To',
-          "pr_nlx_154697_8.projection_strength": 'Projection Strength',
-          "pr_nlx_154697_8.species": 'Species',
-          "pr_nlx_154697_8.notes": 'Notes',
-        }
-      case 'dataverse_20160229':
-        return { 
-          'dataset.title': "Title",
-          'person.name': 'Creators',
-          'dataset.description': "Description",
-         }
-      case 'dryad_20170811':
-        return { 
-          'dataset.title': "Title",
-          'dataset.keywords': 'Keywords',
-          'dataset.description': "Description",
-         }
-      case 'gemma_20171102':
-        return { 
-          'dataset.title': "Title",
-          'dataset.description': 'Description',
-          'dataset.availability': 'Availability',
-        }
-      case "neurosynth_20151112":
-        return {
-          "Data.title": 'Title',
-          "Data.organism": "Organism", 
-          "Data.reference": 'Reference',
-        }
-      case 'cil_20160627':
-        return { 
-          'dataset.description': 'Description',
-          'dataset.types': "Types",
-          'dataset.dimensions': "Dimensions",
-        }
-      case 'ks_neuroelectro_20160919':
-        return { 
-          'l2_nlx_151885_data_summary.n_name': "Name", 
-          'l2_nlx_151885_data_summary.e_name': "Property", 
-          'l2_nlx_151885_data_summary.e_definition': "Electrophysiology Definition", 
-          'l2_nlx_151885_data_summary.value_mean': "Mean Value", 
-          'l2_nlx_151885_data_summary.value_sd': "SD", 
-          'l2_nlx_151885_data_summary.num_articles': "# of Articles", 
-        }
-      case 'ks_act_20160916':
-        return { 
-          'specimen.name': "Name",
-          'specimen.donor.sex-full-name': 'Sex',
-          'specimen.specimen-tags.specimen-tag.name': 'Specimen', 
-          'specimen.structure.name': "Structure" 
-         }
-      case 'nitrc_ir_20171102':
-        return { 
-          'dataset.ID': 'ID', 
-          'dataset.title': "Dataset Title",
-          'dataset.types': "Types",
-          'dataset.privacy': "Privacy",
-          'dataset.availability': 'Availability'
-        }
-    } 
+  
+  onChangeFilters(facet, keywords) {
+    let { facetFilters, keywordFilter } = this.state;
+    
+    if ( typeof keywords == 'undefined' ) { 
+      keywords = this.state.keywordFilter 
+    }
+    
+    if ( facetFilters.delete(facet) ) { 
+      this.setState({ keywordFilter: keywords, facetFilters: facetFilters, page: 1 }, this.getResultsFromDataSpace)
+    } else {
+      if ( typeof facet != 'undefined') {
+        facetFilters = facetFilters.add(facet);
+      }
+      this.setState({ keywordFilter: keywords, facetFilters: facetFilters, page: 1 }, this.getResultsFromDataSpace)
+    }
   }
+
 
   componentWillMount () { 
     this.getResultsFromDataSpace(); 
 	}
 	
-  keywordQuery(event, timeout) {
-		let keywords = event.target.value 
-		if ( keywords !== this.state.keywords ) { 
-      this.setState({keywords}, this.getResultsFromDataSpace ) 
-    }
-  }
-
   render() {
-    let curie = this.props.curie,
-      termCurie = this.props.termCurie,
-      results = this.state.results,
-      numFound = this.state.numFound,
-      columns = this.getColumns(),
+    let { sourceCurie, termCurie } = this.props;
+
+    let {  results, numFound, columns, facets, keywordFilter,
+      preloader, entries } = this.state;
+
+    let facetFilters = this.state.facetFilters,
       onChangePage = this.onChangePage,
-      preloader = this.state.preloader,
-      termChips = this.props.terms.map( (term, i) => (<div key={i} className='chip'>{term}</div>) );
+      onChangeFilters = this.onChangeFilters;
+    
     return( 
       <div className='section'>
         <div className="row">
             <h2 className='col s12 page-title' style={{ marginTop: "5px" }} >
               Data Space
-              <span style={{ fontSize: '20px'  }} className='right'> 
-                <a href={ '/wiki/' + termCurie } className='left'>View Term Overview Page</a> 
-              </span> 
             </h2>
         </div>
-        <DataSpaceSourceSummary curie={curie} />
-        <div className="row"> 
-          <div className='col m12 s12'> 
-            <div className="card horizontal blue-grey darken-1" id="query">
-              <div className="card-content white-text col s12"> 
-                
-                <div className="input-field"> 
-                  <span>Search Term:</span> { termChips }
-                </div> 
-                <div id='home-search'>	
-                  <DataSpaceSearch submitQuery={ this.keywordQuery } /> 
-                </div> 
-              </div> 
-            </div>
-          </div>
-        </div>
-        <DataSpaceResults results={ results } numFound={ numFound } columns={ columns } onChangePage={ onChangePage } preloader={ preloader } />
+        <DataSpaceSourceSummary curie={sourceCurie} terms={entries} />
+        <div className='row'>
+          <DataSpaceResults results={ results } numFound={ numFound } columns={ columns } onChangePage={ onChangePage } preloader={ preloader } />
+          <DataSpaceFilters facets={ facets } facetFilters={facetFilters} onChangeFilters={ onChangeFilters } preloader={ preloader }  keywordFilter={keywordFilter} /> 
+        </div> 
       </div>
     )
   }
@@ -215,9 +146,9 @@ DataSpacePage.defaultProps = defaultProps;
 export default DataSpacePage;
 if (document.getElementById('data-space-page')) {
   const el = document.getElementById('data-space-page'); 
-  ReactDOM.render( <DataSpacePage curie={ el.attributes['data-curie'].value }
-    termCurie= { el.attributes['data-term-curie'].value } 
-    terms={ el.attributes['data-terms'].value.split(',') }
+  ReactDOM.render( <DataSpacePage sourceCurie={ el.attributes['data-source-curie'].value }
+    term_curies={ el.attributes['data-term-curies'].value.split(',') } 
+    keywords={ el.attributes['data-keywords'].value.split(',') }
     page={ el.attributes['data-page'].value } />,
     document.getElementById('data-space-page'));
 }

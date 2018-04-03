@@ -6,11 +6,14 @@ class DataSpaceCategory extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { total_count: 0, source_count: {}, expand: 'expand_more' }; 
+    this.state = { total_count: 0, source_count: {}, expand: 'expand_more', preloader: true }; 
   }
 
+  // Unclear if we actually need this
   sanitizeTerm (term) { 
-    return term.replace(/\ cell|\ neuron$/g, ''); 
+    return term
+		// dont think we need to do this with NIF services	
+		//.replace(/\ cell|\ neuron$/g, ''); 
   }
   
   componentDidMount () { 
@@ -21,15 +24,16 @@ class DataSpaceCategory extends Component {
   
     let aggMapper = (aggs) => {
       let results = {};
-      aggs.forEach( (agg, i) => {  results[agg.key] = agg.doc_count  } );
+      Object.keys(aggs).forEach( (agg,i) => results[agg] = aggs[agg]['data']['result']['@attributes']['resultCount'] ) 
       return results;
     }
     
     axios.get(url).then(
       function(response) { 
-        this.setState({ total_count: response.data.hits.total, source_count: aggMapper( response.data.aggregations.source_count.buckets ),
-          serialized_terms: terms, 
-        })
+        let source_count = aggMapper( response.data ),
+          total_count = Object.values(source_count).map( (val) => parseInt(val) ).reduce( (a,b) => a + b ),
+          serialized_terms = terms;
+        this.setState({ source_count, total_count, serialized_terms, preloader: false });
       }.bind(this)
     ).catch( function(error) {  this.setState( { notFound: true }) }.bind(this) );
   
@@ -37,19 +41,20 @@ class DataSpaceCategory extends Component {
 
   render() {
     let { category, sources, curie } = this.props, 
-      {source_count, serialized_terms}  = this.state;
+      {source_count, preloader }  = this.state;
 
     return (
       <li> 
         <div className="collapsible-header">
           <i className="material-icons">expand_more</i>
           <h6>{category.charAt(0).toUpperCase() + category.slice(1)}</h6>
-          <span className='new badge blue' data-badge-caption="Records Found">
+          { preloader && <div className='loading'><span>.</span><span>.</span><span>.</span></div> }  
+					{ !preloader && <span className='new badge blue' data-badge-caption="Records Found">
              { this.state.total_count}
-          </span>
+          </span> }
         </div>
         <div className="collapsible-body">
-          <DataSpaceSources curie={ curie } category={ category } terms={ serialized_terms } sources={ sources } source_count={ source_count } />
+          <DataSpaceSources curie={ curie } category={ category }  sources={ sources } source_count={ source_count } />
         </div>   
       </li> 
     )}

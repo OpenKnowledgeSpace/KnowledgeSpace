@@ -116,7 +116,8 @@ class Literature extends Component {
         <div className="col m12 s12 scrollspy" id='literature'> 
           <div className="card">
             <div className="card-content">
-              <span className="card-title">Literature  ( { this.state.numFound } record found )
+              <span className="card-title">Literature  
+                { !preloader && <span>( { this.state.numFound } record found )</span> }
                 <i className="material-icons activator right">insert_chart</i>
                 {  embedded  &&  <a href={ '/literature?termCurie=' + termCurie + "&" +  queryTerms.join('&') } 
                   className="embedded-only  right waves-effect waves-light">

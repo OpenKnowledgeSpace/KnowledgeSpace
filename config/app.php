@@ -180,7 +180,7 @@ return [
         App\Providers\ScicrunchServiceProvider::class,
         App\Providers\DataSpaceServiceProvider::class,
         App\Providers\GithubServiceProvider::class,
-
+        XmlResponse\XmlResponseServiceProvider::class
     ],
 
     /*
@@ -231,7 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         
         'ScigraphClient' => App\Facades\ScigraphClient::class,
-        'DataSpaceClient' => App\Facades\DataSpaceClient::class,
+        'SolrDataSpaceClient' => App\Facades\SolrDataSpaceClient::class,
         'ScicrunchClient' => App\Facades\ScicrunchClient::class,
         'GithubClient' => App\Facades\GithubClient::class,
 

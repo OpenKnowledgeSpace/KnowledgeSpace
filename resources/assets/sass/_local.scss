@@ -264,17 +264,18 @@ footer {
 }
 
 #image-gallery {
-  min-height: 500px; 
+  min-height: 525px; 
   .card { width: 100%; } 
   h4 { border-bottom: 1px solid; } 
   .carousel {
+    margin-top: 20px; 
     .indicators .indicator-item.active { 
       background-color: #ee6e73; 
      }
     .carousel-item { 
-      width: 585px;
+      width: 640px;
       height: 585px;
-     }
+    }
   }
 
   ul#image-list li { 
@@ -361,6 +362,38 @@ footer {
     .card-action { min-height: 60px } 
 }
 
+
+.data-space-facets { 
+
+  .search {
+    input { width: 75% }
+  }
+  .collection-item { 
+    display: inline-block;
+    width: 100%; 
+  
+    .secondary-content { margin-top: 2px; }
+    .chip { 
+      padding: 0 8px 0 6px;
+      margin-left: 5px;
+     }
+  
+  }
+
+ }
+
+.card .data-space-card-action.card-action {
+  padding-left: 0.75rem;
+  .chip {
+
+    margin-top: 25px;
+    a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) { 
+      color: #039be5;
+      margin-right: 0;
+   }
+  }
+} 
+  
 .page { 
   .embedded-only { display: none; } 
 }
@@ -402,6 +435,12 @@ footer {
 
 }
 
+// RESULTS TABLE 
+// the wrapper
+.results-card { 
+	overflow-x: auto;	
+
+}
 
 
 .react-bs-table {
@@ -409,4 +448,78 @@ footer {
     table { margin-bottom: 0; }
   }
 
+}
+
+
+// This is a loading '...' CSS animcation for AJAX requests
+
+@keyframes blink {
+    /**
+     * At the start of the animation the dot
+     * has an opacity of .2
+     */
+    0% {
+      opacity: .2;
+    }
+    /**
+     * At 20% the dot is fully visible and
+     * then fades out slowly
+     */
+    20% {
+      opacity: 1;
+    }
+    /**
+     * Until it reaches an opacity of .2 and
+     * the animation can start again
+     */
+    100% {
+      opacity: .2;
+    }
+}
+
+.loading {
+	 margin-left: auto;
+	 font-size: 1.8rem;
+	 font-weight: 300; 
+
+	span {
+    /**
+     * Use the blink animation, which is defined above
+     */
+    animation-name: blink;
+    /**
+     * The animation should take 1.4 seconds
+     */
+    animation-duration: 1.4s;
+    /**
+     * It will repeat itself forever
+     */
+    animation-iteration-count: infinite;
+    /**
+     * This makes sure that the starting style (opacity: .2)
+     * of the animation is applied before the animation starts.
+     * Otherwise we would see a short flash or would have
+     * to set the default styling of the dots to the same
+     * as the animation. Same applies for the ending styles.
+     */
+    animation-fill-mode: both;
+	}
+
+	span:nth-child(2) {
+    /**
+     * Starts the animation of the third dot
+     * with a delay of .2s, otherwise all dots
+     * would animate at the same time
+     */
+    animation-delay: .2s;
+	}
+
+	span:nth-child(3) {
+    /**
+     * Starts the animation of the third dot
+     * with a delay of .4s, otherwise all dots
+     * would animate at the same time
+     */
+    animation-delay: .4s;
+	}
 }

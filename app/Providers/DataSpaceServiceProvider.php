@@ -25,8 +25,8 @@ class DataSpaceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-       $this->app->bind( 'DataSpaceClient', function ($app) {
-          return new \App\Kspace\DataSpaceClient; 
+       $this->app->bind( 'SolrDataSpaceClient', function ($app) {
+          return new \App\Kspace\SolrDataSpaceClient; 
        }); 
     }
 }

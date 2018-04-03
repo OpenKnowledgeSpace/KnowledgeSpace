@@ -13,7 +13,7 @@ try {
     require('materialize-css');
 
     $(function(){
-      $('.button-collapse').sideNav();
+       // $('.button-collapse').sideNav();
       $('.parallax').parallax();
 			$('.scrollspy').scrollSpy({ scrollOffset: 400 });   
       $('.collapsible').collapsible();

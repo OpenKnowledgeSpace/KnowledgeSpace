@@ -13,7 +13,6 @@ class TableRow extends Component {
   render() {
     let row = this.props.row,
       columns = this.props.columns;
-   
     return( <tr onClick={ this.handleRowClick }>
         { columns.map( function(col, i) { 
           // We walk through the returned data and use dot notation from the

@@ -45,6 +45,10 @@ Route::middleware('api')->get('/data_space', function() {
 
 Route::middleware('api')->get('/data_space/images', function(Request $request) {
   $sources = [ ]; 
+  $params = $request->input();
+  
+  $terms = $params["terms"];
+  unset($params["terms"]);
 
   foreach ( array_values(config('services.data_space_sources')) as $category  ) { 
     foreach ( $category as $source ) {
@@ -53,23 +57,63 @@ Route::middleware('api')->get('/data_space/images', function(Request $request) {
       }
     }
   } 
-  $params = $request->input();
-  $terms = $params["terms"];
-  unset($params["terms"]);
-  return response()->json( DataSpaceClient::searchImages($sources, $terms, $params) );  
+  
+  if ( isset($params["keywords"]) ){  
+    foreach ( $params["keywords"] as $keyword ) { 
+      $terms = $terms.' AND "'.$keyword.'"'; 
+    } 
+    unset($params["keywords"]);
+  }
+  
+  $json = SolrDataSpaceClient::search(  $sources , $terms, $params);
+  return response()->json(json_decode($json));
 });
+
 
 Route::middleware('api')->get('/data_space/{sources}', function(Request $request, $sources) {
   $params = $request->input();
-  $terms = $params["terms"];
-  unset($params["terms"]);
   
+  $terms = $params["terms"];
+  
+  $terms = join(" AND ", $terms);
+  unset($params["terms"]);
+    
   if ( isset($params["keywords"]) ){  
-    $keywords = $params["keywords"];
+    foreach ( $params["keywords"] as $keyword ) { 
+      $terms = $terms.' AND "'.$keyword.'"'; 
+    } 
     unset($params["keywords"]);
-  } else { $keywords = []; }
- 
-  return response()->json( DataSpaceClient::search($sources, $terms, $keywords, $params) );  
+  }
+  
+  $json = SolrDataSpaceClient::search( explode(',', $sources) , $terms, $params);
+  return response()->json(json_decode($json));
+
+});
+
+Route::middleware('api')->get('/data_space/{sources}/{term_curies}', function(Request $request, $sources, $term_curies ) {
+  $params = $request->input();
+
+  $query = array();
+  $entries= array(); 
+  
+  foreach ( explode(',', $term_curies) as $term_curie ) { 
+    $entry =  ScigraphClient::getTermWithCurie($term_curie); 
+    array_push($entries, $entry); 
+    array_push( $query, $entry["labels"][0] ); 
+  }  
+
+  $query = join(" AND ", $query);
+
+  if ( isset($params["keywords"]) ){  
+    foreach ( $params["keywords"] as $keyword ) { 
+      $query = $query.' AND "'.$keyword.'"'; 
+    } 
+  }
+
+  $json = json_decode( SolrDataSpaceClient::search( explode(',', $sources) , $query, $params), true);
+  $json["entries"] = $entries;
+   
+  return response()->json($json);
 
 });
 

@@ -8,27 +8,17 @@ class Carousel extends Component {
   }
   
   componentDidUpdate() { 
-    $('.carousel').carousel({ indicators: true, fullWidth: false }); 
+    $('.carousel').carousel({ indicators: true, fullWidth: true, padding: 10 }); 
    }
 
   componentDidMount() {
-    $('.carousel').carousel({ indicators: true,  fullWidth: false }); 
+    $('.carousel').carousel({ indicators: true,  fullWidth: true, padding: 10 }); 
   }
 
 
   getImages() {
     let images = this.props.images || [];
-    return images.map( function(image,i) { 
-      if ( image.src !== null ) { 
-        return ( <a key={i} className='carousel-item' href={ image.href } ><img src={ image.src }></img></a> ) 
-      } else {
-        return (
-          <a href={image.href } className='carousel-item' key={i}>
-            <img src="/imgs/no_image.png"></img> 
-          </a>
-        )
-      }
-     })
+    return images.map( (image,i) => <a href={ image.href } className="carousel-item" key={i} ><img src={ image.src } /></a> )
   }
 
 
@@ -39,7 +29,7 @@ class Carousel extends Component {
                         <span>No Images Found Found</span>; 
     
     return(
-      <div className="carousel" >
+      <div className="carousel center" >
         {imageItems} 
       </div>
     ) 

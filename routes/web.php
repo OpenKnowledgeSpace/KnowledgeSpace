@@ -59,12 +59,23 @@ Route::get('/image_gallery', function () {
 });
 
 Route::get('/data_space/{curie}', function ($curie) { 
-  return view('data_space.show', [ 'curie' => $curie,
-                                    'term_curie' => Request::input('termCurie', ''), 
+  return view('data_space.show', [ 
+                                    'curie' => $curie,
+                                    'term_curie' => Request::input('termCurie', ''),
                                     'page' => Request::input('page', 1 ),
-                                    'terms' => Request::input('terms', [])   
+                                    'terms' => Request::input('terms', [])
                                 ]);
 });
+
+Route::get('/data_space/{source_curie}/{term_curies}', function ($source_curie, $term_curies) { 
+  return view('data_space.show', [
+                                    'term_curies' => $term_curies,
+                                    'source_curie' => $source_curie,
+                                    'page' => Request::input('page', 1 ),
+                                    'keywords' => Request::input('keywords', [])
+                                ]);
+});
+
 
 Route::get('/search', function() { 
   return view('search.show', [ 'q' => Request::input('q', ''), 'page' => Request::input('page', 1),

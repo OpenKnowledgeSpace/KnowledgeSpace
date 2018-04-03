@@ -13,7 +13,10 @@ class DataSpaceResults extends Component {
       columns = this.props.columns,
       preloader = this.props.preloader;
 
-
+    [ 'v_uuid', 'Image Description', 'Dimension', 'Technical Details' ].forEach( (col) => delete columns[col] )
+    
+    // I don't think this is being used anymore, since nif services provides a
+    // link in the datatable.
     // This gets bound to the table row.
     let handleRowClick = function() {
       let { row } = this.props;
@@ -60,21 +63,22 @@ class DataSpaceResults extends Component {
       
       
       if ( distro ) { window.open( unescape(url),  '_blank' ); }
-    }
-    
+    } // HandleRowClick
+
+
     return(   
-    <div className='row'>
-        <div className="col m12 s12"> 
+        <div className="col m9 s12"> 
           <div className="card">
-            <div className="card-content">
-              <span className="card-title activator">Data Space</span> 
+            <div className="card-content results-card">
+              <span className="card-title activator">
+                { !preloader  && <h6 className="right">{ numFound } Records Found</h6> } 
+              </span> 
               <Table columns={ columns } rows={ results } handleRowClick={ handleRowClick } preloader={ preloader } />
               <div className='card-action center'> 
                 <Pagination items={ numFound } onChangePage={ onChangePage }  / > 
               </div> 
             </div>
           </div>
-        </div>
       </div>)
   }
 }
