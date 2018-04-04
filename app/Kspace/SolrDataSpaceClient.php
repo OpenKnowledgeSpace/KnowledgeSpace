@@ -51,7 +51,7 @@
         } catch ( \GuzzleHttp\Exception\BadResponseException $e ) {
           if ( $try < 10 ) {
             sleep(2); 
-	          $this->searchFacets($source, $params, $try + 1); 
+	          $this->getFacets($source, $params, $try + 1); 
           } else {
             return false; 
           }
