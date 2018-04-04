@@ -175,9 +175,19 @@ footer {
 
 .homepage-container { i { display: block; font-size: inherit; } } 
 .table-of-contents { 
-  font-size: 12px; 
-  a.active,a:hover { padding-left: 4px; padding-right: 6px }
-  a { padding-left: 2px; padding-right: 6px; letter-spacing: 0px; }
+  font-size: 24px;
+  text-align: right;
+  a.active,a:hover {
+    padding-left: 4px;
+    padding-right: 6px;
+    border-left: none; 
+    border-right: 2px solid #ee6e73; 
+  }
+  a {
+    padding-left: 2px;
+    padding-right: 6px;
+    letter-spacing: 0px;
+  }
 
 }
 

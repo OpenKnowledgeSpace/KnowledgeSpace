@@ -94,7 +94,7 @@ class SubNav extends Component {
     return( 
       <div className="toc-wrapper"> 
         <ul className="section table-of-contents">
-          <li><a href="#summary">Summary / Lexicon</a></li>
+          <li><a href="#summary">Summary</a></li>
           <li><a href="#data-space">Data Space</a></li>
           { atlas } 
           <li><a href="#literature">Literature</a></li>
