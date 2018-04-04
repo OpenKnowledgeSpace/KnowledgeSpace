@@ -48,6 +48,7 @@ Route::middleware('api')->get('/data_space/images', function(Request $request) {
   $params = $request->input();
   
   $terms = $params["terms"];
+  $terms = join(" AND ", $terms);
   unset($params["terms"]);
 
   foreach ( array_values(config('services.data_space_sources')) as $category  ) { 

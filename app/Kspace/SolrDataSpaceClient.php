@@ -33,8 +33,8 @@
           return $res->getBody(); 
         } catch ( \GuzzleHttp\Exception\BadResponseException $e ) {
           if ( $try < 20 ) {
-	    sleep(2); 
-	    $this->searchSource($source, $params, $try + 1); 
+            sleep(2); 
+            $this->searchSource($source, $params, $try + 1); 
           } else {
             return false; 
           }
@@ -51,7 +51,7 @@
         } catch ( \GuzzleHttp\Exception\BadResponseException $e ) {
           if ( $try < 10 ) {
             sleep(2); 
-	    $this->searchSource($source, $params, $try + 1); 
+	          $this->searchFacets($source, $params, $try + 1); 
           } else {
             return false; 
           }
