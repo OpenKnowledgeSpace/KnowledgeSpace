@@ -10,7 +10,7 @@
       protected $client;
       public function __construct()
       {
-          $client =  new Client([ 'base_uri' => config('services.scigraph.host'), 'exceptions' => false ]); 
+          $client =  new Client([ 'base_uri' => config('services.scigraph.host').'/', 'exceptions' => false ]); 
           $this->client = $client;
       }
 
@@ -27,7 +27,7 @@
           // Weird bug with PHP URI library not liking colons. 
           // https://github.com/guzzle/guzzle/issues/1550
           $params = $this->defaultParams(); 
-          $res = $this->client->request("GET", "/api/1/scigraph/vocabulary/id/".$curie, ['query' => $params ]);
+          $res = $this->client->request("GET", "scigraph/vocabulary/id/".$curie, ['query' => $params ]);
           try { 
             return json_decode( $res->getBody(), true );
           } catch (Exception $e) {
@@ -64,7 +64,7 @@
         $params = array_merge( $this->defaultParams(), 
           [ "limit" => 20, "searchSynonyms" => "true", "searchAbbreviations" => "false"]
         );
-        $res = $this->client->request("GET", "/api/1/scigraph/vocabulary/term/".$term, ['query' => $params]);
+        $res = $this->client->request("GET", "scigraph/vocabulary/term/".$term, ['query' => $params]);
         if ( $res->getStatusCode() < 400 ) {
             try { return json_decode( $res->getBody() ); } catch (Exception $e) { return json_decode("[]"); } 
         } else { return []; }
@@ -75,7 +75,7 @@
           $params = array_merge( $this->defaultParams(), 
             [ "depth" => 1, "blankNodes" => 'false', "direction" => "BOTH"]
           );
-          $res = $this->client->request("GET", "/api/1/scigraph/graph/neighbors/".$term, ['query' => $params]);
+          $res = $this->client->request("GET", "scigraph/graph/neighbors/".$term, ['query' => $params]);
           try { return json_decode( $res->getBody() ); } catch (Exception $e) { return json_decode("[]"); } 
       }
       
@@ -93,7 +93,7 @@
         unset($params["q"]);
         
         $params = array_merge( $this->defaultParams(),  $params  );
-        $res = $this->client->request("GET", "/api/1/scigraph/vocabulary/search/".$terms, ["query" => $params ]);
+        $res = $this->client->request("GET", "scigraph/vocabulary/search/".$terms, ["query" => $params ]);
         if ( $res->getStatusCode() < 400 ) {
           // this merges in our results from the term search and the keyword
           // search 
