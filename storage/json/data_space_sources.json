@@ -125,7 +125,7 @@
       "curie": "nlx_154697-8",
       "enabled": true,
       "has_images": false,
-      "description": "is an aggregated dataset of connectivity statements from <a class=\"external\" target=\"_blank\" href=\"http://brancusi.usc.edu/bkms/\">BAMS</a>, <a class=\"external\" target=\"_blank\" href=\"http://cocomac.org/home.asp\">CoCoMac</a>, <a class=\"external\" target=\"_blank\" href=\"http://brainmaps.org/index.php?\">BrainMaps</a>, Connectome Wiki, the Hippocampal-Parahippocampal Table of <a class=\"external\" target=\"_blank\" href=\"http://www.temporal-lobe.com/\">Temporal-Lobe.com</a> and Avian Brain Circuitry Database. Connectome Wiki, CoCoMac, and Avian Brain Circuitry Database are no longer in service, so the links may not be functional."
+      "description": "is an aggregated dataset of connectivity statements from <a class=\"external\" target=\"_blank\" href=\"http://cocomac.org/home.asp\">CoCoMac</a>,Connectome Wiki, the Hippocampal-Parahippocampal Table of <a class=\"external\" target=\"_blank\" href=\"http://www.temporal-lobe.com/\">Temporal-Lobe.com</a> and Avian Brain Circuitry Database. Connectome Wiki, CoCoMac, and Avian Brain Circuitry Database are no longer in service, so the links may not be functional."
     }
   ]
 }
