@@ -10,14 +10,14 @@
       protected $client;
       public function __construct()
       {
-          $client =  new Client([ 'base_uri' => config('services.scigraph.host').'/', 'exceptions' => false ]); 
+          $client =  new Client([ 'base_uri' => config('services.scigraph.host').'/', 'exceptions' => false ]);
           $this->client = $client;
       }
 
       public function defaultParams()
       {
-        return array( 
-          'key' => config('services.scicrunch.key'), 
+        return array(
+          'key' => config('services.scicrunch.key'),
         );
       }
       
@@ -26,22 +26,24 @@
       {
           // Weird bug with PHP URI library not liking colons. 
           // https://github.com/guzzle/guzzle/issues/1550
-          $params = $this->defaultParams(); 
-          $res = $this->client->request("GET", "scigraph/vocabulary/id/".$curie, ['query' => $params ]);
-          try { 
+          $path = 'scigraph/vocabulary/id/'.urlencode($curie);
+          $params = $this->defaultParams();
+          try {
+            $res = $this->client->request("GET", $path, ['query' => $params ]);
             return json_decode( $res->getBody(), true );
           } catch (Exception $e) {
-            echo var_dump($e); 
+            echo var_dump($e);
+            echo var_dump($this->client);
             return json_decode([], true);
          
-          } 
+          }
       }
       
       public function getDescriptionWithCurie($curie)
       {
           // Weird bug with PHP URI library not liking colons. 
           // https://github.com/guzzle/guzzle/issues/1550
-         $path =  "/api/1/scigraph/vocabulary/id/".$curie;
+         $path =  "/api/1/scigraph/vocabulary/id/".urlencode($curie);
          $params = $this->defaultParams();
          $res = $this->client->request("GET", $path, $params);
           try {
@@ -51,7 +53,7 @@
               $definition = $term->definitions[0];
             }
             
-            $json = array("description" => $definition, 'source' => "SciGraph", 
+            $json = array("description" => $definition, 'source' => "SciGraph",
               'url' =>  config('services.scigraph.host').$path);
             return $json;
           } catch (Exception $e) { return json_decode([]); }
@@ -61,22 +63,24 @@
       {
           // Weird bug with PHP URI library not liking colons. 
           // https://github.com/guzzle/guzzle/issues/1550
-        $params = array_merge( $this->defaultParams(), 
+        $path = 'scigraph/vocabulary/term/'.urlencode($term);
+        $params = array_merge( $this->defaultParams(),
           [ "limit" => 20, "searchSynonyms" => "true", "searchAbbreviations" => "false"]
         );
-        $res = $this->client->request("GET", "scigraph/vocabulary/term/".$term, ['query' => $params]);
+        $res = $this->client->request("GET", $path, ['query' => $params]);
         if ( $res->getStatusCode() < 400 ) {
-            try { return json_decode( $res->getBody() ); } catch (Exception $e) { return json_decode("[]"); } 
+            try { return json_decode( $res->getBody() ); } catch (Exception $e) { return json_decode("[]"); }
         } else { return []; }
       }
       
       public function getGraph($term)
       {
-          $params = array_merge( $this->defaultParams(), 
+          $path = 'scigraph/graph/neighbors/'.urlencode($term);
+          $params = array_merge( $this->defaultParams(),
             [ "depth" => 1, "blankNodes" => 'false', "direction" => "BOTH"]
           );
-          $res = $this->client->request("GET", "scigraph/graph/neighbors/".$term, ['query' => $params]);
-          try { return json_decode( $res->getBody() ); } catch (Exception $e) { return json_decode("[]"); } 
+          $res = $this->client->request("GET", $path, ['query' => $params]);
+          try { return json_decode( $res->getBody() ); } catch (Exception $e) { return json_decode("[]"); }
       }
       
       public function search($params = array() )
