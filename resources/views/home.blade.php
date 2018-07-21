@@ -121,9 +121,9 @@
 						KS is the result of recommendations from a community workshop held by the INCF Program on Ontologies of Neural Structures in 2012 and include the report attached below to community workshop.
             <a href="/files/2012_PONS_ws_report.pdf" target="_blank">2012 INCF Workshop Report</a>
 						<br><br>
-						KnowledgeSpace has been developed with support from the Human Brain Project through the European Union Seventh Framework Program (FP7/2007-2013) under grant agreement no. 604102 (HBP).
-						<br><br>
-						KS builds on a vocabulary service, populated with an integrated set of neuroscience ontologies with initial content coming from the <a href="http://neurolex.org/wiki/Main_Page" target="_blank">Neuroscience Lexicon</a> (NeuroLex), and the <a href="http://brancusi1.usc.edu" target="_blank">Brain Architecture Management System</a> (BAMS). It links to an expanding set of data sources through the Neuroscience Information Framework (NIF) federated search infrastructure
+				    KnowledgeSpace is currently being developed with support from the HBP Neuroinformatics Platform funded from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreement No. 785907 (Human Brain Project SGA2), INCF, and Neuroscience Information Frameworkj (NIF). Earlier development was supported by the HBP Neuroinformatics Platform funded from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreement No. 720270 and No. 604102 (Human Brain Project SGA1), INCF, NIF, and the Blue Brain Project.		
+            <br><br>
+						KS builds on a vocabulary service, populated with an integrated set of neuroscience ontologies with initial content coming from the <a href="http://neurolex.org/wiki/Main_Page" target="_blank">Neuroscience Lexicon</a> (NeuroLex), and the <a href="http://brancusi1.usc.edu" target="_blank">Brain Architecture Management System</a> (BAMS). It links to an expanding set of data sources through the NIF federated search infrastructure.
 					</p>
 				</div>
 			</div>	

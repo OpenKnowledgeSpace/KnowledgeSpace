@@ -46,7 +46,6 @@
               <div class='col l9 s12'>
                 <h3>Partners</h3>
                 <ul class='nav navbar-nav logo-list'>
-                  <li><a href='http://bluebrain.epfl.ch'><img src='/imgs/bbp-logo.png' alt='BBP'></a></li>
                   <li><a href='https://www.humanbrainproject.eu'><img src='/imgs/hbp-logo.png' alt='HBP'></a></li>
                   <li><a href='https://incf.org'><img src='/imgs/incf-logo.png' alt='INCF'></a></li>
                   <li><a href='http://www.neuinfo.org'><img src='/imgs/nif-logo.png' alt='NIF'></a></li>
@@ -56,9 +55,11 @@
               <div class='col l3 s12'>
                 <h3>Contact Us</h3>
                 <address class="md-margin-bottom-40">
-                      Hosted at the University of California, San Diego <br>
-                      9500 Gilman Drive <br>
-                      La Jolla, CA 92093 <br>
+                      Hosted by <a href='https://incf.org'>INCF</a> <br>
+                      Karolinska Institutet
+                      Nobels väg 15 A
+                      SE-171 77 Stockholm
+                      Sweden <br/> 
                       Email: <a href="mailto:knowledgespace@incf.org" class="">knowledgespace@incf.org</a>
                 </address> 
               </div>
