@@ -52,7 +52,7 @@
       "description": "provides a database of neuronal cell types based on multimodal characterization of single cells to enable data-driven approaches to classification. For more details about the experiments, please refer to the <a class=\"external\" target=\"_blank\" href=\"http://help.brain-map.org/download/attachments/8323525/MorphOverview.pdf\">technical white paper</a>."
     },
     {
-      "source_name": "Human Brain Project: Cell Morphology",
+      "source_name": "Blue Brain Project: Cell Morphology",
       "curie": "SCR_014306-1",
       "enabled": true,
       "has_images": false,
