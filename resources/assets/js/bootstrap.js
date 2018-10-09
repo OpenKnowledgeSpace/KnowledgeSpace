@@ -1,5 +1,5 @@
 
-window._ = require('lodash');
+window._ = require('lodash')
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -8,26 +8,30 @@ window._ = require('lodash');
  */
 
 try {
-    window.$ = window.jQuery = require('jquery');
+  window.$ = window.jQuery = require('jquery')
 
-    require('materialize-css');
+  require('materialize-css')
 
-    $(function(){
+  $(() => {
        // $('.button-collapse').sideNav();
-      $('.parallax').parallax();
-			$('.scrollspy').scrollSpy({ scrollOffset: 400 });   
-      $('.collapsible').collapsible();
-      $('.toc-wrapper').pushpin({ offset: 220, bottom: $('main').outerHeight()  });
-      
+    $('.parallax').parallax()
+    $('.scrollspy').scrollSpy({scrollOffset: 400})
+    $('.collapsible').collapsible()
+    $('.toc-wrapper').pushpin({offset: 220, bottom: $('main').outerHeight()})
 
-      $('input#main-page-search').focus(function() { $(this).parent().addClass('focused'); });
-      $('input#main-page-search').blur(function() {
-        if (!$(this).val()) {
-          $(this).parent().removeClass('focused');
-        }
-      });
-    }); // end of document ready
+    $('form i').click(function() { 
+      $(this).closest('form').submit();  
+     })
 
+    $('input#main-page-search').focus(function () {
+      $(this).parent().addClass('focused')
+    })
+    $('input#main-page-search').blur(function () {
+      if (!$(this).val()) {
+        $(this).parent().removeClass('focused')
+      }
+    })
+  }) // End of document ready
 } catch (e) {}
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
