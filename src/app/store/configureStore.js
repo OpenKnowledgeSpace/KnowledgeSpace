@@ -27,7 +27,5 @@ export default function configureStore(preloadedState)  {
         });
     }
   }
-
-  return store;
-
+  return { ...store, runSaga: saga.run(rootSaga) };
 };

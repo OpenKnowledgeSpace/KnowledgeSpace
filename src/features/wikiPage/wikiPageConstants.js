@@ -1,0 +1,2 @@
+export const ENTITY_UPDATE = 'ENTITY_UPDATE';
+export const ENTITY_LOADED = 'ENTITY_LOADED';

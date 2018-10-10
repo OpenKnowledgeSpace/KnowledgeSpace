@@ -1,10 +1,10 @@
 import {combineReducers} from "redux";
 
 import {reduceReducers} from "common/utils/reducerUtils";
-import testReducer from "./testReducer";
+import wikiPageReducer from 'features/wikiPage/wikiPageReducer'
 
 const combinedReducer = combineReducers({
-  test: testReducer
+  wikiPage: wikiPageReducer
 });
 
 const rootReducer = reduceReducers(
