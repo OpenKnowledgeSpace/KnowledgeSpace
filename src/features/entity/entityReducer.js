@@ -1,10 +1,7 @@
 import {createReducer} from "common/utils/reducerUtils";
-import { ENTITY_UPDATE, ENTITY_LOADED } from './wikiPageConstants';
+import { ENTITY_UPDATE, ENTITY_LOADED } from './entityConstants';
 
-const initialState = {
-  title: "The is a test!",
-  description: "A dummy record" 
-};
+const initialState = {};
 
 export function updateEntity( state = {} ) {
   return initialState;  

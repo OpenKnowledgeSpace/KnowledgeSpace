@@ -1,10 +1,15 @@
-const ES_URL = "http://nif-services.neuinfo.org/servicesv1/v1/federation/data/nlx_154697-8?q=sao862606388";
+import React from "react";
+import {esclient} from "./ESClient";
 
 export const findByEntity = (params) => {
-  return fetch(ES_URL, { mode: 'no-cors' }).then(response => {
-    return {}; 
-  }).then( json => {
-    return { title: "Pyramidal Cell" }  
-  })
+  if ( typeof params == 'undefined' ) { 
+    return {};
+  }
+  
+  return esclient.get({
+    index: 'knowledgespace',
+    type: 'entity',
+    id: params
+  }).then( response => response._source )
 
 }
