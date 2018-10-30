@@ -1,4 +1,4 @@
-import React from "react";
+import {toString, omitBy, isEmpty, has, map, flatten} from "lodash";
 import {esclient} from "./ESClient";
 
 export const findByEntity = (params) => {
@@ -8,8 +8,78 @@ export const findByEntity = (params) => {
   
   return esclient.get({
     index: 'knowledgespace',
-    type: 'entity',
+    type: 'entities',
     id: params
-  }).then( response => response._source )
+  }).then( response => response._source );
 
+}
+
+let request;
+
+const aggsParams = () => (
+  { 
+    aggs: {
+      categories: { 
+        terms: { 
+          field: 'categories'
+        }
+      }
+    }
+  }
+)
+
+// Pass a string that gets added to an ES query
+const queryBuilder = (query) => {
+  return(
+    {
+      bool: {
+        must: {
+          multi_match: {
+            query,
+            fields: ["labels^10", "definitions", "synonyms^8", "abbreviations^8"]
+          }
+        }
+      }
+    }
+  )
+}
+
+// Pass an object { category: Set([ 'cells' ]) } 
+const filterBuilder = (filters) => {
+  return flatten(Object.keys(filters).map( key => {
+    return map( Array.from(filters[key]), val => {
+      return { term: { [key]: val } };
+    })
+   }));
+}
+
+export const search = (params = {}) => {
+  // start with the aggs we alway use. 
+  const body = aggsParams(); 
+
+  // now set pagination
+  const start = ( Number(params.page) - 1 ) * 10;
+  body.from = start;
+
+  // add a query if there's a q param
+  if ( toString(params.q).length > 0 ) {
+    body.query = queryBuilder(params.q); 
+  }
+ 
+  const filters = omitBy(params.filters, isEmpty);
+  if ( !isEmpty(filters) ) {
+    if ( !has(body, 'query.bool')  ) { body.query = { bool: {}}; }
+    body.query.bool.filter = filterBuilder(filters); 
+  }
+
+  request = esclient.search({
+    index: 'knowledgespace',
+    type: 'entities',
+    body
+  }).then( response => ({
+    results: response.hits,
+    facets: response.aggregations,
+    params: params 
+  }));
+  return request;
 }

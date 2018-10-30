@@ -1,4 +1,4 @@
-import { ENTITY_UPDATE, ENTITY_LOADED } from './entityConstants';
+import { ENTITY_UPDATE, ENTITY_FOUND, ENTITY_LOADED } from './entityConstants';
 
 export const updateEntity = (curie) => ({
   type: ENTITY_UPDATE,
@@ -6,6 +6,6 @@ export const updateEntity = (curie) => ({
 });
 
 export const loadEntity = (entity) => ({
-  type: ENTITY_LOADED,
+  type: ENTITY_FOUND,
   entity
 });
