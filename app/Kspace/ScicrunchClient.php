@@ -28,10 +28,10 @@
               'bool' => [
                 'must' => [
                   array_map( function($val) { 
-                    return array('match_phrase' => ['_all' => $val ]);
+                    return array('multi_match' => [ 'fields' => ['dc.title', 'dc.description'],  'query' => $val ]);
                   }, $terms ),
                   array_map( function($val) { 
-                    return array('match' => ['_all' => $val ]);
+                    return array('multi_match' => [ 'fields' => ['dc.title', 'dc.description'],  'query' => $val ]);
                   }, $keywords )
                 ] 
               ] 
