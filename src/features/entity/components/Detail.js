@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import { isArray, keys, has } from 'lodash';
 
-const Detail = ({details}) => {
-  const list = keys(details)
+const Detail = ({entity}) => {
+  const list = keys(entity)
                   .filter( k => k != 'tree' )
                   .map( k => {  
-                      let v = details[k]; 
+                      let v = entity[k]; 
                       if (isArray(v)) {
                           v = v.join("<br />"); 
                       }; 

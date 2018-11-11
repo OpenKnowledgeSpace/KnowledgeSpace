@@ -4,12 +4,14 @@ import App from 'app/layout/App';
 import HomePage from 'features/homePage/HomePage';
 import EntityContainer from 'features/entity/Entity';
 import Search from 'features/search/Search';
+import DataSpaceContainer from 'features/dataSpace/DataSpace';
 
 const  Main = () => (
   <main>
     <Switch> 
       <Route exact path="/" component={HomePage}></Route>
       <Route exact path="/wiki/:curie" component={EntityContainer}></Route>
+      <Route exact path="/wiki/:curie/dataspace/:source" component={DataSpaceContainer}></Route>
       <Route exact path="/search" component={Search}></Route>
     </Switch>
   </main>

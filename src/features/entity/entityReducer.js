@@ -6,8 +6,8 @@ import {  ENTITY_UPDATE,
 
 const initialState = {};
 
-export function updateEntity( state = {} ) {
-  return initialState;  
+export function updateEntity( state = {}, payload ) {
+  return { curie: payload } 
 }
 
 export function loadEntity( state = {}, payload ) {

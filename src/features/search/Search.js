@@ -44,7 +44,7 @@ export class Search extends Component {
         <SearchBox onChange={this.handleQuery.bind(this)} />
         <Facets facets={facets} selected={params.filters} handleFacetToggle={this.handleFacetToggle.bind(this)} />          
         <Results hits={results} />  
-        <Pagination handlePagination={this.handlePagination.bind(this)} total={results.total}  />
+        <Pagination handlePagination={this.handlePagination.bind(this)} />
       </div>
     ); 
   }

@@ -1,6 +1,6 @@
 import { ENTITY_UPDATE, ENTITY_FOUND, ENTITY_LOADED } from './entityConstants';
 
-export const updateEntity = (curie) => ({
+export const updateCurie = (curie) => ({
   type: ENTITY_UPDATE,
   curie
 });

@@ -1,8 +1,16 @@
+export const DS_ENTITY_FOUND = 'DS_ENTITY_FOUND';
+export const DS_ENTITY_UPDATE = 'DS_ENTITY_UPDATE';
+export const DS_RESULTS_FOUND = 'DS_RESULTS_FOUND';
+export const DS_SEARCH_PAGINATED = 'DS_SEARCH_PAGINATED';
+export const DS_FILTER = 'DS_FILTER';
+
 export const DATASPACE_SOURCES = { 
   scr_0137950_neuroml_models: {
     label: 'NeuroML Database',
     description: 'Curated relational database that provides for the storage and retrieval of computational neuroscience model.',
-    type: 'models'
+    type: 'models',
+    columns: { 'dc.title': 'Model Name', 'model_type': 'Model Type', 'dc.creator': 'Authors', 'dc.subject': 'Keywords' },
+    aggs: { 'model_type': 'Model Type', 'dc.creator': 'Authors', 'dc.subject': 'Keywords' }
   },
   scr_002145_neuromorpho_modelimage: {
     label: 'NeuroMorpho',

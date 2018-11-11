@@ -1,5 +1,6 @@
 import {toString, omitBy, isEmpty, has, map, flatten} from "lodash";
 import {esclient} from "./ESClient";
+import {filterBuilder } from './utils';
 
 export const findByEntity = (params) => {
   if ( typeof params == 'undefined' ) { 
@@ -44,14 +45,6 @@ const queryBuilder = (query) => {
   )
 }
 
-// Pass an object { category: Set([ 'cells' ]) } 
-const filterBuilder = (filters) => {
-  return flatten(Object.keys(filters).map( key => {
-    return map( Array.from(filters[key]), val => {
-      return { term: { [key]: val } };
-    })
-   }));
-}
 
 export const search = (params = {}) => {
   // start with the aggs we alway use. 

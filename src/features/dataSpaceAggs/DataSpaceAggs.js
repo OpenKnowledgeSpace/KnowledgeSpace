@@ -9,7 +9,7 @@ import { DATASPACE_SOURCES } from '../dataSpace/dataSpaceConstants';
 class DataSpaceAggs extends Component {
   
   render() {
-    const { aggByType } = this.props; 
+    const { aggByType, entity } = this.props; 
     const types = reject( Object.keys(aggByType), o => isEmpty(aggByType[o].sources) );
     return (
       <div> 
@@ -18,7 +18,11 @@ class DataSpaceAggs extends Component {
           { 
             types.map(type => { 
               const {sources, doc_count} = aggByType[type];
-              return(<DataSpaceCategory key={type} label={type} sources={sources} doc_count={doc_count} /> ); 
+              return(<DataSpaceCategory
+                        entity={entity}
+                        key={type} label={type}
+                        sources={sources} doc_count={doc_count}
+                      />); 
             })
           }
         </ul>
@@ -30,7 +34,7 @@ class DataSpaceAggs extends Component {
 
 // We take our bucket aggs coming in from ES and merge that with our
 // DataSpace source definitions. 
-const mapStateToProps = ({dataSpaceAggs}) => {
+const mapStateToProps = ({dataSpaceAggs, entity}) => {
   // first lets take our ES buckets and flatten them to a dictionary.
   // { source_id: 1 } 
   const aggs = reduce(dataSpaceAggs, (memo, {key, doc_count}) => {
@@ -52,7 +56,7 @@ const mapStateToProps = ({dataSpaceAggs}) => {
     } 
     return memo;
   }, {});
-  return { aggByType };
+  return { aggByType, entity };
 }
 
 export default connect(mapStateToProps)(DataSpaceAggs);

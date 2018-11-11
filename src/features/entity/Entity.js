@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
-import { updateEntity } from './entityActions';
+import { updateCurie } from './entityActions';
 import { isArray, keys } from 'lodash';
 
 import Detail from './components/Detail';
@@ -18,7 +17,7 @@ class Entity extends Component {
   
   componentDidMount() {
     const curie = this.props.match.params.curie; 
-    this.props.dispatch(updateEntity(curie));
+    this.props.dispatch(updateCurie(curie));
   }
   
   render() {
@@ -27,7 +26,7 @@ class Entity extends Component {
     return (
       <div> 
         <h2>{curie}</h2>
-        <Detail details={entity} />
+        <Detail entity={entity} />
         <DataSpaceAggs />
       </div>
     ); 
