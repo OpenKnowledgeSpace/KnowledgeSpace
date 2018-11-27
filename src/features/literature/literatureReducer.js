@@ -1,10 +1,5 @@
 import {createReducer} from "common/utils/reducerUtils";
-import {  DS_ENTITY_UPDATE, 
-          DS_ENTITY_FOUND, 
-          DS_RESULTS_FOUND, 
-          DS_SEARCH_RESULTS_PAGINATED
-        } from './dataSpaceConstants';
-
+import { LITERATURE_SEARCH_SUBMITTED, LITERATURE_RESULTS_FOUND, LITERATURE_SEARCH_RESULTS_PAGINATED } from './literatureConstants';
 import { mapValues, concat } from 'lodash';
 
 const initialState = {
@@ -14,18 +9,8 @@ const initialState = {
   page: 1
 }
 
-export function updateEntityAndSource( state = {}, {curie, source} ) {
-  state.source = source;
-  state.curie = curie;
-  return {...state} 
-}
 
-export function loadEntity( state = {}, {source} ) {
-  state.source = source; 
-  return { ...state } 
-}
-
-export function loadDataSpace( state = {}, payload ) {
+export function loadLiterature( state = {}, payload ) {
   const { page, results, filters, facets } = payload; 
   state.results = results;
   state.filters = mapValues( filters, v => new Set(v) );
@@ -42,8 +27,6 @@ export function appendResults( state= {}, payload ) {
 }
 
 export default createReducer(initialState, {
-  [DS_ENTITY_UPDATE] : updateEntityAndSource, 
-  [DS_ENTITY_FOUND] : loadEntity,
-  [DS_RESULTS_FOUND]: loadDataSpace,
-  [DS_SEARCH_RESULTS_PAGINATED] : appendResults
+  [LITERATURE_RESULTS_FOUND] : loadLiterature, 
+  [LITERATURE_SEARCH_RESULTS_PAGINATED] : appendResults
 })

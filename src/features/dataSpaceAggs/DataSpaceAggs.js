@@ -13,7 +13,7 @@ class DataSpaceAggs extends Component {
     const types = reject( Object.keys(aggByType), o => isEmpty(aggByType[o].sources) );
     return (
       <div> 
-        DataSpace
+        <h2>DataSpace</h2>
         <ul>
           { 
             types.map(type => { 
@@ -41,7 +41,6 @@ const mapStateToProps = ({dataSpaceAggs, entity}) => {
     memo[key] = doc_count;
     return memo;
   },{});
- 
   // now we take our DATASPACE_SOURCES, group by type, and add our agg counts
   const aggByType = reduce(DATASPACE_SOURCES, (memo, value, key) => { 
     const {type} = value;

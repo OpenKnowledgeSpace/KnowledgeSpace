@@ -9,13 +9,13 @@ const Facets = ({facets, selected, handleFacetToggle}) => (
           name={facet} 
           handleFacetToggle={handleFacetToggle}
           values={facets[facet].buckets}
-          selected={selected} />   
+          selected={selected[facet]} />   
       ))
     }
   </div>
 );
 
-const Facet = ({name, values, selected, handleFacetToggle}) => (
+const Facet = ({name, values, selected = new Set(), handleFacetToggle}) => (
   <div>
     <span>{name}</span>
     <ul>
@@ -29,6 +29,7 @@ const FacetValue = ({facet, value, selected, handleFacetToggle}) => (
     data-facet={facet}
     data-value={value.key}
     onClick={handleFacetToggle}>
+      { selected.has(value.key) && '✓' } 
       {value.key} : {value.doc_count}
   </li>
 );

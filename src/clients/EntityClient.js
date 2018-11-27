@@ -2,7 +2,10 @@ import {toString, omitBy, isEmpty, has, map, flatten} from "lodash";
 import {esclient} from "./ESClient";
 import {filterBuilder } from './utils';
 
-export const findByEntity = (params) => {
+
+const ENTITY_RESULTS_PER_PAGE = 25;
+
+export const findByCurie = (params) => {
   if ( typeof params == 'undefined' ) { 
     return {};
   }
@@ -15,7 +18,6 @@ export const findByEntity = (params) => {
 
 }
 
-let request;
 
 const aggsParams = () => (
   { 
@@ -46,33 +48,34 @@ const queryBuilder = (query) => {
 }
 
 
-export const search = (params = {}) => {
+export const search = ({page, q, filters}) => {
   // start with the aggs we alway use. 
   const body = aggsParams(); 
 
   // now set pagination
-  const start = ( Number(params.page) - 1 ) * 10;
+  const start = ( Number(page) - 1 ) * ENTITY_RESULTS_PER_PAGE;
   body.from = start;
+  body.size = ENTITY_RESULTS_PER_PAGE;
 
   // add a query if there's a q param
-  if ( toString(params.q).length > 0 ) {
-    body.query = queryBuilder(params.q); 
+  if ( !isEmpty(toString(q)) ) {
+    body.query = queryBuilder(q); 
   }
  
-  const filters = omitBy(params.filters, isEmpty);
-  if ( !isEmpty(filters) ) {
+  const queryFilters = omitBy(filters, isEmpty);
+  if ( !isEmpty(queryFilters) ) {
     if ( !has(body, 'query.bool')  ) { body.query = { bool: {}}; }
-    body.query.bool.filter = filterBuilder(filters); 
+    body.query.bool.filter = filterBuilder(queryFilters); 
   }
 
-  request = esclient.search({
+  const request = esclient.search({
     index: 'knowledgespace',
     type: 'entities',
     body
   }).then( response => ({
     results: response.hits,
     facets: response.aggregations,
-    params: params 
+    page, q, filters 
   }));
   return request;
 }

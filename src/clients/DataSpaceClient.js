@@ -53,7 +53,7 @@ const aggParameters = (fields) => {
 }
 
 
-export const querySourceByEntity = ({source, entity, page = 1, filters = {}}) => {
+export const querySourceByEntity = ({source, entity, page = 1, q= '', filters = {}}) => {
   
   const term = entityLabels(entity);
   const aggs  = aggParameters(DATASPACE_SOURCES[source].aggs); 
@@ -78,6 +78,10 @@ export const querySourceByEntity = ({source, entity, page = 1, filters = {}}) =>
     index: source,
     type: 'dataSpace', 
     body
-  });
+  }).then( response => ({
+    results: response.hits,
+    facets: response.aggregations,
+    page, q, filters 
+  }));
   return request;
 }

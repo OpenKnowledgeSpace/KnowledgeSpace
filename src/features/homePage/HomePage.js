@@ -2,7 +2,7 @@ import React, {Component} from "react";
 
 class HomePage extends Component { 
   render() { 
-    return(<span>Hey hey</span>);
+    return(<span>KnowledgeSpace: A space for knowledge.</span>);
   }
 }
 

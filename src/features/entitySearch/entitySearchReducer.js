@@ -1,12 +1,17 @@
 import {createReducer} from "common/utils/reducerUtils";
-import { SEARCH_INITIALIZED, SEARCH_SUBMITTED, SEARCH_RESULTS_RECEIVED, SEARCH_PAGINATED, SEARCH_RESULTS_PAGINATED } from './searchConstants';
+import {  ENTITY_SEARCH_INITIALIZED,
+          ENTITY_SEARCH_SUBMITTED,
+          ENTITY_SEARCH_RESULTS_RECEIVED,
+          ENTITY_SEARCH_PAGINATED,
+          ENTITY_SEARCH_RESULTS_PAGINATED } from './entitySearchConstants';
 import {concat} from 'lodash';
 
 const initialState = {
   results: { hits: [] }, 
   facets: {},
-  params: { filters: {}, page: 1 }
-};
+  filters: {},
+  page: 1
+}
 
 export function startSearch() {
   return initialState;  
@@ -33,9 +38,9 @@ export function loadResults( state= {}, payload ) {
 }
 
 export default createReducer(initialState, {
-  [SEARCH_INITIALIZED] : startSearch,
-  [SEARCH_SUBMITTED]: submitSearch,
-  [SEARCH_RESULTS_RECEIVED]: loadResults,
-  [SEARCH_PAGINATED] : paginateSearch,
-  [SEARCH_RESULTS_PAGINATED] : appendResults
+  [ENTITY_SEARCH_INITIALIZED] : startSearch,
+  [ENTITY_SEARCH_SUBMITTED]: submitSearch,
+  [ENTITY_SEARCH_RESULTS_RECEIVED]: loadResults,
+  [ENTITY_SEARCH_PAGINATED] : paginateSearch,
+  [ENTITY_SEARCH_RESULTS_PAGINATED] : appendResults
 })

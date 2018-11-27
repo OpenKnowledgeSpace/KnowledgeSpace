@@ -6,6 +6,7 @@ import { isArray, keys } from 'lodash';
 
 import Detail from './components/Detail';
 import DataSpaceAggs from '../dataSpaceAggs/DataSpaceAggs';
+import Literature from '../literature/Literature';
 
 const EntityContainer = (props) => { 
   return(
@@ -28,6 +29,7 @@ class Entity extends Component {
         <h2>{curie}</h2>
         <Detail entity={entity} />
         <DataSpaceAggs />
+        <Literature />    
       </div>
     ); 
   }

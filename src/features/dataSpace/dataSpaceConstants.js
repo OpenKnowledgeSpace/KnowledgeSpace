@@ -2,7 +2,8 @@ export const DS_ENTITY_FOUND = 'DS_ENTITY_FOUND';
 export const DS_ENTITY_UPDATE = 'DS_ENTITY_UPDATE';
 export const DS_RESULTS_FOUND = 'DS_RESULTS_FOUND';
 export const DS_SEARCH_PAGINATED = 'DS_SEARCH_PAGINATED';
-export const DS_FILTER = 'DS_FILTER';
+export const DS_SEARCH_SUBMITTED = 'DS_SEARCH_SUBMITTED';
+export const DS_SEARCH_RESULTS_PAGINATED = 'DS_SEARCH_RESULTS_PAGINATED'; 
 
 export const DATASPACE_SOURCES = { 
   scr_0137950_neuroml_models: {
@@ -15,12 +16,14 @@ export const DATASPACE_SOURCES = {
   scr_002145_neuromorpho_modelimage: {
     label: 'NeuroMorpho',
     description: 'A curated repository of digitally reconstructed neurons.',
-    type: 'morphology'
+    type: 'morphology',
+    aggs: { 'model_type': 'Model Type', 'dc.creator': 'Authors', 'dc.subject': 'Keywords' }
   },
   scr_007271_modeldb_models: {
     label: 'ModelDB',
     description: 'Provides high quality computational neuroscience models. ModelDB is tightly coupled with NeuronDB.',
-    type: 'models'
+    type: 'models',
+    aggs: { 'dc.creator': 'Creators', 'model_concepts': 'Model Concepts', 'simulator_software': 'Software', 'model_type': 'Model Type' }
   },
   scr_006131_hba_atlas: {
     label: 'Human Brain Atlas',
@@ -70,7 +73,8 @@ export const DATASPACE_SOURCES = {
   scr_003510_cil_images: { 
     label: 'Cell Image Library',
     description: 'Provides annotated images, videos and animations of cellular processes.',
-    type: 'morphology' 
+    type: 'morphology', 
+    columns: { 'image_url': 'Image', 'model_type': 'Model Type', 'dc.creator': 'Authors', 'dc.subject': 'Keywords' },
   },
   scr_002978_aba_celltypemorphodata: {
     label: 'Allen Brain Atlas Mouse Brain - CellType MorphoData',
