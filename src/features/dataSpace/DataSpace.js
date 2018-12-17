@@ -8,21 +8,13 @@ import { isArray, keys, isEmpty } from 'lodash';
 
 import DataSpaceSearch from './DataSpaceSearch';
 import DataSpaceSourceDescription from './components/DataSpaceSourceDescription';
-
-
 import Detail from '../entity/components/Detail';
 
-
-const DataSpaceContainer = (props) => { 
-  return(
-    <DataSpace />
-   );
-}
-
+/* This is probably Dead Code */
 class DataSpace extends Component {
   
   componentDidMount() {
-    const {curie, source} = this.props.match.params;  
+    const {curie, source} = this.props;
     this.props.dispatch(updateCurieAndSource({curie, source}));
   }
 

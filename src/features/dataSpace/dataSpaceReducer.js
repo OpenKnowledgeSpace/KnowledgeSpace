@@ -11,7 +11,7 @@ const initialState = {
   results: { hits: [] }, 
   facets: {},
   filters: {},
-  page: 1
+  page: 0
 }
 
 export function updateEntityAndSource( state = {}, {curie, source} ) {
@@ -29,7 +29,7 @@ export function loadDataSpace( state = {}, payload ) {
   const { page, results, filters, facets } = payload; 
   state.results = results;
   state.filters = mapValues( filters, v => new Set(v) );
-  state.page = page || 1;
+  state.page = page || 0;
   state.facets = facets; 
   return {...state};
 }

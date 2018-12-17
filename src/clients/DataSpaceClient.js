@@ -53,8 +53,8 @@ const aggParameters = (fields) => {
 }
 
 
-export const querySourceByEntity = ({source, entity, page = 1, q= '', filters = {}}) => {
-  
+export const querySourceByEntity = ({source, entity, page = 0, q= '', filters = {}}) => {
+
   const term = entityLabels(entity);
   const aggs  = aggParameters(DATASPACE_SOURCES[source].aggs); 
   if ( isNull(term) ) { return {}; } 
@@ -67,7 +67,7 @@ export const querySourceByEntity = ({source, entity, page = 1, q= '', filters = 
                 };
   
   // now set pagination
-  body.from  = ( page - 1 ) * 10;
+  body.from  = page * 10;
  
   const filterFields = omitBy(filters, isEmpty);
   if ( !isEmpty(filterFields) ) {

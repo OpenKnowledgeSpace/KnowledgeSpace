@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 
 import { DATASPACE_SOURCES } from '../dataSpaceConstants';
-
+/* Dead Code ? */
 const DataSpaceSourceDescription = ({source}) => {
   if ( isNull(source) || !has(DATASPACE_SOURCES, source) ) {
     return(null); 

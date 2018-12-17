@@ -1,6 +1,6 @@
 import {toString, omitBy, isEmpty, has, map, flatten} from "lodash";
 import {esclient} from "./ESClient";
-import {filterBuilder } from './utils';
+import {filterBuilder, combineAggsAndFilters } from './utils';
 
 
 const ENTITY_RESULTS_PER_PAGE = 25;
@@ -41,6 +41,9 @@ const queryBuilder = (query) => {
             query,
             fields: ["labels^10", "definitions", "synonyms^8", "abbreviations^8"]
           }
+        },
+        filter: {
+          term: { deprecated: false } 
         }
       }
     }
@@ -48,7 +51,7 @@ const queryBuilder = (query) => {
 }
 
 
-export const search = ({page, q, filters}) => {
+export const search = ({page=1, q='', filters={}}) => {
   // start with the aggs we alway use. 
   const body = aggsParams(); 
 
@@ -68,14 +71,16 @@ export const search = ({page, q, filters}) => {
     body.query.bool.filter = filterBuilder(queryFilters); 
   }
 
-  const request = esclient.search({
+  return esclient.search({
     index: 'knowledgespace',
     type: 'entities',
     body
   }).then( response => ({
-    results: response.hits,
-    facets: response.aggregations,
-    page, q, filters 
-  }));
-  return request;
+      results: response.hits,
+      facets: combineAggsAndFilters(response.aggregations,filters),
+      page,
+      q,
+      filters 
+  })
+  );
 }
