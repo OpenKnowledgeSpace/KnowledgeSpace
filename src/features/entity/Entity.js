@@ -63,6 +63,9 @@ const styles = theme => ({
     textAlign: 'center',
     display: 'block',
     paddingTop: 0
+  },
+  fullWidth: {
+    width: '100%' 
   }
 });
 
@@ -89,7 +92,7 @@ class Entity extends Component {
       <Grid container direction='row' justify='flex-start' alignItems='flex-start' spacing={16}>
         <Grid item xs={12} sm={8}> 
           <Grid container direction='column' justify='flex-start' alignItems='flex-start' spacing={16}>
-            <Grid item> 
+            <Grid item classes={{ item: classes.fullWidth }}> 
               <Card classes={{ root: classes.description}}> 
                 <CardHeader title={label} classes={{root: classes.titleRoot, title: classes.title }} />        
                 <Divider />                
@@ -111,12 +114,15 @@ class Entity extends Component {
                 </CardActions>
                 <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                   <CardContent classes={{root: classes.cardContent}}>
-                    {JSON.stringify(tree)}
+                    <Typography paragraph={true} classes={{root: classes.descriptionText}} >
+                      Going to put the synonmy, relationships and other really not so important stuff here.  
+                    </Typography>
+                  {JSON.stringify(tree)}
                   </CardContent>
                 </Collapse>
               </Card>
  			      </Grid>         
-            <Grid item >
+            <Grid item classes={{ item: classes.fullWidth }}> 
               <Card>
                 <Literature />    
               </Card>

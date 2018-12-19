@@ -1,38 +1,38 @@
-import React from "react";
+import React from 'react'
 
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
-import { withStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
-import Toolbar from '@material-ui/core/Toolbar';
-import RefreshIcon from '@material-ui/icons/Refresh';
+import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import Tooltip from '@material-ui/core/Tooltip'
+import IconButton from '@material-ui/core/IconButton'
+import {withStyles} from '@material-ui/core/styles'
+import SearchIcon from '@material-ui/icons/Search'
+import Toolbar from '@material-ui/core/Toolbar'
+import RefreshIcon from '@material-ui/icons/Refresh'
 
 const styles = theme => ({
   searchBar: {
-    borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+    borderBottom: '1px solid rgba(0, 0, 0, 0.12)'
   },
   searchInput: {
-    fontSize: theme.typography.fontSize,
+    fontSize: theme.typography.fontSize
   },
   block: {
-    display: 'block',
+    display: 'block'
   },
   submitBtn: {
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing.unit
   },
   contentWrapper: {
-    margin: '40px 16px',
-  },
-});
+    margin: '40px 16px'
+  }
+})
 
-const SearchBox = ({classes, onChange, q=''}) => (
+const SearchBox = ({classes, onChange, q = ''}) => (
   <Toolbar>
     <Grid container spacing={16} alignItems="center">
       <Grid item>
-        <SearchIcon className={classes.block} color="inherit" />
+        <SearchIcon className={classes.block} color="inherit"/>
       </Grid>
       <Grid item xs>
         <TextField
@@ -42,7 +42,7 @@ const SearchBox = ({classes, onChange, q=''}) => (
           value={q}
           InputProps={{
             disableUnderline: true,
-            className: classes.searchInput,
+            className: classes.searchInput
           }}
         />
       </Grid>
@@ -52,12 +52,12 @@ const SearchBox = ({classes, onChange, q=''}) => (
         </Button>
         <Tooltip title="Reload">
           <IconButton>
-            <RefreshIcon className={classes.block} color="inherit" />
+            <RefreshIcon className={classes.block} color="inherit"/>
           </IconButton>
         </Tooltip>
       </Grid> }
     </Grid>
   </Toolbar>
-);
+)
 
-export default withStyles(styles)(SearchBox);
+export default withStyles(styles)(SearchBox)

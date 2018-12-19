@@ -1,11 +1,10 @@
-import React, {Component} from "react";
-import EntitySearch from 'features/entitySearch/EntitySearch';
+import React, {Component} from 'react'
+import EntitySearch from 'features/entitySearch/EntitySearch'
 
-
-const SearchPage = (props) => { 
-  return(
-    <EntitySearch />
-   );
+const SearchPage = props => {
+  return (
+    <EntitySearch/>
+  )
 }
 
-export default SearchPage;
+export default SearchPage

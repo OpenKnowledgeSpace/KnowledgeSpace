@@ -1,11 +1,10 @@
-import React, {Component} from "react";
-import Entity from 'features/entity/Entity';
+import React, {Component} from 'react'
+import Entity from 'features/entity/Entity'
 
-
-const EntityPage = (props) => { 
-  return(
-    <Entity curie={props.match.params.curie}  />
-   );
+const EntityPage = props => {
+  return (
+    <Entity curie={props.match.params.curie}/>
+  )
 }
 
-export default EntityPage;
+export default EntityPage

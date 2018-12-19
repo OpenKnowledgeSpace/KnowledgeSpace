@@ -80,7 +80,7 @@ class Facet extends Component {
     return (
       <Grid item className={classes.gridItem}> 
         <Paper  color='#fff' >
-          <Typography variant='subtitle1' className={classes.filterTitle} >{name}</Typography>
+          <Typography variant='subtitle1' className={classes.filterTitle} >{name.replace('_', ' ')}</Typography>
            <List className={classes.filter}>
             { values.map( (value,i) => ( 
                <ListItem classes={{ root: classes.filterItem}} key={value.key} role={undefined}  button onClick={this.handleToggle(value.key)}>   
