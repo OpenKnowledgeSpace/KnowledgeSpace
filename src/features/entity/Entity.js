@@ -2,10 +2,11 @@ import React, {Component} from "react";
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
+import {Link} from 'react-router-dom'
 
 
 import { updateCurie } from './entityActions';
-import { isArray, keys  } from 'lodash';
+import { isArray, keys, isUndefined, head, has  } from 'lodash';
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -14,6 +15,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
 
 import Fab from '@material-ui/core/Fab';
 
@@ -66,6 +68,9 @@ const styles = theme => ({
   },
   fullWidth: {
     width: '100%' 
+  },
+  sourceLink: {
+    float: 'right' 
   }
 });
 
@@ -81,12 +86,15 @@ class Entity extends Component {
     const {curie} = this.props; 
     this.props.dispatch(updateCurie(curie));
   }
-  
+
   render() {
     const {entity, curie, classes} = this.props; 
-    const {tree} = entity; 
-    const label = entity.labels ? entity.labels[0] : ''; 
-    const definitions = entity.definitions ? entity.definitions : '';
+    const {tree, definitions} = entity; 
+    const label = entity.labels ? head(entity.labels) : ''; 
+
+    const definition = (definitions || []).find( d => d.source.includes('wikipedia') ) || head(definitions);
+    const definitionTxt = has(definition, 'text') ? definition.text : '';
+    const definitionSource = has(definition, 'source') ? definition.source : false;
 
     return (
       <Grid container direction='row' justify='flex-start' alignItems='flex-start' spacing={16}>
@@ -98,7 +106,8 @@ class Entity extends Component {
                 <Divider />                
                 <CardContent classes={{root: classes.cardContent}}>
                  <Typography paragraph={true} classes={{root: classes.descriptionText}} >
-                  {definitions} 
+                  {definitionTxt}<br/>
+                  {definitionSource && <Button className={classes.sourceLink} component={Link} color='primary' variant='contained' to={definitionSource}>{definitionSource}</Button>}
                  </Typography>
                 </CardContent>
                 <CardActions className={classes.actions} disableActionSpacing>
@@ -115,7 +124,7 @@ class Entity extends Component {
                 <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                   <CardContent classes={{root: classes.cardContent}}>
                     <Typography paragraph={true} classes={{root: classes.descriptionText}} >
-                      Going to put the synonmy, relationships and other really not so important stuff here.  
+                      Going to put the lexicon, relationships and other really not so important stuff here.  
                     </Typography>
                   {JSON.stringify(tree)}
                   </CardContent>

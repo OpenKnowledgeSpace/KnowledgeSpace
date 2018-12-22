@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 
 import {isArray, keys, isEmpty} from 'lodash'
 import Detail from '../entity/components/Detail'

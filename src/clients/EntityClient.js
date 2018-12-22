@@ -10,7 +10,7 @@ export const findByCurie = params => {
   }
 
   return esclient.get({
-    index: 'knowledgespace',
+    index: 'scigraph',
     type: 'entities',
     id: params
   }).then(response => response._source)
@@ -36,7 +36,7 @@ const queryBuilder = query => {
         must: {
           multi_match: {
             query,
-            fields: ['labels^10', 'definitions', 'synonyms^8', 'abbreviations^8']
+            fields: ['labels^10', 'definitions.text', 'synonyms^8', 'abbreviations^8']
           }
         },
         filter: {
@@ -70,7 +70,7 @@ export const search = ({page = 1, q = '', filters = {}}) => {
   }
 
   return esclient.search({
-    index: 'knowledgespace',
+    index: 'scigraph',
     type: 'entities',
     body
   }).then(response => ({
