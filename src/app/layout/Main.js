@@ -7,6 +7,7 @@ import EntityPage from 'pages/EntityPage'
 import SearchPage from 'pages/SearchPage'
 import DataSpacePage from 'pages/DataSpacePage'
 import LiteraturePage from 'pages/LiteraturePage'
+import AboutPage from 'pages/AboutPage'
 
 const styles = theme => ({
   root: {
@@ -24,6 +25,7 @@ const Main = props => {
     <main className={classes.root}>
       <Switch>
         <Route exact path="/" component={HomePage}/>
+        <Route exact path="/about" component={AboutPage}/>
         <Route exact path="/wiki/:curie" component={EntityPage}/>
         <Route exact path="/search" component={SearchPage}/>
         <Route exact path="/wiki/:curie/dataspace/:source" component={DataSpacePage}/>

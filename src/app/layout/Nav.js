@@ -114,6 +114,8 @@ const styles = theme => ({
   },
 });
 
+const AboutLink = props => <Link to="/about" {...props} />
+
 class Nav extends React.Component {
   state = {
     anchorEl: null,
@@ -167,7 +169,7 @@ class Nav extends React.Component {
         onClose={this.handleMobileMenuClose}
       >
         <MenuItem>
-          <IconButton color="inherit">
+          <IconButton color="inherit" component={AboutLink} >
             <Badge badgeContent={4} color="secondary">
               <InfoIcon />
             </Badge>
@@ -191,7 +193,7 @@ class Nav extends React.Component {
             <div className={classes.grow} /> 
             { !isHome && <NavSearch /> } 
 						<div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
+              <IconButton color="inherit" component={AboutLink} >
                   <InfoIcon />
               </IconButton>
             </div>
