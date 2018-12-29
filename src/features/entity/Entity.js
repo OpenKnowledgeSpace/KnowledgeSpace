@@ -16,17 +16,17 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-
+import Chip from '@material-ui/core/Chip';
 import Fab from '@material-ui/core/Fab';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 
-
-import Detail from './components/Detail';
 import DataSpaceAggs from '../dataSpaceAggs/DataSpaceAggs';
 import Literature from '../literature/Literature';
+
+import Relationships from './components/Relationships';
 
 const styles = theme => ({
   titleRoot: { 
@@ -70,7 +70,9 @@ const styles = theme => ({
     width: '100%' 
   },
   sourceLink: {
-    float: 'right' 
+  },
+  expandHeaders: {
+    margin: '25px 0 15px 0'
   }
 });
 
@@ -89,7 +91,7 @@ class Entity extends Component {
 
   render() {
     const {entity, curie, classes} = this.props; 
-    const {tree, definitions} = entity; 
+    const {tree, definitions, synonyms} = entity; 
     const label = entity.labels ? head(entity.labels) : ''; 
 
     const definition = (definitions || []).find( d => d.source.includes('wikipedia') ) || head(definitions);
@@ -106,7 +108,9 @@ class Entity extends Component {
                 <Divider />                
                 <CardContent classes={{root: classes.cardContent}}>
                  <Typography paragraph={true} classes={{root: classes.descriptionText}} >
-                  {definitionTxt}<br/>
+                  {definitionTxt}
+                 </Typography>
+                 <Typography paragraph={true} align='right' >
                   {definitionSource && <Button className={classes.sourceLink} component={Link} color='primary' variant='contained' to={definitionSource}>{definitionSource}</Button>}
                  </Typography>
                 </CardContent>
@@ -123,10 +127,10 @@ class Entity extends Component {
                 </CardActions>
                 <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                   <CardContent classes={{root: classes.cardContent}}>
-                    <Typography paragraph={true} classes={{root: classes.descriptionText}} >
-                      Going to put the lexicon, relationships and other really not so important stuff here.  
-                    </Typography>
-                  {JSON.stringify(tree)}
+                    <Typography variant='h5' classes={{ root: classes.expandHeaders }} >Synonyms:</Typography>
+                    { ( synonyms || [] ).map( syn => <Chip key={syn} label={syn} /> )  }
+                    <Typography variant='h5' classes={{ root: classes.expandHeaders }} >Relationships:</Typography>
+                    <Relationships graph={tree} />
                   </CardContent>
                 </Collapse>
               </Card>
