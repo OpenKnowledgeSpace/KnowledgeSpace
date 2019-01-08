@@ -75,30 +75,41 @@ export class EntitySearch extends Component {
   }
 
   render() {
-    const { filters, facets, results, classes, q} = this.props; 
+    const { filters, facets, results, classes, q, reload} = this.props; 
     const  cols = ENTITY_RESULTS_COLUMNS;  
-    return(
-      <Grid container direction='row' justify='flex-start' alignItems='flex-start' spacing={16}>
-        <Grid item xs={12} sm={3}  > 
-          <Facets facets={facets} selected={filters} handleFacetToggle={this.handleFacetToggle.bind(this)} />          
-        </Grid> 
-        <Grid item xs={8} sm={9}> 
-          <Paper className={classes.paper}>
-            <AppBar className={classes.searchBar} position="static" color="default" elevation={0}> 
-              <SearchBox q={q} onSubmit={this.handleSubmit.bind(this)} context="entitySearch" />
-            </AppBar>
-            <div className={classes.contentWrapper}>
-              <EntityResults hits={results} />  
-              <Pagination handlePagination={this.handlePagination.bind(this)} />
-            </div> 
-          </Paper>
-        </Grid> 
-      </Grid>
-    ); 
+    
+    if ( reload ) {
+      this.props.dispatch(submitSearch({q, filters, page: 1}));
+      return null;
+    }
+    else {
+      return (
+        <Grid container direction='row' justify='flex-start' alignItems='flex-start' spacing={16}>
+          <Grid item xs={12} sm={3}  > 
+            <Facets facets={facets} selected={filters} handleFacetToggle={this.handleFacetToggle.bind(this)} />          
+          </Grid> 
+          <Grid item xs={8} sm={9}> 
+            <Paper className={classes.paper}>
+              <AppBar className={classes.searchBar} position="static" color="default" elevation={0}> 
+                 <SearchBox q={q} onSubmit={this.handleSubmit.bind(this)} context="entitySearch" /> 
+              </AppBar>
+              <div className={classes.contentWrapper}>
+                <EntityResults hits={results} />  
+                <Pagination handlePagination={this.handlePagination.bind(this)} />
+              </div> 
+            </Paper>
+          </Grid> 
+        </Grid>
+      );
+    }
   }
 }
 
-const mapStateToProps = ({entitySearch}) => {
+const mapStateToProps = ({entitySearch}, ownProps) => {
+  if ( entitySearch.q !== ownProps.q ) {
+    entitySearch.q = ownProps.q;
+    entitySearch.reload = true; 
+  } 
   return {...entitySearch};
 }
 

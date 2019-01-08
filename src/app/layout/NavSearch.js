@@ -1,8 +1,11 @@
 import React from 'react';
 
+import { withRouter } from 'react-router-dom';
 import keycode from 'keycode';
 import compose from 'recompose/compose';
 import EventListener from 'react-event-listener';
+
+import {isEmpty} from 'lodash'
 
 import PropTypes from 'prop-types';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
@@ -102,6 +105,12 @@ class NavSearch extends React.Component {
     ) {
       event.preventDefault();
       this.inputRef.focus();
+    } else if (
+      keycode(event) == 'enter' &&
+      document.activeElement === this.inputRef &&
+      !isEmpty(event.target.value)
+    ) { 
+      this.props.history.push({pathname: '/search', search: `q=${event.target.value.trim()}` })
     }
   };
 
@@ -114,7 +123,7 @@ class NavSearch extends React.Component {
 
     return (
       <div className={classes.root} style={{ display: isWidthUp('sm', width) ? 'flex' : 'none' }}>
-        <EventListener target="window" onKeyDown={this.handleKeyDown} />
+        <EventListener target="window" onKeyDown={this.handleKeyDown.bind(this)} />
         <div className={classes.search}>
           <SearchIcon />
         </div>
@@ -140,8 +149,7 @@ NavSearch.propTypes = {
   width: PropTypes.string.isRequired,
 };
 
-export default compose(
+export default withRouter(compose(
   withStyles(styles),
   withWidth(),
-)(NavSearch);
-
+)(NavSearch));

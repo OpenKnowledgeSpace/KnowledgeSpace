@@ -10,7 +10,7 @@ const initialState = {
   results: {hits: []},
   facets: {},
   filters: {},
-  page: 1
+  page: 1,
 }
 
 export function startSearch() {
