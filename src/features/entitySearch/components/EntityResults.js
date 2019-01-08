@@ -33,13 +33,19 @@ const EntityResults = ({hits, classes}) => (
   </div>
 )
 
-const Result = ({result, classes}) => (
-  <li>
-    <ListItem component={Link} to={`/wiki/${result.curie}`}>
-      <ListItemText primary={result.labels[0]} secondary={result.definitions[0]}/>
-    </ListItem>
-    <Divider light/>
-  </li>
-)
+const Result = ({result, classes}) => {  
+  let {curie, labels, definitions} = result;
+  let label = labels[0] || '';
+  let definition = definitions[0] ? definitions[0].text : '';
+
+ return (
+    <li>
+      <ListItem component={Link} to={`/wiki/${curie}`}>
+        <ListItemText primary={label} secondary={definition}/>
+      </ListItem>
+      <Divider light/>
+    </li>
+  )
+}
 
 export default withStyles(styles)(EntityResults)

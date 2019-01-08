@@ -28,7 +28,7 @@ class Autosuggest extends Component {
     event.preventDefault()
     const q = document.getElementById('autosuggest-input').value
     this.props.dispatch(submitSearch({q}))
-    this.props.history.push({pathname: '/search'})
+    this.props.history.push({pathname: '/search', search: `q=${q}` })
   }
 
   renderSuggestion({suggestion, index, itemProps, highlightedIndex, selectedItem}) {

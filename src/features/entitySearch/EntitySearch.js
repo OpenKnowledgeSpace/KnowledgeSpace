@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { isArray, keys, has } from 'lodash';
-import  querystring  from 'querystring';
+import { isArray, keys, has, isUndefined } from 'lodash';
 
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -45,22 +44,22 @@ const styles = theme => ({
 
 export class EntitySearch extends Component {
 
-  state = { 
-    q: '' 
-  }
-  
   componentDidMount() {
-    console.log("hii") 
     const {q} = this.props;
-    this.state = {q} 
-    // const query = querystring.parse(this.props.location.search.replace('?', '')); 
-    // const {q} = query;
-    // this.props.dispatch(submitSearch({q, ...this.props}));
+    this.props.dispatch(submitSearch({q, ...this.props}));
   }
   
   handleQuery({target}) {
     const {filters} = this.props;
     this.props.dispatch(submitSearch({q: target.value, filters, page: 1}));
+  }
+  
+  handleSubmit(event) {
+    event.preventDefault();
+    const {filters} = this.props;
+    const q = event.target.getElementsByTagName('input')[0].value; 
+    this.props.history.push({pathname: '/search', search: `q=${q}` });
+    this.props.dispatch(submitSearch({q, filters, page: 1}));
   }
  
   handlePagination() {
@@ -76,10 +75,8 @@ export class EntitySearch extends Component {
   }
 
   render() {
-    const { filters, facets, results, classes} = this.props; 
-    const {q} = this.state; 
+    const { filters, facets, results, classes, q} = this.props; 
     const  cols = ENTITY_RESULTS_COLUMNS;  
-
     return(
       <Grid container direction='row' justify='flex-start' alignItems='flex-start' spacing={16}>
         <Grid item xs={12} sm={3}  > 
@@ -88,7 +85,7 @@ export class EntitySearch extends Component {
         <Grid item xs={8} sm={9}> 
           <Paper className={classes.paper}>
             <AppBar className={classes.searchBar} position="static" color="default" elevation={0}> 
-              <SearchBox q={q} onChange={this.handleQuery.bind(this)} context="entitySearch" />
+              <SearchBox q={q} onSubmit={this.handleSubmit.bind(this)} context="entitySearch" />
             </AppBar>
             <div className={classes.contentWrapper}>
               <EntityResults hits={results} />  
