@@ -111,7 +111,7 @@ class Entity extends Component {
                   {definitionTxt}
                  </Typography>
                  <Typography paragraph={true} align='right' >
-                  {definitionSource && <Button className={classes.sourceLink} component={Link} color='primary' variant='contained' to={definitionSource}>{definitionSource}</Button>}
+                  {definitionSource && <Button className={classes.sourceLink} component='a' color='primary' variant='contained' href={definitionSource}>{definitionSource}</Button>}
                  </Typography>
                 </CardContent>
                 <CardActions className={classes.actions} disableActionSpacing>
