@@ -1,7 +1,7 @@
 import React from 'react'
 import {withStyles} from '@material-ui/core/styles'
 import {fade} from '@material-ui/core/styles/colorManipulator'
-import logo from 'logo.svg'
+import logo from 'imgs/logo.svg'
 
 const styles = theme => ({
   root: {

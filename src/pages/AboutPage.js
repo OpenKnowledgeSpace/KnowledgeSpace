@@ -1,11 +1,19 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import {withStyles} from '@material-ui/core/styles'
-import {fade} from '@material-ui/core/styles/colorManipulator'
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
-import Autosuggest from 'features/autosuggest/Autosuggest'
+import {withStyles} from '@material-ui/core/styles';
+import {fade} from '@material-ui/core/styles/colorManipulator';
+
+import hbp from 'imgs/hbp-logo.png';
+import nif from 'imgs/nif-logo.png';
+import incf from 'imgs/incf-logo.svg';
+
+import Autosuggest from 'features/autosuggest/Autosuggest';
 
 const styles = theme => ({
   inputRoot: {},
@@ -36,7 +44,14 @@ const styles = theme => ({
       backgroundColor: fade(theme.palette.common.white, 0.25)
     },
     width: '100%'
-  }
+  }, 
+  logoContainer: { 
+    marginTop: '25px' 
+   },
+  logo: {
+    maxWidth: '90%'
+  },
+  card: { minWidth: 175, maxWidth: '50%', margin: 'auto' }
 })
 
 class AboutPage extends Component {
@@ -55,6 +70,48 @@ class AboutPage extends Component {
             KnowledgeSpace is currently being developed with support from the HBP Neuroinformatics Platform funded from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreement No. 785907 (Human Brain Project SGA2), INCF, and Neuroscience Information Frameworkj (NIF). Earlier development was supported by the HBP Neuroinformatics Platform funded from the European Union’s Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreement No. 720270 and No. 604102 (Human Brain Project SGA1), INCF, NIF, and the Blue Brain Project.	
             KS builds on a vocabulary service, populated with an integrated set of neuroscience ontologies with initial content coming from the Neuroscience Lexicon (NeuroLex), and the Brain Architecture Management System (BAMS). It links to an expanding set of data sources through the NIF federated search infrastructure. 
           </Typography>
+        </Grid>
+        <Grid item xs={6} classes={{item: classes.logoContainer}}>
+          <Grid container direction="row" alignItems='center' justify="flex-start">
+            <Grid item xs={12}>
+              <Typography variant="h4" gutterBottom>Partners</Typography>
+            </Grid>
+          </Grid>
+          <Grid container direction="row" alignItems='center' justify="flex-start">
+            <Grid item xs={4}>
+              <a href='https://humanbrainproject.eu/'>
+                <img alt='HBP' className={classes.logo} src={hbp}  />
+              </a>
+            </Grid>
+            <Grid item xs={4}>
+              <a href='https://www.neuinfo.org'>
+                <img alt='NIF' className={classes.logo} src={nif}  />
+              </a>
+            </Grid>
+            <Grid item xs={4}>
+              <a href='https://www.incf.org'> 
+                <img alt='INCF' className={classes.logo} src={incf}  />
+              </a>
+            </Grid>
+          </Grid>
+          <Grid item classes={{item: classes.logoContainer}} xs={12}>
+            <Typography variant="h4" gutterBottom>Contact Us</Typography>
+            <Card className={classes.card}>
+              <CardContent>
+                <Typography variant="h6">
+                  Hosted By: <a href='https://www.incf.org'>INCF</a>
+                </Typography>
+                <Typography color="textSecondary" gutterBottom>
+                  Karolinska Institutet<br/> 
+                  Nobels väg 15 A SE-171 77<br/> 
+                  Stockholm Sweden<br/>
+                  <a href="mailto:knowledgespace@incf.org">knowledgespace@incf.org</a>
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item classes={{item: classes.logoContainer}} xs={4}>
+          </Grid>
         </Grid>
       </Grid>
     )
