@@ -44,11 +44,15 @@ const styles = theme => ({
     width: '100%'
   },
   logoContainer: { 
-    marginTop: '125px' 
+    marginTop: '125px', 
+    [theme.breakpoints.up('sm')]: {
+      minWidth: '500px'
+    }
    },
   logo: {
-    maxWidth: '90%'
-  }
+    margin: '25px',
+  },
+  partners: { marginBottom: '30px' }
 })
 
 class HomePage extends Component {
@@ -69,24 +73,24 @@ class HomePage extends Component {
             <Autosuggest classes={classes} history={this.props.history}/>
           </div>
         </Grid>
-        <Grid item xs={6} classes={{item: classes.logoContainer }}>
-          <Grid container direction="row" alignItems='center' justify="flex-start">
+        <Grid item xs={12} sm={8} classes={{item: classes.logoContainer }}>
+          <Grid container direction="row" alignItems='center' justify="flex-start" classes={{container: classes.partners}}>
             <Grid item xs={12}>
               <Typography variant="h4" gutterBottom>Partners</Typography>
             </Grid>
           </Grid>
-          <Grid container direction="row" alignItems='center' justify="flex-start">
-            <Grid item xs={4}>
+          <Grid container direction="row" alignItems='center' justify="space-between">
+            <Grid item sm={4} xs={12}>
               <a href='https://humanbrainproject.eu/'>
                 <img alt='HBP' className={classes.logo} src={hbp}  />
               </a>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item sm={4} xs={12}>
               <a href='https://www.neuinfo.org'>
                 <img alt='NIF' className={classes.logo} src={nif}  />
               </a>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item sm={4} xs={12}>
               <a href='https://www.incf.org'> 
                 <img alt='INCF' className={classes.logo} src={incf}  />
               </a>

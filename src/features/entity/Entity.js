@@ -45,7 +45,7 @@ const styles = theme => ({
     textAlign: 'justify' 
   },
   descriptionText: {
-    fontSize: theme.typography.pxToRem(theme.typography.fontSize * 2),
+    fontSize: theme.typography.pxToRem(theme.typography.fontSize * 1.5),
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -107,7 +107,7 @@ class Entity extends Component {
                 <CardHeader title={label} classes={{root: classes.titleRoot, title: classes.title }} />        
                 <Divider />                
                 <CardContent classes={{root: classes.cardContent}}>
-                 <Typography paragraph={true} classes={{root: classes.descriptionText}} >
+                 <Typography variant='body1' paragraph={true} classes={{root: classes.descriptionText}} >
                   {definitionTxt}
                  </Typography>
                  <Typography paragraph={true} align='right' >
