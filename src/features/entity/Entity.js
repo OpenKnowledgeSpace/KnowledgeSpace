@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 
 
 import { updateCurie } from './entityActions';
-import { isArray, keys, isUndefined, head, has  } from 'lodash';
+import { isArray, keys, isUndefined, head, has, isEmpty  } from 'lodash';
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -83,21 +83,40 @@ class Entity extends Component {
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
-  
+ 
+
   componentDidMount() {
     const {curie} = this.props; 
     this.props.dispatch(updateCurie(curie));
   }
+ 
+  renderSynonyms(synonyms, classes) {
+    if ( isEmpty(synonyms) ) { return null } 
+    return ( 
+      <div>
+        <Typography variant='h5' classes={{ root: classes.expandHeaders }} >Synonyms:</Typography>
+        { synonyms.map( syn => <Chip key={syn} label={syn} /> )  }
+      </div>
+    ) 
+  }
 
   render() {
     const {entity, curie, classes} = this.props; 
-    const {tree, definitions, synonyms} = entity; 
+    const {tree, definitions, synonyms, iri} = entity; 
     const label = entity.labels ? head(entity.labels) : ''; 
 
     const definition = (definitions || []).find( d => d.source.includes('wikipedia') ) || head(definitions);
     const definitionTxt = has(definition, 'text') ? definition.text : '';
-    const definitionSource = has(definition, 'source') ? definition.source : false;
-
+    const definitionSource = (() => {
+      if ( !has(definition, 'source') ) {
+        return false;
+      } else if ( !definition.source.includes('wikipedia') ) {
+        return iri;
+      } else { 
+        return definition.source; 
+       }
+    })()
+    
     return (
       <Grid container direction='row' justify='flex-start' alignItems='flex-start' spacing={16}>
         <Grid item xs={12} sm={8}> 
@@ -127,8 +146,9 @@ class Entity extends Component {
                 </CardActions>
                 <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                   <CardContent classes={{root: classes.cardContent}}>
-                    <Typography variant='h5' classes={{ root: classes.expandHeaders }} >Synonyms:</Typography>
-                    { ( synonyms || [] ).map( syn => <Chip key={syn} label={syn} /> )  }
+                    <Typography variant='h5' classes={{ root: classes.expandHeaders }} >IRI:</Typography>
+                    <a href={iri} target='_blank'>{iri}</a>
+                    { this.renderSynonyms(synonyms, classes) }
                     <Typography variant='h5' classes={{ root: classes.expandHeaders }} >Relationships:</Typography>
                     <Relationships graph={tree} />
                   </CardContent>
