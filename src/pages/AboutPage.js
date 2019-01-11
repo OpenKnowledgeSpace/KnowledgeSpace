@@ -85,17 +85,17 @@ class AboutPage extends Component {
           </Grid>
           <Grid container direction="row" alignItems='center' justify="flex-start">
             <Grid item xs={4}>
-              <a href='https://humanbrainproject.eu/'>
+              <a target="_blank" href='https://humanbrainproject.eu/'>
                 <img alt='HBP' className={classes.logo} src={hbp}  />
               </a>
             </Grid>
             <Grid item xs={4}>
-              <a href='https://www.neuinfo.org'>
+              <a target="_blank" href='https://www.neuinfo.org'>
                 <img alt='NIF' className={classes.logo} src={nif}  />
               </a>
             </Grid>
             <Grid item xs={4}>
-              <a href='https://www.incf.org'> 
+              <a target="_blank" href='https://www.incf.org'> 
                 <img alt='INCF' className={classes.logo} src={incf}  />
               </a>
             </Grid>
