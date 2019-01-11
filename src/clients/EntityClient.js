@@ -36,7 +36,7 @@ const queryBuilder = query => {
         must: {
           multi_match: {
             query,
-            fields: ['labels^10', 'definitions.text', 'synonyms^8', 'abbreviations^8']
+            fields: [ 'title^99', 'labels^10', 'definitions.text', 'synonyms^8', 'abbreviations^8']
           }
         },
         filter: {
