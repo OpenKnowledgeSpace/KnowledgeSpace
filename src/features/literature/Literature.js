@@ -1,43 +1,83 @@
-import React, {Component} from "react";
+import React, {Component} from 'react'
 
-import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
+import {withStyles} from '@material-ui/core/styles'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
-// import { updateCurieAndSource, updateFilters  } from './literatureActions';
-import { isArray, keys, isEmpty } from 'lodash';
+import Paper from '@material-ui/core/Paper'
+import List from '@material-ui/core/List'
+import ListSubheader from '@material-ui/core/ListSubheader'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
+import Button from '@material-ui/core/Button'
 
-const LiteratureContainer = (props) => { 
-  return(
-    <Literature />
-   );
-}
+import Facets from 'common/components/search/Facets'
+import {isArray, keys, isEmpty, has} from 'lodash'
+import {submitSearch, paginateSearch} from './literatureActions'
+import LiteratureResult from './components/LiteratureResult'
+
+const styles = theme => ({
+  description: {
+    padding: '25px 25px 25px 50px',
+    overflow: 'hidden',
+    textAlign: 'justify'
+  },
+  seeMoreLink: {
+    ...theme.palette.action,
+    color: theme.palette.primary.main,
+    marginLeft: 'auto',
+    alignItems: 'center',
+    textDecoration: 'none'
+  },
+  title: {
+    alignItems: 'center',
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  literatureSubtitle: {
+    margin: 0,
+    paddingLeft: 0,
+    fontSize: theme.typography.h5.fontSize
+  }
+})
 
 class Literature extends Component {
-
   handleRowClick({target}) {
-    const link = 'https://www.ncbi.nlm.nih.gov/pubmed/' + target.dataset.pubid; 
-    window.open(link, '_blank'); 
+    const link = 'https://www.ncbi.nlm.nih.gov/pubmed/' + target.dataset.pubid
+    window.open(link, '_blank')
   }
-
 
   render() {
-    const {literature, curie} = this.props;
-    const {hits, total} = literature.results; 
+    const {literature, curie, classes, filters, facets, results} = this.props
+    const {hits, total} = results
     return (
-      <div> 
-        <h2>Literature ( {total || 0} results found ) <Link to={`${curie}/literature`}>See More</Link> </h2>
-        <ul>
-          { hits.map( hit => <li onClick={this.handleRowClick} data-pubid={hit._id} key={hit._id}>{hit._source.title}</li> ) }
-        </ul>
-      </div>
-    ); 
+      <Paper className={classes.description} elevation={1}>
+        <Typography variant="h3" classes={{root: classes.title}}>
+          Literature
+          <Link className={classes.seeMoreLink} to={`${curie}/literature`}>
+            <Button size="small">See More</Button>
+          </Link>
+        </Typography>
+        <Divider/>
+        <List
+          subheader={<ListSubheader component="h5" classes={{root: classes.literatureSubtitle}}>{ total || 0 } results found</ListSubheader>}
+        >
+          { hits.slice(0, 10).map(hit => (
+            <React.Fragment key={hit._id}>
+              <LiteratureResult key={hit._id} result={hit._source}/>
+              <Divider/>
+            </React.Fragment>
+          )
+          )}
+        </List>
+      </Paper>
+    )
   }
-
 }
 
 const mapStateToProps = ({literature, entity}) => {
-  const {curie} = entity; 
-  return {literature, curie};
+  const {curie} = entity
+  return {...literature, curie, entity}
 }
 
-export default connect(mapStateToProps)(Literature);
+export default withStyles(styles)(connect(mapStateToProps)(Literature))
