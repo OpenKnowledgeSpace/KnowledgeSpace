@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 import {isArray, keys, isEmpty} from 'lodash'
 import Detail from '../entity/components/Detail'
-import {updateCurieAndSource, updateFilters} from './dataSpaceActions'
+import {updateEntityAndSource, updateFilters} from './dataSpaceActions'
 
 import DataSpaceSearch from './DataSpaceSearch'
 import DataSpaceSourceDescription from './components/DataSpaceSourceDescription'
@@ -12,8 +12,8 @@ import DataSpaceSourceDescription from './components/DataSpaceSourceDescription'
 /* This is probably Dead Code */
 class DataSpace extends Component {
   componentDidMount() {
-    const {curie, source} = this.props
-    this.props.dispatch(updateCurieAndSource({curie, source}))
+    const {hash, source} = this.props
+    this.props.dispatch(updateEntityAndSource({hash, source}))
   }
 
   render() {

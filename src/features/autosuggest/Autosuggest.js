@@ -32,21 +32,22 @@ class Autosuggest extends Component {
   }
 
   renderSuggestion({suggestion, index, itemProps, highlightedIndex, selectedItem}) {
-    const label = suggestion._source.labels[0]
-    const {_id} = suggestion
-    const isHighlighted = highlightedIndex === index
-    const isSelected = (selectedItem || '').indexOf(_id) > -1
+    const { label, category, slug } = suggestion._source;
+    const key = `/t/${category}/${slug}`; 
+    const isHighlighted = highlightedIndex === index;
+    const isSelected = (selectedItem || '').indexOf(key) > -1;
+    
     return (
       <MenuItem
         {...itemProps}
-        key={_id}
+        key={key}
         selected={isHighlighted}
         component="div"
         style={{
           fontWeight: isSelected ? 500 : 400
         }}
       >
-        <div style={{textOverflow: 'ellipsis', overflow: 'hidden'}}>{label}</div>
+        <div style={{textOverflow: 'ellipsis', overflow: 'hidden'}}>{label} ({category})</div>
       </MenuItem>
   	)
   }
@@ -61,7 +62,7 @@ class Autosuggest extends Component {
   }
 
   onSelect(selectedItem) {
-    this.props.history.push({pathname: `/wiki/${selectedItem}`})
+    this.props.history.push({pathname: `/t/${selectedItem}`})
   }
 
   render() {
@@ -103,7 +104,7 @@ class Autosuggest extends Component {
                     return renderSuggestion({
                       		suggestion,
                       index,
-                      itemProps: getItemProps({item: suggestion._id}),
+                      itemProps: getItemProps({item: `${suggestion._source.category}/${suggestion._source.slug}`}),
                       highlightedIndex,
                       selectedItem
 											 })

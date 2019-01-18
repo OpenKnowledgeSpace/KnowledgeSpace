@@ -4,24 +4,23 @@ import {filterBuilder, combineAggsAndFilters} from './utils'
 
 const ENTITY_RESULTS_PER_PAGE = 25
 
-export const findByCurie = params => {
-  if (typeof params === 'undefined') {
+export const findByHash = hash => {
+  if (typeof hash === 'undefined') {
     return {}
   }
-
   return esclient.get({
     index: 'scigraph',
     type: 'entities',
-    id: params
+    id: hash
   }).then(response => response._source)
 }
 
 const aggsParams = () => (
   {
     aggs: {
-      categories: {
+      category: {
         terms: {
-          field: 'categories'
+          field: 'category'
         }
       }
     }
@@ -39,9 +38,6 @@ const queryBuilder = query => {
             fields: [ 'title^99', 'labels^10', 'definitions.text', 'synonyms^8', 'abbreviations^8']
           }
         },
-        filter: {
-          term: {deprecated: false}
-        }
       }
     }
   )

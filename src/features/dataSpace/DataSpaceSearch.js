@@ -16,7 +16,7 @@ import SearchBox from 'common/components/search/SearchBox'
 import Facets from 'common/components/search/Facets'
 import Pagination from 'common/components/search/Pagination'
 import DataSpaceResults from './components/DataSpaceResults'
-import {updateCurieAndSource, submitSearch, paginateSearch} from './dataSpaceActions'
+import {updateEntityAndSource, submitSearch, paginateSearch} from './dataSpaceActions'
 
 import {DATASPACE_SOURCES} from './dataSpaceConstants'
 
@@ -42,8 +42,8 @@ const styles = theme => ({
 
 class DataSpaceSearch extends Component {
   componentDidMount() {
-    const {curie, source} = this.props
-    this.props.dispatch(updateCurieAndSource({curie, source}))
+    const {hash, source} = this.props
+    this.props.dispatch(updateEntityAndSource({hash, source}))
   }
 
   handleFacetToggle(facet, selected) {
@@ -60,9 +60,11 @@ class DataSpaceSearch extends Component {
   }
 
   render() {
-    const {classes, curie, entity, sourceConfig, filters, facets, results, page} = this.props
-    const entityLabel = entity.labels ? entity.labels[0] : ''
+    const {classes,  entity, sourceConfig, filters, facets, results, page} = this.props
+    const { slug, category } = entity;
+    const entityLabel = entity.label;
     const {columns, label} = sourceConfig
+
     return (
       <Grid container direction="row" justify="flex-start" alignItems="flex-start" spacing={16}>
         <Grid item xs={12} sm={3}>
@@ -72,12 +74,12 @@ class DataSpaceSearch extends Component {
           <Paper elevation={1}>
             <Typography variant="h3" classes={{root: classes.root}}>
               {label} Results:
-              <Link className={classes.entityLink} to={`/wiki/${curie}`}>
+              <Link className={classes.entityLink} to={`/t/${category}/${slug}`}>
                 {entityLabel}
               </Link>
             </Typography>
             <Divider classes={{root: classes.divider}}/>
-            <DataSpaceResults hits={results} columns={columns} page={page} handlePageChange={this.handlePageChange.bind(this)} linkCol="dc.identifier"/>
+            <DataSpaceResults hits={results} columns={columns} page={page || 0} handlePageChange={this.handlePageChange.bind(this)} linkCol="dc.identifier"/>
           </Paper>
         </Grid>
       </Grid>

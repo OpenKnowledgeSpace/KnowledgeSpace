@@ -18,7 +18,7 @@ const handleClick = ({target}) => {
 }
 
 const DataSpaceCategory = ({label, sources, doc_count, entity, classes}) => {
-  const {curie} = entity
+  const {slug, category} = entity
 
   return (
     <List
@@ -36,7 +36,7 @@ const DataSpaceCategory = ({label, sources, doc_count, entity, classes}) => {
             secondary={source.description}
             primary={
               <React.Fragment>
-                <Link to={`/wiki/${curie}/dataspace/${source.id}`}>
+                <Link to={`/t/${category}/${slug}/dataspace/${source.id}`}>
                   {`${source.label}`}
                 </Link>
                 <Typography color="textSecondary" variant="subtitle2">{`${source.doc_count} results`}</Typography>
