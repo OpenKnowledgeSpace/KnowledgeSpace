@@ -17,7 +17,7 @@ import SearchBox from 'common/components/search/SearchBox'
 import Facets from 'common/components/search/Facets'
 import Pagination from 'common/components/search/Pagination'
 import Detail from '../entity/components/Detail'
-import {updateCurie} from '../entity/entityActions'
+import {updateHash} from '../entity/entityActions'
 import LiteratureResult from './components/LiteratureResult'
 import {submitSearch, paginateSearch} from './literatureActions'
 
@@ -42,7 +42,7 @@ const styles = theme => ({
 class LiteratureSearch extends Component {
   componentDidMount() {
     if (isEmpty(this.props.entity)) {
-      this.props.dispatch(updateCurie(this.props.curie))
+      this.props.dispatch(updateHash(this.props.hash))
     }
   }
 

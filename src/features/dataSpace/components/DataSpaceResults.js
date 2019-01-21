@@ -32,11 +32,8 @@ const cellValue = (value = '') => {
 }
 
 const DataSpaceResults = ({hits, classes, columns, page, handlePageChange}) => {
-//  Console.log(hits.hits.forEach( a => console.log(a._source) ))
-
   const results = has(hits, 'hits') ? hits.hits : []
   const total = has(hits, 'total') ? hits.total : 0
-  console.log(results)
 
   return (
     <div className={classes.root}>

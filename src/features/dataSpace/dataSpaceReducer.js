@@ -36,7 +36,7 @@ export function loadDataSpace(state = {}, payload) {
 export function appendResults(state = {}, payload) {
   const hits = concat(state.results.hits, payload.results.hits)
   state.results.hits = hits
-  state.page = payload.page
+  state.page = payload.page || 0
   return {...state}
 }
 

@@ -48,13 +48,13 @@ class Literature extends Component {
   }
 
   render() {
-    const {literature, curie, classes, filters, facets, results} = this.props
+    const {literature, slug, classes, filters, facets, results} = this.props
     const {hits, total} = results
     return (
       <Paper className={classes.description} elevation={1}>
         <Typography variant="h3" classes={{root: classes.title}}>
           Literature
-          <Link className={classes.seeMoreLink} to={`${curie}/literature`}>
+          <Link className={classes.seeMoreLink} to={`${slug}/literature`}>
             <Button size="small">See More</Button>
           </Link>
         </Typography>
@@ -76,8 +76,8 @@ class Literature extends Component {
 }
 
 const mapStateToProps = ({literature, entity}) => {
-  const {curie} = entity
-  return {...literature, curie, entity}
+  const {slug} = entity
+  return {...literature, slug, entity}
 }
 
 export default withStyles(styles)(connect(mapStateToProps)(Literature))

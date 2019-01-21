@@ -30,7 +30,7 @@ const queryBuilder = query => {
   )
 }
 
-export const queryLiteratureByCurie = ({curie, page = 1, q, filters = {}}) => {
+export const queryLiteratureByHash = ({hash, page = 1, q, filters = {}}) => {
   // Start with the aggs we alway use.
   const body = aggsParams()
   body.query = {bool: {}}
@@ -39,14 +39,14 @@ export const queryLiteratureByCurie = ({curie, page = 1, q, filters = {}}) => {
   body.from = start
   body.size = LITERATURE_RESULTS_PER_PAGE
 
-  // In literature, we should be able to filter using the curie.
-  if (!isEmpty(curie)) {
+  // In literature, we should be able to filter using the hash.
+  if (!isEmpty(hash)) {
     body.query.bool.must = [{
       nested: {
         path: 'text_mined_entities.nlp',
         query: {
           query_string: {
-            query: curie.replace(':', '\\:'),
+            query: hash,
             fields: [
               'text_mined_entities.nlp.tagged_entities_grouped.*.reference'
             ]
@@ -67,7 +67,7 @@ export const queryLiteratureByCurie = ({curie, page = 1, q, filters = {}}) => {
   }
 
   return esclient.search({
-    index: 'pubmed-18',
+    index: 'pubmed-19',
     type: 'publication',
     body
   }).then(response => ({

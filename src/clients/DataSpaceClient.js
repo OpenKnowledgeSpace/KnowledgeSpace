@@ -3,28 +3,14 @@ import {DATASPACE_SOURCES} from 'features/dataSpace/dataSpaceConstants'
 import {esclient} from './ESClient'
 import {filterBuilder} from './utils'
 
-export const entityLabels = entity => {
-  if (!has(entity, 'labels')) {
-    return null
-  }
-
-  let term
-  if (isArray(entity.labels) && !isEmpty(entity.labels)) {
-    return entity.labels[0]
-  }
-  return null
-}
-
-export const queryAllByEntity = entity => {
-  const term = entityLabels(entity)
-  if (isNull(term)) {
+export const queryAllByEntity = ({label}) => {
+  if (isNull(label)) {
     return {}
   }
   const body = {
     size: 0,
     query: {
-      query_string:
-                      {query: term}
+      query_string: {query: label}
     },
     aggs: {
       sources: {
@@ -53,15 +39,16 @@ const aggParameters = fields => {
 }
 
 export const querySourceByEntity = ({source, entity, page = 0, q = '', filters = {}}) => {
-  const term = entityLabels(entity)
+  const {label} = entity;
   const aggs = aggParameters(DATASPACE_SOURCES[source].aggs)
-  if (isNull(term)) {
+  
+  if (isNull(label)) {
     return {}
   }
   const body = {aggs,
     query: {
       bool: {
-        must: {query_string: {query: term}}
+        must: {query_string: {query: label}}
       }
     }
   }

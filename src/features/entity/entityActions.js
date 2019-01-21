@@ -1,8 +1,8 @@
 import {ENTITY_UPDATE, ENTITY_FOUND, ENTITY_LOADED} from './entityConstants'
 
-export const updateCurie = curie => ({
+export const updateHash = hash => ({
   type: ENTITY_UPDATE,
-  curie
+  hash
 })
 
 export const loadEntity = entity => ({

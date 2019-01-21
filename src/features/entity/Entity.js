@@ -5,8 +5,8 @@ import classnames from 'classnames';
 import {Link} from 'react-router-dom'
 
 
-import { updateCurie } from './entityActions';
-import { isArray, keys, isUndefined, head, has, isEmpty  } from 'lodash';
+import { updateHash } from './entityActions';
+import { isArray, keys, isUndefined, head, has, isEmpty, find } from 'lodash';
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -86,8 +86,8 @@ class Entity extends Component {
  
 
   componentDidMount() {
-    const {curie} = this.props; 
-    this.props.dispatch(updateCurie(curie));
+    const {hash} = this.props; 
+    this.props.dispatch(updateHash(hash));
   }
  
   renderSynonyms(synonyms, classes) {
@@ -101,22 +101,10 @@ class Entity extends Component {
   }
 
   render() {
-    const {entity, curie, classes} = this.props; 
-    const {tree, definitions, synonyms, iri} = entity; 
-    const label = entity.labels ? head(entity.labels) : ''; 
+    const {entity, hash, classes} = this.props; 
+    const { definitions, synonyms, label, summary} = entity; 
+    const scigraph = find(definitions, { 'source': 'scigraph' })
 
-    const definition = (definitions || []).find( d => d.source.includes('wikipedia') ) || head(definitions);
-    const definitionTxt = has(definition, 'text') ? definition.text : '';
-    const definitionSource = (() => {
-      if ( !has(definition, 'source') ) {
-        return false;
-      } else if ( !definition.source.includes('wikipedia') ) {
-        return iri;
-      } else { 
-        return definition.source; 
-       }
-    })()
-    
     return (
       <Grid container direction='row' justify='flex-start' alignItems='flex-start' spacing={16}>
         <Grid item xs={12} sm={8}> 
@@ -127,10 +115,10 @@ class Entity extends Component {
                 <Divider />                
                 <CardContent classes={{root: classes.cardContent}}>
                  <Typography variant='body1' paragraph={true} classes={{root: classes.descriptionText}} >
-                  {definitionTxt}
+                  { has(summary, 'text') && summary.text}
                  </Typography>
                  <Typography paragraph={true} align='right' >
-                  {definitionSource && <Button className={classes.sourceLink} target='_blank' component='a' color='primary' variant='contained' href={definitionSource}>{definitionSource}</Button>}
+                  { has(summary, 'source') && <Button className={classes.sourceLink} target='_blank' component='a' color='primary' variant='contained' href={summary.source}>{summary.source}</Button>}
                  </Typography>
                 </CardContent>
                 <CardActions className={classes.actions} disableActionSpacing>
@@ -144,15 +132,15 @@ class Entity extends Component {
                     <ExpandMoreIcon />
                   </Fab>
                 </CardActions>
-                <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                { scigraph && <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                   <CardContent classes={{root: classes.cardContent}}>
                     <Typography variant='h5' classes={{ root: classes.expandHeaders }} >IRI:</Typography>
-                    <a href={iri} target='_blank'>{iri}</a>
+                    <a href={scigraph.iri} target='_blank'>{scigraph.iri}</a>
                     { this.renderSynonyms(synonyms, classes) }
                     <Typography variant='h5' classes={{ root: classes.expandHeaders }} >Relationships:</Typography>
-                    <Relationships graph={tree} />
+                    <Relationships graph={scigraph.tree} />
                   </CardContent>
-                </Collapse>
+                </Collapse> }
               </Card>
  			      </Grid>         
             <Grid item classes={{ item: classes.fullWidth }}> 
@@ -174,8 +162,8 @@ class Entity extends Component {
 }
 
 const mapStateToProps = ({entity}, ownProps) => {
-  const {curie} = ownProps; 
-  return {entity,curie}
+  const {hash} = ownProps; 
+  return {entity,hash}
 }
 
 export default withStyles(styles)(connect(mapStateToProps)(Entity));
