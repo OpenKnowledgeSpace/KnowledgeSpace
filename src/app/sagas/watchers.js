@@ -4,7 +4,7 @@ import {updateEntity} from 'features/entity/entitySaga'
 import {aggregateDataSpace} from 'features/dataSpaceAggs/dataSpaceAggsSaga'
 import {updateEntityAndSearchDS, searchDSByEntity, paginateDSSearch} from 'features/dataSpace/dataSpaceSaga'
 import {submitSearch, paginateSearch} from 'features/entitySearch/entitySearchSaga'
-import {searchLiteratureByCurie, searchLiterature, paginateLiterature} from 'features/literature/literatureSaga'
+import {searchLiteratureByHash, searchLiterature, paginateLiterature} from 'features/literature/literatureSaga'
 
 // CONSTANTS
 import {ENTITY_UPDATE, ENTITY_FOUND} from 'features/entity/entityConstants'
@@ -18,7 +18,7 @@ import {takeLatest} from 'redux-saga/effects'
 
 // Watches for ENTITY_UPDATE action type asynchronously
 export function * watchEntity() {
-  yield takeLatest(ENTITY_UPDATE, searchLiteratureByCurie)
+  yield takeLatest(ENTITY_UPDATE, searchLiteratureByHash)
   yield takeLatest(ENTITY_UPDATE, updateEntity)
 }
 
