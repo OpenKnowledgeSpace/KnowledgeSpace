@@ -20,7 +20,7 @@ const styles = theme => {
 
 const titleAndAuthors = ({title, authors = [], link}) => (
   <React.Fragment>
-    <Typography variant="h5" color="inherit"><a href={link}>{title}</a></Typography>
+    <Typography variant="h5" color="inherit"><a target='_blank' href={link}>{title}</a></Typography>
     <Typography variant="subtitle2" color="inherit">
       { (authors || []).map(a => `${a.LastName} ${a.Initials}`).join(', ')}
     </Typography>
@@ -29,7 +29,7 @@ const titleAndAuthors = ({title, authors = [], link}) => (
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-const journalAndYear = ({pub_type = [], journal = {}, journal_reference = {}, pub_date = '', abstract = ''}) => {
+const journalAndYear = ({pub_type = [], journal = {}, journal_reference = {}, pub_date = '', abstract = '', pub_id = ''}) => {
   const {title} = journal
   const types = pub_type.filter(pt => pt != 'Journal Article')
   const {pgn, volume} = journal_reference
@@ -40,7 +40,7 @@ const journalAndYear = ({pub_type = [], journal = {}, journal_reference = {}, pu
 
   return (
     <Typography variant="subtitle1" color="textPrimary">
-      {types.join('·')} in <i>{title}</i> {volume}:{pgn} · {month} {year} · Source: PubMed
+      {types.join('·')} in <i>{title}</i> {volume}:{pgn} · {month} {year} · Source: PubMed (PMID:{pub_id})
     </Typography>
   )
 }
@@ -50,7 +50,7 @@ const LiteratureResult = ({classes, result, disableGutters = true}) => {
   const link = `https://www.ncbi.nlm.nih.gov/pubmed/${pub_id}`
 
   const primary = titleAndAuthors({title, authors, link})
-  const sub = journalAndYear({pub_type, journal, journal_reference, pub_date, abstract})
+  const sub = journalAndYear({pub_type, journal, journal_reference, pub_date, abstract, pub_id})
 
   return (
     <ListItem alignItems="flex-start" disableGutters={disableGutters}>

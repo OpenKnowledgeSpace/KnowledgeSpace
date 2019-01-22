@@ -60,10 +60,10 @@ const DataSpaceResults = ({hits, classes, columns, page, handlePageChange}) => {
         </TableBody>
       </Table>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[25]}
         component="div"
         count={total}
-        rowsPerPage={10}
+        rowsPerPage={25}
         page={page}
         backIconButtonProps={{
           'aria-label': 'Previous Page'

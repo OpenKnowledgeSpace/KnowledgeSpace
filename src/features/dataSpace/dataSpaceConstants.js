@@ -30,7 +30,9 @@ export const DATASPACE_SOURCES = {
   scr_006131_hba_atlas: {
     label: 'Human Brain Atlas',
     description: 'Contains sections stained for cell bodies or nerve fibers, as well as corresponding MRI sections through a living human brain.',
-    type: 'anatomy'
+    type: 'anatomy',
+    columns: {species: 'Species', brain_region: 'Brain Region', brain_view: 'Brain View'},
+    aggs: {species: 'Species', brain_region: 'Brain Region', brain_view: 'Brain View'}
   },
   scr_002978_aba_expression: {
     label: 'Allen Brain Atlas Mouse Brain - Expression',
@@ -54,7 +56,9 @@ export const DATASPACE_SOURCES = {
   scr_014194_icg_ionchannels: {
     label: 'IonChannelGenealogy',
     description: 'Provides a quantitative assay of publicly available ion channel models.',
-    type: 'models'
+    type: 'models',
+    columns: {'dc.title': 'Title', 'dc.subject': 'Species', brain_area: 'Brain Area',  neuron_type: 'Neuron'},
+    aggs: {'dc.subject': 'Species', brain_area: 'Brain Area', neuron_type: 'Neuron'}
   },
   scr_003105_neurondb_currents: {
     label: 'NeuronDB',
@@ -91,5 +95,13 @@ export const DATASPACE_SOURCES = {
     label: 'Allen Brain Atlas Mouse Brain - CellType MorphoData',
     description: 'Provides a database of neuronal cell types based on multimodal characterization of single cells to enable data_driven approaches to classification.',
     type: 'morphology'
+  },
+  scr_014306_bbp_cellmorphology: {
+    label: 'Blue Brain Project Cell Morphology',
+    description: '3D Models of rat neuronal morphologies.',
+    type: 'morphology',
+    aggs: {'dc.subject': 'Cell', region_term: 'Region'},
+    columns: { 'dc.title': 'Title', 'dc.subject': 'Cell', 'region_term': 'Region'  }
+  
   }
 }
