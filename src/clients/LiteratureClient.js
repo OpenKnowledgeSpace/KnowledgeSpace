@@ -38,6 +38,8 @@ export const queryLiteratureByHash = ({hash, page = 1, q, filters = {}}) => {
   const start = (Number(page) - 1) * LITERATURE_RESULTS_PER_PAGE
   body.from = start
   body.size = LITERATURE_RESULTS_PER_PAGE
+  
+  body.sort = [{ 'pub_date': {'order':'desc' }}] 
 
   // In literature, we should be able to filter using the hash.
   if (!isEmpty(hash)) {

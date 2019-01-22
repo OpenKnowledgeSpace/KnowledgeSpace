@@ -30,8 +30,8 @@ const styles = theme => ({
   entityLink: {
     paddingRight: theme.mixins.gutters().paddingRight,
     paddingLeft: theme.mixins.gutters().paddingLeft,
-    paddingBottom: 10
-
+    paddingBottom: 10,
+    textDecoration: 'none'
   },
   divider: {
     marginRight: theme.mixins.gutters().paddingRight * 1.5,
@@ -88,14 +88,13 @@ class DataSpaceSearch extends Component {
 }
 
 const mapStateToProps = ({dataSpace, entity}, ownProps) => {
-  const curie = isEmpty(entity) ? ownProps.curie : entity.curie
   const {source} = ownProps
   const sourceConfig = DATASPACE_SOURCES[ownProps.source] || {}
 
   if (dataSpace.source !== ownProps.source) {
-    return {source, curie, entity, sourceConfig}
+    return {source,  entity, sourceConfig}
   }
-  return {...dataSpace, source, curie, entity, sourceConfig}
+  return {...dataSpace, source, entity, sourceConfig}
 }
 
 export default withStyles(styles)(connect(mapStateToProps)(DataSpaceSearch))

@@ -54,7 +54,9 @@ export const querySourceByEntity = ({source, entity, page = 0, q = '', filters =
   }
 
   // Now set pagination
-  body.from = page * 10
+  body.size = 25 
+  body.from = page * 25
+
 
   const filterFields = omitBy(filters, isEmpty)
   if (!isEmpty(filterFields)) {

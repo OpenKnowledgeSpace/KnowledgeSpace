@@ -7,7 +7,6 @@ import {put, call} from 'redux-saga/effects'
 
 export function * searchLiteratureByHash(payload) {
   try {
-    console.log(payload)
     const {hash} = payload;
     const results = yield call(queryLiteratureByHash, {hash})
     yield put({type: LITERATURE_RESULTS_FOUND, payload: results})
