@@ -73,9 +73,12 @@ class HomePage extends Component {
             <Autosuggest classes={classes} history={this.props.history}/>
           </div>
         </Grid>
+        <Grid item xs={12} sm={3}>
+        </Grid>
         <Grid item xs={12} sm={8} classes={{item: classes.logoContainer }}>
           <Grid container direction="row" alignItems='center' justify="flex-start" classes={{container: classes.partners}}>
             <Grid item xs={12}>
+              <Typography variant="subtitle1" gutterBottom>Over 1678580 pieces of data collected from 14 sources.</Typography> 
               <Typography variant="h4" gutterBottom>Partners</Typography>
             </Grid>
           </Grid>
