@@ -21,6 +21,12 @@ const styles = theme => ({
   },
   table: {
     minWidth: 1020
+  },
+  total: {
+    paddingTop: 10,
+    textAlign: 'right',
+    paddingRight: theme.mixins.gutters().paddingRight * 1.5,
+    paddingLeft: theme.mixins.gutters().paddingLeft * 1.5,
   }
 })
 
@@ -37,7 +43,7 @@ const DataSpaceResults = ({hits, classes, columns, page, handlePageChange}) => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="subtitle1" className={classes.filterTitle}>{ get(hits, 'total') || 0} records found</Typography>
+      <Typography variant="subtitle1" className={classes.total}>{ get(hits, 'total') || 0} records found</Typography>
       <Divider/>
       <Table className={classes.table} aria-labelledby="tableTitle">
         <TableHead>

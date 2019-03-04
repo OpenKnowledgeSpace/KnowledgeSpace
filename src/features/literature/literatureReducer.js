@@ -6,7 +6,12 @@ const initialState = {
   results: {hits: []},
   facets: {},
   filters: {},
-  page: 1
+  page: 1,
+  showProgress: true
+}
+
+export function updateLiteratureSearch(state= {}, payload ) {
+  return { ...state, showProgress: true }
 }
 
 export function loadLiterature(state = {}, payload) {
@@ -15,7 +20,7 @@ export function loadLiterature(state = {}, payload) {
   state.filters = mapValues(filters, v => new Set(v))
   state.page = page || 1
   state.facets = facets
-  return {...state}
+  return {...state, showProgress: false}
 }
 
 export function appendResults(state = {}, payload) {
@@ -26,6 +31,7 @@ export function appendResults(state = {}, payload) {
 }
 
 export default createReducer(initialState, {
+  [LITERATURE_SEARCH_SUBMITTED]: updateLiteratureSearch,
   [LITERATURE_RESULTS_FOUND]: loadLiterature,
   [LITERATURE_SEARCH_RESULTS_PAGINATED]: appendResults
 })

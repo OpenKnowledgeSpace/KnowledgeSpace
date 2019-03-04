@@ -7,13 +7,15 @@ import entitySearchReducer from 'features/entitySearch/entitySearchReducer'
 import dataSpaceAggsReducer from 'features/dataSpaceAggs/dataSpaceAggsReducer'
 import dataSpaceReducer from 'features/dataSpace/dataSpaceReducer'
 import literatureReducer from 'features/literature/literatureReducer'
+import autosuggestReducer from 'features/autosuggest/autosuggestReducer'
 
 const combinedReducer = combineReducers({
   entity: entityReducer,
   entitySearch: entitySearchReducer,
   dataSpaceAggs: dataSpaceAggsReducer,
   dataSpace: dataSpaceReducer,
-  literature: literatureReducer
+  literature: literatureReducer,
+  autosuggest: autosuggestReducer
 })
 
 const rootReducer = reduceReducers(

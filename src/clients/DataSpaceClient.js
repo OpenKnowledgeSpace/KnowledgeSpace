@@ -1,16 +1,27 @@
-import {toString, isNull, omitBy, isEmpty, isArray, has, keys, map, flatten} from 'lodash'
+import {toString, head, isNull, omitBy, isEmpty, isArray, has, keys, map, flatten} from 'lodash'
 import {DATASPACE_SOURCES} from 'features/dataSpace/dataSpaceConstants'
 import {esclient} from './ESClient'
 import {filterBuilder} from './utils'
 
-export const queryAllByEntity = ({label}) => {
-  if (isNull(label)) {
+const queryString = (labels) => {
+  if ( labels.length > 1 ) {
+   return labels.map( label => `(${label})` ).join(' OR ');
+  } else {
+   return head(labels);
+  }
+}
+
+export const queryAllByEntity = ({labels}) => {
+  if (isNull(labels)) {
     return {}
   }
+  
+  const query = queryString(labels)
+
   const body = {
     size: 0,
     query: {
-      query_string: {query: label}
+      query_string: {query}
     },
     aggs: {
       sources: {
@@ -39,16 +50,17 @@ const aggParameters = fields => {
 }
 
 export const querySourceByEntity = ({source, entity, page = 0, q = '', filters = {}}) => {
-  const {label} = entity;
+  const {labels} = entity;
   const aggs = aggParameters(DATASPACE_SOURCES[source].aggs)
-  
-  if (isNull(label)) {
+  const query = queryString(labels)
+
+  if (isNull(labels)) {
     return {}
   }
   const body = {aggs,
     query: {
       bool: {
-        must: {query_string: {query: label}}
+        must: {query_string: {query}}
       }
     }
   }

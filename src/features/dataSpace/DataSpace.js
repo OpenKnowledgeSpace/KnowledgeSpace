@@ -12,7 +12,7 @@ import DataSpaceSourceDescription from './components/DataSpaceSourceDescription'
 /* This is probably Dead Code */
 class DataSpace extends Component {
   componentDidMount() {
-    const {hash, source} = this.props
+    const {slug, source} = this.props
     this.props.dispatch(updateEntityAndSource({hash, source}))
   }
 

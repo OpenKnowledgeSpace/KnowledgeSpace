@@ -4,14 +4,14 @@ import {filterBuilder, combineAggsAndFilters} from './utils'
 
 const ENTITY_RESULTS_PER_PAGE = 25
 
-export const findByHash = hash => {
-  if (typeof hash === 'undefined') {
+export const findBySlug = slug => {
+  if (typeof slug === 'undefined') {
     return {}
   }
   return esclient.get({
     index: 'scigraph',
     type: 'entities',
-    id: hash
+    id: slug
   }).then(response => response._source)
 }
 

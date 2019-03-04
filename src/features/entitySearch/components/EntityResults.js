@@ -34,11 +34,11 @@ const EntityResults = ({hits, classes}) => (
 )
 
 const Result = ({result, classes}) => {  
-  const {label, summary, category, slug} = result;
+  const {name, summary, slug} = result;
  return (
     <li>
-      <ListItem component={Link} to={`/t/${category}/${slug}`}>
-        <ListItemText primary={label} secondary={summary.text}/>
+      <ListItem component={Link} to={`/t/${slug}`}>
+        <ListItemText primary={name} secondary={summary}/>
       </ListItem>
       <Divider light/>
     </li>

@@ -7,7 +7,7 @@ import {ENTITY_UPDATE,
 const initialState = {}
 
 export function updateEntity(state = {}, payload) {
-  return {hash: payload}
+  return {slug: payload}
 }
 
 export function loadEntity(state = {}, payload) {

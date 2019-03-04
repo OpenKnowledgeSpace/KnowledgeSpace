@@ -26,11 +26,11 @@ const Main = props => {
       <Switch>
         <Route exact path="/" component={HomePage}/>
         <Route exact path="/about" component={AboutPage}/>
-        <Route exact path="/t/:category/:slug" component={EntityPage}/>
+        <Route exact path="/t/:slug" component={EntityPage}/>
         <Route exact path="/wiki/:curie" component={EntityPage}/>
         <Route exact path="/search" component={SearchPage}/>
-        <Route exact path="/t/:category/:slug/dataspace/:source" component={DataSpacePage}/>
-        <Route exact path="/t/:category/:slug/literature" component={LiteraturePage}/>
+        <Route exact path="/t/:slug/dataspace/:source" component={DataSpacePage}/>
+        <Route exact path="/t/:slug/literature" component={LiteraturePage}/>
       </Switch>
     </main>
   )

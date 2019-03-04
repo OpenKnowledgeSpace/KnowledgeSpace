@@ -1,4 +1,4 @@
-import {findByHash} from 'clients/EntityClient'
+import {findBySlug} from 'clients/EntityClient'
 import {querySourceByEntity} from 'clients/DataSpaceClient'
 
 import {ENTITY_FOUND} from '../entity/entityConstants'
@@ -7,8 +7,8 @@ import {put, call} from 'redux-saga/effects'
 
 export function * updateEntityAndSearchDS({payload}) {
   try {
-    const {hash, source} = payload
-    const entity = yield call(findByHash, hash)
+    const {slug, source} = payload
+    const entity = yield call(findBySlug, slug)
     yield put({type: ENTITY_FOUND, payload: entity})
     yield put({type: DS_ENTITY_FOUND, payload: {entity, source}})
   } catch (err) {

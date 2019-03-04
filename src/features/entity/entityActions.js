@@ -1,8 +1,8 @@
 import {ENTITY_UPDATE, ENTITY_FOUND, ENTITY_LOADED} from './entityConstants'
 
-export const updateHash = hash => ({
+export const updateSlug = slug => ({
   type: ENTITY_UPDATE,
-  hash
+  slug
 })
 
 export const loadEntity = entity => ({

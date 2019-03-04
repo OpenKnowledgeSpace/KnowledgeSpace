@@ -24,13 +24,13 @@ const aggsParams = () => (
 const queryBuilder = query => {
   return ({multi_match: {
     query,
-    fields: ['labels^10', 'definitions', 'synonyms^8', 'abbreviations^8']
+    fields: ['keywords^10', 'title^10', 'authors.full_name^8', 'abstract']
   }
   }
   )
 }
 
-export const queryLiteratureByHash = ({hash, page = 1, q, filters = {}}) => {
+export const queryLiteratureByCuriePaths = ({curie_paths, page = 1, q, filters = {}}) => {
   // Start with the aggs we alway use.
   const body = aggsParams()
   body.query = {bool: {}}
@@ -41,26 +41,21 @@ export const queryLiteratureByHash = ({hash, page = 1, q, filters = {}}) => {
   
   body.sort = [{ 'pub_date': {'order':'desc' }}] 
 
-  // In literature, we should be able to filter using the hash.
-  if (!isEmpty(hash)) {
-    body.query.bool.must = [{
-      nested: {
-        path: 'text_mined_entities.nlp',
-        query: {
-          query_string: {
-            query: hash,
-            fields: [
-              'text_mined_entities.nlp.tagged_entities_grouped.*.reference'
-            ]
-          }
+  // In literature, we should be able to filter using the Entity's path.
+  if (!isEmpty(curie_paths)) {
+    body.query.bool = {
+       must: [{
+         terms: {
+          "text_mined_entities.nlp.tagged_entities_grouped.NEURO|SCICRUNCH.reference": curie_paths 
         }
-      }
-    }]
+      }]
+    }
   }
+
 
   // Add a query if there's a q param
   if (!isEmpty(toString(q))) {
-    body.query.bool.should = [queryBuilder(q)]
+    body.query.bool.must.push(queryBuilder(q))
   }
 
   const queryFilters = omitBy(filters, isEmpty)

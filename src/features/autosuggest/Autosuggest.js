@@ -14,12 +14,12 @@ import SearchIcon from '@material-ui/icons/Search'
 import InputBase from '@material-ui/core/InputBase'
 import {fade} from '@material-ui/core/styles/colorManipulator'
 
-import {submitSearch} from 'features/entitySearch/entitySearchActions'
+import {submitAutosuggest} from './autosuggestActions'
 
 class Autosuggest extends Component {
   handleChange(value) {
     if (!isEmpty(value) && value !== this.props.q) {
-      this.props.dispatch(submitSearch({q: value}))
+      this.props.dispatch(submitAutosuggest({q: value}))
     }
     return true
   }
@@ -27,13 +27,13 @@ class Autosuggest extends Component {
   handleSubmit(event) {
     event.preventDefault()
     const q = document.getElementById('autosuggest-input').value
-    this.props.dispatch(submitSearch({q}))
+    this.props.dispatch(submitAutosuggest({q}))
     this.props.history.push({pathname: '/search', search: `q=${q}` })
   }
 
   renderSuggestion({suggestion, index, itemProps, highlightedIndex, selectedItem}) {
-    const { label, category, slug } = suggestion._source;
-    const key = `/t/${category}/${slug}`; 
+    const { name, slug } = suggestion;
+    const key = `/t/${slug}`; 
     const isHighlighted = highlightedIndex === index;
     const isSelected = (selectedItem || '').indexOf(key) > -1;
     
@@ -47,7 +47,7 @@ class Autosuggest extends Component {
           fontWeight: isSelected ? 500 : 400
         }}
       >
-        <div style={{textOverflow: 'ellipsis', overflow: 'hidden'}}>{label} ({category})</div>
+        <div style={{textOverflow: 'ellipsis', overflow: 'hidden'}}>{name}</div>
       </MenuItem>
   	)
   }
@@ -67,7 +67,7 @@ class Autosuggest extends Component {
 
   render() {
     const {suggestions, classes} = this.props
-
+    
     const renderSuggestion = this.renderSuggestion
     const renderInput = this.renderInput
     const onSelect = this.onSelect.bind(this)
@@ -104,7 +104,7 @@ class Autosuggest extends Component {
                     return renderSuggestion({
                       		suggestion,
                       index,
-                      itemProps: getItemProps({item: `${suggestion._source.category}/${suggestion._source.slug}`}),
+                      itemProps: getItemProps({item: `${suggestion.slug}`}),
                       highlightedIndex,
                       selectedItem
 											 })
@@ -118,10 +118,8 @@ class Autosuggest extends Component {
   }
 }
 
-const mapStateToProps = ({entitySearch}) => {
-  const {q} = entitySearch
-  const suggestions = entitySearch.results.hits || []
-  return {suggestions, q}
+const mapStateToProps = ({autosuggest}) => {
+  return {...autosuggest}
 }
 
 export default connect(mapStateToProps)(Autosuggest)

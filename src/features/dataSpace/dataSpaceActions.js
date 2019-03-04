@@ -3,9 +3,9 @@ import {DS_ENTITY_UPDATE,
   DS_ENTITY_FOUND,
   DS_SEARCH_SUBMITTED} from './dataSpaceConstants'
 
-export const updateEntityAndSource = ({hash, source}) => ({
+export const updateEntityAndSource = ({slug, source}) => ({
   type: DS_ENTITY_UPDATE,
-  payload: {hash, source}
+  payload: {slug, source}
 })
 
 export const paginateSearch = query => ({

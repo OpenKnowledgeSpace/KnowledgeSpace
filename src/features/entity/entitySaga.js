@@ -1,11 +1,11 @@
-import {findByHash} from 'clients/EntityClient'
+import {findBySlug} from 'clients/EntityClient'
 import {queryAllByEntity} from 'clients/DataSpaceClient'
 import {ENTITY_UPDATE, ENTITY_FOUND, ENTITY_LOADED, ENTITY_DATASPACE_RESULTS_FOUND} from './entityConstants'
 import {put, call} from 'redux-saga/effects'
 
-export function * updateEntity({hash}) {
+export function * updateEntity({slug}) {
   try {
-    const entity = yield call(findByHash, hash)
+    const entity = yield call(findBySlug, slug)
     yield put({type: ENTITY_FOUND, payload: entity})
   } catch (err) {
     yield put({type: 'ENTITY_LOAD_ERROR', err})

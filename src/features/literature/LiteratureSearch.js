@@ -12,12 +12,15 @@ import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Card from '@material-ui/core/Card'
 import List from '@material-ui/core/List'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import SearchBox from 'common/components/search/SearchBox'
 import Facets from 'common/components/search/Facets'
+import KeywordSearch from 'common/components/search/KeywordSearch'
 import Pagination from 'common/components/search/Pagination'
+import NoSearchResults from 'common/components/search/NoSearchResults'
 import Detail from '../entity/components/Detail'
-import {updateHash} from '../entity/entityActions'
+import {updateSlug} from '../entity/entityActions'
 import LiteratureResult from './components/LiteratureResult'
 import {submitSearch, paginateSearch} from './literatureActions'
 
@@ -46,54 +49,78 @@ const styles = theme => ({
     textAlign: 'right',
     paddingRight: theme.mixins.gutters().paddingRight * 1.5,
     paddingLeft: theme.mixins.gutters().paddingLeft * 1.5,
-  }
+  },
+  resultsBox: {
+    minHeight: 250,
+  },
+  resultsList: {
+  },
+  progress: {
+    margin: theme.spacing.unit * 2,
+  },
 })
 
 class LiteratureSearch extends Component {
+
   componentDidMount() {
-    const {hash} = this.props
-    this.props.dispatch(updateHash(hash))
-    this.props.dispatch(submitSearch({hash}))
+    const {slug} = this.props
+    this.props.dispatch(updateSlug(slug))
   }
 
   handlePagination() {
-    const {hash, filters, q} = this.props
+    const {entity, filters, q} = this.props
+    const { curie_paths } = entity;
     const page = this.props.page + 1
-    this.props.dispatch(paginateSearch({q, hash, filters, page}))
+    this.props.dispatch(paginateSearch({q, curie_paths, filters, page}))
   }
 
   handleFacetToggle(facet, values) {
-    const {hash, filters, q} = this.props
+    const {filters, q, entity} = this.props
+    const { curie_paths } = entity;
     filters[facet] = values
-    this.props.dispatch(submitSearch({q, filters, hash}))
+    this.props.dispatch(submitSearch({q, filters, curie_paths}))
+  }
+
+  handleKeywordSearch(value) {
+    if ( value.length > 0 && value.length < 3 ) { return }
+    const {filters, entity} = this.props
+    const { curie_paths } = entity;
+    const q = value;
+    this.props.dispatch(submitSearch({q, filters, curie_paths}))
   }
 
   render() {
-    const {results, entity, filters, facets, classes, page} = this.props
-    const { slug, category, label } = entity;
+    const {results, entity, filters, facets, classes, page, showProgress} = this.props
+    const { slug, name } = entity;
+
     const {hits, total} = results;
-    const showPagination = page * 25 < total; 
+    const showTotal = total > 0 && !showProgress; 
+    const showNoResults = !showProgress && total == 0;
+    const showPagination = (page * 25 < total) && showTotal && !showProgress; 
     
     return (
       <Grid container direction="row" justify="flex-start" alignItems="flex-start" spacing={16}>
         <Grid item xs={12} sm={3}>
+          <KeywordSearch handleKeywordSearch={this.handleKeywordSearch.bind(this)} />
           <Facets facets={facets} selected={filters} handleFacetToggle={this.handleFacetToggle.bind(this)}/>
         </Grid>
-        <Grid item xs={12} sm={9}>
-          <Paper elevation={1}>
+        <Grid item xs={12} sm={9} classes={{ }}>
+          <Paper elevation={1} classes={{root: classes.resultsBox }}>
             <Typography variant="h3" classes={{root: classes.root}}>
                 Literature Results:
-                <Link className={classes.entityLink} to={`/t/${category}/${slug}`}>
-                  {label}
+                <Link className={classes.entityLink} to={`/t/${slug}`}>
+                  {name}
                 </Link>
             </Typography>
-            <Divider classes={{root: classes.divider}}/>
-            { total && <Typography variant="h6" classes={{root: classes.total}}>
+            { showTotal && <Divider classes={{root: classes.divider}}/> }
+            { showTotal && <Typography variant="subtitle1" classes={{root: classes.total}}>
                 {total} records found
             </Typography> }
             <Divider classes={{root: classes.divider}}/>
-            <List>
-              { hits.map(hit => <LiteratureResult key={hit._id} disableGutters={false} result={hit._source}/>) }
+            <List classes={{container: classes.resultsList}} >
+              { showProgress && <CircularProgress size={80} thickness={7} classes={{ root: classes.progress }} /> }
+              { !showProgress && hits.map(hit => <LiteratureResult key={hit._id} disableGutters={false} result={hit._source}/>) }
+              { showNoResults && <NoSearchResults />  }
             </List>
             { showPagination && <Pagination handlePagination={this.handlePagination.bind(this)}/> }
           </Paper>
@@ -104,7 +131,7 @@ class LiteratureSearch extends Component {
 }
 
 const mapStateToProps = ({literature, entity}, ownProps) => {
-  return {...literature, entity}
+  return {...literature, ...ownProps, entity, loaded: true }
 }
 
 export default withStyles(styles)(connect(mapStateToProps)(LiteratureSearch))

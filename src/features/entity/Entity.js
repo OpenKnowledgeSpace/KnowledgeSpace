@@ -2,12 +2,13 @@ import React, {Component} from "react";
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
-import {Link} from 'react-router-dom'
 
 
-import { updateHash } from './entityActions';
+import { updateSlug } from './entityActions';
 import { isArray, keys, isUndefined, head, has, isEmpty, find } from 'lodash';
 
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
@@ -18,6 +19,12 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import Fab from '@material-ui/core/Fab';
+
+import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
+import Link from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+
+import ReactMarkdown from 'react-markdown';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
@@ -86,24 +93,24 @@ class Entity extends Component {
  
 
   componentDidMount() {
-    const {hash} = this.props; 
-    this.props.dispatch(updateHash(hash));
+    const {slug} = this.props; 
+    this.props.dispatch(updateSlug(slug));
   }
  
   renderSynonyms(synonyms, classes) {
     if ( isEmpty(synonyms) ) { return null } 
     return ( 
       <div>
-        <Typography variant='h5' classes={{ root: classes.expandHeaders }} >Synonyms:</Typography>
-        { synonyms.map( syn => <Chip key={syn} label={syn} /> )  }
+        <Typography variant='h6' classes={{ root: classes.expandHeaders }} >Synonyms:
+          { synonyms.map( syn => <Chip key={syn} label={syn} /> )  }
+        </Typography>
       </div>
     ) 
   }
 
   render() {
-    const {entity, hash, classes} = this.props; 
-    const { definitions, synonyms, label, summary} = entity; 
-    const scigraph = find(definitions, { 'source': 'scigraph' })
+    const {entity, classes} = this.props; 
+    const { definitions, synonyms, name , summary, linked_path, curies } = entity; 
 
     return (
       <Grid container direction='row' justify='flex-start' alignItems='flex-start' spacing={16}>
@@ -111,14 +118,24 @@ class Entity extends Component {
           <Grid container direction='column' justify='flex-start' alignItems='flex-start' spacing={16}>
             <Grid item classes={{ item: classes.fullWidth }}> 
               <Card classes={{ root: classes.description}}> 
-                <CardHeader title={label} classes={{root: classes.titleRoot, title: classes.title }} />        
+                <CardHeader title={name} classes={{root: classes.titleRoot, title: classes.title }} />        
                 <Divider />                
                 <CardContent classes={{root: classes.cardContent}}>
-                 <Typography variant='body1' paragraph={true} classes={{root: classes.descriptionText}} >
-                  { has(summary, 'text') && summary.text}
+                 <Typography variant="subtitle1" color="textSecondary">
+                  <Breadcrumbs aria-label="Breadcrumb" separator={<NavigateNextIcon fontSize="small" />}>
+                    { isArray(linked_path) && linked_path.map((link, i) => {
+                        if ( linked_path.length == i + 1 ){   
+                          return(<Link key={i} color='textPrimary' aria-current='page' href={`/t/${link.slug}`}>{link.label}</Link>)
+                        } else {
+                          return(<Link key={i} color='inherit' href={`/t/${link.slug}`}>{link.label}</Link>)
+                        }
+                      })
+                    }
+                  </Breadcrumbs>
                  </Typography>
-                 <Typography paragraph={true} align='right' >
-                  { has(summary, 'source') && <Button className={classes.sourceLink} target='_blank' component='a' color='primary' variant='contained' href={summary.source}>{summary.source}</Button>}
+                 { this.renderSynonyms(synonyms, classes) }
+                 <Typography variant='body1' paragraph={true} component='div' classes={{root: classes.descriptionText}} >
+                  <ReactMarkdown source={summary} disallowedTypes={['code']} /> 
                  </Typography>
                 </CardContent>
                 <CardActions className={classes.actions} disableActionSpacing>
@@ -132,15 +149,15 @@ class Entity extends Component {
                     <ExpandMoreIcon />
                   </Fab>
                 </CardActions>
-                { scigraph && <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-                  <CardContent classes={{root: classes.cardContent}}>
-                    <Typography variant='h5' classes={{ root: classes.expandHeaders }} >IRI:</Typography>
-                    <a href={scigraph.iri} target='_blank'>{scigraph.iri}</a>
-                    { this.renderSynonyms(synonyms, classes) }
-                    <Typography variant='h5' classes={{ root: classes.expandHeaders }} >Relationships:</Typography>
-                    <Relationships graph={scigraph.tree} />
-                  </CardContent>
-                </Collapse> }
+                <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                  <Typography variant="h5" color="textSecondary">Defined By:</Typography>
+                  <List component="nav">
+                    { isArray(definitions) && definitions.map( (definition, i) => {
+                        return (<ListItem key={i} component='div'><a href={definition.iri} target='_blank'>{definition.curie}</a></ListItem>)
+                      })
+                    }
+                  </List>
+                </Collapse> 
               </Card>
  			      </Grid>         
             <Grid item classes={{ item: classes.fullWidth }}> 
@@ -162,8 +179,8 @@ class Entity extends Component {
 }
 
 const mapStateToProps = ({entity}, ownProps) => {
-  const {hash} = ownProps; 
-  return {entity,hash}
+  const {slug} = ownProps; 
+  return {entity,slug}
 }
 
 export default withStyles(styles)(connect(mapStateToProps)(Entity));

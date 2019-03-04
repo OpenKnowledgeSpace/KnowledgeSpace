@@ -42,8 +42,8 @@ const styles = theme => ({
 
 class DataSpaceSearch extends Component {
   componentDidMount() {
-    const {hash, source} = this.props
-    this.props.dispatch(updateEntityAndSource({hash, source}))
+    const {slug, source} = this.props
+    this.props.dispatch(updateEntityAndSource({slug, source}))
   }
 
   handleFacetToggle(facet, selected) {
@@ -61,8 +61,7 @@ class DataSpaceSearch extends Component {
 
   render() {
     const {classes,  entity, sourceConfig, filters, facets, results, page} = this.props
-    const { slug, category } = entity;
-    const entityLabel = entity.label;
+    const { slug, category, name } = entity;
     const {columns, label} = sourceConfig
 
     return (
@@ -74,8 +73,8 @@ class DataSpaceSearch extends Component {
           <Paper elevation={1}>
             <Typography variant="h3" classes={{root: classes.root}}>
               {label} Results:
-              <Link className={classes.entityLink} to={`/t/${category}/${slug}`}>
-                {entityLabel}
+              <Link className={classes.entityLink} to={`/t/${slug}`}>
+                {name}
               </Link>
             </Typography>
             <Divider classes={{root: classes.divider}}/>
