@@ -1,8 +1,25 @@
-import {toString, omitBy, isEmpty, has, map, flatten} from 'lodash'
+import {toString, omitBy, isEmpty, has, map, flatten, head} from 'lodash'
 import {esclient} from './ESClient'
 import {filterBuilder, combineAggsAndFilters} from './utils'
 
 const ENTITY_RESULTS_PER_PAGE = 25
+
+export const findSlugByCurie = curie => {
+  if ( typeof curie === 'undefined' ) { 
+    return null; 
+  }
+  const queryFilters = { curies: [curie] };
+  const body = { query: { bool: { filter:  filterBuilder(queryFilters) } } };
+  return esclient.search({
+    index: 'scigraph',
+    type: 'entities',
+    body
+  }).then(response =>  {
+    const hit = head(response.hits.hits);
+    return hit._id;
+  })
+}
+
 
 export const findBySlug = slug => {
   if (typeof slug === 'undefined') {
