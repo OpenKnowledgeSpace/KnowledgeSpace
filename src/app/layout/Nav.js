@@ -15,9 +15,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import InfoIcon from '@material-ui/icons/Info';
+import FeedbackIcon from '@material-ui/icons/Feedback';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
@@ -115,6 +117,7 @@ const styles = theme => ({
 });
 
 const AboutLink = props => <Link to="/about" {...props} />
+const ContactLink = props => <Link to="/contact" {...props} />
 
 class Nav extends React.Component {
   state = {
@@ -170,9 +173,12 @@ class Nav extends React.Component {
       >
         <MenuItem>
           <IconButton color="inherit" component={AboutLink} >
-            <Badge badgeContent={4} color="secondary">
               <InfoIcon />
-            </Badge>
+          </IconButton>
+        </MenuItem>
+        <MenuItem>
+          <IconButton color="inherit" component={ContactLink} >
+              <FeedbackIcon />
           </IconButton>
         </MenuItem>
       </Menu>
@@ -195,6 +201,9 @@ class Nav extends React.Component {
 						<div className={classes.sectionDesktop}>
               <IconButton color="inherit" component={AboutLink} >
                   <InfoIcon />
+              </IconButton>
+              <IconButton color="inherit" component={ContactLink} >
+                  <FeedbackIcon />
               </IconButton>
             </div>
             <div className={classes.sectionMobile}>
