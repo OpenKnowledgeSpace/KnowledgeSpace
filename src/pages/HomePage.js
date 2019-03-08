@@ -12,6 +12,24 @@ import hbp from 'imgs/hbp-logo.png';
 import nif from 'imgs/nif-logo.png';
 import incf from 'imgs/incf-logo.svg';
 
+import brainmaps from 'imgs/brainmaps.png';
+import neuromorpho from 'imgs/neuromorpho.png';
+import opensourcebrain from 'imgs/opensourcebrain.png';
+import icg from 'imgs/icg.png';
+import logo from 'imgs/logo.png';
+import pubmed from 'imgs/pubmed.png';
+import neurolex from 'imgs/neurolex.png';
+import modeldb from 'imgs/modeldb.png';
+import gensat from 'imgs/gensat.png';
+import nbd from 'imgs/nbd.png';
+import neuroelectro from 'imgs/neuroelectro.png';
+import bbp from 'imgs/bbp.png';
+import cli from 'imgs/cli.png';
+import ks6 from 'imgs/ks6.png';
+import allen from 'imgs/allen.png';
+
+
+
 
 const styles = theme => ({
   inputRoot: {},
@@ -97,6 +115,83 @@ class HomePage extends Component {
               <a href='https://www.incf.org'> 
                 <img alt='INCF' className={classes.logo} src={incf}  />
               </a>
+            </Grid>
+          </Grid>
+          <Grid container direction="row" alignItems='center' justify="space-between">
+            <Grid item sm={3} xs={12}>
+              <a href='http://brainmap.org/'>
+                <img alt='brainmaps' className={classes.logo} src={brainmaps}  />
+              </a>
+            </Grid>
+            <Grid item sm={3} xs={12}>
+              <a href='http://neuromorpho.org/'>
+                <img alt='neuromorpho' className={classes.logo} src={neuromorpho}  />
+              </a>
+            </Grid>
+            <Grid item sm={3} xs={12}>
+              <a href='http://www.opensourcebrain.org/'> 
+                <img alt='opensourcebrain' className={classes.logo} src={opensourcebrain}  />
+              </a>
+            </Grid>
+            <Grid item sm={3} xs={12}>
+              <a href='https://icg.neurotheory.ox.ac.uk/'>
+                <img alt='icg' className={classes.logo} src={icg}  />
+              </a>
+            </Grid>
+          </Grid>
+          <Grid container direction="row" alignItems='center' justify="space-between">
+            <Grid item sm={3} xs={12}>
+              <a href='https://www.ncbi.nlm.nih.gov/pubmed'>
+                <img alt='pubmed' className={classes.logo} src={pubmed}  />
+              </a>
+            </Grid>
+            <Grid item sm={3} xs={12}>
+              <a href='http://neurolex.org'> 
+                <img alt='neurolex' className={classes.logo} src={neurolex}  />
+              </a>
+            </Grid>
+            <Grid item sm={3} xs={12}>
+              <a href='https://senselab.med.yale.edu/ModelDB/'>
+                <img alt='modeldb' className={classes.logo} src={modeldb}  />
+              </a>
+            </Grid>
+            <Grid item sm={3} xs={12}>
+              <a href='http://www.gensat.org/daily_showcase.jsp'>
+                <img alt='gensat' className={classes.logo} src={gensat}  />
+              </a>
+            </Grid>
+          </Grid>
+          <Grid container direction="row" alignItems='center' justify="space-between">
+            <Grid item sm={3} xs={12}>
+              <a href='https://senselab.med.yale.edu/neurondb'> 
+                <img alt='nbd' className={classes.logo} src={nbd}  />
+              </a>
+            </Grid>
+            <Grid item sm={3} xs={12}>
+              <a href='https://neuroelectro.org/'>
+                <img alt='neuroelectro' className={classes.logo} src={neuroelectro}  />
+              </a>
+            </Grid>
+            <Grid item sm={3} xs={12}>
+              <a href='https://bluebrain.epfl.ch/'>
+                <img alt='bbp' className={classes.logo} src={bbp}  />
+              </a>
+            </Grid>
+            <Grid item sm={3} xs={12}>
+              <a href='http://cellimagelibrary.org/'> 
+                <img alt='cli' className={classes.logo} src={cli}  />
+              </a>
+            </Grid>
+          </Grid>
+          <Grid container direction="row" alignItems='center' justify="space-between">
+            <Grid item sm={3} xs={12}>
+              <a href='http://portal.brain-map.org/'>
+                <img alt='allen' className={classes.logo} src={allen}  />
+              </a>
+            </Grid>
+            <Grid item sm={3} xs={12}>
+            </Grid>
+            <Grid item sm={3} xs={12}>
             </Grid>
           </Grid>
         </Grid>
