@@ -70,7 +70,8 @@ const styles = theme => ({
   logo: {
     margin: '25px',
   },
-  partners: { marginBottom: '30px' }
+  partners: {  },
+  dataSources: { marginTop: 50 }
 })
 
 class HomePage extends Component {
@@ -96,7 +97,6 @@ class HomePage extends Component {
         <Grid item xs={12} sm={8} classes={{item: classes.logoContainer }}>
           <Grid container direction="row" alignItems='center' justify="flex-start" classes={{container: classes.partners}}>
             <Grid item xs={12}>
-              <Typography variant="subtitle1" gutterBottom>Over 1678580 pieces of data collected from 14 sources.</Typography> 
               <Typography variant="h4" gutterBottom>Partners</Typography>
             </Grid>
           </Grid>
@@ -117,10 +117,16 @@ class HomePage extends Component {
               </a>
             </Grid>
           </Grid>
+          <Grid container direction="row" alignItems='center' justify="flex-start" classes={{container: classes.dataSources}}>
+            <Grid item xs={12}>
+              <Typography variant="h4" gutterBottom>Data Sources</Typography>
+              <Typography variant="subtitle1" gutterBottom>Over 1678580 pieces of data collected from 14 sources.</Typography> 
+            </Grid>
+          </Grid>
           <Grid container direction="row" alignItems='center' justify="space-between">
             <Grid item sm={3} xs={12}>
-              <a href='http://brainmap.org/'>
-                <img alt='brainmaps' className={classes.logo} src={brainmaps}  />
+              <a href='http://portal.brain-map.org/'>
+                <img alt='allen' className={classes.logo} src={allen}  />
               </a>
             </Grid>
             <Grid item sm={3} xs={12}>
@@ -185,11 +191,11 @@ class HomePage extends Component {
           </Grid>
           <Grid container direction="row" alignItems='center' justify="space-between">
             <Grid item sm={3} xs={12}>
-              <a href='http://portal.brain-map.org/'>
-                <img alt='allen' className={classes.logo} src={allen}  />
-              </a>
             </Grid>
             <Grid item sm={3} xs={12}>
+              <a href='http://brainmap.org/'>
+                <img alt='brainmaps' className={classes.logo} src={brainmaps}  />
+              </a>
             </Grid>
             <Grid item sm={3} xs={12}>
             </Grid>
