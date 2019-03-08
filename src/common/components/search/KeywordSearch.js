@@ -9,6 +9,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import SearchIcon from '@material-ui/icons/Search';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+
+import {isEmpty} from 'lodash'
+import keycode from 'keycode';
+import EventListener from 'react-event-listener';
+
 
 const styles = theme => ({
    
@@ -57,17 +65,34 @@ class KeywordSearch extends Component {
 
   handleChange = event => {
     const {handleKeywordSearch} = this.props;
-    const {value} = event.target
-    this.setState({
-      keyword: value,
-    }, handleKeywordSearch(value));
+    const {keyword} = this.state;
+    const {value} = event.target;
+    
+    this.setState({ keyword: value});
+  };
+
+  triggerSearch() {
+    const {keyword} = this.state;
+    this.props.handleKeywordSearch(keyword);
+  } 
+  
+  handleKeyDown = event => {
+   if ( 
+       keycode(event) == 'enter' && 
+       document.activeElement === this.inputRef &&
+       !isEmpty(event.target.value)
+      ) { 
+        this.triggerSearch(); 
+      }
   };
 
   render() {
      const { classes } = this.props;
+     const triggerSearch = this.triggerSearch.bind(this);
 
     return(
   <Grid container alignItems="flex-start" direction="column" justify="flex-start" spacing={16}>
+    <EventListener target="window" onKeyDown={this.handleKeyDown.bind(this)} />
     <Grid item className={classes.gridItem} > 
       <Paper className={classes.filtersTitle} >
         <Typography variant='h6' color='inherit' >Search</Typography>
@@ -83,6 +108,19 @@ class KeywordSearch extends Component {
           onChange={this.handleChange.bind(this)}
           margin="normal"
           variant="outlined"
+          inputRef={ref => {
+            this.inputRef = ref;
+          }}
+          InputProps={{
+          endAdornment: (
+              <InputAdornment position="end">
+                <SearchIcon
+                  aria-label="Toggle password visibility"
+                  onClick={triggerSearch}
+                />
+              </InputAdornment>
+            ),
+        }}  
         />
       </Paper>
     </Grid>
