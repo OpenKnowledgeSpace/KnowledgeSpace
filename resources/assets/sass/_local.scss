@@ -1,0 +1,535 @@
+nav { 
+  ul a, .brand-logo { 
+    color: #444; 
+    img { margin-bottom: -8px; } 
+  }
+ 
+}
+
+input[type='text']:not(.browser-default) { 
+  border-bottom: 1px solid $input-border;
+ }
+
+
+#not-found { 
+  margin-top: 100px; 
+    .search-wrapper.focused { margin: 0 }
+    
+    .search-wrapper { 
+      -webkit-transition:  margin .25s ease; 
+      position: relative; 
+      margin: 0 12px;
+      input { background: #fff; padding: 0 10px; }
+      i.material-icons {
+        color: #444; 
+        position: absolute;
+        top: 10px;
+        right: 0px;
+        cursor: pointer;
+        font-weight: 600;
+       }
+     } 
+}
+
+#DataSources, #Documentation, #category-page { 
+  ul { 
+    margin: 20px 0;  
+    .btn { padding: 0 1.3rem; } 
+    li {
+      margin: 5px; 
+      a { padding: 5px; } 
+    } 
+ }
+}
+
+footer {
+
+  h3 { 
+    color: #FFF; 
+    border-bottom: 1px solid; 
+    margin-bottom: 20px;
+    padding: 5px;
+  }
+
+  ul  {
+    width: 100%;
+    li {  margin: 0 20px; float: left; } 
+  
+  }
+  
+  address { color: #FFF;  }
+
+}
+
+.page-content { 
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+/* parallax */ 
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+
+.parallax-container .section {
+    width: 100%;
+    h1 { margin-bottom: 0 } 
+    h3 { margin: 0 } 
+    input[type='text'] { 
+      color: #444;  
+      background-color: #fff;
+      padding: 0 0 0 15px;
+      font-weight: 600;
+      font-size: 16px;
+   
+      &:focus{
+        border-bottom: 1px solid #ccd0d2;
+        box-shadow: 0 1px 0 0 #ccd0d2;
+      }
+    }
+ 
+		::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+				color:    #444;
+		}
+		:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+			 color:    #444;
+			 opacity:  1;
+		}
+		::-moz-placeholder { /* Mozilla Firefox 19+ */
+			 color:    #444;
+			 opacity:  1;
+		}
+		:-ms-input-placeholder { /* Internet Explorer 10-11 */
+			 color:    #444;
+		}
+		::-ms-input-placeholder { /* Microsoft Edge */
+			 color:    #444;
+		}
+
+    .search-wrapper.focused { margin: 0 }
+    
+    .search-wrapper { 
+      -webkit-transition:  margin .25s ease; 
+      position: relative; 
+      margin: 0 12px;
+
+      i.material-icons {
+        color: #444; 
+        position: absolute;
+        top: 10px;
+        right: 0px;
+        cursor: pointer;
+        font-weight: 600;
+       }
+     } 
+}
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+
+
+#tag-line { margin-top: 15px; margin-bottom: 15px; }
+
+#showcase { 
+	margin-top: 15px;
+	margin-bottom: 15px;
+
+	.img-caption { 
+		left: 5px;
+		top: 15px;
+		z-index: 1;
+		color: #fff;
+		position: absolute;
+		border-radius: 0 0 8px 0;
+		font-weight: bold;	
+	}
+
+  .card { padding: 15px 0; } 	
+	img { padding: 0 15px;  width: 100% }
+
+  .showcase-list { 
+		padding: 15px 0;
+		ul { 
+			padding: 0; 
+		} 
+	} 
+
+}
+
+.homepage-container { i { display: block; font-size: inherit; } } 
+.table-of-contents { 
+  font-size: 20px;
+  text-align: right;
+  a.active,a:hover {
+    padding-left: 4px;
+    padding-right: 6px;
+    border-left: none; 
+    border-right: 2px solid #ee6e73; 
+  }
+  a {
+    padding-left: 2px;
+    padding-right: 6px;
+    letter-spacing: 0px;
+  }
+
+}
+
+.page-container { 
+  min-height: 1000px;
+}
+
+/* WIKI/TERMS PAGE */
+#atlas  { iframe {  min-height: 547px; }} 
+
+#term-nav { z-index: 9999 }
+
+.page-title {
+  border-bottom: 2px solid; 
+  margin-bottom: 15px;
+  margin-top: 30px;
+  position: relative; 
+  span { font-weight: bold; } 
+  .search-this-term {
+    font-size: 14px;
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+  }
+}
+
+
+#wiki-page {
+
+  .card-title {
+    box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.12); 
+  }
+  
+  .term-summary-card {
+    width: 100%;
+    .description-text {
+      text-align: justify;
+      text-justify: inter-word;  
+      h1 {
+        display: none;
+      }
+    }
+  }  
+  
+ ul#dataspace-categories {
+    list-style-type: none;  
+    padding-left: 0;
+    .dataspace-category { width: 100%; font-weight: bold; font-size: 16px; } 
+  }
+
+
+
+}
+
+#lexicon { 
+  .lexicon-lists { margin-top: 15px; }
+  .lexicon-list { 
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      -ms-word-break: break-all;
+       word-break: break-all;
+      word-break: break-word;
+      /* Adds a hyphen where the word breaks, if supported (No Blink) */
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+      ul { 
+        padding-left: 12px;
+        margin: 0 0 30px 10px;
+        li { list-style-type: disc; }
+      } 
+    }
+}
+
+#literature {
+  #articles {
+    min-height: 200px; 
+  }
+}
+
+#image-gallery.page {
+  display: flex; 
+}
+
+#image-gallery {
+  min-height: 525px; 
+  .card { width: 100%; } 
+  h4 { border-bottom: 1px solid; } 
+  .carousel {
+    margin-top: 20px; 
+    .indicators .indicator-item.active { 
+      background-color: #ee6e73; 
+     }
+    .carousel-item { 
+      width: 640px;
+      height: 585px;
+    }
+  }
+
+  ul#image-list li { 
+    &.inactive { 
+      width: 250px;
+      height: 250px;
+      display: flex; 
+      justify-content: center;
+      a { 
+        text-align: center; 
+        i { color: #eff0f1; }
+      }
+    }
+    
+    display: block;
+    float: left;
+    max-width: 250px;
+    max-height: 250px;
+    width: auto;
+    height: auto;
+    overflow: hidden; 
+    padding: 25px; 
+  }
+  
+
+} 
+
+/* probably old... */
+#terms-detail {  
+  .term-title { margin-bottom: 0; } 
+  margin-top: 25px;
+  .card-content { width: 100%; } 
+  .form-group { display: block }
+  #summary-box { 
+    
+
+
+  }
+
+  #relationship-image-box { 
+    min-height: 585px; 
+  
+   }
+
+   /* RELATIONSHIPS */
+  #relationships {
+    min-height: 585px; 
+    svg { background-color: darken( $body-bg, 5% ); border: #ccc solid 1.5px;  }
+  }
+
+  /* Literature */
+
+  /* IMAGE GALLERY */
+  
+  #image-gallery-box { 
+    min-height: 120px; 
+  }
+
+  /* Dataspace Modal */
+  .modal {
+    .title { font-size: 2.0rem; line-height: 110%;  }
+    .description { margin-top: 10px; padding-right: 10%; }
+    .badge.new {  font-size: 1rem; }  
+  } 
+  
+}
+
+ 
+.card .card-action .card-pagination { 
+  li.disabled a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) { color: #999; }
+  a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) { 
+    color: #444;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px;
+    margin-right: 0; 
+  }
+
+
+ }
+
+#literature {
+    .card-action { min-height: 60px } 
+}
+
+
+.data-space-facets { 
+
+  .search {
+    input { width: 75% }
+  }
+  .collection-item { 
+    display: inline-block;
+    width: 100%; 
+  
+    .secondary-content { margin-top: 2px; }
+    .chip { 
+      padding: 0 8px 0 6px;
+      margin-left: 5px;
+     }
+  
+  }
+
+ }
+
+.card .data-space-card-action.card-action {
+  padding-left: 0.75rem;
+  .chip {
+
+    margin-top: 25px;
+    a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) { 
+      color: #039be5;
+      margin-right: 0;
+   }
+  }
+} 
+  
+.page { 
+  .embedded-only { display: none; } 
+}
+
+.embedded { 
+  .page-only { display: none; }
+}
+
+
+#histogram-container {  background-color: white; } 
+.react-d3-histogram {
+  path, line { 
+    fill: none;
+    stroke: $line-color;
+    stroke-width: 2;
+    shape-rendering: crispEdges;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    z-index: 2;
+  }
+
+  .react-d3-histogram__y-axis { 
+    text { z-index: 2; } 
+    path, line {   
+      stroke: #D8D8D8;
+      stroke-width: 1;
+      z-index: 1;
+    } 
+   }
+
+	 circle { 
+		fill: none;
+		stroke: darken( $line-color, 10%);	
+	}
+   rect { 
+      fill: none;
+      pointer-events: all;
+    }
+
+}
+
+// RESULTS TABLE 
+// the wrapper
+.results-card { 
+	overflow-x: auto;	
+
+}
+
+
+.react-bs-table {
+  .react-bs-container-header {
+    table { margin-bottom: 0; }
+  }
+
+}
+
+
+// This is a loading '...' CSS animcation for AJAX requests
+
+@keyframes blink {
+    /**
+     * At the start of the animation the dot
+     * has an opacity of .2
+     */
+    0% {
+      opacity: .2;
+    }
+    /**
+     * At 20% the dot is fully visible and
+     * then fades out slowly
+     */
+    20% {
+      opacity: 1;
+    }
+    /**
+     * Until it reaches an opacity of .2 and
+     * the animation can start again
+     */
+    100% {
+      opacity: .2;
+    }
+}
+
+.loading {
+	 margin-left: auto;
+	 font-size: 1.8rem;
+	 font-weight: 300; 
+
+	span {
+    /**
+     * Use the blink animation, which is defined above
+     */
+    animation-name: blink;
+    /**
+     * The animation should take 1.4 seconds
+     */
+    animation-duration: 1.4s;
+    /**
+     * It will repeat itself forever
+     */
+    animation-iteration-count: infinite;
+    /**
+     * This makes sure that the starting style (opacity: .2)
+     * of the animation is applied before the animation starts.
+     * Otherwise we would see a short flash or would have
+     * to set the default styling of the dots to the same
+     * as the animation. Same applies for the ending styles.
+     */
+    animation-fill-mode: both;
+	}
+
+	span:nth-child(2) {
+    /**
+     * Starts the animation of the third dot
+     * with a delay of .2s, otherwise all dots
+     * would animate at the same time
+     */
+    animation-delay: .2s;
+	}
+
+	span:nth-child(3) {
+    /**
+     * Starts the animation of the third dot
+     * with a delay of .4s, otherwise all dots
+     * would animate at the same time
+     */
+    animation-delay: .4s;
+	}
+}
