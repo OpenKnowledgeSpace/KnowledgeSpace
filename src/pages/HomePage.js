@@ -5,6 +5,10 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import {withStyles} from '@material-ui/core/styles'
 import {fade} from '@material-ui/core/styles/colorManipulator'
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+
 
 import Autosuggest from 'features/autosuggest/Autosuggest'
 
@@ -12,24 +16,61 @@ import hbp from 'imgs/hbp-logo.png';
 import nif from 'imgs/nif-logo.png';
 import incf from 'imgs/incf-logo.svg';
 
-import brainmaps from 'imgs/brainmaps.png';
-import neuromorpho from 'imgs/neuromorpho.png';
-import opensourcebrain from 'imgs/opensourcebrain.png';
-import icg from 'imgs/icg.png';
-import logo from 'imgs/logo.png';
-import pubmed from 'imgs/pubmed.png';
-import neurolex from 'imgs/neurolex.png';
-import modeldb from 'imgs/modeldb.png';
-import gensat from 'imgs/gensat.png';
-import nbd from 'imgs/nbd.png';
-import neuroelectro from 'imgs/neuroelectro.png';
-import bbp from 'imgs/bbp.png';
-import cli from 'imgs/cli.png';
-import ks6 from 'imgs/ks6.png';
-import allen from 'imgs/allen.png';
+import brainmaps from 'imgs/partners/brainmaps.png';
+import neuromorpho from 'imgs/partners/neuromorpho.png';
+import opensourcebrain from 'imgs/partners/opensourcebrain.png';
+import icg from 'imgs/partners/icg.png';
+import pubmed from 'imgs/partners/pubmed.png';
+import neurolex from 'imgs/partners/neurolex.png';
+import modeldb from 'imgs/partners/modeldb.png';
+import gensat from 'imgs/partners/gensat.png';
+import neurondb from 'imgs/partners/neurondb.png';
+import neuroelectro from 'imgs/partners/neuroelectro.png';
+import bbp from 'imgs/partners/bbp.png';
+import cli from 'imgs/partners/cli.png';
+import allen from 'imgs/partners/allen.png';
 
-
-
+const logos = [
+  { href: 'http://portal.brain-map.org/',
+    name: 'Allen Brain Map',
+    src: allen  },
+  { href:'http://neuromorpho.org/',
+    name: 'Neuromorpho',
+    src: neuromorpho },
+  { href: 'http://www.opensourcebrain.org/',
+    name:'Open Source Brain',
+    src: opensourcebrain },
+  { href: 'https://icg.neurotheory.ox.ac.uk/',
+    name:'IonChannelGenealogy',
+    src: icg },
+  { href: 'https://www.ncbi.nlm.nih.gov/pubmed',
+    name: 'PubMed',
+    src: pubmed },
+  { href:'http://neurolex.org',
+    name: 'NeuroLex',
+    src: neurolex },
+  { href: 'https://senselab.med.yale.edu/ModelDB/',
+    name: 'ModelDB',
+    src: modeldb },
+  { href: 'http://www.gensat.org/daily_showcase.jsp',
+    name: 'GENSAT',
+    src: gensat },
+  { href: 'https://senselab.med.yale.edu/neurondb',
+    name: 'NeuronDB',
+    src: neurondb },
+  { href: 'https://neuroelectro.org/',
+    name: 'NeuroElectro',
+    src: neuroelectro },
+  { href: 'https://bluebrain.epfl.ch/',
+    name: 'Blue Brain Project',
+    src: bbp },
+  { href: 'http://cellimagelibrary.org/',
+    name: 'Cell Image Library',
+    src: cli },
+  { href: 'http://brainmap.org/',
+    name: 'BrainMaps',
+    src: brainmaps }
+];
 
 const styles = theme => ({
   inputRoot: {},
@@ -69,10 +110,35 @@ const styles = theme => ({
    },
   logo: {
     margin: '25px',
+    minWidth: 100
   },
-  partners: {  },
-  dataSources: { marginTop: 50 }
-})
+  partnerLogo: {
+    display: 'flex',
+    width: 149,
+    height: 50
+  },
+  dataSources: { marginTop: 50 },
+  gridListRoot: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
+  },
+  gridList: {
+    flexWrap: 'nowrap',
+    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+    transform: 'translateZ(0)',
+  },
+  tile: {
+    color: theme.palette.common.white,
+    '&:hover': { cursor: 'pointer' }
+  },
+  tileBar: {
+    background:
+      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+  }
+});
 
 class HomePage extends Component {
   constructor(props) {
@@ -123,82 +189,19 @@ class HomePage extends Component {
               <Typography variant="subtitle1" gutterBottom>Over 1678580 pieces of data collected from 14 sources.</Typography> 
             </Grid>
           </Grid>
-          <Grid container direction="row" alignItems='center' justify="space-between">
-            <Grid item sm={3} xs={12}>
-              <a href='http://portal.brain-map.org/'>
-                <img alt='allen' className={classes.logo} src={allen}  />
-              </a>
-            </Grid>
-            <Grid item sm={3} xs={12}>
-              <a href='http://neuromorpho.org/'>
-                <img alt='neuromorpho' className={classes.logo} src={neuromorpho}  />
-              </a>
-            </Grid>
-            <Grid item sm={3} xs={12}>
-              <a href='http://www.opensourcebrain.org/'> 
-                <img alt='opensourcebrain' className={classes.logo} src={opensourcebrain}  />
-              </a>
-            </Grid>
-            <Grid item sm={3} xs={12}>
-              <a href='https://icg.neurotheory.ox.ac.uk/'>
-                <img alt='icg' className={classes.logo} src={icg}  />
-              </a>
-            </Grid>
-          </Grid>
-          <Grid container direction="row" alignItems='center' justify="space-between">
-            <Grid item sm={3} xs={12}>
-              <a href='https://www.ncbi.nlm.nih.gov/pubmed'>
-                <img alt='pubmed' className={classes.logo} src={pubmed}  />
-              </a>
-            </Grid>
-            <Grid item sm={3} xs={12}>
-              <a href='http://neurolex.org'> 
-                <img alt='neurolex' className={classes.logo} src={neurolex}  />
-              </a>
-            </Grid>
-            <Grid item sm={3} xs={12}>
-              <a href='https://senselab.med.yale.edu/ModelDB/'>
-                <img alt='modeldb' className={classes.logo} src={modeldb}  />
-              </a>
-            </Grid>
-            <Grid item sm={3} xs={12}>
-              <a href='http://www.gensat.org/daily_showcase.jsp'>
-                <img alt='gensat' className={classes.logo} src={gensat}  />
-              </a>
-            </Grid>
-          </Grid>
-          <Grid container direction="row" alignItems='center' justify="space-between">
-            <Grid item sm={3} xs={12}>
-              <a href='https://senselab.med.yale.edu/neurondb'> 
-                <img alt='nbd' className={classes.logo} src={nbd}  />
-              </a>
-            </Grid>
-            <Grid item sm={3} xs={12}>
-              <a href='https://neuroelectro.org/'>
-                <img alt='neuroelectro' className={classes.logo} src={neuroelectro}  />
-              </a>
-            </Grid>
-            <Grid item sm={3} xs={12}>
-              <a href='https://bluebrain.epfl.ch/'>
-                <img alt='bbp' className={classes.logo} src={bbp}  />
-              </a>
-            </Grid>
-            <Grid item sm={3} xs={12}>
-              <a href='http://cellimagelibrary.org/'> 
-                <img alt='cli' className={classes.logo} src={cli}  />
-              </a>
-            </Grid>
-          </Grid>
-          <Grid container direction="row" alignItems='center' justify="space-between">
-            <Grid item sm={3} xs={12}>
-            </Grid>
-            <Grid item sm={3} xs={12}>
-              <a href='http://brainmap.org/'>
-                <img alt='brainmaps' className={classes.logo} src={brainmaps}  />
-              </a>
-            </Grid>
-            <Grid item sm={3} xs={12}>
-            </Grid>
+          <Grid item xs={12} sm={12} classes={{item: classes.logoContainer }}>
+            <div className={classes.gridListRoot}>
+              <GridList cellHeight={100} className={classes.gridList} cols={(logos.length / 2)}>
+                { logos.map( logo => (
+                   <GridListTile classes={{tile: classes.tile }}  key={logo.src} onClick={ () => window.open(logo.href) } >
+                    <img alt={logo.name}  src={logo.src} className={classes.partnerLogo}  />
+                    <GridListTileBar title={logo.name} classes={{root: classes.tileBar, title: classes.tile}} />
+                   </GridListTile> 
+                   
+                  ))
+                }
+              </GridList>
+            </div>
           </Grid>
         </Grid>
       </Grid>
