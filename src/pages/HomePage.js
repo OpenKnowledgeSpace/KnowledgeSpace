@@ -9,6 +9,9 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 
+import Fab from '@material-ui/core/Fab';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import Autosuggest from 'features/autosuggest/Autosuggest'
 
@@ -128,14 +131,16 @@ const styles = theme => ({
   gridListRoot: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     overflow: 'hidden',
+    
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
     flexWrap: 'nowrap',
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
+    scrollBehavior: 'smooth'
   },
   tileTitle: {
     wordBreak: 'break-word',
@@ -158,6 +163,17 @@ class HomePage extends Component {
 
   render() {
     const {classes} = this.props
+
+    const iconScrollerLeft = ({target}) => {
+      const list = target.parentElement.parentElement.parentElement.parentElement.querySelector('ul');
+      list.scrollLeft -= 600;
+    }
+    
+    const iconScrollerRight = ({target}) => {
+      const list = target.parentElement.parentElement.parentElement.parentElement.querySelector('ul');
+      list.scrollLeft += 600;
+    }
+
     return (
       <Grid container direction="column" justify="space-evenly" alignItems="center">
         <Grid item xs={12}>
@@ -171,7 +187,7 @@ class HomePage extends Component {
         </Grid>
         <Grid item xs={12} sm={3}>
         </Grid>
-        <Grid item xs={12} sm={8} classes={{item: classes.logoContainer }}>
+        <Grid item xs={12} sm={12} classes={{item: classes.logoContainer }}>
           <Grid container direction="row" alignItems='center' justify="flex-start" classes={{container: classes.partners}}>
             <Grid item xs={12}>
               <Typography variant="h4" gutterBottom>Partners</Typography>
@@ -201,17 +217,29 @@ class HomePage extends Component {
             </Grid>
           </Grid>
           <Grid item  sm={12} classes={{item: classes.dataSourcesLogoContainer }}>
-            <div className={classes.gridListRoot}>
-              <GridList cellHeight={100} className={classes.gridList} cols={(logos.length / 3)}>
-                { logos.map( logo => (
-                   <GridListTile classes={{tile: classes.tile }}  key={logo.src} onClick={ () => window.open(logo.href) } >
-                    <img alt={logo.name}  src={logo.src} className={classes.dataSourceLogo}  />
-                    <GridListTileBar title={logo.name} classes={{root: classes.tileBar, title: classes.tileTitle}} />
-                   </GridListTile> 
-                  ))
-                }
-              </GridList>
-            </div>
+            <Grid container direction="row" alignItems='center' justify="flex-start" classes={{container: classes.dataSources}}>
+              <Grid item xs={1}>
+                <Fab  aria-label="Left" className={classes.fab} onClick={iconScrollerLeft}>
+                  <ChevronLeftIcon />
+                </Fab>
+              </Grid>
+              <Grid item xs={10}>
+                <GridList cellHeight={100} className={classes.gridList} cols={(logos.length / 3)}>
+                  { logos.map( logo => (
+                     <GridListTile classes={{tile: classes.tile }}  key={logo.src} onClick={ () => window.open(logo.href) } >
+                      <img alt={logo.name}  src={logo.src} className={classes.dataSourceLogo}  />
+                      <GridListTileBar title={logo.name} classes={{root: classes.tileBar, title: classes.tileTitle}} />
+                     </GridListTile> 
+                    ))
+                  }
+                </GridList>
+              </Grid>
+              <Grid item xs={1}>
+                <Fab aria-label="ScrollRight" className={classes.fab} onClick={iconScrollerRight}>
+                  <ChevronRightIcon />
+                </Fab>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
