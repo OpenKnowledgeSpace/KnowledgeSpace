@@ -123,10 +123,15 @@ const styles = theme => ({
    },
   dataSources: { marginTop: 50 },
   dataSourceLogo: {
-    display: 'flex',
-    maxWidth: 149,
+    marginRight: 'auto',
+    marginLeft: 'auto',
+  },
+  imgFullHeight: {
+    left: 'auto',
     height: 50,
-    padding: '0 5px',
+    width: 149,
+    position: 'static',
+    transform: 'none'
   },
   gridListRoot: {
     display: 'flex',
@@ -141,6 +146,9 @@ const styles = theme => ({
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
     scrollBehavior: 'smooth'
+  },
+  tile: {
+    width: 149 
   },
   tileTitle: {
     wordBreak: 'break-word',
@@ -165,12 +173,12 @@ class HomePage extends Component {
     const {classes} = this.props
 
     const iconScrollerLeft = ({target}) => {
-      const list = target.parentElement.parentElement.parentElement.parentElement.querySelector('ul');
+      const list = document.getElementById('scrollBar').querySelector('ul'); 
       list.scrollLeft -= 600;
     }
     
     const iconScrollerRight = ({target}) => {
-      const list = target.parentElement.parentElement.parentElement.parentElement.querySelector('ul');
+      const list = document.getElementById('scrollBar').querySelector('ul'); 
       list.scrollLeft += 600;
     }
 
@@ -216,23 +224,28 @@ class HomePage extends Component {
               <Typography variant="subtitle1" gutterBottom>Over 1678580 pieces of data collected from 14 sources.</Typography> 
             </Grid>
           </Grid>
-          <Grid item  sm={12} classes={{item: classes.dataSourcesLogoContainer }}>
-            <Grid container direction="row" alignItems='center' justify="flex-start" classes={{container: classes.dataSources}}>
+          <Grid container direction="row" alignItems='center' justify="flex-start" classes={{container: classes.dataSources}}>
               <Grid item xs={1}>
                 <Fab  aria-label="Left" className={classes.fab} onClick={iconScrollerLeft}>
                   <ChevronLeftIcon />
                 </Fab>
               </Grid>
               <Grid item xs={10}>
-                <GridList cellHeight={100} className={classes.gridList} cols={(logos.length / 3)}>
-                  { logos.map( logo => (
-                     <GridListTile classes={{tile: classes.tile }}  key={logo.src} onClick={ () => window.open(logo.href) } >
-                      <img alt={logo.name}  src={logo.src} className={classes.dataSourceLogo}  />
-                      <GridListTileBar title={logo.name} classes={{root: classes.tileBar, title: classes.tileTitle}} />
-                     </GridListTile> 
-                    ))
-                  }
-                </GridList>
+                <div id='scrollBar'>
+                  <GridList cellHeight={100} className={classes.gridList} cols={(logos.length / 3)}>
+                    { logos.map( logo => (
+                       <GridListTile classes={{root: classes.tile, 
+                                               imgFullHeight: classes.imgFullHeight,
+                                               imgFullWidth: classes.imgFullHeight }} 
+                                               key={logo.src}
+                                               onClick={ () => window.open(logo.href) } >
+                        <img alt={logo.name}  src={logo.src} className={classes.dataSourceLogo}  />
+                        <GridListTileBar title={logo.name} classes={{root: classes.tileBar, title: classes.tileTitle}} />
+                       </GridListTile> 
+                      ))
+                    }
+                  </GridList>
+                </div>
               </Grid>
               <Grid item xs={1}>
                 <Fab aria-label="ScrollRight" className={classes.fab} onClick={iconScrollerRight}>
@@ -240,7 +253,6 @@ class HomePage extends Component {
                 </Fab>
               </Grid>
             </Grid>
-          </Grid>
         </Grid>
       </Grid>
     )
