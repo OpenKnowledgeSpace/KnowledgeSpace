@@ -175,7 +175,7 @@ class HomePage extends Component {
     }
 
     return (
-      <Grid container direction="column" justify="space-evenly" alignItems="center">
+      <Grid container direction="column" justify="center" alignItems="center">
         <Grid item xs={12}>
           <Typography variant="h2">KnowledgeSpace</Typography>
           <Typography variant="subtitle1" gutterBottom>A community encyclopedia linking brain research concepts to data, models, and literature.</Typography>
