@@ -112,12 +112,19 @@ const styles = theme => ({
     margin: '25px',
     minWidth: 100
   },
-  partnerLogo: {
-    display: 'flex',
-    width: 149,
-    height: 50
-  },
+  dataSourcesLogoContainer: { 
+    marginTop: '125px', 
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
+   },
   dataSources: { marginTop: 50 },
+  dataSourceLogo: {
+    display: 'flex',
+    maxWidth: 149,
+    height: 50,
+    padding: '0 5px',
+  },
   gridListRoot: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -130,13 +137,17 @@ const styles = theme => ({
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
   },
-  tile: {
-    color: theme.palette.common.white,
+  tileTitle: {
+    wordBreak: 'break-word',
+    overflow: 'unset',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: theme.typography.button.fontSize,
+    },
+    color: theme.palette.common.black,
     '&:hover': { cursor: 'pointer' }
   },
   tileBar: {
-    background:
-      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    backgroundColor: '#e0e0e0'
   }
 });
 
@@ -189,15 +200,14 @@ class HomePage extends Component {
               <Typography variant="subtitle1" gutterBottom>Over 1678580 pieces of data collected from 14 sources.</Typography> 
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={12} classes={{item: classes.logoContainer }}>
+          <Grid item  sm={12} classes={{item: classes.dataSourcesLogoContainer }}>
             <div className={classes.gridListRoot}>
-              <GridList cellHeight={100} className={classes.gridList} cols={(logos.length / 2)}>
+              <GridList cellHeight={100} className={classes.gridList} cols={(logos.length / 3)}>
                 { logos.map( logo => (
                    <GridListTile classes={{tile: classes.tile }}  key={logo.src} onClick={ () => window.open(logo.href) } >
-                    <img alt={logo.name}  src={logo.src} className={classes.partnerLogo}  />
-                    <GridListTileBar title={logo.name} classes={{root: classes.tileBar, title: classes.tile}} />
+                    <img alt={logo.name}  src={logo.src} className={classes.dataSourceLogo}  />
+                    <GridListTileBar title={logo.name} classes={{root: classes.tileBar, title: classes.tileTitle}} />
                    </GridListTile> 
-                   
                   ))
                 }
               </GridList>
