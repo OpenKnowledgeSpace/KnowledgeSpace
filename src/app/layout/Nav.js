@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 import Logo from './Logo';
 import NavSearch from './NavSearch';
@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
@@ -15,6 +16,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
@@ -31,8 +33,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   menuButton: {
-    marginLeft: -12,
-    marginRight: theme.spacing.unit,
+    margin: theme.spacing.unit,
     padding: 4, 
     backgroundColor: theme.palette.primary.main,
     '&:hover': {
@@ -45,7 +46,10 @@ const styles = theme => ({
       display: 'block',
     },
     textDecoration: 'none', 
-    color: 'inherit' 
+    color: 'inherit', 
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
+    }
   },
   search: {
     position: 'relative',
@@ -116,8 +120,8 @@ const styles = theme => ({
   },
 });
 
-const AboutLink = props => <Link to="/about" {...props} />
-const ContactLink = props => <Link to="/contact" {...props} />
+const AboutLink = props => <RouterLink to="/about" {...props} />
+const ContactLink = props => <RouterLink to="/contact" {...props} />
 
 class Nav extends React.Component {
   state = {
@@ -188,17 +192,36 @@ class Nav extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton  classes={{ colorInherit: classes.menuButton  }} color="inherit" aria-label="Go To Frontpage">
+            <IconButton  
+              classes={{ colorInherit: classes.menuButton  }}
+              color="inherit"
+              aria-label="Go To Frontpage">
               <Logo /> 
             </IconButton> 
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              <Link className={classes.title} to='/'>
+              <RouterLink className={classes.title} to='/'>
                 KnowledgeSpace 
-              </Link>
+              </RouterLink>
             </Typography>
             <div className={classes.grow} /> 
             { !isHome && <NavSearch /> } 
 						<div className={classes.sectionDesktop}>
+              <Button
+                rel='noopener'
+                target="_blank"
+                color='inherit'
+                className={classes.menuButton}
+                href='https://www.humanbrainproject.eu/en/explore-the-brain/search/?facet_type[0]=Dataset'>
+                  HBP Knowledge Graph
+              </Button>
+              <Button 
+                rel='noopener'
+                target="_blank"
+                color='inherit' 
+                className={classes.menuButton}
+                href='https://www.humanbrainproject.eu/en/explore-the-brain/use-data/'>
+                 HBP Atlas and analytical tools
+              </Button>
               <IconButton color="inherit" component={AboutLink} >
                   <InfoIcon />
               </IconButton>
