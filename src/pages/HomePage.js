@@ -82,7 +82,7 @@ const styles = theme => ({
     paddingLeft: '10px'
   },
   searchContainer: {
-    marginTop: '20px'
+    margin: '20px 0'
   },
   searchIcon: {
     fontSize: theme.typography.h4.fontSize,
@@ -193,7 +193,8 @@ class HomePage extends Component {
             <Autosuggest classes={classes} history={this.props.history}/>
           </div>
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={12}>
+          <Typography variant="subtitle1" gutterBottom>Over 1678580 pieces of data collected from 14 sources.</Typography> 
         </Grid>
         <Grid item xs={12} sm={12} classes={{item: classes.logoContainer }}>
           <Grid container direction="row" alignItems='center' justify="flex-start" classes={{container: classes.partners}}>
@@ -221,7 +222,6 @@ class HomePage extends Component {
           <Grid container direction="row" alignItems='center' justify="flex-start" classes={{container: classes.dataSources}}>
             <Grid item xs={12}>
               <Typography variant="h4" gutterBottom>Data Sources</Typography>
-              <Typography variant="subtitle1" gutterBottom>Over 1678580 pieces of data collected from 14 sources.</Typography> 
             </Grid>
           </Grid>
           <Grid container direction="row" alignItems='center' justify="flex-start" classes={{container: classes.dataSources}}>
