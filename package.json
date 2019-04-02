@@ -1,38 +1,45 @@
 {
+  "name": "knowledgespace",
+  "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch-poll": "npm run watch -- --watch-poll",
-    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-  },
-  "devDependencies": {
-    "anchor-js": "^4.0.0",
-    "axios": "^0.15.3",
-    "babel-preset-react": "^6.24.1",
-    "cross-env": "^3.2.3",
-    "d3-time": "^1.0.7",
-    "jquery": "^3.1.1",
-    "laravel-mix": "0.*",
-    "lodash": "^4.17.4",
-    "materialize-css": "1.0.0-beta",
-    "prop-types": "*",
-    "react": "^15.6.1",
-    "react-bootstrap-table": "^4.0.1",
-    "react-cursor-position": "^2.2.0",
-    "react-d3-tree": "^1.6.0",
-    "react-treeview": "^0.4.7",
-    "react-dom": "^15.6.1",
-    "react-resizable": "^1.7.1"
-  },
   "dependencies": {
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.6.1",
-    "react-markdown": "^2.5.0"
-  }
+    "@material-ui/core": "^3.6.0",
+    "@material-ui/icons": "^3.0.1",
+    "@material-ui/lab": "^3.0.0-alpha.30",
+    "crypto-js": "^3.1.9-1",
+    "downshift": "^3.1.5",
+    "elasticsearch": "^15.1.1",
+    "keycode": "^2.2.0",
+    "lodash": "^4.17.11",
+    "query-string": "^6.2.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-event-listener": "^0.6.4",
+    "react-lines-ellipsis": "^0.13.2",
+    "react-markdown": "^4.0.6",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.0.4",
+    "react-treeview": "^0.4.7",
+    "recompose": "^0.30.0",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-saga": "^0.16.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
