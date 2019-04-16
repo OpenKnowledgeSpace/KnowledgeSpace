@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
 
 import {withStyles} from '@material-ui/core/styles';
 import {fade} from '@material-ui/core/styles/colorManipulator';
@@ -51,7 +52,16 @@ const styles = theme => ({
   logo: {
     maxWidth: '90%'
   },
-  card: { minWidth: 175, maxWidth: '50%', margin: 'auto' }
+  card: { minWidth: 175, maxWidth: '50%', margin: 'auto' },
+  button: {
+    margin: theme.spacing.unit * 2,
+    padding: theme.spacing.unit, 
+    color: theme.palette.common.white,
+    backgroundColor: theme.palette.primary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
+    },
+  },
 })
 
 class AboutPage extends Component {
@@ -75,6 +85,24 @@ class AboutPage extends Component {
           <br/>
           <Typography variant="body1" align='justify' gutterBottom>
             KS builds on a vocabulary service, populated with an integrated set of neuroscience ontologies with initial content coming from the Neuroscience Lexicon (NeuroLex), and the Brain Architecture Management System (BAMS). It links to an expanding set of data sources through the NIF federated search infrastructure. 
+          </Typography>
+          <Typography variant="body1" align='center' gutterBottom>
+              <Button
+                rel='noopener'
+                target="_blank"
+                color='primary'
+                className={classes.button}
+                href='https://docs.google.com/document/d/1cNtiwtt5uu1EjguNxU9y1FiizDi2_XRXUMZq3G8yB-Y/edit'>
+                  How To Documentation
+              </Button>
+              <Button
+                rel='noopener'
+                target="_blank"
+                color='secondary'
+                className={classes.button}
+                href='https://github.com/OpenKnowledgeSpace/KnowledgeSpace'>
+                  Technical Documentation
+              </Button>
           </Typography>
         </Grid>
         <Grid item xs={6} classes={{item: classes.logoContainer}}>
