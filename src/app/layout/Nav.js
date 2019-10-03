@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, withRouter } from "react-router-dom";
 
 import Logo from './Logo';
 import NavSearch from './NavSearch';
@@ -125,16 +125,32 @@ const ContactLink = props => <RouterLink to="/contact" {...props} />
 
 class Nav extends React.Component {
   state = {
-    anchorEl: null,
+    aboutAnchorEl: null,
+    resourcesAnchorEl: null,
     mobileMoreAnchorEl: null,
   };
 
-  handleProfileMenuOpen = event => {
-    this.setState({ anchorEl: event.currentTarget });
+  handleAboutMenuOpen = event => {
+    this.setState({ aboutAnchorEl: event.currentTarget });
   };
 
+  handleResourcesMenuOpen = event => {
+    this.setState({ resourcesAnchorEl: event.currentTarget });
+  };
+
+  handleAboutClick = () => {
+    this.props.history.push('/about')    
+    this.handleMenuClose()
+  }
+
+  handleContactClick = () => {
+    this.props.history.push('/contact')    
+    this.handleMenuClose()
+  }
+
+
   handleMenuClose = () => {
-    this.setState({ anchorEl: null });
+    this.setState({ resourcesAnchorEl: null, aboutAnchorEl: null });
     this.handleMobileMenuClose();
   };
 
@@ -147,23 +163,52 @@ class Nav extends React.Component {
   };
 
   render() {
-    const { anchorEl, mobileMoreAnchorEl } = this.state;
+    const { resourcesAnchorEl, aboutAnchorEl, mobileMoreAnchorEl } = this.state;
     const { classes } = this.props;
 
     const isHome = window.location.pathname == '/';
      
-    const isMenuOpen = Boolean(anchorEl);
+    const isResourcesMenuOpen = Boolean(resourcesAnchorEl);
+    const isAboutMenuOpen = Boolean(aboutAnchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    const renderMenu = (
+
+    const renderAboutMenu = (
       <Menu
-        anchorEl={anchorEl}
+        anchorEl={aboutAnchorEl}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={isMenuOpen}
+        open={isAboutMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={this.handleAboutClick}>
+          About KnowledgeSpace
+        </MenuItem>
+        <MenuItem onClick={this.handleContactClick}>
+          Contact Us
+        </MenuItem>
+        <MenuItem onClick={ () => window.open('https://docs.google.com/document/d/1cNtiwtt5uu1EjguNxU9y1FiizDi2_XRXUMZq3G8yB-Y') }>
+                  How To Documentation
+        </MenuItem>
+        <MenuItem onClick={ () => window.open('https://github.com/OpenKnowledgeSpace/KnowledgeSpace')}>
+                 Technical Documentation
+        </MenuItem>
+      </Menu>
+    );
+
+    const renderResourcesMenu = (
+      <Menu
+        anchorEl={resourcesAnchorEl}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isResourcesMenuOpen}
+        onClose={this.handleMenuClose}
+      >
+        <MenuItem onClick={ () => window.open('https://www.humanbrainproject.eu/en/explore-the-brain/search/?facet_type[0]=Dataset') }>
+                  HBP Knowledge Graph
+        </MenuItem>
+        <MenuItem onClick={ () => window.open('https://www.humanbrainproject.eu/en/explore-the-brain/use-data/')}>
+                 HBP Atlas and analytical tools
+        </MenuItem>
       </Menu>
     );
 
@@ -206,28 +251,12 @@ class Nav extends React.Component {
             <div className={classes.grow} /> 
             { !isHome && <NavSearch /> } 
 						<div className={classes.sectionDesktop}>
-              <Button
-                rel='noopener'
-                target="_blank"
-                color='inherit'
-                className={classes.menuButton}
-                href='https://www.humanbrainproject.eu/en/explore-the-brain/search/?facet_type[0]=Dataset'>
-                  HBP Knowledge Graph
-              </Button>
-              <Button 
-                rel='noopener'
-                target="_blank"
-                color='inherit' 
-                className={classes.menuButton}
-                href='https://www.humanbrainproject.eu/en/explore-the-brain/use-data/'>
-                 HBP Atlas and analytical tools
-              </Button>
-              <IconButton color="inherit" component={AboutLink} >
-                  <InfoIcon />
-              </IconButton>
-              <IconButton color="inherit" component={ContactLink} >
-                  <FeedbackIcon />
-              </IconButton>
+              <Typography className={classes.menuButton} variant="h6" color="inherit" noWrap>
+                  <Button onClick={this.handleResourcesMenuOpen} color='inherit'>Resources</Button>
+              </Typography>
+              <Typography className={classes.menuButton} variant="h6" color="inherit" noWrap>
+                  <Button onClick={this.handleAboutMenuOpen} color='inherit'>About</Button>
+              </Typography>
             </div>
             <div className={classes.sectionMobile}>
               <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
@@ -236,7 +265,8 @@ class Nav extends React.Component {
             </div>
           </Toolbar>
         </AppBar>
-        {renderMenu}
+        {renderResourcesMenu}
+        {renderAboutMenu}
         {renderMobileMenu}
       </div>
     );
@@ -247,4 +277,4 @@ Nav.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Nav);
+export default withRouter(withStyles(styles)(Nav));
