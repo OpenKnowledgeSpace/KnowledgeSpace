@@ -76,6 +76,12 @@ const logos = [
 ];
 
 const styles = theme => ({
+  title: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+      fontSize: theme.typography.h4.fontSize,
+    },
+  },
   inputRoot: {},
   inputInput: {
     fontSize: theme.typography.h5.fontSize,
@@ -121,7 +127,12 @@ const styles = theme => ({
       display: 'none'
     }
    },
-  dataSources: { marginTop: 50 },
+  dataSources: { 
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    },
+    marginTop: 50
+   },
   dataSourceLogo: {
     marginRight: 'auto',
     marginLeft: 'auto',
@@ -185,7 +196,7 @@ class HomePage extends Component {
     return (
       <Grid container direction="column" justify="center" alignItems="center">
         <Grid item xs={12}>
-          <Typography variant="h2">KnowledgeSpace</Typography>
+          <Typography variant="h2" gutterBottom className={classes.title}>KnowledgeSpace</Typography>
           <Typography variant="subtitle1" gutterBottom>A community encyclopedia linking brain research concepts to data, models, and literature.</Typography>
         </Grid>
         <Grid item xs={12} sm={3}>

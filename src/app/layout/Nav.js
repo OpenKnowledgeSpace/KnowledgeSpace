@@ -130,6 +130,10 @@ class Nav extends React.Component {
     mobileMoreAnchorEl: null,
   };
 
+  handleLogoClick = () => {
+    this.props.history.push('/')    
+  }
+
   handleAboutMenuOpen = event => {
     this.setState({ aboutAnchorEl: event.currentTarget });
   };
@@ -220,16 +224,27 @@ class Nav extends React.Component {
         open={isMobileMenuOpen}
         onClose={this.handleMobileMenuClose}
       >
-        <MenuItem>
-          <IconButton color="inherit" component={AboutLink} >
-              <InfoIcon />
-          </IconButton>
+          <MenuItem onClick={ () => window.open('https://www.humanbrainproject.eu/en/explore-the-brain/search/?facet_type[0]=Dataset') }>
+                  HBP Knowledge Graph
         </MenuItem>
-        <MenuItem>
-          <IconButton color="inherit" component={ContactLink} >
-              <FeedbackIcon />
-          </IconButton>
+        <MenuItem onClick={ () => window.open('https://www.humanbrainproject.eu/en/explore-the-brain/use-data/')}>
+                 HBP Atlas and analytical tools
         </MenuItem>
+
+        <MenuItem onClick={this.handleAboutClick}>
+          About KnowledgeSpace
+        </MenuItem>
+        <MenuItem onClick={this.handleContactClick}>
+          Contact Us
+        </MenuItem>
+        <MenuItem onClick={ () => window.open('https://docs.google.com/document/d/1cNtiwtt5uu1EjguNxU9y1FiizDi2_XRXUMZq3G8yB-Y') }>
+                  How To Documentation
+        </MenuItem>
+        <MenuItem onClick={ () => window.open('https://github.com/OpenKnowledgeSpace/KnowledgeSpace')}>
+                 Technical Documentation
+        </MenuItem>
+
+
       </Menu>
     );
 
@@ -240,6 +255,7 @@ class Nav extends React.Component {
             <IconButton  
               classes={{ colorInherit: classes.menuButton  }}
               color="inherit"
+              onClick={this.handleLogoClick}
               aria-label="Go To Frontpage">
               <Logo /> 
             </IconButton> 
