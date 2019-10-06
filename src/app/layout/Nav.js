@@ -190,7 +190,7 @@ class Nav extends React.Component {
         <MenuItem onClick={this.handleContactClick}>
           Contact Us
         </MenuItem>
-        <MenuItem onClick={ () => window.open('https://docs.google.com/document/d/1cNtiwtt5uu1EjguNxU9y1FiizDi2_XRXUMZq3G8yB-Y') }>
+        <MenuItem onClick={ () => this.props.history.push('/documentation') }>
                   How To Documentation
         </MenuItem>
         <MenuItem onClick={ () => window.open('https://github.com/OpenKnowledgeSpace/KnowledgeSpace')}>
@@ -237,7 +237,7 @@ class Nav extends React.Component {
         <MenuItem onClick={this.handleContactClick}>
           Contact Us
         </MenuItem>
-        <MenuItem onClick={ () => window.open('https://docs.google.com/document/d/1cNtiwtt5uu1EjguNxU9y1FiizDi2_XRXUMZq3G8yB-Y') }>
+        <MenuItem onClick={ () => this.props.history.push('/documentation') }>
                   How To Documentation
         </MenuItem>
         <MenuItem onClick={ () => window.open('https://github.com/OpenKnowledgeSpace/KnowledgeSpace')}>

@@ -10,6 +10,7 @@ import LiteraturePage from 'pages/LiteraturePage'
 import AboutPage from 'pages/AboutPage'
 import WikiPage from 'pages/WikiPage'
 import ContactPage from 'pages/ContactPage'
+import DocumentationPage from 'pages/DocumentationPage'
 
 const styles = theme => ({
   root: {
@@ -29,6 +30,7 @@ const Main = props => {
         <Route exact path="/" component={HomePage}/>
         <Route exact path="/about" component={AboutPage}/>
         <Route exact path="/contact" component={ContactPage}/>
+        <Route exact path="/documentation" component={DocumentationPage}/>
         <Route exact path="/t/:slug" component={EntityPage}/>
         <Route exact path="/search" component={SearchPage}/>
         <Route exact path="/t/:slug/dataspace/:source" component={DataSpacePage}/>

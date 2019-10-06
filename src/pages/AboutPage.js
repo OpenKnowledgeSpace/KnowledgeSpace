@@ -156,8 +156,5 @@ class AboutPage extends Component {
   }
 }
 
-const mapStateToProps = ({entitySearch}) => {
-  return {...entitySearch}
-}
 
 export default withStyles(styles)(AboutPage)
