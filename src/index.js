@@ -15,7 +15,7 @@ const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
-        <App/>
+          <App/>
       </BrowserRouter>
     </Provider>,
     rootEl
