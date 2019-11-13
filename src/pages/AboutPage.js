@@ -52,7 +52,11 @@ const styles = theme => ({
   logo: {
     maxWidth: '90%'
   },
-  card: { minWidth: 175, maxWidth: '50%', margin: 'auto' },
+  card: { 
+    minWidth: 175,
+    maxWidth: '80%',
+    margin: 'auto',
+  },
   button: {
     margin: theme.spacing.unit * 2,
     padding: theme.spacing.unit, 
@@ -73,7 +77,7 @@ class AboutPage extends Component {
     const {classes} = this.props
     return (
       <Grid container direction="column" justify="flex-start" alignItems="center">
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <Typography variant="h2" gutterBottom>About Us</Typography>
           <Typography variant="body1" align='justify' gutterBottom>
             KnowledgeSpace (KS) is a community encyclopaedia that links brain research concepts with data, models and literature from around the world. It is an open project and welcomes participation and contributions from members of the global research community. KS is the result of recommendations from a community workshop held by the INCF Program on Ontologies of Neural Structures in 2012 and include the report attached below to community workshop. 2012 INCF Workshop Report 
@@ -105,7 +109,7 @@ class AboutPage extends Component {
               </Button>
           </Typography>
         </Grid>
-        <Grid item xs={6} classes={{item: classes.logoContainer}}>
+        <Grid item xs={12} md={6} classes={{item: classes.logoContainer}}>
           <Grid container direction="row" alignItems='center' justify="flex-start">
             <Grid item xs={12}>
               <Typography variant="h4" gutterBottom>Partners</Typography>
@@ -144,7 +148,7 @@ class AboutPage extends Component {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item classes={{item: classes.logoContainer}} xs={4}>
+          <Grid item classes={{item: classes.logoContainer}} xs={12}>
           </Grid>
         </Grid>
       </Grid>
@@ -152,8 +156,5 @@ class AboutPage extends Component {
   }
 }
 
-const mapStateToProps = ({entitySearch}) => {
-  return {...entitySearch}
-}
 
 export default withStyles(styles)(AboutPage)

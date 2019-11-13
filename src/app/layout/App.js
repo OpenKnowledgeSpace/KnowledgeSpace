@@ -6,6 +6,7 @@ import {withStyles} from '@material-ui/core/styles'
 
 import Nav from './Nav'
 import Main from './Main'
+import GA from 'features/googleAnalytics/GoogleAnalytics'
 
 const styles = theme => ({
   root: {
@@ -19,6 +20,7 @@ class App extends Component {
 
     return (
       <div className={classes.root}>
+        { GA.init() && <GA.RouteTracker /> }
         <Nav/>
         <Main/>
       </div>
