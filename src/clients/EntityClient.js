@@ -1,23 +1,47 @@
-import {toString, omitBy, isEmpty, has, map, flatten, head} from 'lodash'
-import {esclient} from './ESClient'
-import {filterBuilder, combineAggsAndFilters} from './utils'
+import { toString, omitBy, isEmpty, has, map, flatten, head } from 'lodash'
+import { esclient, API_END_POINT } from './ESClient'
+import { filterBuilder, combineAggsAndFilters } from './utils'
+import axios from 'axios';
 
 const ENTITY_RESULTS_PER_PAGE = 25
 
 export const findSlugByCurie = curie => {
-  if ( typeof curie === 'undefined' ) { 
-    return null; 
+  if (typeof curie === 'undefined') {
+    return null;
   }
-  const queryFilters = { curies: [curie] };
-  const body = { query: { bool: { filter:  filterBuilder(queryFilters) } } };
-  return esclient.search({
-    index: 'scigraph',
-    type: 'entities',
-    body
-  }).then(response =>  {
-    const hit = head(response.hits.hits);
-    return hit._id;
-  })
+
+  return axios.get(API_END_POINT + 'entity/find-slug-by-curie', { params: { curie } }).then(res => {
+    const response = res.data;
+    return response;
+  });
+
+}
+
+export const findCurieByExternalId = external_id => {
+  if (typeof external_id === 'undefined') {
+    return null;
+  }
+  return axios.get(API_END_POINT + 'graph/get-by-reference-id', { params: { external_id } }).then(res => {
+    const response = res.data;
+    if (response && response.length) {
+      if (response[0] && response[0]._fields) {
+        return response[0]._fields[0]; // for curie
+      }
+    }
+    return null;
+  });
+
+}
+
+export const findDetailsByExternalId = (external_id, type) => {
+  if (typeof external_id === 'undefined') {
+    return null;
+  }
+  return axios.get(API_END_POINT + 'graph/get-all-by-reference-id', { params: { external_id, type } }).then(res => {
+    const response = res.data;
+    return response;
+  });
+
 }
 
 
@@ -25,11 +49,11 @@ export const findBySlug = slug => {
   if (typeof slug === 'undefined') {
     return {}
   }
-  return esclient.get({
-    index: 'scigraph',
-    type: 'entities',
-    id: slug
-  }).then(response => response._source)
+
+  return axios.get(API_END_POINT + 'entity/find-by-slug', { params: { id: slug } }).then(res => {
+    const response = res.data;
+    return response._source
+  });
 }
 
 const aggsParams = () => (
@@ -37,7 +61,7 @@ const aggsParams = () => (
     aggs: {
       category: {
         terms: {
-          field: 'category'
+          field: 'category.keyword'
         }
       }
     }
@@ -52,7 +76,7 @@ const queryBuilder = query => {
         must: {
           multi_match: {
             query,
-            fields: [ 'title^99', 'labels^10', 'definitions.text', 'synonyms^8', 'abbreviations^8']
+            fields: ['title^99', 'labels^10', 'definitions.text', 'synonyms^8', 'abbreviations^8']
           }
         },
       }
@@ -60,7 +84,7 @@ const queryBuilder = query => {
   )
 }
 
-export const search = ({page = 1, q = '', filters = {}}) => {
+export const search = ({ page = 1, q = '', filters = {} }) => {
   // Start with the aggs we alway use.
   const body = aggsParams()
 
@@ -77,21 +101,21 @@ export const search = ({page = 1, q = '', filters = {}}) => {
   const queryFilters = omitBy(filters, isEmpty)
   if (!isEmpty(queryFilters)) {
     if (!has(body, 'query.bool')) {
-      body.query = {bool: {}}
+      body.query = { bool: {} }
     }
     body.query.bool.filter = filterBuilder(queryFilters)
   }
+  body.track_total_hits = true;
 
-  return esclient.search({
-    index: 'scigraph',
-    type: 'entities',
-    body
-  }).then(response => ({
-    results: response.hits,
-    facets: combineAggsAndFilters(response.aggregations, filters),
-    page,
-    q,
-    filters
-  })
-  )
+  return axios.get(API_END_POINT + 'entity/details', { params: { body } }).then(res => {
+    const response = res.data;
+    return {
+      results: response.hits,
+      facets: combineAggsAndFilters(response.aggregations, filters),
+      page,
+      q,
+      filters
+    }
+  });
+
 }

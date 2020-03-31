@@ -1,6 +1,6 @@
 import {watchEntity, watchEntityFound, watchSearch,
   watchPaginate, watchDSEntity, watchDSEntityFound, watchDSFilter, watchDSPaginate,
-  watchAutosuggest, watchLiteratureFilter, watchLiteraturePaginate} from './watchers'
+  watchAutosuggest, watchLiteratureFilter, watchLiteraturePaginate, watchBrainRegionSearch} from './watchers'
 import {all} from 'redux-saga/effects'
 
 // Here, we register our watcher saga(s) and export as a single generator
@@ -13,6 +13,7 @@ export default function * startForman() {
     watchDSEntityFound(),
     watchDSFilter(),
     watchSearch(),
+    watchBrainRegionSearch(),
     watchPaginate(),
     watchDSPaginate(),
     watchLiteraturePaginate(),

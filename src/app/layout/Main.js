@@ -1,6 +1,6 @@
 import React from 'react'
-import {Switch, Route} from 'react-router-dom'
-import {withStyles} from '@material-ui/core/styles'
+import { Switch, Route } from 'react-router-dom'
+import { withStyles } from '@material-ui/core/styles'
 
 import HomePage from 'pages/HomePage'
 import EntityPage from 'pages/EntityPage'
@@ -9,35 +9,64 @@ import DataSpacePage from 'pages/DataSpacePage'
 import LiteraturePage from 'pages/LiteraturePage'
 import AboutPage from 'pages/AboutPage'
 import WikiPage from 'pages/WikiPage'
+import ExternalIdPage from 'pages/ExternalIdPage'
+import MBAPage from 'pages/DetailsByMBAPage'
 import ContactPage from 'pages/ContactPage'
 import DocumentationPage from 'pages/DocumentationPage'
+import GraphPage from '../../pages/GraphPage'
+import Nav from './Nav'
 
 const styles = theme => ({
   root: {
-    marginBottom: '100px',
-    paddingLeft: '40px',
-    paddingRight: '72px',
     flex: '1 1 100%',
-    paddingTop: '80px'
+    paddingTop:'40px',
+    paddingLeft:'20px',
   }
 })
 
-const Main = props => {
-  const {classes} = props
+const AppLayoutPlain = (props) => {
+  const { classes } = props
   return (
-    <main className={classes.root}>
-      <Switch>
-        <Route exact path="/" component={HomePage}/>
-        <Route exact path="/about" component={AboutPage}/>
-        <Route exact path="/contact" component={ContactPage}/>
-        <Route exact path="/documentation" component={DocumentationPage}/>
-        <Route exact path="/t/:slug" component={EntityPage}/>
-        <Route exact path="/search" component={SearchPage}/>
-        <Route exact path="/t/:slug/dataspace/:source" component={DataSpacePage}/>
-        <Route exact path="/t/:slug/literature" component={LiteraturePage}/>
-        <Route exact path="/wiki/:curie" component={WikiPage}/>
-      </Switch>
-    </main>
+    <React.Fragment>
+      {props.noNavBar ? null : React.createElement(Nav)}
+      <main className={classes.root}>
+        {props.children}
+      </main>
+    </React.Fragment>
+  );
+};
+
+const AppLayout = withStyles(styles)(AppLayoutPlain)
+
+const AppRoute = ({ component, ...AppRouteProps }) => {
+  return (
+    <Route {...AppRouteProps} render={(props) => {
+      return (
+        <AppLayout {...props} {...AppRouteProps}>
+          {React.createElement(component, props)}
+        </AppLayout>
+      );
+    }} />
+  );
+};
+
+const Main = props => {
+  return (
+    <Switch>
+      <AppRoute exact path="/" component={HomePage} />
+      <AppRoute exact path="/about" component={AboutPage} />
+      <AppRoute exact path="/contact" component={ContactPage} />
+      <AppRoute exact path="/documentation" component={DocumentationPage} />
+      <AppRoute exact path="/t/:slug" component={EntityPage} />
+      <AppRoute exact path="/wiki/" component={WikiPage} />
+      <AppRoute exact path="/search" component={SearchPage} />
+      <AppRoute exact path="/wiki/:slug/dataspace/:source" component={DataSpacePage} />
+      <AppRoute exact path="/wiki/:slug/literature" component={LiteraturePage} />
+      <AppRoute exact path="/wiki/:curie" component={WikiPage} />
+      <AppRoute exact path="/external/:externalId" component={ExternalIdPage} />
+      {/* <AppRoute noNavBar={true} exact path="/external/:externalId/:type" component={MBAPage} /> */}
+      <AppRoute exact path="/brain-regions" component={GraphPage} />
+    </Switch>
   )
 }
 export default withStyles(styles)(Main)

@@ -45,7 +45,15 @@ const styles = theme => ({
   }
 });
 
-const Facets = ({classes, facets, selected, handleFacetToggle}) => (
+// Display Aggregation title specified in dataSpaceConstant if applicable/exist
+const getNameFromConfig = (facet, aggs) => {
+  if(aggs && aggs[facet]){
+    return aggs[facet];
+  }
+  return facet;
+}
+
+const Facets = ({classes, aggs,facets, selected, handleFacetToggle}) => (
    <Grid container alignItems="flex-start" direction="column" justify="flex-start" spacing={16}>
       <Grid item className={classes.gridItem} > 
         <Paper className={classes.filtersTitle} >
@@ -56,7 +64,8 @@ const Facets = ({classes, facets, selected, handleFacetToggle}) => (
         <Facet
           key={i.toString()}
           classes={classes} 
-          name={facet} 
+          name = {facet}
+          title={getNameFromConfig(facet,aggs)} 
           handleFacetToggle={handleFacetToggle}
           values={facets[facet].buckets}
           selected={selected[facet] || new Set() } />   
@@ -76,11 +85,11 @@ class Facet extends Component {
   }
   
   render() {
-    const { selected, classes, name, values  } = this.props; 
+    const { selected, classes, name, values, title  } = this.props; 
     return (
       <Grid item className={classes.gridItem}> 
         <Paper  color='#fff' >
-          <Typography variant='subtitle1' className={classes.filterTitle} >{name.replace('_', ' ')}</Typography>
+          <Typography variant='subtitle1' className={classes.filterTitle} >{title.replace('_', ' ')}</Typography>
            <List className={classes.filter}>
             { values.map( (value,i) => ( 
                <ListItem classes={{ root: classes.filterItem}} key={value.key} role={undefined}  button onClick={this.handleToggle(value.key)}>   

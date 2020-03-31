@@ -10,8 +10,7 @@ These require some dependencies for both running the application & development.
 These include: 
 
 * [NodeJS](https://nodejs.org/en/) Node.js runtime ( v8.12 LTS )
-* [Yarn](https://github.com/yarnpkg/yarn) JS package manager 
-* [ElasticSearch](https://www.elastic.co/) ElasticSearch
+* [Yarn](https://github.com/yarnpkg/yarn) JS package manager d
 
 ### Quick Start
 

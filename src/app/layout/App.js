@@ -4,7 +4,6 @@ import withRoot from 'withRoot'
 import Typography from '@material-ui/core/Typography'
 import {withStyles} from '@material-ui/core/styles'
 
-import Nav from './Nav'
 import Main from './Main'
 import GA from 'features/googleAnalytics/GoogleAnalytics'
 
@@ -21,7 +20,6 @@ class App extends Component {
     return (
       <div className={classes.root}>
         { GA.init() && <GA.RouteTracker /> }
-        <Nav/>
         <Main/>
       </div>
     )

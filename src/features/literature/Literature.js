@@ -60,7 +60,7 @@ class Literature extends Component {
         </Typography>
         <Divider/>
         <List
-          subheader={<ListSubheader component="h5" classes={{root: classes.literatureSubtitle}}>{ total || 0 } results found</ListSubheader>}
+          subheader={<ListSubheader component="h5" classes={{root: classes.literatureSubtitle}}>{ (total && total.value)?total.value?total.value:total:0 } results found</ListSubheader>}
         >
           { hits.slice(0, 10).map(hit => (
             <React.Fragment key={hit._id}>

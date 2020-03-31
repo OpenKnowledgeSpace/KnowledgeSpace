@@ -21,7 +21,7 @@ const styles = theme => ({
 
 const EntityResults = ({hits, classes}) => (
   <div className={classes.root}>
-    <Typography variant="subtitle1" className={classes.filterTitle}>{hits.total} records found</Typography>
+    <Typography variant="subtitle1" className={classes.filterTitle}>{hits.total ? hits.total.value : 0} records found</Typography>
     <Divider/>
     <List>
       { hits.hits.map((hit, i) => (
@@ -37,7 +37,7 @@ const Result = ({result, classes}) => {
   const {name, summary, slug} = result;
  return (
     <li>
-      <ListItem component={Link} to={`/t/${slug}`}>
+      <ListItem component={Link} to={`/wiki/#${slug}`}>
         <ListItemText primary={name} secondary={summary}/>
       </ListItem>
       <Divider light/>

@@ -48,6 +48,8 @@ GoogleAnalytics.propTypes = {
 const RouteTracker = () => <Route component={GoogleAnalytics} />
 
 const init = (options = {}) => {
+    console.log("GA");
+    console.log(process.env.REACT_APP_GA_TRACKING_ID);
     const trackingId = process.env.REACT_APP_GA_TRACKING_ID
 
     if (trackingId) {
