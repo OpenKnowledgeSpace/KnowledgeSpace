@@ -1,4 +1,3 @@
-
 // SAGAS
 import {updateEntity} from 'features/entity/entitySaga'
 import {submitAutosuggest} from 'features/autosuggest/autosuggestSaga'
@@ -17,6 +16,8 @@ import {AUTOSUGGEST_SUBMITTED, AUTOSUGGEST_RESULTS_RECEIVED} from 'features/auto
 import {DS_ENTITY_UPDATE, DS_ENTITY_FOUND, DS_SEARCH_SUBMITTED, DS_SEARCH_PAGINATED} from 'features/dataSpace/dataSpaceConstants'
 import {LITERATURE_SEARCH_SUBMITTED, LITERATURE_SEARCH_PAGINATED} from 'features/literature/literatureConstants'
 import {takeLatest} from 'redux-saga/effects'
+import { BRAIN_REGION_SEARCH_SUBMITTED } from '../../features/brainRegion/brainRegionSearchConstants'
+import { submitBrainRegionSearch } from '../../features/brainRegion/brainRegionSearchSaga'
 
 // Watches for ENTITY_UPDATE action type asynchronously
 export function * watchEntity() {
@@ -73,4 +74,10 @@ export function * watchAutosuggest() {
 // Watches for  action type asynchronously
 export function * watchPaginate() {
   yield takeLatest(ENTITY_SEARCH_PAGINATED, paginateSearch)
+}
+
+
+// Watches for BRAIN_REGION_SEARCH_SUBMITTED action type asynchronously
+export function * watchBrainRegionSearch() {
+  yield takeLatest(BRAIN_REGION_SEARCH_SUBMITTED, submitBrainRegionSearch)
 }

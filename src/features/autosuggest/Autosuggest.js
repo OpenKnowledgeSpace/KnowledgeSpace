@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withStyles} from '@material-ui/core/styles'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withStyles } from '@material-ui/core/styles'
 
 import PropTypes from 'prop-types'
-import {isEmpty, deburr} from 'lodash'
+import { isEmpty, deburr } from 'lodash'
 import keycode from 'keycode'
 import Downshift from 'downshift'
 import Grid from '@material-ui/core/Grid'
@@ -12,14 +12,15 @@ import Paper from '@material-ui/core/Paper'
 import MenuItem from '@material-ui/core/MenuItem'
 import SearchIcon from '@material-ui/icons/Search'
 import InputBase from '@material-ui/core/InputBase'
-import {fade} from '@material-ui/core/styles/colorManipulator'
+import { fade } from '@material-ui/core/styles/colorManipulator'
 
-import {submitAutosuggest} from './autosuggestActions'
+import { submitAutosuggest } from './autosuggestActions'
+import { Button, TextField, Input } from '@material-ui/core'
 
 class Autosuggest extends Component {
   handleChange(value) {
     if (!isEmpty(value) && value !== this.props.q) {
-      this.props.dispatch(submitAutosuggest({q: value}))
+      this.props.dispatch(submitAutosuggest({ q: value }))
     }
     return true
   }
@@ -27,16 +28,16 @@ class Autosuggest extends Component {
   handleSubmit(event) {
     event.preventDefault()
     const q = document.getElementById('autosuggest-input').value
-    this.props.dispatch(submitAutosuggest({q}))
-    this.props.history.push({pathname: '/search', search: `q=${q}` })
+    this.props.dispatch(submitAutosuggest({ q }))
+    this.props.history.push({ pathname: '/search', search: `q=${q}` })
   }
 
-  renderSuggestion({suggestion, index, itemProps, highlightedIndex, selectedItem}) {
+  renderSuggestion({ suggestion, index, itemProps, highlightedIndex, selectedItem }) {
     const { name, slug } = suggestion;
-    const key = `/t/${slug}`; 
+    const key = `/wiki/#${slug}`;
     const isHighlighted = highlightedIndex === index;
     const isSelected = (selectedItem || '').indexOf(key) > -1;
-    
+
     return (
       <MenuItem
         {...itemProps}
@@ -47,12 +48,12 @@ class Autosuggest extends Component {
           fontWeight: isSelected ? 500 : 400
         }}
       >
-        <div style={{textOverflow: 'ellipsis', overflow: 'hidden'}}>{name}</div>
+        <div style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>{name}</div>
       </MenuItem>
-  	)
+    )
   }
 
-  renderInput({classes, inputProps}) {
+  renderInput({ classes, inputProps }) {
     return (
       <InputBase
         classes={classes}
@@ -62,12 +63,12 @@ class Autosuggest extends Component {
   }
 
   onSelect(selectedItem) {
-    this.props.history.push({pathname: `/t/${selectedItem}`})
+    this.props.history.push({ pathname: `/wiki/#${selectedItem}` })
   }
 
   render() {
-    const {suggestions, classes} = this.props
-    
+    const { suggestions, classes } = this.props
+
     const renderSuggestion = this.renderSuggestion
     const renderInput = this.renderInput
     const onSelect = this.onSelect.bind(this)
@@ -84,42 +85,41 @@ class Autosuggest extends Component {
           isOpen,
           selectedItem
         }) => (
-          <div className={classes.search}>
-            <div style={{display: 'flex'}}>
+            <div className={classes.search}>
               <form onSubmit={handleSubmit}>
-                <div style={{cursor: 'text', display: 'inline-flex', alignItems: 'center'}}>
-                  { renderInput({
-                    classes: {root: classes.inputRoot, input: classes.inputInput},
-                    inputProps: getInputProps({placeholder: 'Search...'})
+                <div  className={classes.spacingClass} style={{cursor: 'text', display: 'flex', alignItems: 'center' }}>
+                  {renderInput({
+                    classes: { root: classes.inputRoot, input: classes.inputInput },
+                    inputProps: getInputProps({ 'aria-label': 'naked',classes:{input:classes.SearchInput} ,className:classes.SearchInput ,placeholder: 'Search KnowledgeSpace' })
                   })
                   }
-                  <SearchIcon onClick={handleSubmit} classes={{root: classes.searchIcon}}/>
+                  {/* <SearchIcon onClick={handleSubmit} classes={{root: classes.searchIcon}}/> */}
+                  <Button variant='outlined' className={classes.searchButton} onClick={handleSubmit}>Search</Button>
                 </div>
               </form>
+              <div {...getMenuProps()} className={classes.autoCompleteResult + " " +classes.spacingClass} style={{ width: '100%' }}>
+                {isOpen ? (
+                  <Paper square className={classes.suggestBox}>
+                    {this.handleChange(inputValue) && suggestions.map((suggestion, index) => {
+                      return renderSuggestion({
+                        suggestion,
+                        index,
+                        itemProps: getItemProps({ item: `${suggestion.slug}` }),
+                        highlightedIndex,
+                        selectedItem
+                      })
+                    })}
+                  </Paper>) : null}
+              </div>
             </div>
-            <div {...getMenuProps()} style={{width: '100%'}}>
-              { isOpen ? (
-                <Paper square className={classes.suggestBox}>
-                  { this.handleChange(inputValue) && suggestions.map((suggestion, index) => {
-                    return renderSuggestion({
-                      		suggestion,
-                      index,
-                      itemProps: getItemProps({item: `${suggestion.slug}`}),
-                      highlightedIndex,
-                      selectedItem
-											 })
-                  })}
-                </Paper>) : null }
-            </div>
-          </div>
-        )}
+          )}
       </Downshift>
     )
   }
 }
 
-const mapStateToProps = ({autosuggest}) => {
-  return {...autosuggest}
+const mapStateToProps = ({ autosuggest }) => {
+  return { ...autosuggest }
 }
 
 export default connect(mapStateToProps)(Autosuggest)

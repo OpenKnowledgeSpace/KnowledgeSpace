@@ -1,4 +1,4 @@
-import {search} from 'clients/EntityClient'
+import {search} from '../../clients/EntityClient';
 import {ENTITY_SEARCH_RESULTS_RECEIVED, ENTITY_SEARCH_RESULTS_PAGINATED} from './entitySearchConstants'
 import {put, call} from 'redux-saga/effects'
 

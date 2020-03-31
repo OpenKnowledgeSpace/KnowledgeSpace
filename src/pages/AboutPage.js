@@ -80,7 +80,7 @@ class AboutPage extends Component {
         <Grid item xs={12} md={6}>
           <Typography variant="h2" gutterBottom>About Us</Typography>
           <Typography variant="body1" align='justify' gutterBottom>
-            KnowledgeSpace (KS) is a community encyclopaedia that links brain research concepts with data, models and literature from around the world. It is an open project and welcomes participation and contributions from members of the global research community. KS is the result of recommendations from a community workshop held by the INCF Program on Ontologies of Neural Structures in 2012 and include the report attached below to community workshop. 2012 INCF Workshop Report 
+          KnowledgeSpace aims to be a globally-used, community-based, data-driven encyclopedia for neuroscience that links brain research concepts to data, models, and the literature that support them. Further it aims to serve as a framework where large-scale neuroscience projects can expose their data to the neuroscience community-at-large. KnowledgeSpace is a framework that combines general descriptions of neuroscience concepts found in wikipedia with more detailed content from NeuroLex. It then integrates the content from those two sources with the latest neuroscience citations found in PubMed and data found in some of the world’s leading neuroscience repositories. KnowledgeSpace is a joint development between the Human Brain Project (HBP), the International Neuroinformatics Coordinating Facility (INCF), and the Neuroscience Information Framework (NIF).
           </Typography>
           <br/>
           <Typography variant="body1" align='justify' gutterBottom>
@@ -92,11 +92,13 @@ class AboutPage extends Component {
           </Typography>
           <Typography variant="body1" align='center' gutterBottom>
               <Button
-                rel='noopener'
-                target="_blank"
+                // rel='noopener'
+                // target="_blank"
                 color='primary'
                 className={classes.button}
-                href='https://docs.google.com/document/d/1cNtiwtt5uu1EjguNxU9y1FiizDi2_XRXUMZq3G8yB-Y/edit'>
+                onClick={() => this.props.history.push('/documentation')}
+                // href='https://docs.google.com/document/d/1cNtiwtt5uu1EjguNxU9y1FiizDi2_XRXUMZq3G8yB-Y/edit'
+                >
                   How To Documentation
               </Button>
               <Button

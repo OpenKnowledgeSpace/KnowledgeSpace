@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Link as RouterLink, withRouter } from "react-router-dom";
 
 import Logo from './Logo';
@@ -17,6 +17,7 @@ import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
+import logoImage from '../../imgs/new_logo.png';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
@@ -34,10 +35,11 @@ const styles = theme => ({
   },
   menuButton: {
     margin: theme.spacing.unit,
-    padding: 4, 
+    padding: 4,
     backgroundColor: theme.palette.primary.main,
     '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
+      backgroundColor: theme.palette.primary.main,
+      borderRadius: 'initial !important',
     },
   },
   title: {
@@ -45,8 +47,8 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
-    textDecoration: 'none', 
-    color: 'inherit', 
+    textDecoration: 'none',
+    color: 'inherit',
     '&:hover': {
       backgroundColor: theme.palette.primary.dark,
     }
@@ -75,7 +77,7 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  grow: { flex: '1 1 auto', }, 
+  grow: { flex: '1 1 auto', },
   inputRoot: {
     color: 'inherit',
     width: '100%',
@@ -83,17 +85,17 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 2,
     marginLeft: theme.spacing.unit * 4,
     borderRadius: theme.shape.borderRadius,
-    '&:hover': {                                                                                                                                                                              
-      backgroundColor: fade(theme.palette.common.white, 0.25),                                                                                                                                
-    },                                                                                                                                                                                        
-    '& $inputInput': {                                                                                                                                                                        
-      transition: theme.transitions.create('width'),                                                                                                                                          
-      width: 120,                                                                                                                                                                             
-      '&:focus': {                                                                                                                                                                            
-        width: 170,                                                                                                                                                                           
-      },                                                                                                                                                                                      
-    },  
-  
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    '& $inputInput': {
+      transition: theme.transitions.create('width'),
+      width: 120,
+      '&:focus': {
+        width: 170,
+      },
+    },
+
   },
   inputInput: {
     paddingTop: theme.spacing.unit,
@@ -131,7 +133,7 @@ class Nav extends React.Component {
   };
 
   handleLogoClick = () => {
-    this.props.history.push('/')    
+    this.props.history.push('/')
   }
 
   handleAboutMenuOpen = event => {
@@ -143,12 +145,12 @@ class Nav extends React.Component {
   };
 
   handleAboutClick = () => {
-    this.props.history.push('/about')    
+    this.props.history.push('/about')
     this.handleMenuClose()
   }
 
   handleContactClick = () => {
-    this.props.history.push('/contact')    
+    this.props.history.push('/contact')
     this.handleMenuClose()
   }
 
@@ -171,7 +173,7 @@ class Nav extends React.Component {
     const { classes } = this.props;
 
     const isHome = window.location.pathname == '/';
-     
+
     const isResourcesMenuOpen = Boolean(resourcesAnchorEl);
     const isAboutMenuOpen = Boolean(aboutAnchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -190,11 +192,19 @@ class Nav extends React.Component {
         <MenuItem onClick={this.handleContactClick}>
           Contact Us
         </MenuItem>
-        <MenuItem onClick={ () => this.props.history.push('/documentation') }>
-                  How To Documentation
+        <MenuItem onClick={() => {
+          this.handleMenuClose()
+          this.props.history.push('/documentation')
+        }
+        }>
+          How To Documentation
         </MenuItem>
-        <MenuItem onClick={ () => window.open('https://github.com/OpenKnowledgeSpace/KnowledgeSpace')}>
-                 Technical Documentation
+        <MenuItem onClick={() => {
+          this.handleMenuClose()
+          window.open('https://github.com/OpenKnowledgeSpace/KnowledgeSpace')
+        }
+        }>
+          Technical Documentation
         </MenuItem>
       </Menu>
     );
@@ -207,11 +217,11 @@ class Nav extends React.Component {
         open={isResourcesMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={ () => window.open('https://www.humanbrainproject.eu/en/explore-the-brain/search/?facet_type[0]=Dataset') }>
-                  HBP Knowledge Graph
+        <MenuItem onClick={() => window.open('https://www.humanbrainproject.eu/en/explore-the-brain/search/?facet_type[0]=Dataset')}>
+          HBP Knowledge Graph
         </MenuItem>
-        <MenuItem onClick={ () => window.open('https://www.humanbrainproject.eu/en/explore-the-brain/use-data/')}>
-                 HBP Atlas and analytical tools
+        <MenuItem onClick={() => window.open('https://ebrains.eu/services/atlases/')}>
+          HBP Atlas and analytical tools
         </MenuItem>
       </Menu>
     );
@@ -224,11 +234,11 @@ class Nav extends React.Component {
         open={isMobileMenuOpen}
         onClose={this.handleMobileMenuClose}
       >
-          <MenuItem onClick={ () => window.open('https://www.humanbrainproject.eu/en/explore-the-brain/search/?facet_type[0]=Dataset') }>
-                  HBP Knowledge Graph
+        <MenuItem onClick={() => window.open('https://www.humanbrainproject.eu/en/explore-the-brain/search/?facet_type[0]=Dataset')}>
+          HBP Knowledge Graph
         </MenuItem>
-        <MenuItem onClick={ () => window.open('https://www.humanbrainproject.eu/en/explore-the-brain/use-data/')}>
-                 HBP Atlas and analytical tools
+        <MenuItem onClick={() => window.open('https://www.humanbrainproject.eu/en/explore-the-brain/use-data/')}>
+          HBP Atlas and analytical tools
         </MenuItem>
 
         <MenuItem onClick={this.handleAboutClick}>
@@ -237,13 +247,20 @@ class Nav extends React.Component {
         <MenuItem onClick={this.handleContactClick}>
           Contact Us
         </MenuItem>
-        <MenuItem onClick={ () => this.props.history.push('/documentation') }>
-                  How To Documentation
+        <MenuItem onClick={() => {
+          this.handleMenuClose()
+          this.props.history.push('/documentation')
+        }
+        }>
+          How To Documentation
         </MenuItem>
-        <MenuItem onClick={ () => window.open('https://github.com/OpenKnowledgeSpace/KnowledgeSpace')}>
-                 Technical Documentation
+        <MenuItem onClick={() => {
+          this.handleMenuClose()
+          window.open('https://github.com/OpenKnowledgeSpace/KnowledgeSpace')
+        }
+        }>
+          Technical Documentation
         </MenuItem>
-
 
       </Menu>
     );
@@ -252,26 +269,27 @@ class Nav extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton  
-              classes={{ colorInherit: classes.menuButton  }}
+            <IconButton
+              classes={{ colorInherit: classes.menuButton }}
               color="inherit"
               onClick={this.handleLogoClick}
               aria-label="Go To Frontpage">
-              <Logo /> 
-            </IconButton> 
-            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+              {/* <Logo />  */}
+              <img src={logoImage} />
+            </IconButton>
+            {/* <Typography className={classes.title} variant="h6" color="inherit" noWrap>
               <RouterLink className={classes.title} to='/'>
-                KnowledgeSpace 
+                Knowledge Space 
               </RouterLink>
-            </Typography>
-            <div className={classes.grow} /> 
-            { !isHome && <NavSearch /> } 
-						<div className={classes.sectionDesktop}>
+            </Typography> */}
+            <div className={classes.grow} />
+            {!isHome && <NavSearch />}
+            <div className={classes.sectionDesktop}>
               <Typography className={classes.menuButton} variant="h6" color="inherit" noWrap>
-                  <Button onClick={this.handleResourcesMenuOpen} color='inherit'>Resources</Button>
+                <Button onClick={this.handleResourcesMenuOpen} color='inherit'>Resources</Button>
               </Typography>
               <Typography className={classes.menuButton} variant="h6" color="inherit" noWrap>
-                  <Button onClick={this.handleAboutMenuOpen} color='inherit'>About</Button>
+                <Button onClick={this.handleAboutMenuOpen} color='inherit'>About</Button>
               </Typography>
             </div>
             <div className={classes.sectionMobile}>

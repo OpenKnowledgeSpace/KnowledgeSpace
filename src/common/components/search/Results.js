@@ -4,7 +4,7 @@ import {keys, isEmpty, isString, isArray, join, get} from 'lodash'
 
 const Results = ({hits, cols = {}, onRowClick, linkCol}) => (
   <div>
-    <span>{hits.total} records found</span>
+    <span>{hits.total ? hits.total.value : 0} records found</span>
     <table>
       <tbody>
         <ResultsHeader cols={cols}/>

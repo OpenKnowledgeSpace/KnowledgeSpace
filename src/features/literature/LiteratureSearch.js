@@ -108,7 +108,7 @@ class LiteratureSearch extends Component {
           <Paper elevation={1} classes={{root: classes.resultsBox }}>
             <Typography variant="h3" classes={{root: classes.root}}>
                 Literature Results:
-                <Link className={classes.entityLink} to={`/t/${slug}`}>
+                <Link className={classes.entityLink} to={`/wiki/#${slug}`}>
                   {name}
                 </Link>
             </Typography>

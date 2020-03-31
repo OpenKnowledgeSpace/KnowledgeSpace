@@ -62,23 +62,23 @@ class DataSpaceSearch extends Component {
   render() {
     const {classes,  entity, sourceConfig, filters, facets, results, page} = this.props
     const { slug, category, name } = entity;
-    const {columns, label} = sourceConfig
-
+    const {columns, label ,aggs,id} = sourceConfig
+   
     return (
       <Grid container direction="row" justify="flex-start" alignItems="flex-start" spacing={16}>
         <Grid item xs={12} sm={3}>
-          { facets && <Facets facets={facets} selected={filters} handleFacetToggle={this.handleFacetToggle.bind(this)}/> }
+          { facets && <Facets aggs={aggs} facets={facets} selected={filters} handleFacetToggle={this.handleFacetToggle.bind(this)}/> }
         </Grid>
         <Grid item xs={12} sm={9}>
           <Paper elevation={1}>
             <Typography variant="h3" classes={{root: classes.root}}>
               {label} Results:
-              <Link className={classes.entityLink} to={`/t/${slug}`}>
+              <Link className={classes.entityLink} to={`/wiki/#${slug}`}>
                 {name}
               </Link>
             </Typography>
             <Divider classes={{root: classes.divider}}/>
-            <DataSpaceResults hits={results} columns={columns} page={page || 0} handlePageChange={this.handlePageChange.bind(this)} linkCol="dc.identifier"/>
+            <DataSpaceResults index={id} hits={results} columns={columns} page={page || 0} handlePageChange={this.handlePageChange.bind(this)} linkCol="dc.identifier"/>
           </Paper>
         </Grid>
       </Grid>
