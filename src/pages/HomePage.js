@@ -13,7 +13,8 @@ import nif from 'imgs/nif-logo-new.png';
 import incf from 'imgs/incf-logo.svg';
 
 import ebrains from 'imgs/partners/ebrains.png';
-import brainmaps from 'imgs/partners/brainmaps.png';
+//import brainmaps from 'imgs/partners/brainmaps.png';
+import brainmaps from 'imgs/partners/brainmaps_new_1.png';
 import neuromorpho from 'imgs/partners/neuromorpho.png';
 import opensourcebrain from 'imgs/partners/opensourcebrain.png';
 import icg from 'imgs/partners/icg.png';
@@ -26,6 +27,7 @@ import neuroelectro from 'imgs/partners/neuroelectro.png';
 import bbp from 'imgs/partners/bbp.png';
 import cli from 'imgs/partners/cli.png';
 import allen from 'imgs/partners/allen.png';
+import neuroml from 'imgs/partners/neuroml.png';
 
 import banner from 'imgs/ks-banner.png';
 
@@ -85,6 +87,11 @@ const partner_logos = [
     isSpacingRequired: true, // for large icons 
   },
   {
+    href: 'https://msu.edu/~brains/brains/human/index.html',
+    name: 'BrainMaps',
+    src: brainmaps
+  },
+  {
     href: 'http://cellimagelibrary.org/',
     name: 'Cell Image Library',
     src: cli
@@ -94,12 +101,7 @@ const partner_logos = [
     name: 'NeuroElectro',
     src: neuroelectro,
     isSpacingRequired: true, // for large icons 
-  },
-  {
-    href: 'http://brainmap.org/',
-    name: 'BrainMaps',
-    src: brainmaps
-  },
+  }, 
   {
     href: 'https://senselab.med.yale.edu/ModelDB/',
     name: 'ModelDB',
@@ -115,6 +117,12 @@ const partner_logos = [
     href: 'http://www.opensourcebrain.org/',
     name: 'Open Source Brain',
     src: opensourcebrain,
+    isSpacingRequired: true, // for large icons 
+  },
+  {
+    href: 'https://neuroml-db.org/',
+    name: 'NeuroML',
+    src: neuroml,
     isSpacingRequired: true, // for large icons 
   },
 ];
